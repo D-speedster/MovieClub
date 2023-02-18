@@ -1,0 +1,33 @@
+.Header_Nav {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 15px 0px 15px 0px;
+}
+
+nav {
+    height: 100px;
+    padding: 15px;
+
+}
+
+.navbar-toggler {
+    color: #FFF;
+    background: #CCC !important;
+}
+
+.navbar-brand {
+    color: #FFF !important;
+    margin-left: 15px;
+    margin-top: -10px;
+}
+
+.nav-link {
+    color: #FFF !important;
+    font-size: 19.6px !important;
+    font-weight:400;      
+}
+
+svg {
+    /* margin-top: 25px; */
+    margin-left: 5px;
+    margin-top: -6px;
+}
