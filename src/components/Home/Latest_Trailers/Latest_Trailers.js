@@ -18,7 +18,7 @@ export default function Latest_Trailers() {
   return (
     <div className='Latest_Trailers'>
       <div className='Latest_Trailers_Box' style={{ background: `url(/img/Last_Trailer/${defaultImage})` }}>
-        <h4>آخرین تریلر ها2
+        <h4>آخرین تریلر ها
         </h4>
         <Row>
           <Col lg={3} md={3} sm={6} xs={6} className='Last_Trailer_Item'>
