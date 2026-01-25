@@ -1,0 +1,1963 @@
+{
+  "Series": [
+    {
+      "id": "tt0903747",
+      "name": "Breaking Bad",
+      "year": "2008",
+      "genre": "جنایی، درام، ﺩﻟﻬﺮﻩ ﺁﻭﺭ",
+      "rate": "9.5",
+      "poster": "https://m.media-amazon.com/images/M/MV5BYmQ4YWMxYjUtNjZmYi00MDQ1LWFjMjMtNjA5ZDdiYjdiODU5XkEyXkFqcGdeQXVyMTMzNDExODE5._V1_Ratio0.6762_AL_.jpg",
+      "time": null,
+      "TranslateText": "یک معلم شیمی که مبتلا به سرطان ریه غیرقابل جراحی تشخیص داده شده است، برای تأمین آینده خانواده اش، با دانش آموز سابقش به تولید و فروش متامفتامین روی می آورد. ",
+      "awards": "Top rated TV #2 | Won 16 Primetime Emmys,155 wins & 247 nominations total",
+      "director": "",
+      "stars": "Bryan Cranston, Aaron Paul, Anna Gunn",
+      "countries": "ایالات متحده آمریکا",
+      "writers": "",
+      "CreatedAt": "2023-06-11",
+      "similars": [
+        {
+          "id": "tt3032476",
+          "title": "Better Call Saul",
+          "image": "https://m.media-amazon.com/images/M/MV5BZDA4YmE0OTYtMmRmNS00Mzk2LTlhM2MtNjk4NzBjZGE1MmIyXkEyXkFqcGdeQXVyMTMzNDExODE5._V1_Ratio0.6763_AL_.jpg",
+          "imDbRating": "9.0"
+        },
+        {
+          "id": "tt0944947",
+          "title": "Game of Thrones",
+          "image": "https://m.media-amazon.com/images/M/MV5BN2IzYzBiOTQtNGZmMi00NDI5LTgxMzMtN2EzZjA1NjhlOGMxXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_Ratio0.6763_AL_.jpg",
+          "imDbRating": "9.2"
+        },
+        {
+          "id": "tt4574334",
+          "title": "Stranger Things",
+          "image": "https://m.media-amazon.com/images/M/MV5BMDZkYmVhNjMtNWU4MC00MDQxLWE3MjYtZGMzZWI1ZjhlOWJmXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_Ratio0.8019_AL_.jpg",
+          "imDbRating": "8.7"
+        },
+        {
+          "id": "tt7366338",
+          "title": "Chernobyl",
+          "image": "https://m.media-amazon.com/images/M/MV5BNTdkN2QwMDItMDVhNS00ZjFiLWEzNTctMzY5ODQzYWNkMDllXkEyXkFqcGdeQXVyMTMzNDExODE5._V1_Ratio0.7246_AL_.jpg",
+          "imDbRating": "9.4"
+        },
+        {
+          "id": "tt9243946",
+          "title": "El Camino: A Breaking Bad Movie",
+          "image": "https://m.media-amazon.com/images/M/MV5BNjk4MzVlM2UtZGM0ZC00M2M1LThkMWEtZjUyN2U2ZTc0NmM5XkEyXkFqcGdeQXVyOTAzMTc2MjA@._V1_Ratio0.8019_AL_.jpg",
+          "imDbRating": "7.3"
+        },
+        {
+          "id": "tt1190634",
+          "title": "The Boys",
+          "image": "https://m.media-amazon.com/images/M/MV5BOTEyNDJhMDAtY2U5ZS00OTMzLTkwODktMjU3MjFkZWVlMGYyXkEyXkFqcGdeQXVyMjkwOTAyMDU@._V1_Ratio0.8019_AL_.jpg",
+          "imDbRating": "8.7"
+        },
+        {
+          "id": "tt0141842",
+          "title": "The Sopranos",
+          "image": "https://m.media-amazon.com/images/M/MV5BZGJjYzhjYTYtMDBjYy00OWU1LTg5OTYtNmYwOTZmZjE3ZDdhXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_Ratio0.7053_AL_.jpg",
+          "imDbRating": "9.2"
+        },
+        {
+          "id": "tt1520211",
+          "title": "The Walking Dead",
+          "image": "https://m.media-amazon.com/images/M/MV5BZmU5NTcwNjktODIwMi00ZmZkLTk4ZWUtYzVjZWQ5ZTZjN2RlXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_Ratio0.6763_AL_.jpg",
+          "imDbRating": "8.1"
+        },
+        {
+          "id": "tt0386676",
+          "title": "The Office",
+          "image": "https://m.media-amazon.com/images/M/MV5BMDNkOTE4NDQtMTNmYi00MWE0LWE4ZTktYTc0NzhhNWIzNzJiXkEyXkFqcGdeQXVyMzQ2MDI5NjU@._V1_Ratio0.6763_AL_.jpg",
+          "imDbRating": "9.0"
+        },
+        {
+          "id": "tt2442560",
+          "title": "Peaky Blinders",
+          "image": "https://m.media-amazon.com/images/M/MV5BZjYzZDgzMmYtYjY5Zi00YTk1LThhMDYtNjFlNzM4MTZhYzgyXkEyXkFqcGdeQXVyMTE5NDQ1MzQ3._V1_Ratio0.8019_AL_.jpg",
+          "imDbRating": "8.8"
+        },
+        {
+          "id": "tt2085059",
+          "title": "Black Mirror",
+          "image": "https://m.media-amazon.com/images/M/MV5BZTgyNTBkNzctN2I3NC00NTA1LWJiMDMtYzA2MmYyZjc1NWQzXkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_Ratio0.8019_AL_.jpg",
+          "imDbRating": "8.8"
+        },
+        {
+          "id": "tt2861424",
+          "title": "Rick and Morty",
+          "image": "https://m.media-amazon.com/images/M/MV5BZjRjOTFkOTktZWUzMi00YzMyLThkMmYtMjEwNmQyNzliYTNmXkEyXkFqcGdeQXVyNzQ1ODk3MTQ@._V1_Ratio0.6763_AL_.jpg",
+          "imDbRating": "9.1"
+        }
+      ],
+      "type": "TVSeries",
+      "Image_Moviez": [
+        "https://m.media-amazon.com/images/M/MV5BMzQwODMxOTg5MF5BMl5BanBnXkFtZTgwNjQ2MTU5NTM@._V1_Ratio1.5000_AL_.jpg",
+        "https://m.media-amazon.com/images/M/MV5BMTczNjY0NDQ4MF5BMl5BanBnXkFtZTgwNTQ2MTU5NTM@._V1_Ratio1.5000_AL_.jpg",
+        "https://m.media-amazon.com/images/M/MV5BMTAwNDI2OTczNzFeQTJeQWpwZ15BbWU4MDc0NjE1OTUz._V1_Ratio1.5000_AL_.jpg",
+        "https://m.media-amazon.com/images/M/MV5BMjE1OTMwNTA5NV5BMl5BanBnXkFtZTgwMDkzOTA1NjM@._V1_Ratio1.5000_AL_.jpg"
+      ]
+    },
+    {
+      "id": "tt2306299",
+      "name": "Vikings",
+      "year": "2013",
+      "genre": "اکشن، ماجراجویی، درام",
+      "rate": "8.5",
+      "poster": "https://m.media-amazon.com/images/M/MV5BODk4ZjU0NDUtYjdlOS00OTljLTgwZTUtYjkyZjk1NzExZGIzXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_Ratio0.6762_AL_.jpg",
+      "time": null,
+      "TranslateText": "وایکینگ‌ها ما را به دنیای بی‌رحمانه و مرموز Ragnar Lothbrok، یک جنگجو و کشاورز وایکینگ منتقل می‌کنند که مشتاق اکتشاف - و حمله به سواحل دوردست در سراسر اقیانوس است.      ",
+      "awards": "Won 1 Primetime Emmy,46 wins & 134 nominations total",
+      "director": "",
+      "stars": "Katheryn Winnick, Gustaf Skarsgård, Alexander Ludwig",
+      "countries": "ایرلند، کانادا",
+      "writers": "",
+      "CreatedAt": "2023-06-11",
+      "similars": [
+        {
+          "id": "tt4620502",
+          "title": "Vikings: The Viking Sagas",
+          "image": "https://m.media-amazon.com/images/M/MV5BOWQ5N2Q2MWUtZTlmMC00YjI5LTgyOWQtNTA4NmY5MGQzM2EwL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyNTUwMTIyODg@._V1_Ratio0.7053_AL_.jpg",
+          "imDbRating": "8.7"
+        },
+        {
+          "id": "tt2442560",
+          "title": "Peaky Blinders",
+          "image": "https://m.media-amazon.com/images/M/MV5BZjYzZDgzMmYtYjY5Zi00YTk1LThhMDYtNjFlNzM4MTZhYzgyXkEyXkFqcGdeQXVyMTE5NDQ1MzQ3._V1_Ratio0.8019_AL_.jpg",
+          "imDbRating": "8.8"
+        },
+        {
+          "id": "tt11311302",
+          "title": "Vikings: Valhalla",
+          "image": "https://m.media-amazon.com/images/M/MV5BMmZlYTQ3NjQtZmIxNC00MzA4LTg1NDgtMmEzODk0MzA4NjQxXkEyXkFqcGdeQXVyMTEyMjM2NDc2._V1_Ratio0.6763_AL_.jpg",
+          "imDbRating": "7.3"
+        },
+        {
+          "id": "tt0944947",
+          "title": "Game of Thrones",
+          "image": "https://m.media-amazon.com/images/M/MV5BYTRiNDQwYzAtMzVlZS00NTI5LWJjYjUtMzkwNTUzMWMxZTllXkEyXkFqcGdeQXVyNDIzMzcwNjc@._V1_Ratio0.7343_AL_.jpg",
+          "imDbRating": "9.2"
+        },
+        {
+          "id": "tt0455275",
+          "title": "Prison Break",
+          "image": "https://m.media-amazon.com/images/M/MV5BMTg3NTkwNzAxOF5BMl5BanBnXkFtZTcwMjM1NjI5MQ@@._V1_Ratio0.6860_AL_.jpg",
+          "imDbRating": "8.3"
+        },
+        {
+          "id": "tt5180504",
+          "title": "The Witcher",
+          "image": "https://m.media-amazon.com/images/M/MV5BMDEwOWVlY2EtMWI0ZC00OWVmLWJmZGItYTk3YjYzN2Y0YmFkXkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_Ratio0.6763_AL_.jpg",
+          "imDbRating": "8.1"
+        },
+        {
+          "id": "tt4179452",
+          "title": "The Last Kingdom",
+          "image": "https://m.media-amazon.com/images/M/MV5BMjE1MzYzNjk3OF5BMl5BanBnXkFtZTgwMzk0MzYwNzE@._V1_Ratio0.6763_AL_.jpg",
+          "imDbRating": "8.5"
+        },
+        {
+          "id": "tt1520211",
+          "title": "The Walking Dead",
+          "image": "https://m.media-amazon.com/images/M/MV5BZmU5NTcwNjktODIwMi00ZmZkLTk4ZWUtYzVjZWQ5ZTZjN2RlXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_Ratio0.6763_AL_.jpg",
+          "imDbRating": "8.1"
+        },
+        {
+          "id": "tt6468322",
+          "title": "Money Heist",
+          "image": "https://m.media-amazon.com/images/M/MV5BODI0ZTljYTMtODQ1NC00NmI0LTk1YWUtN2FlNDM1MDExMDlhXkEyXkFqcGdeQXVyMTM0NTUzNDIy._V1_Ratio0.6763_AL_.jpg",
+          "imDbRating": "8.2"
+        },
+        {
+          "id": "tt0903747",
+          "title": "Breaking Bad",
+          "image": "https://m.media-amazon.com/images/M/MV5BYmQ4YWMxYjUtNjZmYi00MDQ1LWFjMjMtNjA5ZDdiYjdiODU5XkEyXkFqcGdeQXVyMTMzNDExODE5._V1_Ratio0.6763_AL_.jpg",
+          "imDbRating": "9.5"
+        },
+        {
+          "id": "tt2707408",
+          "title": "Narcos",
+          "image": "https://m.media-amazon.com/images/M/MV5BNmFjODU3YzgtMGUwNC00ZGI3LWFkZjQtMjkxZDc3NmQ1MzcyXkEyXkFqcGdeQXVyNjUwNzk3NDc@._V1_Ratio0.6763_AL_.jpg",
+          "imDbRating": "8.8"
+        },
+        {
+          "id": "tt1442449",
+          "title": "Spartacus",
+          "image": "https://m.media-amazon.com/images/M/MV5BZWQ4MjA2YzEtOTQzYi00NWQ1LWI0ZDEtN2VkZjhmYTc3MzU0XkEyXkFqcGdeQXVyNDIzMzcwNjc@._V1_Ratio0.6763_AL_.jpg",
+          "imDbRating": "8.5"
+        }
+      ],
+      "type": "TVSeries",
+      "Image_Moviez": [
+        "https://m.media-amazon.com/images/M/MV5BYzUzMzY4ZWUtM2M2ZS00NjdlLThlNzgtNzI2OWZiMjFjYTVlXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_Ratio1.5000_AL_.jpg",
+        "https://m.media-amazon.com/images/M/MV5BMzY5NjAwZDMtOTFiYy00ZGY5LWFhNjItYmVjMjRhZTI4MTQ1XkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_Ratio1.5000_AL_.jpg",
+        "https://m.media-amazon.com/images/M/MV5BZTk2NjQ2YzktMzlhMS00MzFjLWFmMjctYzVlYzEzYzg2NjFjXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_Ratio1.5000_AL_.jpg",
+        "https://m.media-amazon.com/images/M/MV5BZTk2NjQ2YzktMzlhMS00MzFjLWFmMjctYzVlYzEzYzg2NjFjXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_Ratio1.5000_AL_.jpg",
+        "https://m.media-amazon.com/images/M/MV5BZmE5NmM3ZjQtNTc0Ni00ZGY3LWEyN2EtM2YyMzI3ZTliNTRmXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_Ratio1.0000_AL_.jpg",
+        "https://m.media-amazon.com/images/M/MV5BZTk2NjQ2YzktMzlhMS00MzFjLWFmMjctYzVlYzEzYzg2NjFjXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_Ratio1.5000_AL_.jpg"
+      ]
+    },
+    {
+      "id": "tt5753856",
+      "name": "Dark",
+      "year": "2017",
+      "genre": "جنایی، درام، معمایی",
+      "rate": "8.7",
+      "poster": "https://m.media-amazon.com/images/M/MV5BOTk2NzUyOTctZDdlMS00MDJlLTgzNTEtNzQzYjFhNjA0YjBjXkEyXkFqcGdeQXVyMjg1NDcxNDE@._V1_Ratio0.6762_AL_.jpg",
+      "time": null,
+      "TranslateText": "یک حماسه خانوادگی با پیچ و تاب ماوراء طبیعی، در یک شهر آلمان که ناپدید شدن دو کودک خردسال روابط بین چهار خانواده را آشکار می کند. ",
+      "awards": "Top rated TV #84 | Awards,8 wins & 25 nominations",
+      "director": "",
+      "stars": "Louis Hofmann, Karoline Eichhorn, Lisa Vicari",
+      "countries": "آلمان، ایالات متحده آمریکا",
+      "writers": "",
+      "CreatedAt": "2023-06-11",
+      "similars": [
+        {
+          "id": "tt7366338",
+          "title": "Chernobyl",
+          "image": "https://m.media-amazon.com/images/M/MV5BNTdkN2QwMDItMDVhNS00ZjFiLWEzNTctMzY5ODQzYWNkMDllXkEyXkFqcGdeQXVyMTMzNDExODE5._V1_Ratio0.7246_AL_.jpg",
+          "imDbRating": "9.4"
+        },
+        {
+          "id": "tt10048342",
+          "title": "The Queen's Gambit",
+          "image": "https://m.media-amazon.com/images/M/MV5BM2EwMmRhMmUtMzBmMS00ZDQ3LTg4OGEtNjlkODk3ZTMxMmJlXkEyXkFqcGdeQXVyMjM5ODk1NDU@._V1_Ratio0.6763_AL_.jpg",
+          "imDbRating": "8.6"
+        },
+        {
+          "id": "tt9319668",
+          "title": "1899",
+          "image": "https://m.media-amazon.com/images/M/MV5BMTU1N2I5OTgtNDE2MS00ZTdmLWJlODktNDMwMGVmNzY5NmUxXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_Ratio0.8019_AL_.jpg",
+          "imDbRating": "7.4"
+        },
+        {
+          "id": "tt2085059",
+          "title": "Black Mirror",
+          "image": "https://m.media-amazon.com/images/M/MV5BYTM3YWVhMDMtNjczMy00NGEyLWJhZDctYjNhMTRkNDE0ZTI1XkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_Ratio0.6763_AL_.jpg",
+          "imDbRating": "8.8"
+        },
+        {
+          "id": "tt1475582",
+          "title": "Sherlock",
+          "image": "https://m.media-amazon.com/images/M/MV5BMWEzNTFlMTQtMzhjOS00MzQ1LWJjNjgtY2RhMjFhYjQwYjIzXkEyXkFqcGdeQXVyNDIzMzcwNjc@._V1_Ratio0.6763_AL_.jpg",
+          "imDbRating": "9.1"
+        },
+        {
+          "id": "tt2442560",
+          "title": "Peaky Blinders",
+          "image": "https://m.media-amazon.com/images/M/MV5BZjYzZDgzMmYtYjY5Zi00YTk1LThhMDYtNjFlNzM4MTZhYzgyXkEyXkFqcGdeQXVyMTE5NDQ1MzQ3._V1_Ratio0.8019_AL_.jpg",
+          "imDbRating": "8.8"
+        },
+        {
+          "id": "tt6468322",
+          "title": "Money Heist",
+          "image": "https://m.media-amazon.com/images/M/MV5BODI0ZTljYTMtODQ1NC00NmI0LTk1YWUtN2FlNDM1MDExMDlhXkEyXkFqcGdeQXVyMTM0NTUzNDIy._V1_Ratio0.6763_AL_.jpg",
+          "imDbRating": "8.2"
+        },
+        {
+          "id": "tt4574334",
+          "title": "Stranger Things",
+          "image": "https://m.media-amazon.com/images/M/MV5BMDZkYmVhNjMtNWU4MC00MDQxLWE3MjYtZGMzZWI1ZjhlOWJmXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_Ratio0.8019_AL_.jpg",
+          "imDbRating": "8.7"
+        },
+        {
+          "id": "tt10919420",
+          "title": "Squid Game",
+          "image": "https://m.media-amazon.com/images/M/MV5BYWE3MDVkN2EtNjQ5MS00ZDQ4LTliNzYtMjc2YWMzMDEwMTA3XkEyXkFqcGdeQXVyMTEzMTI1Mjk3._V1_Ratio0.6763_AL_.jpg",
+          "imDbRating": "8.0"
+        },
+        {
+          "id": "tt5290382",
+          "title": "Mindhunter",
+          "image": "https://m.media-amazon.com/images/M/MV5BNWNmYzQ1ZWUtYTQ3ZS00Y2UwLTlkMDctZThlOTJkMGJiNzBiXkEyXkFqcGdeQXVyNjg2NjQwMDQ@._V1_Ratio0.6763_AL_.jpg",
+          "imDbRating": "8.6"
+        },
+        {
+          "id": "tt0944947",
+          "title": "Game of Thrones",
+          "image": "https://m.media-amazon.com/images/M/MV5BYTRiNDQwYzAtMzVlZS00NTI5LWJjYjUtMzkwNTUzMWMxZTllXkEyXkFqcGdeQXVyNDIzMzcwNjc@._V1_Ratio0.7343_AL_.jpg",
+          "imDbRating": "9.2"
+        },
+        {
+          "id": "tt2707408",
+          "title": "Narcos",
+          "image": "https://m.media-amazon.com/images/M/MV5BNmFjODU3YzgtMGUwNC00ZGI3LWFkZjQtMjkxZDc3NmQ1MzcyXkEyXkFqcGdeQXVyNjUwNzk3NDc@._V1_Ratio0.6763_AL_.jpg",
+          "imDbRating": "8.8"
+        }
+      ],
+      "type": "TVSeries",
+      "Image_Moviez": [
+        "https://m.media-amazon.com/images/M/MV5BMTU0NTEyMDU4MF5BMl5BanBnXkFtZTgwNDc1OTgyNDM@._V1_Ratio1.4800_AL_.jpg",
+        "https://m.media-amazon.com/images/M/MV5BMjMwMjg3OTMxMl5BMl5BanBnXkFtZTgwNTc1OTgyNDM@._V1_Ratio1.5000_AL_.jpg",
+        "https://m.media-amazon.com/images/M/MV5BMTU3Mzc2OTczNl5BMl5BanBnXkFtZTgwNjc1OTgyNDM@._V1_Ratio1.5000_AL_.jpg",
+        "https://m.media-amazon.com/images/M/MV5BMTU3Mzc2OTczNl5BMl5BanBnXkFtZTgwNjc1OTgyNDM@._V1_Ratio1.5000_AL_.jpg",
+        "https://m.media-amazon.com/images/M/MV5BMTAyOTgxNzExNzNeQTJeQWpwZ15BbWU4MDE3NTk4MjQz._V1_Ratio1.5000_AL_.jpg",
+        "https://m.media-amazon.com/images/M/MV5BMTU3Mzc2OTczNl5BMl5BanBnXkFtZTgwNjc1OTgyNDM@._V1_Ratio1.5000_AL_.jpg"
+      ]
+    },
+    {
+      "id": "tt4052886",
+      "name": "Lucifer",
+      "year": "2016",
+      "genre": "جنایی، درام، فانتزی",
+      "rate": "8.1",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNDJjMzc4NGYtZmFmNS00YWY3LThjMzQtYzJlNGFkZGRiOWI1XkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_Ratio0.6762_AL_.jpg",
+      "time": null,
+      "TranslateText": "لوسیفر مورنینگ استار به این نتیجه رسیده است که به اندازه کافی خدمتکار وظیفه شناس در جهنم است و تصمیم می گیرد مدتی را در زمین بگذراند تا بشریت را بهتر بشناسد. او در لس آنجلس - شهر فرشتگان - ساکن می شود.",
+      "awards": "Nominated for 1 Primetime Emmy,2 wins & 20 nominations total",
+      "director": "",
+      "stars": "Tom Ellis, Lauren German, Kevin Alejandro",
+      "countries": "ایالات متحده آمریکا",
+      "writers": "",
+      "CreatedAt": "2023-06-11",
+      "similars": [
+        {
+          "id": "tt2193021",
+          "title": "Arrow",
+          "image": "https://m.media-amazon.com/images/M/MV5BMTI0NTMwMDgtYTMzZC00YmJhLTg4NzMtMTc1NjI4MWY4NmQ4XkEyXkFqcGdeQXVyNTY3MTYzOTA@._V1_Ratio0.8019_AL_.jpg",
+          "imDbRating": "7.5"
+        },
+        {
+          "id": "tt2661044",
+          "title": "The 100",
+          "image": "https://m.media-amazon.com/images/M/MV5BNjRiYTIzZmUtMTFkNS00ZTM0LWE4ODAtMDliMGE4NzM5ZjVlXkEyXkFqcGdeQXVyNDQ0MTYzMDA@._V1_Ratio0.8116_AL_.jpg",
+          "imDbRating": "7.6"
+        },
+        {
+          "id": "tt6468322",
+          "title": "Money Heist",
+          "image": "https://m.media-amazon.com/images/M/MV5BODI0ZTljYTMtODQ1NC00NmI0LTk1YWUtN2FlNDM1MDExMDlhXkEyXkFqcGdeQXVyMTM0NTUzNDIy._V1_Ratio0.6763_AL_.jpg",
+          "imDbRating": "8.2"
+        },
+        {
+          "id": "tt5180504",
+          "title": "The Witcher",
+          "image": "https://m.media-amazon.com/images/M/MV5BMDEwOWVlY2EtMWI0ZC00OWVmLWJmZGItYTk3YjYzN2Y0YmFkXkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_Ratio0.6763_AL_.jpg",
+          "imDbRating": "8.1"
+        },
+        {
+          "id": "tt1405406",
+          "title": "The Vampire Diaries",
+          "image": "https://m.media-amazon.com/images/M/MV5BMDk3YzgxNDQtNTEzOS00NDMyLWFlYmYtYTZlMDk1NDkxNmMyXkEyXkFqcGdeQXVyNzA5NjUyNjM@._V1_Ratio0.6860_AL_.jpg",
+          "imDbRating": "7.7"
+        },
+        {
+          "id": "tt7767422",
+          "title": "Sex Education",
+          "image": "https://m.media-amazon.com/images/M/MV5BOTE0MjQ1NDU3OV5BMl5BanBnXkFtZTgwNTI4MTgwNzM@._V1_Ratio0.6763_AL_.jpg",
+          "imDbRating": "8.3"
+        },
+        {
+          "id": "tt1632701",
+          "title": "Suits",
+          "image": "https://m.media-amazon.com/images/M/MV5BNmVmMmM5ZmItZDg0OC00NTFiLWIxNzctZjNmYTY5OTU3ZWU3XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_Ratio0.6860_AL_.jpg",
+          "imDbRating": "8.4"
+        },
+        {
+          "id": "tt10919420",
+          "title": "Squid Game",
+          "image": "https://m.media-amazon.com/images/M/MV5BYWE3MDVkN2EtNjQ5MS00ZDQ4LTliNzYtMjc2YWMzMDEwMTA3XkEyXkFqcGdeQXVyMTEzMTI1Mjk3._V1_Ratio0.6763_AL_.jpg",
+          "imDbRating": "8.0"
+        },
+        {
+          "id": "tt0455275",
+          "title": "Prison Break",
+          "image": "https://m.media-amazon.com/images/M/MV5BMTg3NTkwNzAxOF5BMl5BanBnXkFtZTcwMjM1NjI5MQ@@._V1_Ratio0.6860_AL_.jpg",
+          "imDbRating": "8.3"
+        },
+        {
+          "id": "tt1567432",
+          "title": "Teen Wolf",
+          "image": "https://m.media-amazon.com/images/M/MV5BMThlNTk3YzMtOTZjMi00M2NiLTg1NTgtYThiYzE2MDFmMDUwXkEyXkFqcGdeQXVyNzA5NjUyNjM@._V1_Ratio0.6763_AL_.jpg",
+          "imDbRating": "7.7"
+        },
+        {
+          "id": "tt3107288",
+          "title": "The Flash",
+          "image": "https://m.media-amazon.com/images/M/MV5BZDcwMzU4NWYtODIzZi00Yzg4LWJhOTAtOTQ2ZDA4NmFlYmFlXkEyXkFqcGdeQXVyMTY1MTU3NDY5._V1_Ratio0.8019_AL_.jpg",
+          "imDbRating": "7.5"
+        },
+        {
+          "id": "tt2632424",
+          "title": "The Originals",
+          "image": "https://m.media-amazon.com/images/M/MV5BNDllZjc2NjEtOGMwZS00ZmNkLTg2NDgtZjJkYjg0YjMxM2FmXkEyXkFqcGdeQXVyNzA5NjUyNjM@._V1_Ratio0.6763_AL_.jpg",
+          "imDbRating": "8.3"
+        }
+      ],
+      "type": "TVSeries",
+      "Image_Moviez": [
+        "https://m.media-amazon.com/images/M/MV5BNzU0MDcxMDEtNjgwOS00NWM5LTgxZTAtMThhNzE3OTVjNDIwXkEyXkFqcGdeQXVyMTEyMjM2NDc2._V1_Ratio1.7800_AL_.jpg",
+        "https://m.media-amazon.com/images/M/MV5BMDFmOWZiZGUtMzk1OS00YjE1LTljZjEtZTI0ZDg5MjMyODE3XkEyXkFqcGdeQXVyMTEyMjM2NDc2._V1_Ratio1.5000_AL_.jpg",
+        "https://m.media-amazon.com/images/M/MV5BNjZjNzBhM2MtY2EyNC00ZmRiLTk4YzctM2Y0YThmZTM4N2RiXkEyXkFqcGdeQXVyMTEyMjM2NDc2._V1_Ratio1.4600_AL_.jpg",
+        "https://m.media-amazon.com/images/M/MV5BZWVmNjQ1MzktYTUzNS00ZTBjLWEwMTEtM2ExZDMwZTg3YjI3XkEyXkFqcGdeQXVyMTEyMjM2NDc2._V1_Ratio1.5000_AL_.jpg"
+      ]
+    },
+    {
+      "id": "tt0141842",
+      "name": "The Sopranos",
+      "year": "1999",
+      "genre": "جنایی، درام",
+      "rate": "9.2",
+      "poster": "https://m.media-amazon.com/images/M/MV5BZGJjYzhjYTYtMDBjYy00OWU1LTg5OTYtNmYwOTZmZjE3ZDdhXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_Ratio0.7046_AL_.jpg",
+      "time": null,
+      "TranslateText": "رئیس اوباش نیوجرسی، تونی سوپرانو، با مسائل شخصی و حرفه ای در زندگی خانگی و کاری خود که بر وضعیت روانی او تأثیر می گذارد، سر و کار دارد و او را به دنبال مشاوره روانپزشکی حرفه ای سوق می دهد.",
+      "awards": "Top rated TV #9 | Won 21 Primetime Emmys,122 wins & 309 nominations total",
+      "director": "",
+      "stars": "James Gandolfini, Lorraine Bracco, Edie Falco",
+      "countries": "ایالات متحده آمریکا",
+      "writers": "",
+      "CreatedAt": "2023-06-11",
+      "similars": [
+        {
+          "id": "tt0306414",
+          "title": "The Wire",
+          "image": "https://m.media-amazon.com/images/M/MV5BNTllYzFhMjAtZjExNS00MjM4LWE5YmMtOGFiZGRlOTU5YzJiXkEyXkFqcGdeQXVyNDIzMzcwNjc@._V1_Ratio0.6763_AL_.jpg",
+          "imDbRating": "9.3"
+        },
+        {
+          "id": "tt0903747",
+          "title": "Breaking Bad",
+          "image": "https://m.media-amazon.com/images/M/MV5BYmQ4YWMxYjUtNjZmYi00MDQ1LWFjMjMtNjA5ZDdiYjdiODU5XkEyXkFqcGdeQXVyMTMzNDExODE5._V1_Ratio0.6763_AL_.jpg",
+          "imDbRating": "9.5"
+        },
+        {
+          "id": "tt0944947",
+          "title": "Game of Thrones",
+          "image": "https://m.media-amazon.com/images/M/MV5BYTRiNDQwYzAtMzVlZS00NTI5LWJjYjUtMzkwNTUzMWMxZTllXkEyXkFqcGdeQXVyNDIzMzcwNjc@._V1_Ratio0.7343_AL_.jpg",
+          "imDbRating": "9.2"
+        },
+        {
+          "id": "tt2356777",
+          "title": "True Detective",
+          "image": "https://m.media-amazon.com/images/M/MV5BMmRlYmE0Y2UtNDk2Yi00NzczLWEwZTEtZmE2OTcyYzcxYmU5XkEyXkFqcGdeQXVyNTMxMjgxMzA@._V1_Ratio0.7150_AL_.jpg",
+          "imDbRating": "8.9"
+        },
+        {
+          "id": "tt3032476",
+          "title": "Better Call Saul",
+          "image": "https://m.media-amazon.com/images/M/MV5BZDA4YmE0OTYtMmRmNS00Mzk2LTlhM2MtNjk4NzBjZGE1MmIyXkEyXkFqcGdeQXVyMTMzNDExODE5._V1_Ratio0.6763_AL_.jpg",
+          "imDbRating": "8.9"
+        },
+        {
+          "id": "tt0386676",
+          "title": "The Office",
+          "image": "https://m.media-amazon.com/images/M/MV5BMDNkOTE4NDQtMTNmYi00MWE0LWE4ZTktYTc0NzhhNWIzNzJiXkEyXkFqcGdeQXVyMzQ2MDI5NjU@._V1_Ratio0.6763_AL_.jpg",
+          "imDbRating": "9.0"
+        },
+        {
+          "id": "tt7366338",
+          "title": "Chernobyl",
+          "image": "https://m.media-amazon.com/images/M/MV5BNTdkN2QwMDItMDVhNS00ZjFiLWEzNTctMzY5ODQzYWNkMDllXkEyXkFqcGdeQXVyMTMzNDExODE5._V1_Ratio0.7246_AL_.jpg",
+          "imDbRating": "9.4"
+        },
+        {
+          "id": "tt0185906",
+          "title": "Band of Brothers",
+          "image": "https://m.media-amazon.com/images/M/MV5BMTI3ODc2ODc0M15BMl5BanBnXkFtZTYwMjgzNjc3._V1_Ratio0.6763_AL_.jpg",
+          "imDbRating": "9.4"
+        },
+        {
+          "id": "tt4574334",
+          "title": "Stranger Things",
+          "image": "https://m.media-amazon.com/images/M/MV5BMDZkYmVhNjMtNWU4MC00MDQxLWE3MjYtZGMzZWI1ZjhlOWJmXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_Ratio0.8019_AL_.jpg",
+          "imDbRating": "8.7"
+        },
+        {
+          "id": "tt1190634",
+          "title": "The Boys",
+          "image": "https://m.media-amazon.com/images/M/MV5BOTEyNDJhMDAtY2U5ZS00OTMzLTkwODktMjU3MjFkZWVlMGYyXkEyXkFqcGdeQXVyMjkwOTAyMDU@._V1_Ratio0.8019_AL_.jpg",
+          "imDbRating": "8.7"
+        },
+        {
+          "id": "tt1586680",
+          "title": "Shameless",
+          "image": "https://m.media-amazon.com/images/M/MV5BZDgxNjQ2MjMtMjk2Yi00M2Q2LWI0ZDktOGM1NWI5YWUzMjk4XkEyXkFqcGdeQXVyOTA3MTMyOTk@._V1_Ratio0.6763_AL_.jpg",
+          "imDbRating": "8.6"
+        },
+        {
+          "id": "tt2442560",
+          "title": "Peaky Blinders",
+          "image": "https://m.media-amazon.com/images/M/MV5BZjYzZDgzMmYtYjY5Zi00YTk1LThhMDYtNjFlNzM4MTZhYzgyXkEyXkFqcGdeQXVyMTE5NDQ1MzQ3._V1_Ratio0.8019_AL_.jpg",
+          "imDbRating": "8.8"
+        }
+      ],
+      "type": "TVSeries",
+      "Image_Moviez": [
+        "https://m.media-amazon.com/images/M/MV5BZTM1NDFmZjQtODgzZC00NDZiLWIwNTItY2RjMjQwNzBjYTM0XkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_Ratio1.0000_AL_.jpg",
+        "https://m.media-amazon.com/images/M/MV5BMzQwN2QzMzItN2NhNy00NzkzLTkwYjUtNDQzMGE1ZGFiMjI4XkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_Ratio1.0000_AL_.jpg"
+      ]
+    },
+    {
+      "id": "tt0108778",
+      "name": "Friends",
+      "year": "1994",
+      "genre": "کمدی، عاشقانه",
+      "rate": "8.9",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNDVkYjU0MzctMWRmZi00NTkxLTgwZWEtOWVhYjZlYjllYmU4XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_Ratio0.6833_AL_.jpg",
+      "time": null,
+      "TranslateText": "زندگی شخصی و حرفه ای شش دوست بیست تا سی ساله را دنبال می کند که در محله منهتن شهر نیویورک زندگی می کنند.",
+      "awards": "Top rated TV #48 | Won 6 Primetime Emmys,78 wins & 231 nominations total",
+      "director": "",
+      "stars": "Jennifer Aniston, Courteney Cox, Lisa Kudrow",
+      "countries": "ایالات متحده آمریکا",
+      "writers": "",
+      "CreatedAt": "2023-06-11",
+      "similars": [
+        {
+          "id": "tt0898266",
+          "title": "The Big Bang Theory",
+          "image": "https://m.media-amazon.com/images/M/MV5BY2FmZTY5YTktOWRlYy00NmIyLWE0ZmQtZDg2YjlmMzczZDZiXkEyXkFqcGdeQXVyNjg4NzAyOTA@._V1_Ratio0.6763_AL_.jpg",
+          "imDbRating": "8.2"
+        },
+        {
+          "id": "tt0460649",
+          "title": "How I Met Your Mother",
+          "image": "https://m.media-amazon.com/images/M/MV5BNjg1MDQ5MjQ2N15BMl5BanBnXkFtZTYwNjI5NjA3._V1_Ratio0.7440_AL_.jpg",
+          "imDbRating": "8.3"
+        },
+        {
+          "id": "tt0386676",
+          "title": "The Office",
+          "image": "https://m.media-amazon.com/images/M/MV5BMDNkOTE4NDQtMTNmYi00MWE0LWE4ZTktYTc0NzhhNWIzNzJiXkEyXkFqcGdeQXVyMzQ2MDI5NjU@._V1_Ratio0.6763_AL_.jpg",
+          "imDbRating": "9.0"
+        },
+        {
+          "id": "tt1442437",
+          "title": "Modern Family",
+          "image": "https://m.media-amazon.com/images/M/MV5BNzRhNWIxYTEtYjc2NS00YWFlLWFhOGEtMDZiMWM1M2RkNDkyXkEyXkFqcGdeQXVyNjc0MjkzNjc@._V1_Ratio0.6763_AL_.jpg",
+          "imDbRating": "8.5"
+        },
+        {
+          "id": "tt0944947",
+          "title": "Game of Thrones",
+          "image": "https://m.media-amazon.com/images/M/MV5BYTRiNDQwYzAtMzVlZS00NTI5LWJjYjUtMzkwNTUzMWMxZTllXkEyXkFqcGdeQXVyNDIzMzcwNjc@._V1_Ratio0.7343_AL_.jpg",
+          "imDbRating": "9.2"
+        },
+        {
+          "id": "tt1475582",
+          "title": "Sherlock",
+          "image": "https://m.media-amazon.com/images/M/MV5BMWEzNTFlMTQtMzhjOS00MzQ1LWJjNjgtY2RhMjFhYjQwYjIzXkEyXkFqcGdeQXVyNDIzMzcwNjc@._V1_Ratio0.6763_AL_.jpg",
+          "imDbRating": "9.1"
+        },
+        {
+          "id": "tt2861424",
+          "title": "Rick and Morty",
+          "image": "https://m.media-amazon.com/images/M/MV5BZjRjOTFkOTktZWUzMi00YzMyLThkMmYtMjEwNmQyNzliYTNmXkEyXkFqcGdeQXVyNzQ1ODk3MTQ@._V1_Ratio0.6763_AL_.jpg",
+          "imDbRating": "9.1"
+        },
+        {
+          "id": "tt11337862",
+          "title": "Friends: The Reunion",
+          "image": "https://m.media-amazon.com/images/M/MV5BODI0MzdhODAtNDMwNi00NGZlLTg1Y2YtN2M5ZGFmOThkZGM3XkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_Ratio0.6763_AL_.jpg",
+          "imDbRating": "8.0"
+        },
+        {
+          "id": "tt4574334",
+          "title": "Stranger Things",
+          "image": "https://m.media-amazon.com/images/M/MV5BMDZkYmVhNjMtNWU4MC00MDQxLWE3MjYtZGMzZWI1ZjhlOWJmXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_Ratio0.8019_AL_.jpg",
+          "imDbRating": "8.7"
+        },
+        {
+          "id": "tt0903747",
+          "title": "Breaking Bad",
+          "image": "https://m.media-amazon.com/images/M/MV5BYmQ4YWMxYjUtNjZmYi00MDQ1LWFjMjMtNjA5ZDdiYjdiODU5XkEyXkFqcGdeQXVyMTMzNDExODE5._V1_Ratio0.6763_AL_.jpg",
+          "imDbRating": "9.5"
+        },
+        {
+          "id": "tt0098904",
+          "title": "Seinfeld",
+          "image": "https://m.media-amazon.com/images/M/MV5BZjZjMzQ2ZmUtZWEyZC00NWJiLWFjM2UtMzhmYzZmZDcxMzllXkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_Ratio0.7053_AL_.jpg",
+          "imDbRating": "8.9"
+        },
+        {
+          "id": "tt10048342",
+          "title": "The Queen's Gambit",
+          "image": "https://m.media-amazon.com/images/M/MV5BM2EwMmRhMmUtMzBmMS00ZDQ3LTg4OGEtNjlkODk3ZTMxMmJlXkEyXkFqcGdeQXVyMjM5ODk1NDU@._V1_Ratio0.6763_AL_.jpg",
+          "imDbRating": "8.6"
+        }
+      ],
+      "type": "TVSeries",
+      "Image_Moviez": [
+        "https://m.media-amazon.com/images/M/MV5BZTY1MGQ0NDYtYmI5Ny00OGNlLWFlYmMtMjc5MWE1ZjViNGM5XkEyXkFqcGdeQXVyNTM3MDMyMDQ@._V1_Ratio1.3200_AL_.jpg",
+        "https://m.media-amazon.com/images/M/MV5BZGQ0Njc5YjAtYzBkOS00OTVjLTgxNjUtODAwYThiZGNhNjI1XkEyXkFqcGdeQXVyNTM3MDMyMDQ@._V1_Ratio1.3200_AL_.jpg",
+        "https://m.media-amazon.com/images/M/MV5BMTEzMzkyNjMyMzNeQTJeQWpwZ15BbWU4MDgzODQ5NjYz._V1_Ratio1.5400_AL_.jpg",
+        "https://m.media-amazon.com/images/M/MV5BZDI4NjgzNTEtY2I5Ny00NjE4LTk4MGEtYmI2Mjc4NmI4NmRiXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_Ratio1.0000_AL_.jpg"
+      ]
+    },
+    {
+      "id": "tt1190634",
+      "name": "The Boys",
+      "year": "2019",
+      "genre": "اکشن، کمدی، جنایی",
+      "rate": "8.7",
+      "poster": "https://m.media-amazon.com/images/M/MV5BOTEyNDJhMDAtY2U5ZS00OTMzLTkwODktMjU3MjFkZWVlMGYyXkEyXkFqcGdeQXVyMjkwOTAyMDU@._V1_Ratio0.8043_AL_.jpg",
+      "time": null,
+      "story": "گروهی از هوشیاران تصمیم می گیرند تا ابرقهرمانان فاسدی را که از قدرت های فوق العاده خود سوء استفاده می کنند، نابود کنند.0",
+      "awards": "Top rated TV #87 | Nominated for 6 Primetime Emmys,14 wins & 68 nominations total",
+      "director": "",
+      "stars": "Karl Urban, Jack Quaid, Antony Starr",
+      "countries": "ایالات متحده آمریکا",
+      "writers": "",
+      "CreatedAt": "2023-06-11",
+      "similars": [
+        {
+          "id": "tt4574334",
+          "title": "Stranger Things",
+          "image": "https://m.media-amazon.com/images/M/MV5BMDZkYmVhNjMtNWU4MC00MDQxLWE3MjYtZGMzZWI1ZjhlOWJmXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_Ratio0.8019_AL_.jpg",
+          "imDbRating": "8.7"
+        },
+        {
+          "id": "tt6741278",
+          "title": "Invincible",
+          "image": "https://m.media-amazon.com/images/M/MV5BMmE1ODVhMGYtODYyYS00Mjc4LWIzN2EtYWZkZDg1MTUyNDkxXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_Ratio0.6763_AL_.jpg",
+          "imDbRating": "8.7"
+        },
+        {
+          "id": "tt0903747",
+          "title": "Breaking Bad",
+          "image": "https://m.media-amazon.com/images/M/MV5BYmQ4YWMxYjUtNjZmYi00MDQ1LWFjMjMtNjA5ZDdiYjdiODU5XkEyXkFqcGdeQXVyMTMzNDExODE5._V1_Ratio0.6763_AL_.jpg",
+          "imDbRating": "9.5"
+        },
+        {
+          "id": "tt0944947",
+          "title": "Game of Thrones",
+          "image": "https://m.media-amazon.com/images/M/MV5BN2IzYzBiOTQtNGZmMi00NDI5LTgxMzMtN2EzZjA1NjhlOGMxXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_Ratio0.6763_AL_.jpg",
+          "imDbRating": "9.2"
+        },
+        {
+          "id": "tt8111088",
+          "title": "The Mandalorian",
+          "image": "https://m.media-amazon.com/images/M/MV5BN2M5YWFjN2YtYzU2YS00NzBlLTgwZWUtYWQzNWFhNDkyYjg3XkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_Ratio0.6763_AL_.jpg",
+          "imDbRating": "8.7"
+        },
+        {
+          "id": "tt2861424",
+          "title": "Rick and Morty",
+          "image": "https://m.media-amazon.com/images/M/MV5BZjRjOTFkOTktZWUzMi00YzMyLThkMmYtMjEwNmQyNzliYTNmXkEyXkFqcGdeQXVyNzQ1ODk3MTQ@._V1_Ratio0.6763_AL_.jpg",
+          "imDbRating": "9.1"
+        },
+        {
+          "id": "tt0386676",
+          "title": "The Office",
+          "image": "https://m.media-amazon.com/images/M/MV5BMDNkOTE4NDQtMTNmYi00MWE0LWE4ZTktYTc0NzhhNWIzNzJiXkEyXkFqcGdeQXVyMzQ2MDI5NjU@._V1_Ratio0.6763_AL_.jpg",
+          "imDbRating": "9.0"
+        },
+        {
+          "id": "tt2085059",
+          "title": "Black Mirror",
+          "image": "https://m.media-amazon.com/images/M/MV5BZTgyNTBkNzctN2I3NC00NTA1LWJiMDMtYzA2MmYyZjc1NWQzXkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_Ratio0.8019_AL_.jpg",
+          "imDbRating": "8.8"
+        },
+        {
+          "id": "tt3581920",
+          "title": "The Last of Us",
+          "image": "https://m.media-amazon.com/images/M/MV5BZGUzYTI3M2EtZmM0Yy00NGUyLWI4ODEtN2Q3ZGJlYzhhZjU3XkEyXkFqcGdeQXVyNTM0OTY1OQ@@._V1_Ratio0.6763_AL_.jpg",
+          "imDbRating": "8.8"
+        },
+        {
+          "id": "tt3032476",
+          "title": "Better Call Saul",
+          "image": "https://m.media-amazon.com/images/M/MV5BZDA4YmE0OTYtMmRmNS00Mzk2LTlhM2MtNjk4NzBjZGE1MmIyXkEyXkFqcGdeQXVyMTMzNDExODE5._V1_Ratio0.6763_AL_.jpg",
+          "imDbRating": "9.0"
+        },
+        {
+          "id": "tt2442560",
+          "title": "Peaky Blinders",
+          "image": "https://m.media-amazon.com/images/M/MV5BZjYzZDgzMmYtYjY5Zi00YTk1LThhMDYtNjFlNzM4MTZhYzgyXkEyXkFqcGdeQXVyMTE5NDQ1MzQ3._V1_Ratio0.8019_AL_.jpg",
+          "imDbRating": "8.8"
+        },
+        {
+          "id": "tt1520211",
+          "title": "The Walking Dead",
+          "image": "https://m.media-amazon.com/images/M/MV5BZmU5NTcwNjktODIwMi00ZmZkLTk4ZWUtYzVjZWQ5ZTZjN2RlXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_Ratio0.6763_AL_.jpg",
+          "imDbRating": "8.1"
+        }
+      ],
+      "type": "TVSeries",
+      "Image_Moviez": [
+        "https://m.media-amazon.com/images/M/MV5BYTA3OTkxOTUtYzRlMi00NDZiLWFkOGEtM2I4MzZmOTIxZTRhXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_Ratio1.5000_AL_.jpg",
+        "https://m.media-amazon.com/images/M/MV5BMzdiOTk2M2ItZTJhYi00YTUyLThmODUtYzUyMzM4NGZhYzMyXkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_Ratio1.0000_AL_.jpg",
+        "https://m.media-amazon.com/images/M/MV5BYjI1NTQ3OTUtNmFjZS00MGMwLWFlNzItYjM0NjMzYTAwODcxXkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_Ratio1.0000_AL_.jpg",
+        "https://m.media-amazon.com/images/M/MV5BYTFkMGI2NTEtNDhlMS00NTFiLThmYTQtNmI3YTVlZDE4ZGUwXkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_Ratio1.5000_AL_.jpg",
+        "https://m.media-amazon.com/images/M/MV5BYTFkMGI2NTEtNDhlMS00NTFiLThmYTQtNmI3YTVlZDE4ZGUwXkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_Ratio1.5000_AL_.jpg",
+        "https://m.media-amazon.com/images/M/MV5BYTFkMGI2NTEtNDhlMS00NTFiLThmYTQtNmI3YTVlZDE4ZGUwXkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_Ratio1.5000_AL_.jpg"
+      ]
+    },
+    {
+      "id": "tt3032476",
+      "name": "Better Call Saul",
+      "year": "2015",
+      "genre": "جنایی، درام",
+      "rate": "9",
+      "poster": "https://m.media-amazon.com/images/M/MV5BZDA4YmE0OTYtMmRmNS00Mzk2LTlhM2MtNjk4NzBjZGE1MmIyXkEyXkFqcGdeQXVyMTMzNDExODE5._V1_Ratio0.6762_AL_.jpg",
+      "time": null,
+      "story": "",
+      "director": "",
+      "stars": "Bob Odenkirk, Rhea Seehorn, Jonathan Banks",
+      "countries": "ایالات متحده آمریکا",
+      "writers": "",
+      "CreatedAt": "2023-06-11",
+      "similars": [
+        {
+          "id": "tt0903747",
+          "title": "Breaking Bad",
+          "image": "https://m.media-amazon.com/images/M/MV5BYmQ4YWMxYjUtNjZmYi00MDQ1LWFjMjMtNjA5ZDdiYjdiODU5XkEyXkFqcGdeQXVyMTMzNDExODE5._V1_Ratio0.6763_AL_.jpg",
+          "imDbRating": "9.5"
+        },
+        {
+          "id": "tt9243946",
+          "title": "El Camino: A Breaking Bad Movie",
+          "image": "https://m.media-amazon.com/images/M/MV5BNjk4MzVlM2UtZGM0ZC00M2M1LThkMWEtZjUyN2U2ZTc0NmM5XkEyXkFqcGdeQXVyOTAzMTc2MjA@._V1_Ratio0.8019_AL_.jpg",
+          "imDbRating": "7.3"
+        },
+        {
+          "id": "tt0141842",
+          "title": "The Sopranos",
+          "image": "https://m.media-amazon.com/images/M/MV5BZGJjYzhjYTYtMDBjYy00OWU1LTg5OTYtNmYwOTZmZjE3ZDdhXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_Ratio0.7053_AL_.jpg",
+          "imDbRating": "9.2"
+        },
+        {
+          "id": "tt0944947",
+          "title": "Game of Thrones",
+          "image": "https://m.media-amazon.com/images/M/MV5BN2IzYzBiOTQtNGZmMi00NDI5LTgxMzMtN2EzZjA1NjhlOGMxXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_Ratio0.6763_AL_.jpg",
+          "imDbRating": "9.2"
+        },
+        {
+          "id": "tt1190634",
+          "title": "The Boys",
+          "image": "https://m.media-amazon.com/images/M/MV5BOTEyNDJhMDAtY2U5ZS00OTMzLTkwODktMjU3MjFkZWVlMGYyXkEyXkFqcGdeQXVyMjkwOTAyMDU@._V1_Ratio0.8019_AL_.jpg",
+          "imDbRating": "8.7"
+        },
+        {
+          "id": "tt4574334",
+          "title": "Stranger Things",
+          "image": "https://m.media-amazon.com/images/M/MV5BMDZkYmVhNjMtNWU4MC00MDQxLWE3MjYtZGMzZWI1ZjhlOWJmXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_Ratio0.8019_AL_.jpg",
+          "imDbRating": "8.7"
+        },
+        {
+          "id": "tt0386676",
+          "title": "The Office",
+          "image": "https://m.media-amazon.com/images/M/MV5BMDNkOTE4NDQtMTNmYi00MWE0LWE4ZTktYTc0NzhhNWIzNzJiXkEyXkFqcGdeQXVyMzQ2MDI5NjU@._V1_Ratio0.6763_AL_.jpg",
+          "imDbRating": "9.0"
+        },
+        {
+          "id": "tt2861424",
+          "title": "Rick and Morty",
+          "image": "https://m.media-amazon.com/images/M/MV5BZjRjOTFkOTktZWUzMi00YzMyLThkMmYtMjEwNmQyNzliYTNmXkEyXkFqcGdeQXVyNzQ1ODk3MTQ@._V1_Ratio0.6763_AL_.jpg",
+          "imDbRating": "9.1"
+        },
+        {
+          "id": "tt1520211",
+          "title": "The Walking Dead",
+          "image": "https://m.media-amazon.com/images/M/MV5BZmU5NTcwNjktODIwMi00ZmZkLTk4ZWUtYzVjZWQ5ZTZjN2RlXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_Ratio0.6763_AL_.jpg",
+          "imDbRating": "8.1"
+        },
+        {
+          "id": "tt7366338",
+          "title": "Chernobyl",
+          "image": "https://m.media-amazon.com/images/M/MV5BNTdkN2QwMDItMDVhNS00ZjFiLWEzNTctMzY5ODQzYWNkMDllXkEyXkFqcGdeQXVyMTMzNDExODE5._V1_Ratio0.7246_AL_.jpg",
+          "imDbRating": "9.4"
+        },
+        {
+          "id": "tt2085059",
+          "title": "Black Mirror",
+          "image": "https://m.media-amazon.com/images/M/MV5BZTgyNTBkNzctN2I3NC00NTA1LWJiMDMtYzA2MmYyZjc1NWQzXkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_Ratio0.8019_AL_.jpg",
+          "imDbRating": "8.8"
+        },
+        {
+          "id": "tt8111088",
+          "title": "The Mandalorian",
+          "image": "https://m.media-amazon.com/images/M/MV5BN2M5YWFjN2YtYzU2YS00NzBlLTgwZWUtYWQzNWFhNDkyYjg3XkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_Ratio0.6763_AL_.jpg",
+          "imDbRating": "8.7"
+        }
+      ],
+      "type": "TVSeries",
+      "Image_Moviez": [
+        "https://m.media-amazon.com/images/M/MV5BZDg0MjE2NGYtOWZkMi00ZmIxLWIwZGQtMTM4MTRkZmNlNGEwXkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_Ratio1.5000_AL_.jpg",
+        "https://m.media-amazon.com/images/M/MV5BZTlhOTk0ODYtNWNiNS00Yzk5LTg4MmQtNjNiMGQwNDg2MjIyXkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_Ratio1.5200_AL_.jpg",
+        "https://m.media-amazon.com/images/M/MV5BZDRiMzJjMWUtZTNkNC00ZDlhLWI3MzQtYTlkYzdlYmQwYjM1XkEyXkFqcGdeQXVyMTEyMjM2NDc2._V1_Ratio1.5000_AL_.jpg",
+        "https://m.media-amazon.com/images/M/MV5BYjQyNmIyZWMtZDVkMi00OWQ2LTk3NTktYzdjMTc1Zjk3NDg5XkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_Ratio1.5000_AL_.jpg",
+        "https://m.media-amazon.com/images/M/MV5BZDRiMzJjMWUtZTNkNC00ZDlhLWI3MzQtYTlkYzdlYmQwYjM1XkEyXkFqcGdeQXVyMTEyMjM2NDc2._V1_Ratio1.5000_AL_.jpg"
+      ]
+    }
+  ],
+  "Moviez": [
+    {
+      "id": "tt0800369",
+      "name": "Thor",
+      "year": "2011",
+      "genre": [
+        "اکشن",
+        "فانتزی"
+      ],
+      "rate": "7.0",
+      "poster": "https://m.media-amazon.com/images/M/MV5BOGE4NzU1YTAtNzA3Mi00ZTA2LTg2YmYtMDJmMThiMjlkYjg2XkEyXkFqcGdeQXVyNTgzMDMzMTg@._V1_SX300.jpg",
+      "time": "115 min",
+      "story": "The warrior Thor (Chris Hemsworth) is cast out of the fantastic realm of Asgard by his father Odin (Sir Anthony Hopkins) for his arrogance and sent to Earth to live amongst humans. Falling in love with scientist Jane Foster (Natalie Portman) teaches Thor much-needed lessons, and his new-found strength comes into play as a villain from his homeland sends dark forces toward Earth.",
+      "awards": "5 wins & 30 nominations",
+      "director": "Kenneth Branagh",
+      "stars": "Chris Hemsworth, Anthony Hopkins, Natalie Portman",
+      "countries": "United States",
+      "writers": "Ashley Miller, Zack Stentz, Don Payne",
+      "CreatedAt": "2023-08-24",
+      "idUniq": "",
+      "Image_Moviez": [
+        "https://image.tmdb.org/t/p/w500//239KWoUxiKT0bR3UsmsoX7GsDf9.jpg",
+        "https://image.tmdb.org/t/p/w500//mRCbIRu2PbrI1WCgE1zfxYqpy1F.jpg",
+        "https://image.tmdb.org/t/p/w500//n5zyJxk4q2dh4ep95MnvKC1y0VC.jpg",
+        "https://image.tmdb.org/t/p/w500//wqL1bonVxoeSNLpi8qk0kGxlZmL.jpg"
+      ],
+      "TranslateText": "ثور جنگجو (کریس همسورث) توسط پدرش اودین (سر آنتونی هاپکینز) به دلیل گستاخی اش از قلمرو خارق العاده آسگارد بیرون رانده می شود و به زمین فرستاده می شود تا در بین انسان ها زندگی کند. عاشق شدن با دانشمند جین فاستر (ناتالی پورتمن) به ثور درس های بسیار ضروری می آموزد، و قدرت تازه یافته او زمانی که یک شرور از سرزمین مادری اش نیروهای تاریکی را به سمت زمین می فرستد، وارد بازی می شود.",
+      "BackgroundImage": "لینک مورد نظر را وارد کنید"
+    },
+    {
+      "id": "tt15398776",
+      "name": "Oppenheimer",
+      "year": "2023",
+      "genre": [
+        "بیوگرافی",
+        "درام",
+        "تاریخی"
+      ],
+      "rate": "8.7",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMDBmYTZjNjUtN2M1MS00MTQ2LTk2ODgtNzc2M2QyZGE5NTVjXkEyXkFqcGdeQXVyNzAwMjU2MTY@._V1_SX300.jpg",
+      "time": "180 min",
+      "story": "The story of American scientist, J. Robert Oppenheimer, and his role in the development of the atomic bomb.",
+      "awards": "1 win & 1 nomination",
+      "director": "Christopher Nolan",
+      "stars": "Cillian Murphy, Emily Blunt, Matt Damon",
+      "countries": "United States, United Kingdom",
+      "writers": "Christopher Nolan, Kai Bird, Martin Sherwin",
+      "CreatedAt": "2023-08-24",
+      "idUniq": "",
+      "Image_Moviez": [
+        "https://image.tmdb.org/t/p/w500/fm6KqXpk3M2HVveHwCrBSSBaO0V.jpg",
+        "https://image.tmdb.org/t/p/w500/rLb2cwF3Pazuxaj0sRXQ037tGI1.jpg",
+        "https://image.tmdb.org/t/p/w500/8ohejkcQkNgkJgLn71Ws6Kd35g0.jpg",
+        "https://image.tmdb.org/t/p/w500/1XIGI2ry4Chyl4QDiXvJYdsuRDE.jpg",
+        "https://image.tmdb.org/t/p/w500/zpkUscxB4Is9HMbrSkCoWHRIGOw.jpg",
+        "https://image.tmdb.org/t/p/w500/kSC1OrznffwvQX8Tu9gbgG0hpuT.jpg",
+        "https://image.tmdb.org/t/p/w500//lybU7fxqmg2l0jqU8N4ZpsSmPQq.jpg",
+        "https://image.tmdb.org/t/p/w500//kMa1TSDj76zTSleXE7xsuZ4s3i0.jpg",
+        "https://image.tmdb.org/t/p/w500//nb3xI8XI3w4pMVZ38VijbsyBqP4.jpg",
+        "https://image.tmdb.org/t/p/w500//qFNFiqrwW1zOyTwslkEMAkaAKG9.jpg",
+        "https://image.tmdb.org/t/p/w500//eboHBoZEvMlSZ0v1CgGYAXdjDWv.jpg"
+      ],
+      "TranslateText": "داستان دانشمند آمریکایی، جی رابرت اوپنهایمر، و نقش او در ساخت بمب اتمی.",
+      "BackgroundImage": "لینک مورد نظر را وارد کنید"
+    },
+    {
+      "id": "tt1517268",
+      "name": "Barbie",
+      "year": "2023",
+      "genre": [
+        "ماجراجویی",
+        "کمدی",
+        "فانتزی"
+      ],
+      "rate": "7.4",
+      "poster": "https://m.media-amazon.com/images/M/MV5BOWIwZGY0OTYtZjUzYy00NzRmLTg5YzgtYWMzNWQ0MmZiY2MwXkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_SX300.jpg",
+      "time": "114 min",
+      "story": "Barbie suffers a crisis that leads her to question her world and her existence.",
+      "awards": "2 wins & 1 nomination",
+      "director": "Greta Gerwig",
+      "stars": "Margot Robbie, Ryan Gosling, Issa Rae",
+      "countries": "United States, United Kingdom",
+      "writers": "Greta Gerwig, Noah Baumbach",
+      "CreatedAt": "2023-08-24",
+      "idUniq": "",
+      "Image_Moviez": [
+        "https://image.tmdb.org/t/p/w500/nHf61UzkfFno5X1ofIhugCPus2R.jpg",
+        "https://image.tmdb.org/t/p/w500/tTfnd2VrlaZJSBD9HUbtSF3CqPJ.jpg",
+        "https://image.tmdb.org/t/p/w500/v3gfn7147bmp776ouWRUL3j3viV.jpg",
+        "https://image.tmdb.org/t/p/w500/1esAE8sLJRWWFsLLeh5r3g2WanI.jpg",
+        "https://image.tmdb.org/t/p/w500/ctMserH8g2SeOAnCw5gFjdQF8mo.jpg",
+        "https://image.tmdb.org/t/p/w500/9ns0swQ7HeoqvkV33w6T8omJ2D8.jpg",
+        "https://image.tmdb.org/t/p/w500/4806moKxI5hCKmQz8TcQC0Hczfb.jpg",
+        "https://image.tmdb.org/t/p/w500/3N5QNUqS76GFYNoEayfkkJyAyTN.jpg",
+        "https://image.tmdb.org/t/p/w500//nHf61UzkfFno5X1ofIhugCPus2R.jpg",
+        "https://image.tmdb.org/t/p/w500//4806moKxI5hCKmQz8TcQC0Hczfb.jpg",
+        "https://image.tmdb.org/t/p/w500//3N5QNUqS76GFYNoEayfkkJyAyTN.jpg",
+        "https://image.tmdb.org/t/p/w500//uKT4sKhaVBkLbaEIUynLcGfKhGR.jpg"
+      ],
+      "TranslateText": "باربی از بحرانی رنج می برد که او را به زیر سوال بردن جهان و وجودش می کشاند.",
+      "BackgroundImage": "لینک مورد نظر را وارد کنید"
+    },
+    {
+      "id": "tt16419074",
+      "name": "Air",
+      "year": "2023",
+      "genre": [
+        "درام",
+        "ورزشی"
+      ],
+      "rate": "7.5",
+      "poster": "https://m.media-amazon.com/images/M/MV5BYmNlOTNlYjUtM2U3Yy00M2ZjLTkxZDQtN2NiNGZiZDI0ZjE3XkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_SX300.jpg",
+      "time": "111 min",
+      "story": "Follows the history of sports marketing executive Sonny Vaccaro, and how he led Nike in its pursuit of the greatest athlete in the history of basketball, Michael Jordan.",
+      "awards": "3 wins & 5 nominations",
+      "director": "Ben Affleck",
+      "stars": "Matt Damon, Jason Bateman, Ben Affleck",
+      "countries": "United States",
+      "writers": "Alex Convery",
+      "CreatedAt": "2023-08-24",
+      "idUniq": "",
+      "Image_Moviez": [
+        "https://image.tmdb.org/t/p/w500/aT3sRVqgpkyCo23fp9myVfKPWbA.jpg",
+        "https://image.tmdb.org/t/p/w500//lkV1Db7qoEH67X2ASVnqUIM1E9r.jpg",
+        "https://image.tmdb.org/t/p/w500//lUxMsfuR7wKbAeymxkTecQuosxu.jpg",
+        "https://image.tmdb.org/t/p/w500//oAfQCF6RdNhdcpD1FdWd07yJyRN.jpg",
+        "https://image.tmdb.org/t/p/w500//gaEa4IYzrkJUdl3Ta8GGnNaMV1F.jpg"
+      ],
+      "TranslateText": "تاریخچه مدیر اجرایی بازاریابی ورزشی، سانی واکارو، و نحوه رهبری نایک در تعقیب بزرگترین ورزشکار تاریخ بسکتبال، مایکل جردن، را دنبال می کند.",
+      "BackgroundImage": "لینک مورد نظر را وارد کنید"
+    },
+    {
+      "id": "tt0816692",
+      "name": "میان ستاره ای",
+      "year": "2014",
+      "genre": [
+        "ماجراجویی",
+        "درام",
+        "تخیلی"
+      ],
+      "rate": "8.7",
+      "poster": "https://m.media-amazon.com/images/M/MV5BZjdkOTU3MDktN2IxOS00OGEyLWFmMjktY2FiMmZkNWIyODZiXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg",
+      "time": "169 min",
+      "story": "Earth's future has been riddled by disasters, famines, and droughts. There is only one way to ensure mankind's survival: Interstellar travel. A newly discovered wormhole in the far reaches of our solar system allows a team of astronauts to go where no man has gone before, a planet that may have the right environment to sustain human life.",
+      "awards": "Won 1 Oscar. 44 wins & 148 nominations total",
+      "director": "Christopher Nolan",
+      "stars": "Matthew McConaughey, Anne Hathaway, Jessica Chastain",
+      "countries": "United States, United Kingdom, Canada",
+      "writers": "Jonathan Nolan, Christopher Nolan",
+      "CreatedAt": "2023-08-24",
+      "idUniq": "",
+      "Image_Moviez": [
+        "https://image.tmdb.org/t/p/w500/pbrkL804c8yAv3zBZR4QPEafpAR.jpg",
+        "https://image.tmdb.org/t/p/w500/xJHokMbljvjADYdit5fK5VQsXEG.jpg",
+        "https://image.tmdb.org/t/p/w500/pZvZjxPFfWWIwtPQodsNygQ6u5Z.jpg",
+        "https://image.tmdb.org/t/p/w500/vgnoBSVzWAV9sNQUORaDGvDp7wx.jpg",
+        "https://image.tmdb.org/t/p/w500//b3yyWxAopoCLYEMMtNbMvZkG6f1.jpg",
+        "https://image.tmdb.org/t/p/w500//i2gJQtnkLA2SpU9cRvkbuLOoW1I.jpg",
+        "https://image.tmdb.org/t/p/w500//xJHokMbljvjADYdit5fK5VQsXEG.jpg",
+        "https://image.tmdb.org/t/p/w500//27IQ08XLxw2Gaj5zoOmJWmq4nNy.jpg",
+        "https://image.tmdb.org/t/p/w500//csOrecSsr9TpLmdaomAXevT207O.jpg"
+      ],
+      "TranslateText": "آینده زمین با بلایا، قحطی و خشکسالی پر شده است. تنها یک راه برای تضمین بقای بشر وجود دارد: سفر بین ستاره ای. یک کرم چاله تازه کشف شده در دوردست‌های منظومه شمسی به تیمی از فضانوردان اجازه می‌دهد تا به جایی بروند که هیچ‌کس قبلاً نرفته است، سیاره‌ای که ممکن است محیط مناسبی برای حفظ زندگی انسان داشته باشد.",
+      "BackgroundImage": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fyhvhentertainment.files.wordpress.com%2F2014%2F10%2Finterstellar_banner1.png&f=1&nofb=1&ipt=2dd0dd12681c2bae058229deb9fc7c8c81fa2162118bd980230aa0e32f94295c&ipo=images"
+    },
+    {
+      "id": "tt0114369",
+      "name": "Se7en",
+      "year": "1995",
+      "genre": [
+        "جنایی",
+        "درام",
+        "رمزآلود"
+      ],
+      "rate": "8.6",
+      "poster": "https://m.media-amazon.com/images/M/MV5BOTUwODM5MTctZjczMi00OTk4LTg3NWUtNmVhMTAzNTNjYjcyXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg",
+      "time": "127 min",
+      "story": "A film about two homicide detectives' (Morgan Freeman and Brad Pitt) desperate hunt for a serial killer who justifies his crimes as absolution for the world's ignorance of the Seven Deadly Sins. The movie takes us from the tortured remains of one victim to the next as the sociopathic \"John Doe\" (Kevin Spacey) sermonizes to Detectives Somerset and Mills -- one sin at a time. The sin of Gluttony comes first and the murderer's terrible capacity is graphically demonstrated in the dark and subdued tones characteristic of film noir. The seasoned and cultured but jaded Somerset researches the Seven Deadly Sins in an effort to understand the killer's modus operandi while the bright but green and impulsive Detective Mills (Pitt) scoffs at his efforts to get inside the mind of a killer...",
+      "awards": "Nominated for 1 Oscar. 29 wins & 43 nominations total",
+      "director": "David Fincher",
+      "stars": "Morgan Freeman, Brad Pitt, Kevin Spacey",
+      "countries": "United States",
+      "writers": "Andrew Kevin Walker",
+      "CreatedAt": "2023-08-24",
+      "idUniq": "",
+      "Image_Moviez": [
+        "https://image.tmdb.org/t/p/w500//neYH6VXdpqSR0KNREwAJ1aNmnsB.jpg",
+        "https://image.tmdb.org/t/p/w500//tplpkMfGGlfXvlJgN3hNLCwLRgB.jpg",
+        "https://image.tmdb.org/t/p/w500//kjttc58Nbew9LMEaB4GL8EUVRFJ.jpg",
+        "https://image.tmdb.org/t/p/w500//uJByPV1d2IJ5T1kSIm5fYfT9z9h.jpg",
+        "https://image.tmdb.org/t/p/w500//jd6SyfD9EdisCEJiPMt07ooCetO.jpg"
+      ],
+      "TranslateText": "فیلمی درباره شکار ناامیدانه دو کارآگاه قتل (مورگان فریمن و برد پیت) برای یک قاتل زنجیره ای که جنایات خود را به عنوان تبرئه جهل جهان از هفت گناه مرگبار توجیه می کند. این فیلم ما را از بقایای شکنجه‌شده یک قربانی به قربانی بعدی می‌برد در حالی که «جان دو» (کوین اسپیسی) جامعه‌گرا برای کارآگاهان سامرست و میلز موعظه می‌کند - یک گناه در یک زمان. گناه Gluttony در درجه اول قرار می گیرد و ظرفیت وحشتناک قاتل به صورت گرافیکی در لحن تاریک و آرام مشخصه فیلم نوآر نشان داده می شود. سامرست باتجربه و فرهیخته اما خسته، هفت گناه مرگبار را در تلاش برای درک شیوه عمل قاتل تحقیق می کند، در حالی که کارآگاه میلز روشن اما سبز و تکانشی (پیت) تلاش های او برای ورود به ذهن یک قاتل را مسخره می کند...",
+      "BackgroundImage": "لینک مورد نظر را وارد کنید"
+    },
+    {
+      "id": "tt0110912",
+      "name": "Pulp Fiction",
+      "year": "1994",
+      "genre": [
+        "جنایی",
+        "درام"
+      ],
+      "rate": "8.9",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNGNhMDIzZTUtNTBlZi00MTRlLWFjM2ItYzViMjE3YzI5MjljXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg",
+      "time": "154 min",
+      "story": "Jules Winnfield (Samuel L. Jackson) and Vincent Vega (John Travolta) are two hit men who are out to retrieve a suitcase stolen from their employer, mob boss Marsellus Wallace (Ving Rhames). Wallace has also asked Vincent to take his wife Mia (Uma Thurman) out a few days later when Wallace himself will be out of town. Butch Coolidge (Bruce Willis) is an aging boxer who is paid by Wallace to lose his fight. The lives of these seemingly unrelated people are woven together comprising of a series of funny, bizarre and uncalled-for incidents.",
+      "awards": "Won 1 Oscar. 69 wins & 72 nominations total",
+      "director": "Quentin Tarantino",
+      "stars": "John Travolta, Uma Thurman, Samuel L. Jackson",
+      "countries": "United States",
+      "writers": "Quentin Tarantino, Roger Avary",
+      "CreatedAt": "2023-08-24",
+      "idUniq": "",
+      "Image_Moviez": [
+        "https://image.tmdb.org/t/p/w500/suaEOtk1N1sgg2MTM7oZd2cfVp3.jpg",
+        "https://image.tmdb.org/t/p/w500/gqQjqcgtsjRcVs4rF1D33B4Qrad.jpg",
+        "https://image.tmdb.org/t/p/w500/w7RDIgQM6bLT7JXtH4iUQd3Iwxm.jpg",
+        "https://image.tmdb.org/t/p/w500//A0aGxrCGRBuCrDltGYiKGeAUect.jpg",
+        "https://image.tmdb.org/t/p/w500//52StM7zDmcjeKxWkW55X5LtoLQi.jpg",
+        "https://image.tmdb.org/t/p/w500//9pGM43a9VmXxwIxmhJoiDkcB2hT.jpg",
+        "https://image.tmdb.org/t/p/w500//bgRpHAo9YV4R494OSuTnt399gee.jpg",
+        "https://image.tmdb.org/t/p/w500//gOyaYLT67VwMFxFc8DAkVHiEnJm.jpg",
+        "https://image.tmdb.org/t/p/w500//v32RbsYnsdoBbpMtnX9PKuTo1q.jpg",
+        "https://image.tmdb.org/t/p/w500//gOyaYLT67VwMFxFc8DAkVHiEnJm.jpg"
+      ],
+      "TranslateText": "جولز وینفیلد (ساموئل ال. جکسون) و وینسنت وگا (جان تراولتا) دو مرد ضارب هستند که می‌خواهند چمدانی را که از کارفرمایشان، رئیس اوباش مارسلوس والاس (وینگ ریمز) دزدیده شده است، پس بگیرند. والاس همچنین از وینسنت خواسته است که همسرش میا (اوما تورمن) را چند روز بعد که خود والاس خارج از شهر است، بیرون بیاورد. بوچ کولیج (بروس ویلیس) بوکسور سالخورده ای است که والاس برای شکست دادن مبارزه اش پول می گیرد. زندگی این افراد به ظاهر نامرتبط با مجموعه ای از حوادث خنده دار، عجیب و غریب و ناخواسته به هم تنیده شده است.",
+      "BackgroundImage": "لینک مورد نظر را وارد کنید"
+    },
+    {
+      "id": "tt7286456",
+      "name": "Joker",
+      "year": "2019",
+      "genre": [
+        "جنایی",
+        "درام",
+        "دلهره آور "
+      ],
+      "rate": "8.4",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNGVjNWI4ZGUtNzE0MS00YTJmLWE0ZDctN2ZiYTk2YmI3NTYyXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SX300.jpg",
+      "time": "122 min",
+      "story": "Arthur Fleck works as a clown and is an aspiring stand-up comic. He has mental health issues, part of which involves uncontrollable laughter. Times are tough and, due to his issues and occupation, Arthur has an even worse time than most. Over time these issues bear down on him, shaping his actions, making him ultimately take on the persona he is more known as...Joker.",
+      "awards": "Won 2 Oscars. 122 wins & 239 nominations total",
+      "director": "Todd Phillips",
+      "stars": "Joaquin Phoenix, Robert De Niro, Zazie Beetz",
+      "countries": "United States, Canada",
+      "writers": "Todd Phillips, Scott Silver, Bob Kane",
+      "CreatedAt": "2023-08-24",
+      "idUniq": "",
+      "Image_Moviez": [
+        "https://image.tmdb.org/t/p/w500/hO7KbdvGOtDdeg0W4Y5nKEHeDDh.jpg",
+        "https://image.tmdb.org/t/p/w500/nxt5320P4XdkCaRb99FEmFYfMh3.jpg",
+        "https://image.tmdb.org/t/p/w500/r0kZNywAeN6Ar75rxDqLlTP5RiJ.jpg",
+        "https://image.tmdb.org/t/p/w500/j03CiUq845wzR22Gjf4Jj2JCTGD.jpg",
+        "https://image.tmdb.org/t/p/w500/2nbKZ5RWFSvjq5IGVRcz8kAolmw.jpg",
+        "https://image.tmdb.org/t/p/w500/f5F4cRhQdUbyVbB5lTNCwUzD6BP.jpg",
+        "https://image.tmdb.org/t/p/w500/n6bUvigpRFqSwmPp1m2YADdbRBc.jpg",
+        "https://image.tmdb.org/t/p/w500/xWUHCD67fcbEZw5yMrdOnRyd5WR.jpg",
+        "https://image.tmdb.org/t/p/w500//hO7KbdvGOtDdeg0W4Y5nKEHeDDh.jpg",
+        "https://image.tmdb.org/t/p/w500//n6bUvigpRFqSwmPp1m2YADdbRBc.jpg",
+        "https://image.tmdb.org/t/p/w500//f5F4cRhQdUbyVbB5lTNCwUzD6BP.jpg",
+        "https://image.tmdb.org/t/p/w500//ePy2eYhBihSZsfmL47rkb0sUSbA.jpg",
+        "https://image.tmdb.org/t/p/w500//ePy2eYhBihSZsfmL47rkb0sUSbA.jpg",
+        "https://image.tmdb.org/t/p/w500//zolP1EPF6pcTehkTQUiNy8OHXGk.jpg"
+      ],
+      "TranslateText": "آرتور فلک به عنوان یک دلقک کار می کند و یک استندآپ کمیک مشتاق است. او مشکلات روانی دارد که بخشی از آن شامل خنده های غیرقابل کنترل است. روزگار سختی است و به دلیل مسائل و شغلی که دارد، آرتور حتی بدتر از بقیه دوران می گذراند. با گذشت زمان، این مسائل بر او تأثیر می گذارد، اعمال او را شکل می دهد، و در نهایت باعث می شود که شخصیتی را که بیشتر به نام ... جوکر شناخته می شود، بپذیرد.",
+      "BackgroundImage": "لینک مورد نظر را وارد کنید"
+    },
+    {
+      "id": "tt1790864",
+      "name": "The Maze Runner",
+      "year": "2014",
+      "genre": [
+        "اکشن",
+        "رمزآلود",
+        "تخیلی"
+      ],
+      "rate": "6.8",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMjUyNTA3MTAyM15BMl5BanBnXkFtZTgwOTEyMTkyMjE@._V1_SX300.jpg",
+      "time": "113 min",
+      "story": "Awakening in an elevator, remembering nothing of his past, Thomas emerges into a world of about thirty teenage boys, all without past memories, who have learned to survive under their own set of rules in a completely enclosed environment, subsisting on their own agriculture and supplies. With a new boy arriving every thirty days, the group has been in \"The Glade\" for three years, trying to find a way to escape through the Maze that surrounds their living space (patrolled by cyborg monsters named 'Grievers'). They have begun to give up hope when a comatose girl arrives with a strange note, and their world begins to change with the boys dividing into two factions: those willing to risk their lives to escape and those wanting to hang onto what they've got and survive.",
+      "awards": "4 wins & 12 nominations",
+      "director": "Wes Ball",
+      "stars": "Dylan O'Brien, Kaya Scodelario, Will Poulter",
+      "countries": "United Kingdom, United States",
+      "writers": "Noah Oppenheim, Grant Pierce Myers, T.S. Nowlin",
+      "CreatedAt": "2023-08-24",
+      "idUniq": "",
+      "Image_Moviez": [
+        "https://image.tmdb.org/t/p/w500/vHJlbhsXrZ5yrO2KqCbGSIU6fRX.jpg",
+        "https://image.tmdb.org/t/p/w500//9E35uukfIM9YMvikz350UEGqX5F.jpg",
+        "https://image.tmdb.org/t/p/w500//nkLetkDCSOoyAIZhXsSXDDOsXvx.jpg",
+        "https://image.tmdb.org/t/p/w500//50HEMQCJ8rZkXn5ZFVei1wZ0Pqx.jpg",
+        "https://image.tmdb.org/t/p/w500//gDdbHKlvezw6Dq0K5pFlfAuoFbE.jpg"
+      ],
+      "TranslateText": "توماس که در آسانسور از خواب بیدار می شود و چیزی از گذشته خود به یاد نمی آورد، وارد دنیایی متشکل از 30 پسر نوجوان می شود، همه آنها بدون خاطرات گذشته، که یاد گرفته اند تحت مجموعه قوانین خود در یک محیط کاملا بسته زنده بمانند و با کشاورزی خود زندگی کنند و زندگی کنند. تدارکات. هر سی روز یک پسر جدید از راه می رسد، گروه به مدت سه سال در \"گلید\" بوده اند و سعی می کنند راهی برای فرار از طریق پیچ و خم که فضای زندگی آنها را احاطه کرده است (که توسط هیولاهای سایبورگ به نام \"گریورز\" گشت زنی می کنند، بیابند. وقتی دختری در کما با یک یادداشت عجیب از راه می رسد، آنها شروع به قطع امید کرده اند و دنیای آنها با تقسیم شدن پسران به دو دسته شروع می شود: آنهایی که می خواهند جان خود را برای فرار به خطر بیندازند و آنهایی که می خواهند به چیزی که دارند آویزان شوند. و زنده بمانند.",
+      "BackgroundImage": "لینک مورد نظر را وارد کنید"
+    },
+    {
+      "id": "tt1877830",
+      "name": "The Batman",
+      "year": "2022",
+      "genre": [
+        "اکشن",
+        "جنایی",
+        "درام"
+      ],
+      "rate": "7.8",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMDdmMTBiNTYtMDIzNi00NGVlLWIzMDYtZTk3MTQ3NGQxZGEwXkEyXkFqcGdeQXVyMzMwOTU5MDk@._V1_SX300.jpg",
+      "time": "176 min",
+      "story": "When a sadistic serial killer begins murdering key political figures in Gotham, Batman is forced to investigate the city's hidden corruption and question his family's involvement.",
+      "awards": "Nominated for 3 Oscars. 33 wins & 163 nominations total",
+      "director": "Matt Reeves",
+      "stars": "Robert Pattinson, Zoë Kravitz, Jeffrey Wright",
+      "countries": "United States",
+      "writers": "Matt Reeves, Peter Craig, Bob Kane",
+      "CreatedAt": "2023-08-24",
+      "idUniq": "",
+      "Image_Moviez": [
+        "https://image.tmdb.org/t/p/w500/b0PlSFdDwbyK0cf5RxwDpaOJQvQ.jpg",
+        "https://image.tmdb.org/t/p/w500/xHrp2pq73oi9D64xigPjWW1wcz1.jpg",
+        "https://image.tmdb.org/t/p/w500/tRS6jvPM9qPrrnx2KRp3ew96Yot.jpg",
+        "https://image.tmdb.org/t/p/w500/eUORREWq2ThkkxyiCESCu3sVdGg.jpg",
+        "https://image.tmdb.org/t/p/w500/IYUD7rAIXzBM91TT3Z5fILUS7n.jpg",
+        "https://image.tmdb.org/t/p/w500/rvtdN5XkWAfGX6xDuPL6yYS2seK.jpg",
+        "https://image.tmdb.org/t/p/w500/myJpOGXMAP7KYURVN92EvtIyLVH.jpg",
+        "https://image.tmdb.org/t/p/w500/mY1cGRdH2UA0uDPP8ZdLjAN9N03.jpg",
+        "https://image.tmdb.org/t/p/w500/whncenhxHdqyaubfXGuWkbvQBg2.jpg",
+        "https://image.tmdb.org/t/p/w500//b0PlSFdDwbyK0cf5RxwDpaOJQvQ.jpg",
+        "https://image.tmdb.org/t/p/w500//siSlpIQsNcmdhYqOs6zM6lSJJDv.jpg",
+        "https://image.tmdb.org/t/p/w500//jZfpDaku8fm14GZNc8lr7Li88Rm.jpg",
+        "https://image.tmdb.org/t/p/w500//kHErVL3mw9YisIXV664fvZpfgYh.jpg",
+        "https://image.tmdb.org/t/p/w500//kHErVL3mw9YisIXV664fvZpfgYh.jpg",
+        "https://image.tmdb.org/t/p/w500//u6f0Y38enfX0Z9O1skf9GGp5GIf.jpg",
+        "https://image.tmdb.org/t/p/w500//u6f0Y38enfX0Z9O1skf9GGp5GIf.jpg",
+        "https://image.tmdb.org/t/p/w500//7ATXP7wDmHKjQ2CI2B6j3SygEFL.jpg"
+      ],
+      "TranslateText": "هنگامی که یک قاتل سریالی سادیست شروع به قتل شخصیت های سیاسی کلیدی در گاتهام می کند، بتمن مجبور می شود فساد پنهان شهر را بررسی کند و دخالت خانواده اش را زیر سوال ببرد.",
+      "BackgroundImage": "لینک مورد نظر را وارد کنید"
+    },
+    {
+      "id": "tt10872600",
+      "name": "Spider-Man: No Way Home",
+      "year": "2021",
+      "genre": [
+        "اکشن",
+        "ماجراجویی",
+        "فانتزی"
+      ],
+      "rate": "8.2",
+      "poster": "https://m.media-amazon.com/images/M/MV5BZWMyYzFjYTYtNTRjYi00OGExLWE2YzgtOGRmYjAxZTU3NzBiXkEyXkFqcGdeQXVyMzQ0MzA0NTM@._V1_SX300.jpg",
+      "time": "148 min",
+      "story": "Peter Parker's secret identity is revealed to the entire world. Desperate for help, Peter turns to Doctor Strange to make the world forget that he is Spider-Man. The spell goes horribly wrong and shatters the multiverse, bringing in monstrous villains that could destroy the world.",
+      "awards": "Nominated for 1 Oscar. 35 wins & 70 nominations total",
+      "director": "Jon Watts",
+      "stars": "Tom Holland, Zendaya, Benedict Cumberbatch",
+      "countries": "United States",
+      "writers": "Chris McKenna, Erik Sommers, Stan Lee",
+      "CreatedAt": "2023-08-24",
+      "idUniq": "",
+      "Image_Moviez": [
+        "https://image.tmdb.org/t/p/w500/14QbnygCuTO0vl7CAFmPf1fgZfV.jpg",
+        "https://image.tmdb.org/t/p/w500/iQFcwSGbZXMkeyKrxbPnwnRo5fl.jpg",
+        "https://image.tmdb.org/t/p/w500/zD5v1E4joAzFvmAEytt7fM3ivyT.jpg",
+        "https://image.tmdb.org/t/p/w500/AeK2MPOpYrOOgZNfFnfwp0L8tNn.jpg",
+        "https://image.tmdb.org/t/p/w500/VlHt27nCqOuTnuX6bku8QZapzO.jpg",
+        "https://image.tmdb.org/t/p/w500/tyQo080tijexyUHBvWPwQt26bZa.jpg",
+        "https://image.tmdb.org/t/p/w500//14QbnygCuTO0vl7CAFmPf1fgZfV.jpg",
+        "https://image.tmdb.org/t/p/w500//zD5v1E4joAzFvmAEytt7fM3ivyT.jpg",
+        "https://image.tmdb.org/t/p/w500//VlHt27nCqOuTnuX6bku8QZapzO.jpg",
+        "https://image.tmdb.org/t/p/w500//oq2Wa11mT88pYzysHeVwZ8kicV5.jpg"
+      ],
+      "TranslateText": "هویت مخفی پیتر پارکر برای تمام دنیا فاش شد. پیتر ناامید از کمک به دکتر استرنج مراجعه می کند تا دنیا را فراموش کند که او مرد عنکبوتی است. این طلسم به طرز وحشتناکی اشتباه می شود و چندجهانی را در هم می شکند و شروران هیولایی را به ارمغان می آورد که می توانند جهان را نابود کنند.",
+      "BackgroundImage": "لینک مورد نظر را وارد کنید"
+    },
+    {
+      "id": "tt4154756",
+      "name": "Avengers: Infinity War",
+      "year": "2018",
+      "genre": [
+        "اکشن",
+        "ماجراجویی",
+        "تخیلی"
+      ],
+      "rate": "8.4",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMjMxNjY2MDU1OV5BMl5BanBnXkFtZTgwNzY1MTUwNTM@._V1_SX300.jpg",
+      "time": "149 min",
+      "story": "As the Avengers and their allies have continued to protect the world from threats too large for any one hero to handle, a new danger has emerged from the cosmic shadows: Thanos. A despot of intergalactic infamy, his goal is to collect all six Infinity Stones, artifacts of unimaginable power, and use them to inflict his twisted will on all of reality. Everything the Avengers have fought for has led up to this moment, the fate of Earth and existence has never been more uncertain.",
+      "awards": "Nominated for 1 Oscar. 46 wins & 79 nominations total",
+      "director": "Anthony Russo, Joe Russo",
+      "stars": "Robert Downey Jr., Chris Hemsworth, Mark Ruffalo",
+      "countries": "United States",
+      "writers": "Christopher Markus, Stephen McFeely, Stan Lee",
+      "CreatedAt": "2023-08-24",
+      "idUniq": "",
+      "Image_Moviez": [
+        "https://image.tmdb.org/t/p/w500/mDfJG3LC3Dqb67AZ52x3Z0jU0uB.jpg",
+        "https://image.tmdb.org/t/p/w500//mDfJG3LC3Dqb67AZ52x3Z0jU0uB.jpg",
+        "https://image.tmdb.org/t/p/w500//4J2W2NZfI8HNhfNNTd99uGqaTb.jpg",
+        "https://image.tmdb.org/t/p/w500//sbpTzyKkBedre1CjExJMNawEbHB.jpg",
+        "https://image.tmdb.org/t/p/w500//k3xGG77CAiB0Wr2Y1H3ApihKTkk.jpg"
+      ],
+      "TranslateText": "از آنجایی که انتقام‌جویان و متحدانشان به محافظت از جهان در برابر تهدیدات بسیار بزرگی که هیچ قهرمانی قادر به مقابله با آن نیست، ادامه داده‌اند، خطر جدیدی از سایه‌های کیهانی پدیدار شده است: تانوس. یک مستبد از بدنامی بین کهکشانی، هدف او جمع آوری تمام شش سنگ بی نهایت، مصنوعات با قدرت غیرقابل تصور، و استفاده از آنها برای تحمیل اراده پیچیده خود بر تمام واقعیت است. همه چیزهایی که انتقام جویان برای آن جنگیده اند تا به این لحظه منتهی شده است، سرنوشت زمین و هستی هرگز تا این حد مبهم نبوده است.",
+      "BackgroundImage": "لینک مورد نظر را وارد کنید"
+    },
+    {
+      "id": "tt5971474",
+      "name": "The Little Mermaid",
+      "year": "2023",
+      "genre": [
+        "ماجراجویی",
+        "خانوادگی",
+        "فانتزی"
+      ],
+      "rate": "7.2",
+      "poster": "https://m.media-amazon.com/images/M/MV5BYTUxYjczMWUtYzlkZC00NTcwLWE3ODQtN2I2YTIxOTU0ZTljXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SX300.jpg",
+      "time": "135 min",
+      "story": "A young mermaid makes a deal with a sea witch to trade her beautiful voice for human legs so she can discover the world above water and impress a prince.",
+      "awards": "1 win",
+      "director": "Rob Marshall",
+      "stars": "Halle Bailey, Jonah Hauer-King, Melissa McCarthy",
+      "countries": "United States",
+      "writers": "David Magee, Hans Christian Andersen, John Musker",
+      "CreatedAt": "2023-08-24",
+      "idUniq": "",
+      "Image_Moviez": [
+        "https://image.tmdb.org/t/p/w500/znUYFf0Sez5lUmxPr3Cby7TVJ6c.jpg",
+        "https://image.tmdb.org/t/p/w500/8FQeHmusSN2hk3bICf16x5GFQvT.jpg",
+        "https://image.tmdb.org/t/p/w500/fCw8CVgII6W7ALbIh0SgXax3Hsj.jpg",
+        "https://image.tmdb.org/t/p/w500/AeR5k8Sp3zc2Ql4tT6CmgqspsEq.jpg",
+        "https://image.tmdb.org/t/p/w500//jWA9j8kzwgDwHjFXBc1U476VpFv.jpg",
+        "https://image.tmdb.org/t/p/w500//oDfL7Osa1dv8VyKxvnPfQYv1Bvr.jpg",
+        "https://image.tmdb.org/t/p/w500//k7KtrOwGLoYZHl3kF84q2ZYX9d7.jpg",
+        "https://image.tmdb.org/t/p/w500//lAs4Y5a8Pi86xDwuv8cx2prOVI2.jpg"
+      ],
+      "TranslateText": "یک پری دریایی جوان با یک جادوگر دریایی معامله می کند تا صدای زیبایش را با پاهای انسان عوض کند تا بتواند دنیای بالای آب را کشف کند و شاهزاده ای را تحت تاثیر قرار دهد.",
+      "BackgroundImage": "لینک مورد نظر را وارد کنید"
+    },
+    {
+      "id": "tt4513678",
+      "name": "Ghostbusters: Afterlife",
+      "year": "2021",
+      "genre": [
+        "ماجراجویی",
+        "کمدی",
+        "فانتزی"
+      ],
+      "rate": "7.1",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMGY2NjUwODEtMGM5OS00MzhkLWEzYTUtYjkwMjFmNjhiN2FmXkEyXkFqcGdeQXVyMjMwNDgzNjc@._V1_SX300.jpg",
+      "time": "124 min",
+      "story": "When a single mom and her two kids arrive in a small town, they begin to discover their connection to the original Ghostbusters and the secret legacy their grandfather left behind.",
+      "awards": "Nominated for 1 BAFTA Award1 win & 21 nominations total",
+      "director": "Jason Reitman",
+      "stars": "Carrie Coon, Paul Rudd, Finn Wolfhard",
+      "countries": "United States, Canada",
+      "writers": "Gil Kenan, Jason Reitman, Dan Aykroyd",
+      "CreatedAt": "2023-08-24",
+      "idUniq": "",
+      "Image_Moviez": [
+        "https://image.tmdb.org/t/p/w500//zplzc6jxO3SK7Pa4yxVoRY5VflT.jpg",
+        "https://image.tmdb.org/t/p/w500//4sybNiCalJXketLuULuxtP8vz04.jpg",
+        "https://image.tmdb.org/t/p/w500//7KfTzQ1IWLhzYCZL7yuAQk1JTCB.jpg",
+        "https://image.tmdb.org/t/p/w500//l4A4AoPYfu61BS9bVoERnVRAtzj.jpg",
+        "https://image.tmdb.org/t/p/w500//l4A4AoPYfu61BS9bVoERnVRAtzj.jpg",
+        "https://image.tmdb.org/t/p/w500//hlNUqJAE33w1A0AMJz2B6df4Z51.jpg"
+      ],
+      "TranslateText": "وقتی یک مادر مجرد و دو فرزندش به شهر کوچکی می‌رسند، شروع به کشف ارتباط خود با Ghostbusters اصلی و میراث مخفیانه‌ای که پدربزرگشان از خود به جا گذاشته است، می‌کنند.",
+      "BackgroundImage": "لینک مورد نظر را وارد کنید"
+    },
+    {
+      "id": "tt0361748",
+      "name": "Inglourious Basterds",
+      "year": "2009",
+      "genre": "ماجراجویی ,درام ,جنگی",
+      "rate": "8.3",
+      "poster": "https://m.media-amazon.com/images/M/MV5BOTJiNDEzOWYtMTVjOC00ZjlmLWE0NGMtZmE1OWVmZDQ2OWJhXkEyXkFqcGdeQXVyNTIzOTk5ODM@._V1_SX300.jpg",
+      "time": "153 min",
+      "story": "In German-occupied France, young Jewish refugee Shosanna Dreyfus witnesses the slaughter of her family by Colonel Hans Landa. Narrowly escaping with her life, she plots her revenge several years later when German war hero Fredrick Zoller takes a rapid interest in her and arranges an illustrious movie premiere at the theater she now runs. With the promise of every major Nazi officer in attendance, the event catches the attention of the \"Basterds\", a group of Jewish-American guerrilla soldiers led by the ruthless Lt. Aldo Raine. As the relentless executioners advance and the conspiring young girl's plans are set in motion, their paths will cross for a fateful evening that will shake the very annals of history.",
+      "awards": "Won 1 Oscar. 134 wins & 172 nominations total",
+      "director": "Quentin Tarantino",
+      "stars": "Brad Pitt, Diane Kruger, Eli Roth",
+      "countries": "Germany, United States",
+      "writers": "Quentin Tarantino",
+      "CreatedAt": "2023-08-24",
+      "idUniq": "",
+      "Image_Moviez": [
+        "https://image.tmdb.org/t/p/w500/8pEnePgGyfUqj8Qa6d91OZQ6Aih.jpg",
+        "https://image.tmdb.org/t/p/w500/1Jpkm9qZcsT0mSyVXgs4VlGjPNI.jpg",
+        "https://image.tmdb.org/t/p/w500/hg0MTIFs49ef179C9Y1HRtzqbbK.jpg",
+        "https://image.tmdb.org/t/p/w500/9PsPUL6Uwwz7DCCoQIdp2Q40pAu.jpg",
+        "https://image.tmdb.org/t/p/w500//8pEnePgGyfUqj8Qa6d91OZQ6Aih.jpg",
+        "https://image.tmdb.org/t/p/w500//1Jpkm9qZcsT0mSyVXgs4VlGjPNI.jpg",
+        "https://image.tmdb.org/t/p/w500//nNhjY0Ccd05eXJ3Z38W5NijGKli.jpg",
+        "https://image.tmdb.org/t/p/w500//ozK1zwPSXhetNY7pZcVZx37UQ7e.jpg",
+        "https://image.tmdb.org/t/p/w500//ozK1zwPSXhetNY7pZcVZx37UQ7e.jpg",
+        "https://image.tmdb.org/t/p/w500//ozK1zwPSXhetNY7pZcVZx37UQ7e.jpg"
+      ],
+      "TranslateText": "در فرانسه تحت اشغال آلمان، جوان یهودی پناهنده شوسانا دریفوس شاهد قتل عام خانواده اش توسط سرهنگ هانس لاندا است. او که به سختی از جان خود فرار می کند، چندین سال بعد نقشه انتقام خود را می کشد، زمانی که قهرمان جنگ آلمان، فردریک زولر به سرعت به او علاقه مند شد و یک اولین نمایش درخشان فیلم را در سالنی که اکنون اداره می کند ترتیب می دهد. با وعده حضور همه افسران اصلی نازی، این رویداد توجه \"حرامزاده ها\"، گروهی از سربازان چریک یهودی-آمریکایی به رهبری ستوان بیرحم آلدو راین را به خود جلب می کند. با پیشروی جلادهای بی امان و اجرای نقشه های دختر جوان توطئه گر، مسیرهای آنها برای یک عصر سرنوشت ساز تلاقی می کند که تاریخچه تاریخ را متزلزل خواهد کرد.",
+      "BackgroundImage": "لینک مورد نظر را وارد کنید"
+    },
+    {
+      "id": "tt0482571",
+      "name": "The Prestige",
+      "year": "2006",
+      "genre": [
+        "درام",
+        "رمزآلود",
+        "تخیلی"
+      ],
+      "rate": "8.5",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMjA4NDI0MTIxNF5BMl5BanBnXkFtZTYwNTM0MzY2._V1_SX300.jpg",
+      "time": "130 min",
+      "story": "In the end of the nineteenth century, in London, Robert Angier, his beloved wife Julia McCullough, and Alfred Borden are friends and assistants of a magician. When Julia accidentally dies during a performance, Robert blames Alfred for her death, and they become enemies. Both become famous and rival magicians, sabotaging the performance of the other on the stage. When Alfred performs a successful trick, Robert becomes obsessed trying to disclose the secret of his competitor with tragic consequences.",
+      "awards": "Nominated for 2 Oscars. 6 wins & 45 nominations total",
+      "director": "Christopher Nolan",
+      "stars": "Christian Bale, Hugh Jackman, Scarlett Johansson",
+      "countries": "United Kingdom, United States",
+      "writers": "Jonathan Nolan, Christopher Nolan, Christopher Priest",
+      "CreatedAt": "2023-08-24",
+      "idUniq": "",
+      "Image_Moviez": [
+        "https://image.tmdb.org/t/p/w500/xBDE2d6HM1aBKQRu4IT7SfPD9fs.jpg",
+        "https://image.tmdb.org/t/p/w500//xEP8YuUoZ4rcbaio7fdF254O8KN.jpg",
+        "https://image.tmdb.org/t/p/w500//zwdttd8dfyQC9uafdm4lBiGgrdm.jpg",
+        "https://image.tmdb.org/t/p/w500//yCnJT53HMXAK87xzPAdjdYhZ3JE.jpg",
+        "https://image.tmdb.org/t/p/w500//eevtnX3syxLZj4pIber8KsJMDl8.jpg"
+      ],
+      "TranslateText": "در پایان قرن نوزدهم، در لندن، رابرت آنژیر، همسر محبوبش جولیا مک کالو، و آلفرد بوردن دوستان و دستیاران یک شعبده باز هستند. وقتی جولیا به طور تصادفی در حین اجرا می میرد، رابرت آلفرد را مقصر مرگ او می داند و آنها با هم دشمن می شوند. هر دو به جادوگران معروف و رقیب تبدیل می شوند و عملکرد دیگری را در صحنه خراب می کنند. وقتی آلفرد یک ترفند موفقیت آمیز انجام می دهد، رابرت در تلاش برای فاش کردن راز رقیب خود با عواقب غم انگیز وسواس پیدا می کند.",
+      "BackgroundImage": "لینک مورد نظر را وارد کنید"
+    },
+    {
+      "id": "tt4614584",
+      "name": "Purple Hearts",
+      "year": "2022",
+      "genre": [
+        "درام",
+        "موزیکال",
+        "رمانتیک"
+      ],
+      "rate": "6.7",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNzI4ZTAwNzEtNTk5YS00ZWJmLWI1ODMtOTU4MTM5MzQ4OWM0XkEyXkFqcGdeQXVyMTEzMTI1Mjk3._V1_SX300.jpg",
+      "time": "122 min",
+      "story": "Cassie Salazar and Luke Morrow couldn't be more different. Sharp-witted Cassie works nights at a bar in Austin, Texas to make ends meet while pursuing her dream of becoming a singer/songwriter. Luke is an Army trainee, about to ship out for duty, who finds comfort in the unswerving discipline of service. But a chance encounter at Cassie's bar changes the course of both their lives. Cassie is drowning in medical bills after being diagnosed with diabetes.",
+      "awards": "1 win & 1 nomination",
+      "director": "Elizabeth Allen Rosenbaum",
+      "stars": "Sofia Carson, Nicholas Galitzine, Chosen Jacobs",
+      "countries": "United States",
+      "writers": "Kyle Jarrow, Liz W. Garcia",
+      "CreatedAt": "2023-08-24",
+      "idUniq": "",
+      "Image_Moviez": [
+        "https://image.tmdb.org/t/p/w500/iQlJyRecJeGGzQGT2rEcyAgz89F.jpg",
+        "https://image.tmdb.org/t/p/w500//iQlJyRecJeGGzQGT2rEcyAgz89F.jpg",
+        "https://image.tmdb.org/t/p/w500//gheQryumBi4xF0giH9nLfdjvjjS.jpg",
+        "https://image.tmdb.org/t/p/w500//i9L5xVbnyxCRvQxb23XaoZ3cTNT.jpg",
+        "https://image.tmdb.org/t/p/w500//k5SYb9AM0x4IGVxG8fYEEH4wK1I.jpg",
+        "https://image.tmdb.org/t/p/w500//k5SYb9AM0x4IGVxG8fYEEH4wK1I.jpg"
+      ],
+      "TranslateText": "کاسی سالازار و لوک مورو نمی توانستند متفاوت تر از این باشند. کاسی تیز هوش شب ها در یک بار در آستین، تگزاس کار می کند تا در حالی که رویای خود را برای تبدیل شدن به یک خواننده/ترانه سرا دنبال می کند، زندگی خود را تامین کند. لوک یک کارآموز ارتش است که در شرف اعزام به خارج از کشور برای انجام وظیفه است، که در نظم و انضباط بی‌وقفه خدمت آرامش می‌یابد. اما یک برخورد تصادفی در بار Cassie مسیر زندگی هر دو را تغییر می دهد. کیسی پس از تشخیص دیابت در صورت‌حساب‌های پزشکی غرق می‌شود.",
+      "BackgroundImage": "لینک مورد نظر را وارد کنید"
+    },
+    {
+      "id": "tt1160419",
+      "name": "Dune",
+      "year": "2021",
+      "genre": "Action, Adventure, Drama",
+      "rate": "8.0",
+      "poster": "https://m.media-amazon.com/images/M/MV5BN2FjNmEyNWMtYzM0ZS00NjIyLTg5YzYtYThlMGVjNzE1OGViXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SX300.jpg",
+      "time": "155 min",
+      "story": "Won 6 Oscars. 171 wins & 278 nominations total",
+      "awards": "Won 6 Oscars. 171 wins & 278 nominations total",
+      "director": "Denis Villeneuve",
+      "stars": "Timothée Chalamet, Rebecca Ferguson, Zendaya",
+      "countries": "United States, Canada",
+      "writers": "Jon Spaihts, Denis Villeneuve, Eric Roth",
+      "CreatedAt": "2023-08-25",
+      "Type": "movie",
+      "Image_Moviez": [
+        "https://image.tmdb.org/t/p/w500/jYEW5xZkZk2WTrdbMGAPFuBqbDc.jpg",
+        "https://image.tmdb.org/t/p/w500/lzWHmYdfeFiMIY4JaMmtR7GEli3.jpg",
+        "https://image.tmdb.org/t/p/w500/sfjqJDmNqMIImO5khiddb9TARvO.jpg",
+        "https://image.tmdb.org/t/p/w500/wYMbnrdRCREjNLwFlG5SLWzBjui.jpg",
+        "https://image.tmdb.org/t/p/w500/h3HsfV8Kn9Sz2QWUYYdP5ya23hx.jpg",
+        "https://image.tmdb.org/t/p/w500/1httqnYN5eMIkuxibCkRzInUvoS.jpg",
+        "https://image.tmdb.org/t/p/w500//4psHjRlRHOupETL80W9jFqwJdUd.jpg",
+        "https://image.tmdb.org/t/p/w500//qVgZu5BTx6pu4owCvVOm4zjTfOi.jpg",
+        "https://image.tmdb.org/t/p/w500//d9wORLVWqWTxypb5SMlOxL7VNiA.jpg",
+        "https://image.tmdb.org/t/p/w500//yXstbvnAE6XIrJXgw2gMQgKMy5i.jpg",
+        "https://image.tmdb.org/t/p/w500//xY5YwoLiKRb2lwaudOKRyxcmabi.jpg",
+        "https://image.tmdb.org/t/p/w500//3zXXyeFFRJW30JmhTZLd1P0rn4P.jpg",
+        "https://image.tmdb.org/t/p/w500//6ttJT01fXHOa8MwNqoJjAyx6ie6.jpg"
+      ],
+      "TranslateText": "یک خانواده نجیب درگیر جنگی برای کنترل با ارزش ترین دارایی کهکشان می شود در حالی که وارث آن با چشم اندازهای آینده تاریک دچار مشکل می شود.",
+      "BackgroundImage": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi2.wp.com%2Fwww.badtaste.it%2Fcinema%2Fwp-content%2Fuploads%2Fsites%2F1%2F2021%2F07%2Fdune.jpg%3Fw%3D1200%26quality%3D85%26strip%3Dall%26ssl%3D1&f=1&nofb=1&ipt=794f149780a577885719d775ce0754a9a54ba4a2bd853d0cb47c55ef28dfddf2&ipo=images"
+    },
+    {
+      "id": "tt1392190",
+      "name": "Mad Max: Fury Road",
+      "year": "2015",
+      "genre": [
+        "اکشن",
+        "ماجراجویی",
+        "تخیلی"
+      ],
+      "rate": "8.1",
+      "poster": "https://m.media-amazon.com/images/M/MV5BN2EwM2I5OWMtMGQyMi00Zjg1LWJkNTctZTdjYTA4OGUwZjMyXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg",
+      "time": "120 min",
+      "story": "An apocalyptic story set in the furthest reaches of our planet, in a stark desert landscape where humanity is broken, and almost everyone is crazed fighting for the necessities of life. Within this world exist two rebels on the run who just might be able to restore order. There's Max, a man of action and a man of few words, who seeks peace of mind following the loss of his wife and child in the aftermath of the chaos. And Furiosa, a woman of action and a woman who believes her path to survival may be achieved if she can make it across the desert back to her childhood homeland.",
+      "awards": "Won 6 Oscars. 245 wins & 233 nominations total",
+      "director": "George Miller",
+      "stars": "Tom Hardy, Charlize Theron, Nicholas Hoult",
+      "countries": "Australia",
+      "writers": "George Miller, Brendan McCarthy, Nick Lathouris",
+      "CreatedAt": "2023-08-25",
+      "idUniq": "",
+      "Image_Moviez": [
+        "https://image.tmdb.org/t/p/w500/8yACFuo4OaIiKr9hHFlmPcGalKx.jpg",
+        "https://image.tmdb.org/t/p/w500/nlCHUWjY9XWbuEUQauCBgnY8ymF.jpg",
+        "https://image.tmdb.org/t/p/w500//nlCHUWjY9XWbuEUQauCBgnY8ymF.jpg",
+        "https://image.tmdb.org/t/p/w500//hrYbZY9HaGMlEQsUeEx2lu3vWPy.jpg",
+        "https://image.tmdb.org/t/p/w500//k0XbKEBmyw4jVa6GT53bkuAWue3.jpg",
+        "https://image.tmdb.org/t/p/w500//n6vWE0bXq4ImAM00iM5gWyORNSM.jpg",
+        "https://image.tmdb.org/t/p/w500//l0eIS009XtEO80aC6zjM3o3AkEl.jpg",
+        "https://image.tmdb.org/t/p/w500//eGGb0nirfVqyOjqoTrnOczJ2xOv.jpg"
+      ],
+      "TranslateText": "داستانی آخرالزمانی در دورترین نقاط سیاره ما، در یک منظره بیابانی تلخ که در آن بشریت در هم شکسته است، و تقریبا همه دیوانه مبارزه برای نیازهای زندگی هستند. در این دنیا دو شورشی در حال فرار وجود دارند که ممکن است بتوانند نظم را برقرار کنند. مکس، مرد عمل و مردی کم حرف، که پس از از دست دادن همسر و فرزندش در عواقب هرج و مرج به دنبال آرامش است. و Furiosa، زنی کنشگر و زنی که معتقد است مسیر بقای خود را می‌توان در صورتی به دست آورد که بتواند از صحرا به سرزمین کودکی خود بازگردد.",
+      "BackgroundImage": "لینک مورد نظر را وارد کنید"
+    },
+    {
+      "id": "tt9603212",
+      "name": "Mission: Impossible - Dead Reckoning Part One",
+      "year": "2023",
+      "genre": [
+        "اکشن",
+        "ماجراجویی",
+        "دلهره آور "
+      ],
+      "rate": "8.1",
+      "poster": "https://m.media-amazon.com/images/M/MV5BYzFiZjc1YzctMDY3Zi00NGE5LTlmNWEtN2Q3OWFjYjY1NGM2XkEyXkFqcGdeQXVyMTUyMTUzNjQ0._V1_SX300.jpg",
+      "time": "163 min",
+      "story": "Ethan Hunt and his IMF team must track down a dangerous weapon before it falls into the wrong hands.",
+      "awards": "1 nomination",
+      "director": "Christopher McQuarrie",
+      "stars": "Tom Cruise, Hayley Atwell, Ving Rhames",
+      "countries": "United States",
+      "writers": "Bruce Geller, Erik Jendresen, Christopher McQuarrie",
+      "CreatedAt": "2023-08-25",
+      "idUniq": "",
+      "Image_Moviez": [
+        "https://image.tmdb.org/t/p/w500/TFTfzrkX8L7bAKUcch6qLmjpLu.jpg",
+        "https://image.tmdb.org/t/p/w500//bYJv39whWTAOWO0mv7oUija8GgM.jpg",
+        "https://image.tmdb.org/t/p/w500//fGf0iOuOTwWmY95viudG0IQpwn.jpg",
+        "https://image.tmdb.org/t/p/w500//gQVfeCRY374rMPvUnOlZ6mJzMok.jpg",
+        "https://image.tmdb.org/t/p/w500//hwinghcRR7ZJ6nqZJwd1KGZtTMn.jpg"
+      ],
+      "TranslateText": "اتان هانت و تیم صندوق بین المللی پول باید یک سلاح خطرناک را قبل از اینکه به دست افراد اشتباه بیفتد ردیابی کنند.",
+      "BackgroundImage": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpics.filmaffinity.com%2FMission_Impossible_Dead_Reckoning_Part_One-546735706-large.jpg&f=1&nofb=1&ipt=6a6c940098925116d42701c677a1e95baa58f4fbafe76d75b1183736c3acf1d6&ipo=images"
+    },
+    {
+      "id": "tt15671028",
+      "name": "No Hard Feelings",
+      "year": "2023",
+      "genre": [
+        "کمدی",
+        "رمانتیک"
+      ],
+      "rate": "6.7",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMjg3N2M3OWUtZGQ3NC00OGI1LTllZDUtMTdiYWQxMTk0YTg2XkEyXkFqcGdeQXVyODk4OTc3MTY@._V1_SX300.jpg",
+      "time": "103 min",
+      "story": "On the brink of losing her home, Maddie finds an intriguing job listing: helicopter parents looking for someone to bring their introverted 19-year-old son out of his shell before college. She has one summer to make him a man or di...",
+      "awards": "N/A",
+      "director": "Gene Stupnitsky",
+      "stars": "Jennifer Lawrence, Andrew Barth Feldman, Laura Benanti",
+      "countries": "United States",
+      "writers": "Gene Stupnitsky, John Phillips",
+      "CreatedAt": "2023-08-25",
+      "idUniq": "",
+      "Image_Moviez": [
+        "https://image.tmdb.org/t/p/w500/rRcNmiH55Tz0ugUsDUGmj8Bsa4V.jpg",
+        "https://image.tmdb.org/t/p/w500/alKDu3Sn495FWJtioEC9imWt6JJ.jpg",
+        "https://image.tmdb.org/t/p/w500//alKDu3Sn495FWJtioEC9imWt6JJ.jpg",
+        "https://image.tmdb.org/t/p/w500//6koqwhRHwr9oRRBftbhYTXJmGXM.jpg",
+        "https://image.tmdb.org/t/p/w500//gIOxf59UQSxnLDrNVRk3nG34jqk.jpg",
+        "https://image.tmdb.org/t/p/w500//nWA9BfgMQQFPGEtiolZBqMlpsqv.jpg"
+      ],
+      "TranslateText": "مدی در آستانه از دست دادن خانه‌اش، یک فهرست شغلی جذاب پیدا می‌کند: والدین هلیکوپتری به دنبال کسی هستند تا پسر 19 ساله درون‌گراشان را قبل از دانشگاه از پوسته‌اش بیرون بیاورد. او یک تابستان فرصت دارد تا او را مرد یا مرد کند...",
+      "BackgroundImage": "لینک مورد نظر را وارد کنید"
+    },
+    {
+      "id": "tt5700672",
+      "name": "Train to Busan",
+      "year": "2016",
+      "genre": [
+        "اکشن",
+        "ترسناک",
+        "دلهره آور "
+      ],
+      "rate": "7.6",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMTkwOTQ4OTg0OV5BMl5BanBnXkFtZTgwMzQyOTM0OTE@._V1_SX300.jpg",
+      "time": "118 min",
+      "story": "Sok-woo, a father with not much time for his daughter, Soo-ahn, are boarding the KTX, a fast train that shall bring them from Seoul to Busan. But during their journey, the apocalypse begins, and most of the earth's population become flesh craving zombies. While the KTX is shooting towards Busan, the passenger's fight for their families and lives against the zombies - and each other.",
+      "awards": "35 wins & 39 nominations",
+      "director": "Sang-ho Yeon",
+      "stars": "Gong Yoo, Jung Yu-mi, Ma Dong-seok",
+      "countries": "South Korea",
+      "writers": "Joo-Suk Park, Sang-ho Yeon",
+      "CreatedAt": "2023-08-25",
+      "idUniq": "",
+      "Image_Moviez": [
+        "https://image.tmdb.org/t/p/w500/eT9fTSTjsCCmdQJ62EpxvePGANc.jpg",
+        "https://image.tmdb.org/t/p/w500//5H8ftwrh0OzQ7QxTOixNqoMcIZs.jpg",
+        "https://image.tmdb.org/t/p/w500//brnfCYyz8EMbBrHgmh8sCwBi5i1.jpg",
+        "https://image.tmdb.org/t/p/w500//gJ6mZYyusEJtaiI4IB5SOC1hPaM.jpg",
+        "https://image.tmdb.org/t/p/w500//zWRzVHLOIgujxpPiEkXLwFbqnLC.jpg",
+        "https://image.tmdb.org/t/p/w500//zWRzVHLOIgujxpPiEkXLwFbqnLC.jpg",
+        "https://image.tmdb.org/t/p/w500//uSFYJPsXdtja7k6MmtyyAyJgT1k.jpg"
+      ],
+      "TranslateText": "سوک وو، پدری که وقت زیادی برای دخترش سو-آن ندارد، سوار بر قطار سریع‌السیر KTX می‌شود که آنها را از سئول به بوسان می‌آورد. اما در طول سفر آنها، آخرالزمان آغاز می شود و بیشتر جمعیت زمین به زامبی هایی تبدیل می شوند که هوس می کنند. در حالی که KTX به سمت بوسان تیراندازی می کند، مبارزه مسافران برای خانواده و زندگی خود در برابر زامبی ها - و یکدیگر.",
+      "BackgroundImage": "لینک مورد نظر را وارد کنید"
+    },
+    {
+      "id": "tt12361974",
+      "name": "Zack Snyder's Justice League",
+      "year": "2021",
+      "genre": [
+        "اکشن",
+        "ماجراجویی",
+        "فانتزی"
+      ],
+      "rate": "7.9",
+      "poster": "https://m.media-amazon.com/images/M/MV5BYjI3NDg0ZTEtMDEwYS00YWMyLThjYjktMTNlM2NmYjc1OGRiXkEyXkFqcGdeQXVyMTEyMjM2NDc2._V1_SX300.jpg",
+      "time": "242 min",
+      "story": "Determined to ensure Superman's ultimate sacrifice was not in vain, Bruce Wayne aligns forces with Diana Prince with plans to recruit a team of metahumans to protect the world from an approaching threat of catastrophic proportions. The task proves more difficult than Bruce imagined, as each of the recruits must face the demons of their own pasts to transcend that which has held them back, allowing them to come together, finally forming an unprecedented league of heroes. Now united, Batman, Wonder Woman, Aquaman, Cyborg and The Flash may be too late to save the planet from Steppenwolf, DeSaad and Darkseid and their dreadful intentions.",
+      "awards": "5 wins & 6 nominations",
+      "director": "Zack Snyder",
+      "stars": "Henry Cavill, Ben Affleck, Gal Gadot",
+      "countries": "United States",
+      "writers": "Jerry Siegel, Joe Shuster, Zack Snyder",
+      "CreatedAt": "2023-08-26",
+      "idUniq": "",
+      "Image_Moviez": [
+        "https://image.tmdb.org/t/p/w500/mKTccI6mwC4TumkzgzXoI8b2Qul.jpg",
+        "https://image.tmdb.org/t/p/w500/pcDc2WJAYGJTTvRSEIpRZwM3Ola.jpg",
+        "https://image.tmdb.org/t/p/w500//ebl50buX9rp2gJlQm4yBt3TXJiU.jpg",
+        "https://image.tmdb.org/t/p/w500//nMxZG7NMm9KAatblQ08RkOxTQD6.jpg",
+        "https://image.tmdb.org/t/p/w500//oElpG8De7dlsVQPCD0d2ZXVIPzB.jpg",
+        "https://image.tmdb.org/t/p/w500//skjnQMk1r2DQWVkTQsSHSbnTlUR.jpg"
+      ],
+      "TranslateText": "بروس وین که مصمم است مطمئن شود فداکاری نهایی سوپرمن بیهوده نبوده است، نیروهای خود را با دایانا پرینس هماهنگ می کند و قصد دارد تیمی از فراانسان ها را استخدام کند تا از جهان در برابر تهدیدی با ابعاد فاجعه بار محافظت کند. این کار دشوارتر از آن چیزی است که بروس تصور می کرد، زیرا هر یک از سربازان باید با شیاطین گذشته خود روبرو شوند تا از چیزی که آنها را عقب نگه داشته است غلبه کنند و به آنها اجازه دهد دور هم جمع شوند و در نهایت یک لیگ بی سابقه از قهرمانان را تشکیل دهند. اکنون متحد شده‌اند، بتمن، واندر وومن، آکوامن، سایبورگ و فلش ممکن است برای نجات سیاره از شر Steppenwolf، DeSaad و Darkseid و نیات وحشتناک آنها دیر شده باشند.",
+      "BackgroundImage": "لینک مورد نظر را وارد کنید"
+    },
+    {
+      "id": "tt1477834",
+      "name": "Aquaman",
+      "year": "2018",
+      "genre": [
+        "اکشن",
+        "ماجراجویی",
+        "فانتزی"
+      ],
+      "rate": "6.8",
+      "poster": "https://m.media-amazon.com/images/M/MV5BOTk5ODg0OTU5M15BMl5BanBnXkFtZTgwMDQ3MDY3NjM@._V1_SX300.jpg",
+      "time": "143 min",
+      "story": "Born upon the shores of the surface world, Arthur Curry (Jason Momoa) discovers that he is only half human, with the other half of his blood being of Atlanteean descent, thus making him the rightful heir to the throne of the undersea kingdom of Atlantis. However, Arthur learns that Atlantis is being ruled by his malicious half-brother Orm (Patrick Wilson), who seeks to unite the seven underwater kingdoms and wage war upon the surface. With aid from Nuidis Vulko (Willem Dafoe) and the gorgeous Mera (Amber Heard), Arthur must discover the full potential of his true destiny and become Aquaman in order to save Atlantis and the surface from Orm's evil plot.",
+      "awards": "2 wins & 36 nominations",
+      "director": "James Wan",
+      "stars": "Jason Momoa, Amber Heard, Willem Dafoe",
+      "countries": "United States, Australia",
+      "writers": "David Leslie Johnson-McGoldrick, Will Beall, Geoff Johns",
+      "CreatedAt": "2023-08-26",
+      "idUniq": "",
+      "Image_Moviez": [
+        "https://image.tmdb.org/t/p/w500/skauHPLA4so9PqOuu3jhWmiWnFd.jpg",
+        "https://image.tmdb.org/t/p/w500/9QusGjxcYvfPD1THg6oW3RLeNn7.jpg",
+        "https://image.tmdb.org/t/p/w500/hZV7W5Hu4IN8KMVV20bR6EWdD5L.jpg",
+        "https://image.tmdb.org/t/p/w500/qkOw5IZXESOiRH4wzdIYJlBZiCp.jpg",
+        "https://image.tmdb.org/t/p/w500/4WwBq8vw1rcxqFNYOOMWSUVZGAR.jpg",
+        "https://image.tmdb.org/t/p/w500/2cUsDz4TzFYHrKktT1bKHHQ7Cgm.jpg",
+        "https://image.tmdb.org/t/p/w500//8UqyECPx67XgNETLbQYbnOjRaut.jpg",
+        "https://image.tmdb.org/t/p/w500//rWqeE87QRWWdx5wFHLS3S10pvtQ.jpg",
+        "https://image.tmdb.org/t/p/w500//9QusGjxcYvfPD1THg6oW3RLeNn7.jpg",
+        "https://image.tmdb.org/t/p/w500//fc43l6HqgE5WotpCjk2MHDLZFy1.jpg",
+        "https://image.tmdb.org/t/p/w500//lKMBPsdRfZVH6vomPIeK5uVjinX.jpg",
+        "https://image.tmdb.org/t/p/w500//lKMBPsdRfZVH6vomPIeK5uVjinX.jpg",
+        "https://image.tmdb.org/t/p/w500//4NC9c8ytnC5lBzc7uvX6MUyhCZP.jpg"
+      ],
+      "TranslateText": "آرتور کوری (جیسون موموآ) که در سواحل جهان به دنیا آمد، متوجه می‌شود که نیمی از او انسان است و نیمی دیگر از خون او از تبار آتلانتیس است، بنابراین او را به وارث تاج و تخت پادشاهی زیردریایی آتلانتیس تبدیل می‌کند. . با این حال، آرتور می‌آموزد که آتلانتیس توسط برادر ناتنی بدخواهش اورم (پاتریک ویلسون) اداره می‌شود که به دنبال متحد کردن هفت پادشاهی زیر آب و به راه انداختن جنگ در سطح است. با کمک نویدیس ولکو (ویلم دفو) و مرا (امبر هرد) زرق و برق دار، آرتور باید پتانسیل کامل سرنوشت واقعی خود را کشف کند و به آکوامن تبدیل شود تا آتلانتیس و سطح را از نقشه شیطانی اورم نجات دهد.",
+      "BackgroundImage": "لینک مورد نظر را وارد کنید"
+    },
+    {
+      "id": "tt1270797",
+      "name": "Venom",
+      "year": "2018",
+      "genre": [
+        "اکشن",
+        "ماجراجویی",
+        "تخیلی"
+      ],
+      "rate": "6.6",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNTFkZjdjN2QtOGE5MS00ZTgzLTgxZjAtYzkyZWQ5MjEzYmZjXkEyXkFqcGdeQXVyMTM0NTUzNDIy._V1_SX300.jpg",
+      "time": "112 min",
+      "story": "After a faulty interview with the Life Foundation ruins his career, former reporter Eddie Brock's life is in pieces. Six months later, he comes across the Life Foundation again, and he comes into contact with an alien symbiote and becomes Venom, a parasitic antihero.",
+      "awards": "2 wins & 8 nominations",
+      "director": "Ruben Fleischer",
+      "stars": "Tom Hardy, Michelle Williams, Riz Ahmed",
+      "countries": "United States, China",
+      "writers": "Jeff Pinkner, Scott Rosenberg, Kelly Marcel",
+      "CreatedAt": "2023-08-26",
+      "idUniq": "",
+      "Image_Moviez": [
+        "https://image.tmdb.org/t/p/w500/VuukZLgaCrho2Ar8Scl9HtV3yD.jpg",
+        "https://image.tmdb.org/t/p/w500/hNsYUryiwxcdeTMkaBcPF3iEg0p.jpg",
+        "https://image.tmdb.org/t/p/w500/7tPnyLkk5noSixlblbWn52bmbTO.jpg",
+        "https://image.tmdb.org/t/p/w500//hNsYUryiwxcdeTMkaBcPF3iEg0p.jpg",
+        "https://image.tmdb.org/t/p/w500//l3oMLlV14yJQy7QoY1DiCy46N0w.jpg",
+        "https://image.tmdb.org/t/p/w500//tm2lnFbSSl99yjoUePvBKd5xCUR.jpg",
+        "https://image.tmdb.org/t/p/w500//6Waqm8RAFUmqGBwvHRm9dkxzetM.jpg"
+      ],
+      "TranslateText": "پس از اینکه یک مصاحبه نادرست با بنیاد زندگی حرفه او را ویران کرد، زندگی ادی براک گزارشگر سابق از هم پاشید. شش ماه بعد، او دوباره با بنیاد زندگی روبرو می شود و با یک همزیست بیگانه در تماس است و تبدیل به ونوم می شود، یک ضدقهرمان انگلی.",
+      "BackgroundImage": "لینک مورد نظر را وارد کنید"
+    },
+    {
+      "id": "tt0369610",
+      "name": "Jurassic World",
+      "year": "2015",
+      "genre": [
+        "اکشن",
+        "ماجراجویی",
+        "تخیلی"
+      ],
+      "rate": "6.9",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNzQ3OTY4NjAtNzM5OS00N2ZhLWJlOWUtYzYwZjNmOWRiMzcyXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg",
+      "time": "124 min",
+      "story": "Twenty-two years after the original Jurassic Park failed, the new park, also known as Jurassic World, is open for business. After years of studying genetics, the scientists on the park genetically engineer a new breed of dinosaur, the Indominus Rex. When everything goes horribly wrong, will our heroes make it off the island?",
+      "awards": "15 wins & 58 nominations",
+      "director": "Colin Trevorrow",
+      "stars": "Chris Pratt, Bryce Dallas Howard, Ty Simpkins",
+      "countries": "United States",
+      "writers": "Rick Jaffa, Amanda Silver, Colin Trevorrow",
+      "CreatedAt": "2023-08-26",
+      "idUniq": "",
+      "Image_Moviez": [
+        "https://image.tmdb.org/t/p/w500/aIGIYJTyOkEVUmEd3z5x6diYsFx.jpg",
+        "https://image.tmdb.org/t/p/w500/dF6FjTZzRTENfB4R17HDN20jLT2.jpg",
+        "https://image.tmdb.org/t/p/w500//dF6FjTZzRTENfB4R17HDN20jLT2.jpg",
+        "https://image.tmdb.org/t/p/w500//9tjieFMEPnxqZ7jH6i1bFNwseKo.jpg",
+        "https://image.tmdb.org/t/p/w500//aIGIYJTyOkEVUmEd3z5x6diYsFx.jpg",
+        "https://image.tmdb.org/t/p/w500//AeBtDGF2vMyKhIRz0NepLX7tWTE.jpg",
+        "https://image.tmdb.org/t/p/w500//m35KzIV2KLlzhFrcqHord2KqMaa.jpg"
+      ],
+      "TranslateText": "بیست و دو سال پس از شکست پارک اصلی ژوراسیک، پارک جدید که به عنوان دنیای ژوراسیک نیز شناخته می شود، برای تجارت باز است. پس از سال ها مطالعه ژنتیک، دانشمندان در پارک نژاد جدیدی از دایناسورها به نام Indominus Rex را مهندسی ژنتیک کردند. وقتی همه چیز به طرز وحشتناکی اشتباه می شود، آیا قهرمانان ما از جزیره خارج می شوند؟",
+      "BackgroundImage": "لینک مورد نظر را وارد کنید"
+    },
+    {
+      "id": "tt2771200",
+      "name": "Beauty and the Beast",
+      "year": "2017",
+      "genre": [
+        "ماجراجویی",
+        "خانوادگی",
+        "فانتزی"
+      ],
+      "rate": "7.1",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMTUwNjUxMTM4NV5BMl5BanBnXkFtZTgwODExMDQzMTI@._V1_SX300.jpg",
+      "time": "129 min",
+      "story": "Disney's animated classic takes on a new form, with a widened mythology and an all-star cast. A young Prince, imprisoned in the form of a Beast (Dan Stevens), can be freed only by true love. What may be his only opportunity arrives when he meets Belle (Emma Watson), the only human girl to ever visit the castle since it was enchanted.",
+      "awards": "Nominated for 2 Oscars. 15 wins & 76 nominations total",
+      "director": "Bill Condon",
+      "stars": "Emma Watson, Dan Stevens, Luke Evans",
+      "countries": "United States",
+      "writers": "Stephen Chbosky, Evan Spiliotopoulos, Linda Woolverton",
+      "CreatedAt": "2023-08-26",
+      "idUniq": "",
+      "Image_Moviez": [
+        "https://image.tmdb.org/t/p/w500/m3tdSyl11fhgXPDSEt3aBctTqGP.jpg",
+        "https://image.tmdb.org/t/p/w500/phhbtV5BEdn4TYLTMKFwYz2VSNl.jpg",
+        "https://image.tmdb.org/t/p/w500/3iItrZiggoRgwkObEFgzflfQv9j.jpg",
+        "https://image.tmdb.org/t/p/w500/sibwRLuvvsblv8tBjY5b459VrmS.jpg",
+        "https://image.tmdb.org/t/p/w500/uU1Mt4JWhDvl4vKb3AfxNsorkoM.jpg",
+        "https://image.tmdb.org/t/p/w500/n6rHcGghywOaeO4JEgSMT1jCgVs.jpg",
+        "https://image.tmdb.org/t/p/w500//m3tdSyl11fhgXPDSEt3aBctTqGP.jpg",
+        "https://image.tmdb.org/t/p/w500//phhbtV5BEdn4TYLTMKFwYz2VSNl.jpg",
+        "https://image.tmdb.org/t/p/w500//G9ferdorR4ZGNy6c6TwOLxbkB4.jpg",
+        "https://image.tmdb.org/t/p/w500//haY9FF3grXRob1ovJqBA9D8Mlr0.jpg"
+      ],
+      "TranslateText": "انیمیشن کلاسیک دیزنی شکل جدیدی به خود می گیرد، با اسطوره ای گسترده و بازیگران همه ستاره. شاهزاده جوانی که در قالب یک هیولا (دن استیونز) زندانی شده است، تنها با عشق واقعی می تواند آزاد شود. تنها فرصت او زمانی فرا می رسد که بل (اما واتسون) را ملاقات می کند، تنها دختر انسانی که از زمانی که قلعه طلسم شده از آن دیدن کرده است.",
+      "BackgroundImage": "لینک مورد نظر را وارد کنید"
+    },
+    {
+      "id": "tt1201607",
+      "name": "Harry Potter and the Deathly Hallows: Part 2",
+      "year": "2011",
+      "genre": [
+        "ماجراجویی",
+        "خانوادگی",
+        "فانتزی"
+      ],
+      "rate": "8.1",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMGVmMWNiMDktYjQ0Mi00MWIxLTk0N2UtN2ZlYTdkN2IzNDNlXkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_SX300.jpg",
+      "time": "130 min",
+      "story": "Harry (Daniel Radcliffe), Ron (Rupert Grint), and Hermione (Emma Watson) continue their quest of finding and destroying Voldemort's (Ralph Fiennes') three remaining Horcruxes, the magical items responsible for his immortality. But as the mystical Deathly Hallows are uncovered, and Voldemort finds out about their mission, the biggest battle begins, and life as they know it will never be the same again.",
+      "awards": "Nominated for 3 Oscars. 47 wins & 94 nominations total",
+      "director": "David Yates",
+      "stars": "Daniel Radcliffe, Emma Watson, Rupert Grint",
+      "countries": "United Kingdom, United States",
+      "writers": "Steve Kloves, J.K. Rowling",
+      "CreatedAt": "2023-08-26",
+      "idUniq": "",
+      "Image_Moviez": [
+        "https://image.tmdb.org/t/p/w500/n5A7brJCjejceZmHyujwUTVgQNC.jpg",
+        "https://image.tmdb.org/t/p/w500//ik5bYheGLGw7oaVm9zbzUocnPcf.jpg",
+        "https://image.tmdb.org/t/p/w500//ik5bYheGLGw7oaVm9zbzUocnPcf.jpg",
+        "https://image.tmdb.org/t/p/w500//ik5bYheGLGw7oaVm9zbzUocnPcf.jpg",
+        "https://image.tmdb.org/t/p/w500//cbcpDn6XJaIGoOil1bKuskU8ds4.jpg",
+        "https://image.tmdb.org/t/p/w500//6ypOjgEm5OTMipwfibXyfcoZyrP.jpg",
+        "https://image.tmdb.org/t/p/w500//ik5bYheGLGw7oaVm9zbzUocnPcf.jpg",
+        "https://image.tmdb.org/t/p/w500//cbcpDn6XJaIGoOil1bKuskU8ds4.jpg",
+        "https://image.tmdb.org/t/p/w500//6ypOjgEm5OTMipwfibXyfcoZyrP.jpg",
+        "https://image.tmdb.org/t/p/w500//ngqeWyeGsMR8gEGq9qKpTZXk0Pk.jpg",
+        "https://image.tmdb.org/t/p/w500//ngqeWyeGsMR8gEGq9qKpTZXk0Pk.jpg",
+        "https://image.tmdb.org/t/p/w500//ngqeWyeGsMR8gEGq9qKpTZXk0Pk.jpg",
+        "https://image.tmdb.org/t/p/w500//hDhQYucoJNsPiszHsep0Ruwnghx.jpg",
+        "https://image.tmdb.org/t/p/w500//4Wr3rvZuZmnj93amaXK1qB5JHWl.jpg",
+        "https://image.tmdb.org/t/p/w500//eCITdWmibgsGLZO0ty9MS6k69sr.jpg"
+      ],
+      "TranslateText": "هری (دانیل رادکلیف)، ران (روپرت گرینت) و هرمیون (اما واتسون) به جستجوی خود برای یافتن و از بین بردن سه هورکراکس باقی مانده ولدمورت (رالف فاینز)، آیتم های جادویی که مسئول جاودانگی او هستند، ادامه می دهند. اما زمانی که یادگاران مرگ عرفانی کشف می‌شوند و ولدمورت از ماموریت آن‌ها باخبر می‌شود، بزرگترین نبرد آغاز می‌شود و زندگی آن‌طور که می‌دانند دیگر هرگز شبیه به آن نخواهد بود.",
+      "BackgroundImage": "لینک مورد نظر را وارد کنید"
+    },
+    {
+      "id": "tt0212985",
+      "name": "Hannibal",
+      "year": "2001",
+      "genre": [
+        "جنایی",
+        "درام",
+        "دلهره آور "
+      ],
+      "rate": "6.8",
+      "poster": "https://m.media-amazon.com/images/M/MV5BZDMxMjhiZmItNWMxMC00NzYyLWJiOTYtNGYwOTAyYjU5OWY4XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg",
+      "time": "131 min",
+      "story": "The final chapter of the Dr. Hannibal Lecter quadrilogy, the murdering cannibal. He is presently in Italy, and works as a curator at a museum. Clarice Starling (Julianne Moore), the F.B.I. Agent who he aided to apprehend a serial killer, was placed in charge of an operation, but when one of her men botches it, she's called to the mat by the Bureau. One high ranking official, Paul Krendler (Ray Liotta) has it in for her. But she gets a reprieve because Mason Verger (Gary Oldman), one of Lecter's victims who is looking to get back at Lecter for what Lecter did to him, wants to use Starling to lure him out. When Lecter sends her a note, she learns that he's in Italy, so she asks the Police to keep an eye out for him. But a corrupt Policeman, who wants to get the reward that Verger placed on him, tells Verger where he is, but they fail to get him. Later, Verger decides to frame Starling, which makes Lecter return to the U.S., and the race to get Lecter begins.",
+      "awards": "9 wins & 25 nominations",
+      "director": "Ridley Scott",
+      "stars": "Anthony Hopkins, Julianne Moore, Gary Oldman",
+      "countries": "United States, United Kingdom",
+      "writers": "Thomas Harris, David Mamet, Steven Zaillian",
+      "CreatedAt": "2023-08-26",
+      "idUniq": "",
+      "Image_Moviez": [
+        "https://image.tmdb.org/t/p/w500//rqVDXaqiUgex70gljYu9fhoq1Os.jpg",
+        "https://image.tmdb.org/t/p/w500//12hMR9EZwQyrRBrAfEVtrrKSoGP.jpg",
+        "https://image.tmdb.org/t/p/w500//i2nmKc0xqj4E4g1RiwXaQagNfsa.jpg",
+        "https://image.tmdb.org/t/p/w500//qRfGBDREU2Gc07h4w0rFZfnFIWG.jpg"
+      ],
+      "TranslateText": "فصل آخر کتاب چهارگانه دکتر هانیبال لکتر، آدم خوار قاتل. او در حال حاضر در ایتالیا به سر می برد و به عنوان متصدی موزه کار می کند. کلاریس استارلینگ (جولیان مور)، F.B.I. ماموری که او برای دستگیری یک قاتل زنجیره ای به او کمک کرد، مسئول عملیات قرار گرفت، اما وقتی یکی از مردانش آن را خراب می کند، او توسط اداره به تشک فراخوانده می شود. یکی از مقامات بلندپایه، پل کرندلر (ری لیوتا) این کار را برای او انجام داده است. اما او مهلت می‌گیرد زیرا میسون ورگر (گری اولدمن)، یکی از قربانیان لکتر که به‌دنبال این است که به خاطر کاری که لکتر با او کرد، به او بازگردد، می‌خواهد از استارلینگ برای فریب دادن او استفاده کند. وقتی لکتر یادداشتی برای او می‌فرستد، متوجه می‌شود که او در ایتالیا است، بنابراین از پلیس می‌خواهد که مراقب او باشد. اما یک پلیس فاسد که می‌خواهد جایزه‌ای را که ورگر به او داده است را دریافت کند، به ورگر می‌گوید که کجاست، اما آنها موفق به دریافت او نمی‌شوند. بعداً، ورگر تصمیم می‌گیرد استارلینگ را فریم کند، که باعث می‌شود لکتر به ایالات متحده بازگردد و رقابت برای بدست آوردن لکتر آغاز می‌شود.",
+      "BackgroundImage": "لینک مورد نظر را وارد کنید"
+    },
+    {
+      "id": "tt1502407",
+      "name": "Halloween",
+      "year": "2018",
+      "genre": [
+        "جنایی",
+        "ترسناک",
+        "دلهره آور "
+      ],
+      "rate": "6.5",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMmMzNjJhYjUtNzFkZi00MWQ4LWJiMDEtYWM0NTAzNGZjMTI3XkEyXkFqcGdeQXVyOTE2OTMwNDk@._V1_SX300.jpg",
+      "time": "106 min",
+      "story": "Jamie Lee Curtis returns to her iconic role as Laurie Strode, who comes to her final confrontation with Michael Myers (Nick Castle and James Jude Courtney), the masked figure who has haunted her since she narrowly escaped his killing spree on Halloween night four decades ago.",
+      "awards": "4 wins & 27 nominations",
+      "director": "David Gordon Green",
+      "stars": "Jamie Lee Curtis, Judy Greer, Andi Matichak",
+      "countries": "United States",
+      "writers": "John Carpenter, Debra Hill, Jeff Fradley",
+      "CreatedAt": "2023-08-26",
+      "idUniq": "",
+      "Image_Moviez": [
+        "https://image.tmdb.org/t/p/w500/tZ358Wk4BnOc4FjdGsiexAUvCMH.jpg",
+        "https://image.tmdb.org/t/p/w500/czRXzKy5YcvoVhRUb8RQsFHUDi1.jpg",
+        "https://image.tmdb.org/t/p/w500//jLLsaKktHOUp0goIFu3R9x6knJ3.jpg",
+        "https://image.tmdb.org/t/p/w500//9n6GV6tlvBdynVH6Qwcpg3sklSs.jpg",
+        "https://image.tmdb.org/t/p/w500//pCKbDMK9Nmo2ksRHAmWi8gfQDyJ.jpg",
+        "https://image.tmdb.org/t/p/w500//czRXzKy5YcvoVhRUb8RQsFHUDi1.jpg"
+      ],
+      "TranslateText": "جیمی لی کرتیس به نقش نمادین خود در نقش لوری استرود باز می گردد که به آخرین رویارویی خود با مایکل مایرز (نیک کسل و جیمز جود کورتنی) می رسد، شخصیت نقاب پوشی که از زمانی که چهار دهه پیش در شب هالووین به سختی از قتل او فرار کرد او را تعقیب کرده است. .",
+      "BackgroundImage": "لینک مورد نظر را وارد کنید"
+    },
+    {
+      "id": "tt0120338",
+      "name": "Titanic",
+      "year": "1997",
+      "genre": [
+        "درام",
+        "رمانتیک"
+      ],
+      "rate": "7.9",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMDdmZGU3NDQtY2E5My00ZTliLWIzOTUtMTY4ZGI1YjdiNjk3XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_SX300.jpg",
+      "time": "194 min",
+      "story": "84 years later, a 100 year-old woman named Rose DeWitt Bukater tells the story to her granddaughter Lizzy Calvert, Brock Lovett, Lewis Bodine, Bobby Buell and Anatoly Mikailavich on the Keldysh about her life set in April 10th 1912, on a ship called Titanic when young Rose boards the departing ship with the upper-class passengers and her mother, Ruth DeWitt Bukater, and her fiancé, Caledon Hockley. Meanwhile, a drifter and artist named Jack Dawson and his best friend Fabrizio De Rossi win third-class tickets to the ship in a game. And she explains the whole story from departure until the death of Titanic on its first and last voyage April 15th, 1912 at 2:20 in the morning.",
+      "awards": "Won 11 Oscars. 126 wins & 83 nominations total",
+      "director": "James Cameron",
+      "stars": "Leonardo DiCaprio, Kate Winslet, Billy Zane",
+      "countries": "United States, Mexico",
+      "writers": "James Cameron",
+      "CreatedAt": "2023-08-26",
+      "idUniq": "",
+      "Image_Moviez": [
+        "https://image.tmdb.org/t/p/w500/rzdPqYx7Um4FUZeD8wpXqjAUcEm.jpg",
+        "https://image.tmdb.org/t/p/w500/8LVhNcU8TT7DfIu2d13muZ8AWEO.jpg",
+        "https://image.tmdb.org/t/p/w500/4MS3PY7syZUULFGlujYeqQqnIoG.jpg",
+        "https://image.tmdb.org/t/p/w500/AjoaBmNAmEPkAcQyhOk08u0mCcu.jpg",
+        "https://image.tmdb.org/t/p/w500/l5GIT2WDBg8TiQ6kTRelomiU0P0.jpg",
+        "https://image.tmdb.org/t/p/w500//rzdPqYx7Um4FUZeD8wpXqjAUcEm.jpg",
+        "https://image.tmdb.org/t/p/w500//8LVhNcU8TT7DfIu2d13muZ8AWEO.jpg",
+        "https://image.tmdb.org/t/p/w500//q0UPmP4m7BpzxdcoYWCrJRoD8bj.jpg",
+        "https://image.tmdb.org/t/p/w500//uGQzVsNLkdQntGbRjICHiStbvDR.jpg"
+      ],
+      "TranslateText": "84 سال بعد، زنی 100 ساله به نام رز دیویت بوکاتر داستان را برای نوه‌اش لیزی کالورت، براک لاوت، لوئیس بودین، بابی بیول و آناتولی میکایلاویچ در کلدیش درباره زندگی‌اش در 10 آوریل 1912 در کشتی‌ای به نام تعریف می‌کند. تایتانیک زمانی که رز جوان با مسافران کلاس بالا و مادرش روث دیویت بوکاتر و نامزدش کالدون هاکلی سوار کشتی در حال حرکت می شود. در همین حال، یک دریفت و هنرمند به نام جک داوسون و بهترین دوستش فابریزیو دی روسی در یک بازی بلیت های درجه سوم کشتی را به دست می آورند. و او کل داستان را از حرکت تا مرگ تایتانیک در اولین و آخرین سفر خود در 15 آوریل 1912 در ساعت 2:20 بامداد توضیح می دهد.",
+      "BackgroundImage": "لینک مورد نظر را وارد کنید"
+    },
+    {
+      "id": "tt1454468",
+      "name": "Gravity",
+      "year": "2013",
+      "genre": [
+        "درام",
+        "تخیلی",
+        "دلهره آور "
+      ],
+      "rate": "7.7",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNjE5MzYwMzYxMF5BMl5BanBnXkFtZTcwOTk4MTk0OQ@@._V1_SX300.jpg",
+      "time": "91 min",
+      "story": "Dr. Ryan Stone (Sandra Bullock) is a brilliant medical engineer on her first shuttle mission, with veteran astronaut Matt Kowalski (George Clooney) in command of his last flight before retiring. But on a seemingly routine spacewalk, disaster strikes. The shuttle is destroyed, leaving Stone and Kowalsky completely alone - tethered to nothing but each other and spiraling out into the blackness.",
+      "awards": "Won 7 Oscars. 240 wins & 187 nominations total",
+      "director": "Alfonso Cuarón",
+      "stars": "Sandra Bullock, George Clooney, Ed Harris",
+      "countries": "United Kingdom, United States",
+      "writers": "Alfonso Cuarón, Jonás Cuarón",
+      "CreatedAt": "2023-08-26",
+      "idUniq": "",
+      "Image_Moviez": [
+        "https://image.tmdb.org/t/p/w500/a2n6bKD7qhCPCAEALgsAhWOAQcc.jpg",
+        "https://image.tmdb.org/t/p/w500/npFPqZeHlEPOlLEpykP6kuSsi6v.jpg",
+        "https://image.tmdb.org/t/p/w500//npFPqZeHlEPOlLEpykP6kuSsi6v.jpg",
+        "https://image.tmdb.org/t/p/w500//jP4Z9Jy1NhfpDRjoFNmvlvSlzMd.jpg",
+        "https://image.tmdb.org/t/p/w500//jtL3agHtjMEIoJdoBnWWRG5YLYI.jpg",
+        "https://image.tmdb.org/t/p/w500//rw97ETmfo2zE7wo7YjYsgIgb6ng.jpg",
+        "https://image.tmdb.org/t/p/w500//jP4Z9Jy1NhfpDRjoFNmvlvSlzMd.jpg",
+        "https://image.tmdb.org/t/p/w500//b1yXVhXXfK7qQTeAIvtSHovFImg.jpg"
+      ],
+      "TranslateText": "دکتر رایان استون (ساندرا بولاک) یک مهندس پزشکی زبردست در اولین ماموریت شاتل خود است و فضانورد کهنه کار مت کوالسکی (جرج کلونی) آخرین پرواز خود را قبل از بازنشستگی فرماندهی می کند. اما در یک پیاده روی فضایی به ظاهر معمول، فاجعه رخ می دهد. شاتل نابود می‌شود و استون و کوالسکی را کاملاً تنها می‌گذارند - به چیزی جز یکدیگر متصل نشده‌اند و به سمت تاریکی می‌روند.",
+      "BackgroundImage": "لینک مورد نظر را وارد کنید"
+    }
+  ],
+  "Comments": [
+    {
+      "idMovie": "tt0800369",
+      "member": "AMIR",
+      "email": "mahdyghajar@yahoo.com",
+      "data": "2023-08-25",
+      "comment": "عالی بود",
+      "id": 1
+    }
+  ],
+  "Collections": [],
+  "Users": [
+    {
+      "user": "speedster",
+      "email": "lightmovie.info@gmail.com",
+      "password": "amir9900a",
+      "type": "Owner",
+      "id": 1
+    },
+    {
+      "user": "amir",
+      "email": "user@gmail.com",
+      "password": "123456",
+      "type": "User",
+      "id": 2
+    }
+  ],
+  "BoxOffice": [
+    [
+      {
+        "id": "tt5090568",
+        "rank": "1",
+        "title": "Transformers: Rise of the Beasts",
+        "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.ytimg.com%2Fvi%2Fof3X7mgIfDc%2Fmaxresdefault.jpg&f=1&nofb=1&ipt=e1f39f65ad87927e56547f9a0e8b141c2a92e7edc3c070501835a5d3ae51cc6f&ipo=images",
+        "weekend": "$61.0M",
+        "gross": "$61.0M",
+        "weeks": "1"
+      },
+      {
+        "id": "tt9362722",
+        "rank": "2",
+        "title": "Spider-Man: Across the Spider-Verse",
+        "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.susu.org%2Funionfilms%2Ffilms%2Fbackgrounds%2Fhd%2Fspider-man-into-the-spider-verse.jpg&f=1&nofb=1&ipt=0f936caad182151891d737324fea445b19c378fe4e40cb346526b6d040ac060b&ipo=images",
+        "weekend": "$55.5M",
+        "gross": "$225.5M",
+        "weeks": "2"
+      },
+      {
+        "id": "tt5971474",
+        "rank": "3",
+        "title": "The Little Mermaid",
+        "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic1.moviewebimages.com%2Fwordpress%2Fwp-content%2Fuploads%2F2022%2F05%2FLittle_Mermaid_Poster.jpg&f=1&nofb=1&ipt=6bf002eeb71232569eec7f2410509da04559b7b1b6938ff95fedf8746c31c3cb&ipo=images",
+        "weekend": "$23.2M",
+        "gross": "$229.2M",
+        "weeks": "3"
+      },
+      {
+        "id": "tt6791350",
+        "rank": "4",
+        "title": "Guardians of the Galaxy Vol. 3",
+        "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.murphysmultiverse.com%2Fwp-content%2Fuploads%2F2021%2F01%2Fasdfljalsdf-1024x576.jpg&f=1&nofb=1&ipt=576853516379f3c718a2969405f2156cb128e78a8d82ae117ab89ad9f1fbf99b&ipo=images",
+        "weekend": "$7.2M",
+        "gross": "$335.6M",
+        "weeks": "6"
+      },
+      {
+        "id": "tt3427252",
+        "rank": "5",
+        "title": "The Boogeyman",
+        "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic1.srcdn.com%2Fwordpress%2Fwp-content%2Fuploads%2F2023%2F01%2Fthe-boogeyman-trailer.jpg&f=1&nofb=1&ipt=035a789f394ea107bee56a7b337d6acde855255c85ce901243fe4c823837f176&ipo=images",
+        "weekend": "$7.2M",
+        "gross": "$25.0M",
+        "weeks": "2"
+      },
+      {
+        "id": "tt5433140",
+        "rank": "6",
+        "title": "Fast X",
+        "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.indianexpress.com%2F2021%2F08%2Ffast-and-furious-10-1200.jpg&f=1&nofb=1&ipt=0fc81cfb5fb22313e5f41377da2e5c0e7e86422e372ef289ac8bd985b9155faa&ipo=images",
+        "weekend": "$5.3M",
+        "gross": "$138.2M",
+        "weeks": "4"
+      },
+      {
+        "id": "tt6718170",
+        "rank": "7",
+        "title": "The Super Mario Bros. Movie",
+        "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmamul.am%2Fimages%2Fpics%2F230824%2Fwatch-the-super-mari-u1034887-1.jpg&f=1&nofb=1&ipt=9c6a3144e131fdb07fa167d1d7b13ddfffedbbe0d722e87a0ce73245865b0917&ipo=images",
+        "weekend": "$2.2M",
+        "gross": "$570.3M",
+        "weeks": "10"
+      },
+      {
+        "id": "tt8373206",
+        "rank": "8",
+        "title": "About My Father",
+        "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia.filmelier.com%2Ftit%2FwZRGaK%2Fthumb%2Fabout-my-father_NAAytgY.jpeg&f=1&nofb=1&ipt=124a2b5dbb7043de1152f1cabe2378783f56b2a72e467b5631e989750066300e&ipo=images",
+        "weekend": "$837K",
+        "gross": "$10.8M",
+        "weeks": "3"
+      },
+      {
+        "id": "tt11040844",
+        "rank": "9",
+        "title": "The Machine",
+        "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftheglobalherald.s3.amazonaws.com%2Fuploads%2F2023%2F02%2FZC8g_LS5234.jpg&f=1&nofb=1&ipt=b09f3ed1010e049b09b76f54edeb70d3336ce8b7251a4cf430afb244e3769eb5&ipo=images",
+        "weekend": "$577K",
+        "gross": "$10.1M",
+        "weeks": "3"
+      },
+      {
+        "id": "tt13238346",
+        "rank": "10",
+        "title": "Past Lives",
+        "image": "https://s.yimg.com/ny/api/res/1.2/2Gd1Ox5vVxooTp5DOREb7w--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTM0MA--/https://media.zenfs.com/en/nextshark_articles_509/798728cab491b88bb6a93a4f0511e03f",
+        "weekend": "$521K",
+        "gross": "$867K",
+        "weeks": "2"
+      }
+    ]
+  ],
+  "plans": [],
+  "news": [],
+  "trailers": []
+}

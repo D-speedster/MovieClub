@@ -1,0 +1,108 @@
+.body {
+    background-color: var(--bg-main) !important;
+    color: var(--text-primary);
+}
+
+.Search_Handler {
+    height: 60px;
+    width: 80%;
+    display: flex;
+    margin: 0 auto;
+}
+
+.Search_Handler input {
+    background-color: var(--bg-surface);
+    color: var(--text-primary);
+    width: 80%;
+    height: 40px;
+    border: 1px solid var(--border-default);
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    text-align: center;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.Search_Handler input:focus {
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 2px rgba(201, 162, 77, 0.2);
+}
+
+.Search_Handler input::placeholder {
+    color: var(--text-muted);
+}
+
+*:focus {
+    outline: none;
+}
+
+.Search_Handler button {
+    background-color: var(--cta-primary);
+    border: 0;
+    width: 20%;
+    height: 42px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--cta-text);
+    font-size: 13px;
+    transition: all 0.3s ease;
+}
+
+.Search_Handler button:hover {
+    background-color: var(--cta-hover);
+    transform: translateY(-1px);
+}
+
+.mobile-nav {
+    background-color: var(--bg-surface);
+    color: var(--text-primary) !important;
+    height: 55px;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    border-top: 1px solid var(--border-default);
+}
+
+.mobile-nav-item {
+    margin-left: 0px;
+    font-family: var(--font-primary);
+    line-height: 21.7px;
+    font-weight: var(--font-medium);
+    font-size: 13px;
+    text-align: center;
+    cursor: pointer;
+    transition: all .5s ease-out;
+    text-decoration: none;
+}
+.mobile-nav-item a{
+    text-decoration: none;
+    color: var(--text-secondary);
+    transition: color 0.3s ease;
+}
+
+.mobile-nav-item a:hover {
+    color: var(--text-primary);
+}
+
+.mobile-nav-item span {
+    font-weight: bold;
+    margin-top: 2px;
+    font-weight: bold;
+}
+
+.mobile-nav-item svg {
+    margin-left: 1px;
+    margin-top: 5px;
+}
+
+.mobile-nav-item:hover  {
+    color: var(--gold-primary);
+    margin-top: -4px;
+}

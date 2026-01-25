@@ -1,0 +1,507 @@
+/* MOVIE PAGE - MODERN DESIGN WITH DESIGN SYSTEM */
+
+/* Import design system */
+@import '../../styles/design-system.css';
+
+/* ================================
+   PAGE LAYOUT
+   ================================ */
+
+.movie-page {
+  background: var(--bg-main);
+  min-height: 100vh;
+}
+
+/* ================================
+   LOADING & ERROR STATES
+   ================================ */
+
+.movie-page__loading,
+.movie-page__error {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-16);
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--border-primary);
+  border-top: 3px solid var(--gold-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: var(--space-4);
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.movie-page__loading p,
+.movie-page__error p {
+  font-family: var(--font-primary);
+  font-size: var(--text-lg);
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.movie-page__error h2 {
+  font-family: var(--font-primary);
+  font-size: var(--text-2xl);
+  font-weight: var(--font-bold);
+  color: var(--text-primary);
+  margin-bottom: var(--space-4);
+}
+
+/* ================================
+   HERO SECTION
+   ================================ */
+
+.movie-hero {
+  position: relative;
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: var(--bg-main);
+}
+
+.movie-hero__background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.movie-hero__bg-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.movie-hero__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(14, 14, 14, 0.9) 0%,
+    rgba(14, 14, 14, 0.7) 50%,
+    rgba(14, 14, 14, 0.9) 100%
+  );
+  z-index: 2;
+}
+
+.movie-hero__content {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-8);
+  align-items: center;
+  padding: var(--space-16) 0;
+}
+
+/* ================================
+   POSTER SECTION
+   ================================ */
+
+.movie-hero__poster {
+  position: relative;
+}
+
+.movie-hero__poster-image {
+  width: 300px;
+  height: 450px;
+  object-fit: cover;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-2xl);
+  transition: transform var(--transition-normal);
+}
+
+.movie-hero__poster:hover .movie-hero__poster-image {
+  transform: scale(1.02);
+}
+
+/* ================================
+   MOVIE INFO SECTION
+   ================================ */
+
+.movie-hero__info {
+  max-width: 600px;
+}
+
+.movie-hero__title {
+  font-family: var(--font-primary);
+  font-size: var(--text-4xl);
+  font-weight: var(--font-black);
+  color: var(--text-primary);
+  margin-bottom: var(--space-4);
+  line-height: var(--leading-tight);
+}
+
+.movie-hero__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+  flex-wrap: wrap;
+}
+
+.movie-hero__rating {
+  font-family: var(--font-primary);
+  font-size: var(--text-lg);
+  font-weight: var(--font-bold);
+  color: var(--gold-primary);
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.movie-hero__year,
+.movie-hero__duration {
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  font-weight: var(--font-medium);
+  color: var(--text-secondary);
+  padding: var(--space-1) var(--space-3);
+  background: var(--bg-surface);
+  border-radius: var(--radius-md);
+}
+
+.movie-hero__genres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-8);
+}
+
+.movie-hero__genre {
+  font-family: var(--font-primary);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: var(--text-tertiary);
+  padding: var(--space-2) var(--space-4);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-full);
+  transition: all var(--transition-normal);
+}
+
+.movie-hero__genre:hover {
+  color: var(--gold-primary);
+  border-color: var(--gold-primary);
+}
+
+.movie-hero__actions {
+  display: flex;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.movie-hero__download-btn,
+.movie-hero__trailer-btn {
+  padding: var(--space-4) var(--space-6);
+  font-size: var(--text-base);
+  font-weight: var(--font-medium);
+}
+
+/* ================================
+   MOVIE DETAILS SECTION
+   ================================ */
+
+.movie-details {
+  background: var(--bg-secondary);
+  padding: var(--space-16) 0;
+}
+
+.movie-details__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-12);
+}
+
+.movie-details__section {
+  margin-bottom: var(--space-10);
+}
+
+.movie-details__section-title {
+  font-family: var(--font-primary);
+  font-size: var(--text-2xl);
+  font-weight: var(--font-bold);
+  color: var(--text-primary);
+  margin-bottom: var(--space-6);
+  padding-bottom: var(--space-3);
+  border-bottom: 2px solid var(--gold-primary);
+  display: inline-block;
+}
+
+/* ================================
+   MOVIE INFO GRID
+   ================================ */
+
+.movie-details__info-grid {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.movie-details__info-item {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-primary);
+  transition: all var(--transition-normal);
+}
+
+.movie-details__info-item:hover {
+  background: var(--bg-hover);
+  border-color: var(--border-secondary);
+}
+
+.movie-details__info-label {
+  font-family: var(--font-primary);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: var(--text-tertiary);
+}
+
+.movie-details__info-value {
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  font-weight: var(--font-normal);
+  color: var(--text-primary);
+}
+
+/* ================================
+   STORY SECTION
+   ================================ */
+
+.movie-details__story {
+  font-family: var(--font-primary);
+  font-size: var(--text-lg);
+  font-weight: var(--font-normal);
+  line-height: var(--leading-relaxed);
+  color: var(--text-secondary);
+  background: var(--bg-surface);
+  padding: var(--space-6);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-primary);
+  margin: 0;
+}
+
+/* ================================
+   GALLERY SECTION
+   ================================ */
+
+.movie-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+}
+
+.movie-gallery__item {
+  position: relative;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--bg-surface);
+}
+
+.movie-gallery__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-normal);
+}
+
+.movie-gallery__item:hover .movie-gallery__image {
+  transform: scale(1.05);
+}
+
+.movie-gallery__placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-surface);
+  color: var(--text-muted);
+  font-family: var(--font-primary);
+  font-size: var(--text-sm);
+  border: 1px dashed var(--border-primary);
+  border-radius: var(--radius-lg);
+}
+
+/* ================================
+   DOWNLOAD SECTION
+   ================================ */
+
+.movie-download {
+  background: var(--bg-main);
+  padding: var(--space-16) 0;
+}
+
+.movie-download__content {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.movie-download__title {
+  font-family: var(--font-primary);
+  font-size: var(--text-3xl);
+  font-weight: var(--font-bold);
+  color: var(--text-primary);
+  margin-bottom: var(--space-8);
+}
+
+.movie-download__options {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.download-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-6);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-normal);
+}
+
+.download-option:hover {
+  background: var(--bg-hover);
+  border-color: var(--gold-primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.download-option__info {
+  text-align: right;
+}
+
+.download-option__title {
+  font-family: var(--font-primary);
+  font-size: var(--text-xl);
+  font-weight: var(--font-bold);
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.download-option__details {
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  color: var(--text-tertiary);
+  margin: 0;
+}
+
+.download-option__btn {
+  padding: var(--space-3) var(--space-6);
+  font-size: var(--text-base);
+  font-weight: var(--font-medium);
+  min-width: 150px;
+}
+
+/* ================================
+   RESPONSIVE DESIGN
+   ================================ */
+
+@media (max-width: 1024px) {
+  .movie-hero__content {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: var(--space-6);
+  }
+  
+  .movie-hero__poster-image {
+    width: 250px;
+    height: 375px;
+  }
+  
+  .movie-details__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+}
+
+@media (max-width: 768px) {
+  .movie-hero {
+    min-height: 50vh;
+  }
+  
+  .movie-hero__content {
+    padding: var(--space-8) 0;
+  }
+  
+  .movie-hero__poster-image {
+    width: 200px;
+    height: 300px;
+  }
+  
+  .movie-hero__title {
+    font-size: var(--text-3xl);
+  }
+  
+  .movie-hero__meta {
+    justify-content: center;
+  }
+  
+  .movie-hero__actions {
+    justify-content: center;
+  }
+  
+  .movie-details__info-item {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .movie-gallery {
+    grid-template-columns: 1fr;
+  }
+  
+  .download-option {
+    flex-direction: column;
+    gap: var(--space-4);
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .movie-hero__poster-image {
+    width: 180px;
+    height: 270px;
+  }
+  
+  .movie-hero__title {
+    font-size: var(--text-2xl);
+  }
+  
+  .movie-hero__actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .movie-hero__download-btn,
+  .movie-hero__trailer-btn {
+    width: 100%;
+  }
+  
+  .movie-download__title {
+    font-size: var(--text-2xl);
+  }
+}

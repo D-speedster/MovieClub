@@ -1,0 +1,65 @@
+.ADD_MOVIE {}
+
+.Title_Admin {
+  padding: 15px;
+  width: max-content;
+}
+
+.Title_Admin span {
+  color: #FFF;
+  font-weight: 500;
+  font-size: 21px;
+  border-bottom: 3px solid #F44000;
+  padding-bottom: 12px
+}
+
+.Title_Admin svg {
+  color: #FFF;
+}
+
+.IMDB {}
+
+.IMDB_HEADER {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-top: 25px;
+  height: 65px;
+  width: 100%;
+  background-color: #feca43;
+  /* border-top-left-radius: 12px;
+  border-top-right-radius: 12px; */
+  border-radius: 12px;
+}
+
+.IMDB_HEADER_TEXT {
+  color: #161414;
+  font-weight: 700;
+  letter-spacing: 1.2;
+}
+
+.IMDB_ID {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+
+}
+
+.IMDB_ID button {
+
+  width: 20%;
+  border: 0;
+  outline: 0;
+
+
+}
+
+.IMDB_ID input {
+  width: 78%;
+  border: 0;
+  outline: 0;
+  color: green;
+
+}

@@ -1,0 +1,194 @@
+/* Mobile Navigation */
+.mobile-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-fixed);
+  background-color: var(--bg-secondary);
+  border-top: 1px solid var(--border-primary);
+  backdrop-filter: blur(10px);
+  display: none;
+}
+
+.mobile-nav__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: var(--space-2) var(--space-4);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.mobile-nav__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  padding: var(--space-2);
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  color: var(--text-tertiary);
+  transition: all var(--transition-normal);
+  position: relative;
+  min-width: 60px;
+  min-height: 60px;
+}
+
+.mobile-nav__item:hover,
+.mobile-nav__item--active {
+  color: var(--text-primary);
+  background-color: var(--bg-hover);
+  text-decoration: none;
+  transform: translateY(-2px);
+}
+
+.mobile-nav__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-normal);
+}
+
+.mobile-nav__item--active .mobile-nav__icon {
+  color: var(--accent-primary);
+  transform: scale(1.1);
+}
+
+.mobile-nav__label {
+  font-size: var(--text-xs);
+  font-weight: var(--font-medium);
+  text-align: center;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.mobile-nav__indicator {
+  position: absolute;
+  top: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 3px;
+  background-color: var(--accent-primary);
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+}
+
+/* Show on mobile devices */
+@media (max-width: 768px) {
+  .mobile-nav {
+    display: block;
+  }
+  
+  /* Add bottom padding to body to account for mobile nav */
+  body {
+    padding-bottom: 70px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mobile-nav__container {
+    padding: var(--space-1) var(--space-2);
+  }
+  
+  .mobile-nav__item {
+    min-width: 50px;
+    min-height: 50px;
+    padding: var(--space-1);
+  }
+  
+  .mobile-nav__icon svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .mobile-nav__label {
+    font-size: 10px;
+  }
+  
+  .mobile-nav__indicator {
+    width: 20px;
+    height: 2px;
+  }
+}
+
+/* Focus States */
+.mobile-nav__item:focus {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+
+.mobile-nav__item:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Active State Animation */
+.mobile-nav__item--active {
+  animation: bounce-in 0.3s ease-out;
+}
+
+@keyframes bounce-in {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-4px) scale(1.05);
+  }
+  100% {
+    transform: translateY(-2px) scale(1);
+  }
+}
+
+/* Haptic Feedback Simulation */
+.mobile-nav__item:active {
+  transform: translateY(0) scale(0.95);
+  transition: transform 0.1s ease;
+}
+
+/* Safe Area Support for devices with notches */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .mobile-nav {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* Dark Mode Enhancements */
+@media (prefers-color-scheme: dark) {
+  .mobile-nav {
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Reduce Motion */
+@media (prefers-reduced-motion: reduce) {
+  .mobile-nav__item {
+    transition: none;
+  }
+  
+  .mobile-nav__item--active {
+    animation: none;
+  }
+  
+  .mobile-nav__item:hover,
+  .mobile-nav__item--active {
+    transform: none;
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .mobile-nav {
+    border-top: 2px solid var(--text-primary);
+  }
+  
+  .mobile-nav__item--active {
+    background-color: var(--accent-primary);
+    color: var(--bg-primary);
+  }
+  
+  .mobile-nav__indicator {
+    background-color: var(--text-primary);
+    height: 4px;
+  }
+}

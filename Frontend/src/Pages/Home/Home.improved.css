@@ -1,0 +1,225 @@
+/* Improved Home Page Styles */
+
+.body {
+    background-color: var(--bg-main) !important;
+    min-height: 100vh;
+    color: var(--text-primary);
+}
+
+/* Hero Section Improvements */
+.hero-section {
+    position: relative;
+    margin-bottom: 40px;
+}
+
+/* Loading States */
+.loading-skeleton {
+    background: linear-gradient(90deg, var(--bg-surface) 25%, var(--bg-hover) 50%, var(--bg-surface) 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s ease-in-out infinite;
+    border-radius: 8px;
+}
+
+@keyframes loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* Section Spacing */
+.genre-section {
+    margin-bottom: 50px;
+    padding: 0 15px;
+}
+
+.genre-section:last-of-type {
+    margin-bottom: 80px; /* Space for mobile nav */
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-muted);
+}
+
+.empty-state svg {
+    font-size: 64px;
+    margin-bottom: 20px;
+    opacity: 0.5;
+    color: var(--text-secondary);
+}
+
+.empty-state h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: var(--text-secondary);
+}
+
+.empty-state p {
+    font-size: 16px;
+    color: var(--text-muted);
+}
+
+/* Error State */
+.error-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--cta-primary);
+}
+
+.error-state button {
+    margin-top: 20px;
+    padding: 10px 30px;
+    background-color: var(--cta-primary);
+    border: none;
+    border-radius: 5px;
+    color: var(--cta-text);
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.error-state button:hover {
+    background-color: var(--cta-hover);
+}
+
+/* Smooth Scroll */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Back to Top Button */
+.back-to-top {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: var(--cta-primary);
+    color: var(--cta-text);
+    border: none;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 99;
+    box-shadow: 0 4px 12px var(--shadow-medium);
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    background-color: var(--cta-hover);
+    transform: translateY(-5px);
+}
+
+/* Responsive Improvements */
+@media only screen and (max-width: 768px) {
+    .genre-section {
+        margin-bottom: 30px;
+        padding: 0 10px;
+    }
+
+    .back-to-top {
+        bottom: 70px;
+        right: 15px;
+        width: 45px;
+        height: 45px;
+        font-size: 20px;
+    }
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.6s ease-out;
+}
+
+/* Improved Focus States */
+.body *:focus-visible {
+    outline: 3px solid var(--border-focus);
+    outline-offset: 2px;
+}
+
+/* Better Spacing Between Sections */
+.content-wrapper {
+    padding-bottom: 80px; /* Space for mobile nav */
+}
+
+@media only screen and (min-width: 992px) {
+    .content-wrapper {
+        padding-bottom: 40px;
+    }
+}
+
+/* Skeleton Loader for Sliders */
+.slider-skeleton {
+    display: flex;
+    gap: 20px;
+    padding: 20px 0;
+    overflow: hidden;
+}
+
+.slider-skeleton-item {
+    min-width: 200px;
+    height: 300px;
+    background: linear-gradient(90deg, var(--bg-surface) 25%, var(--bg-hover) 50%, var(--bg-surface) 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s ease-in-out infinite;
+    border-radius: 8px;
+}
+
+/* Improved Section Headers */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 0 15px;
+}
+
+.section-header h5 {
+    color: var(--gold-primary);
+    font-size: 22px;
+    font-weight: var(--font-bold);
+    font-family: var(--font-primary);
+    margin: 0;
+}
+
+.section-header a {
+    color: var(--gold-soft);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+.section-header a:hover {
+    color: var(--gold-primary);
+}
+
+/* Performance: Reduce Motion */
+@media (prefers-reduced-motion: reduce) {
+    .fade-in,
+    .loading-skeleton,
+    .slider-skeleton-item {
+        animation: none;
+    }
+    
+    .back-to-top {
+        transition: none;
+    }
+}

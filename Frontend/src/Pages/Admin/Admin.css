@@ -1,0 +1,10 @@
+/* ADMIN PANEL - CLEAN RESET */
+.Admin-Panel {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Legacy styles - kept for compatibility but overridden by new dashboard */
+.sec1, .sec2 {
+    display: none;
+}
