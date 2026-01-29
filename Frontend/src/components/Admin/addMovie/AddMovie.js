@@ -9,7 +9,7 @@ import axios from 'axios';
 import ApiRequest from '../../../Services/Axios/config';
 import Title_Admin from '../TitleAdmin/TitleAdmin';
 import { Box_Info } from '../../../Contexs/Contex_BoxInfo';
-import {Profiler} from 'react'
+import { Profiler } from 'react'
 import LoadingSpinner from '../../../components/Loading/LoadingSpinner';
 import Logger from '../../../utils/logger';
 import { handleApiError, showErrorToUser } from '../../../utils/errorHandler';
@@ -64,7 +64,7 @@ export default function AddMovie() {
                 }
 
                 const response = await axios.get(`https://www.omdbapi.com/?i=${box}&plot=full&apikey=${OMDB_API_KEY}`);
-                
+
                 if (response.data.Error) {
                     throw new Error(response.data.Error);
                 }
@@ -72,18 +72,18 @@ export default function AddMovie() {
                 let Genre_Moviez = Convertor(response.data['Genre']);
 
                 let newMovie2 = InfoFunction(
-                    response.data['Title'], 
+                    response.data['Title'],
                     response.data['Year'],
-                    Genre_Moviez, 
-                    response.data['imdbRating'], 
+                    Genre_Moviez,
+                    response.data['imdbRating'],
                     response.data['Poster'],
-                    response.data['Runtime'], 
-                    response.data['Plot'], 
+                    response.data['Runtime'],
+                    response.data['Plot'],
                     response.data['Awards'],
-                    response.data['Director'], 
-                    response.data['Actors'], 
-                    response.data['Country'], 
-                    response.data['Writer'], 
+                    response.data['Director'],
+                    response.data['Actors'],
+                    response.data['Country'],
+                    response.data['Writer'],
                     response.data['similars']
                 );
 
@@ -145,9 +145,9 @@ export default function AddMovie() {
     })
     let ADD_Handler = async (event) => {
         event.preventDefault();
-        
+
         const sanitizedBox = sanitizeInput(box.trim());
-        
+
         if (!sanitizedBox) {
             setError("لطفا آیدی فیلم مورد نظر را وارد کنید");
             return;
@@ -162,12 +162,12 @@ export default function AddMovie() {
             setLoading(true);
             setError(null);
             Logger.log("Starting movie fetch process");
-            
+
             const response = await ApiRequest.get('/Moviez');
             let isAre = Object.entries(response.data).filter((i) => {
                 return i['1'].id === sanitizedBox;
             });
-            
+
             if (isAre.length === 0) {
                 SetIsMovie(true);
                 Setstatus(true);
@@ -207,42 +207,39 @@ export default function AddMovie() {
                             <h5 className='IMDB_HEADER_TEXT'>دریافت اطلاعات فیلم از سایت IMDB</h5>
                         </div>
                         <div className='IMDB_ID'>
-                            <input 
-                                className='form-control' 
-                                onChange={Change_Handler} 
+                            <input
+                                className='form-control'
+                                onChange={Change_Handler}
                                 type='text'
                                 value={box}
-                                placeholder='آِیدی IMDB فیلم مورد نظر را وارد کنید (مثال: tt1234567)' 
+                                placeholder='آِیدی IMDB فیلم مورد نظر را وارد کنید (مثال: tt1234567)'
                                 disabled={loading}
                             />
-                            <button 
-                                className='btn btn-primary' 
+                            <button
+                                className='btn btn-primary'
                                 onClick={ADD_Handler}
                                 disabled={loading || !box.trim()}
                             >
                                 {loading ? 'در حال پردازش...' : 'دریافت اطلاعات'}
                             </button>
                         </div>
-                        
+
                         {error && (
                             <div className="alert alert-danger mt-3" role="alert">
                                 {error}
                             </div>
                         )}
-                        
+
                         {loading && (
                             <div className="mt-3">
                                 <LoadingSpinner size="medium" message="در حال دریافت اطلاعات فیلم..." />
                             </div>
                         )}
-                        
+
                         <hr></hr>
+                        22
                         {
-                            status && !loading && !error ? (
-                                <BoxInfo {...Movie} />
-                            ) : (
-                                null
-                            )
+                            <BoxInfo/>
                         }
                     </div>
                 </Container>

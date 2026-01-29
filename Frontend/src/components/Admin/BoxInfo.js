@@ -9,7 +9,7 @@ import Logger from '../../utils/logger';
 const BoxInfo = memo(function BoxInfo(props) {
     const [Images_Movie, SetImages] = useState([]);
     let [Image_Moviez, SetImageMoviez] = useState([]);
-    let [TranslateText, SetTranslate] = useState('داستانی مشخص نشده است .')
+    // let [TranslateText, SetTranslate] = useState('داستانی مشخص نشده است .')
     let [BackgroundImage, SetBackground] = useState('لینک مورد نظر را وارد کنید');
     let [downloadLinks, setDownloadLinks] = useState({
         '1080p': { dubbed: '', subtitle: '', audio: '' },
@@ -17,7 +17,7 @@ const BoxInfo = memo(function BoxInfo(props) {
         '480p': { dubbed: '', subtitle: '', audio: '' }
     });
     let shows = useContext(Box_Info);
-    
+
     const BackSetter = (event) => {
         SetBackground(event.target.value)
     }
@@ -31,81 +31,49 @@ const BoxInfo = memo(function BoxInfo(props) {
             }
         }));
     }
-    const TranslatePlot = async (Plot) => {
-        const TRANSLATE_API_TOKEN = process.env.REACT_APP_TRANSLATE_API_TOKEN;
-        
-        if (!TRANSLATE_API_TOKEN) {
-            Logger.error('Translation API Token is not configured');
-            SetTranslate('خطا: توکن ترجمه تنظیم نشده است');
-            return;
-        }
+    // const TranslatePlot = async (Plot) => {
+    //     const TRANSLATE_API_TOKEN = process.env.REACT_APP_TRANSLATE_API_TOKEN;
 
-        if (!Plot || Plot.trim() === '') {
-            SetTranslate('متن برای ترجمه موجود نیست');
-            return;
-        }
+    //     if (!TRANSLATE_API_TOKEN) {
+    //         Logger.error('Translation API Token is not configured');
+    //         SetTranslate('خطا: توکن ترجمه تنظیم نشده است');
+    //         return;
+    //     }
 
-        try {
-            const response = await fetch(`https://one-api.ir/translate/?token=${TRANSLATE_API_TOKEN}&action=google&lang=fa&q=${encodeURIComponent(Plot)}`);
-            
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            
-            const data = await response.json();
-            
-            if (data.result) {
-                SetTranslate(data.result);
-            } else {
-                throw new Error('Translation result not found');
-            }
-        } catch (error) {
-            Logger.error('Translation error:', error);
-            SetTranslate('خطا در ترجمه. لطفاً دوباره تلاش کنید.');
-        }
-    }
+    //     if (!Plot || Plot.trim() === '') {
+    //         SetTranslate('متن برای ترجمه موجود نیست');
+    //         return;
+    //     }
+
+    //     try {
+    //         const response = await fetch(`https://one-api.ir/translate/?token=${TRANSLATE_API_TOKEN}&action=google&lang=fa&q=${encodeURIComponent(Plot)}`);
+
+    //         if (!response.ok) {
+    //             throw new Error(`HTTP error! status: ${response.status}`);
+    //         }
+
+    //         const data = await response.json();
+
+    //         if (data.result) {
+    //             SetTranslate(data.result);
+    //         } else {
+    //             throw new Error('Translation result not found');
+    //         }
+    //     } catch (error) {
+    //         Logger.error('Translation error:', error);
+    //         SetTranslate('خطا در ترجمه. لطفاً دوباره تلاش کنید.');
+    //     }
+    // }
     function SubmitHandler() {
-        let finArray = { ...props, Image_Moviez, TranslateText, BackgroundImage, downloadLinks }
-
-        if (props.Type === "series") {
-            ApiRequest.post('/Series', finArray).then(res => {
-                Logger.log('Series added successfully:', res);
-            }).catch(err => {
-                Logger.error('Error adding series:', err);
-            });
-        }
-        else {
-            ApiRequest.post('/Moviez', finArray).then(res => {
-                Logger.log('Movie added successfully:', res);
-            }).catch(err => {
-                Logger.error('Error adding movie:', err);
-            });
-        }
-
-        const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-        })
-
-        Toast.fire({
-            icon: 'success',
-            title: 'پست شما در دیتابیس ذخیره شد'
-        })
+        console.log('Ok i get first request')
     }
     function ImgHandlerClick(event) {
         event.target.classList.toggle("IsSelectImg");
         const imgSrc = event.target.src;
-        
+
         // Check if image is already selected
         const isSelected = Image_Moviez.includes(imgSrc);
-        
+
         if (isSelected) {
             // Remove from selection
             SetImageMoviez(prevState => prevState.filter(img => img !== imgSrc));
@@ -116,7 +84,7 @@ const BoxInfo = memo(function BoxInfo(props) {
     }
     function ImageGetter() {
         const TMDB_BEARER_TOKEN = process.env.REACT_APP_TMDB_BEARER_TOKEN;
-        
+
         if (!TMDB_BEARER_TOKEN) {
             Logger.error('TMDB Bearer Token is not configured');
             return;
@@ -129,7 +97,7 @@ const BoxInfo = memo(function BoxInfo(props) {
                 Authorization: `Bearer ${TMDB_BEARER_TOKEN}`
             }
         };
-        
+
         fetch(`https://api.themoviedb.org/3/movie/${props.id}/images`, options)
             .then(response => {
                 if (!response.ok) {
@@ -164,107 +132,118 @@ const BoxInfo = memo(function BoxInfo(props) {
             <div>
                 <Container>
                     <Row className='mt-2'>
-                        <h1>{shows}</h1>
+                        {/* <h1>{shows}</h1> */}
 
-                        <Col lg={9} className='justify-content-center'>
-                            <Row className='mb-3'>
-                                <Form.Group as={Col} lg={2} controlId='formName'>
-                                    <Form.Label>نام فیلم</Form.Label>
-                                </Form.Group>
-                                <Col lg={10}>
-                                    <Form.Control type='text' placeholder='نام فیلم' value={props.name} />
-                                </Col>
-                            </Row>
-                            <Row className='mb-3'>
-                                <Form.Group as={Col} lg={2} controlId='formYear'>
-                                    <Form.Label>سال انتشار</Form.Label>
-                                </Form.Group>
-                                <Col lg={10}>
-                                    <Form.Control type='text' placeholder='سال انتشار' value={props.year} />
-                                </Col>
-                            </Row>
-                            <Row className='mb-3'>
-                                <Form.Group as={Col} lg={2} controlId='formStars'>
-                                    <Form.Label>بازیگران</Form.Label>
-                                </Form.Group>
-                                <Col lg={10}>
-                                    <Form.Control type='text' placeholder='بازیگران' value={props.stars} />
-                                </Col>
-                            </Row>
-                            <Row className='mb-3'>
-                                <Form.Group as={Col} lg={2} controlId='formDirector'>
-                                    <Form.Label>کارگردان</Form.Label>
-                                </Form.Group>
-                                <Col lg={10}>
-                                    <Form.Control type='text' placeholder='کارگردان' value={props.director} />
-                                </Col>
-                            </Row>
-                            <Row className='mb-3'>
-                                <Form.Group as={Col} lg={2} controlId='formCountries'>
-                                    <Form.Label>کشور</Form.Label>
-                                </Form.Group>
-                                <Col lg={10}>
-                                    <Form.Control type='text' placeholder='کشور' value={props.countries} />
-                                </Col>
-                            </Row>
-                            <Row className='mb-3'>
-                                <Form.Group as={Col} lg={2} controlId='formWriters'>
-                                    <Form.Label>نویسنده</Form.Label>
-                                </Form.Group>
-                                <Col lg={10}>
-                                    <Form.Control type='text' placeholder='نویسنده' value={props.writers} />
-                                </Col>
-                            </Row>
-                            <Row className='mb-3'>
-                                <Form.Group as={Col} lg={2} controlId='formWriters'>
-                                    <Form.Label>ژانر</Form.Label>
-                                </Form.Group>
-                                <Col lg={10}>
-                                    <Form.Control type='text' placeholder='نویسنده' value={props.genre} />
-                                </Col>
-                            </Row>
-                            <Row className='mb-3'>
-                                <Form.Group as={Col} lg={2} controlId='formWriters'>
-                                    <Form.Label>امتیاز</Form.Label>
-                                </Form.Group>
-                                <Col lg={10}>
-                                    <Form.Control type='text' placeholder='نویسنده' value={props.rate} />
-                                </Col>
-                            </Row>
-                            <Row className='mb-3'>
-                                <Form.Group as={Col} lg={2} controlId='formWriters'>
-                                    <Form.Label>مدت زمان</Form.Label>
-                                </Form.Group>
-                                <Col lg={10}>
-                                    <Form.Control type='text' placeholder='مدت زمان' value={props.time} />
-                                </Col>
-                            </Row>
-                            <Row className='mb-3'>
-                                <Form.Group as={Col} lg={2} controlId='formWriters'>
-                                    <Form.Label>خلاصه داستان</Form.Label>
-                                </Form.Group>
+                        <form method='post' action='http://localhost:3001/content/new-content'>
+                            <Col lg={9} className='justify-content-center'>
+                                <Row className='mb-3'>
+                                    <Form.Group as={Col} lg={2} controlId='formName'>
+                                        <Form.Label>نام فیلم</Form.Label>
+                                    </Form.Group>
+                                    <Col lg={10}>
+                                        <Form.Control name='title' type='text' placeholder='نام فیلم' />
+                                    </Col>
+                                </Row>
+                                <Row className='mb-3 d-none'>
+                                    <Form.Group as={Col} lg={2} controlId='formName'>
+                                        <Form.Label>نام فیلم</Form.Label>
+                                    </Form.Group>
+                                    <Col lg={10}>
+                                        <Form.Control name='type' type='text' placeholder='نام فیلم' value='movie' />
+                                    </Col>
+                                </Row>
+                                <Row className='mb-3'>
+                                    <Form.Group as={Col} lg={2} controlId='formYear'>
+                                        <Form.Label>سال انتشار</Form.Label>
+                                    </Form.Group>
+                                    <Col lg={10}>
+                                        <Form.Control name='year' type='text' placeholder='سال انتشار' />
+                                    </Col>
+                                </Row>
+                                <Row className='mb-3'>
+                                    <Form.Group as={Col} lg={2} controlId='formStars'>
+                                        <Form.Label>بازیگران</Form.Label>
+                                    </Form.Group>
+                                    <Col lg={10}>
+                                        <Form.Control name='actors' type='text' placeholder='بازیگران' />
+                                    </Col>
+                                </Row>
+                                <Row className='mb-3'>
+                                    <Form.Group as={Col} lg={2} controlId='formDirector'>
+                                        <Form.Label>کارگردان</Form.Label>
+                                    </Form.Group>
+                                    <Col lg={10}>
+                                        <Form.Control name='director' type='text' placeholder='کارگردان' />
+                                    </Col>
+                                </Row>
+                                <Row className='mb-3'>
+                                    <Form.Group as={Col} lg={2} controlId='formCountries'>
+                                        <Form.Label>کشور</Form.Label>
+                                    </Form.Group>
+                                    <Col lg={10}>
+                                        <Form.Control name='countries' type='text' placeholder='کشور' />
+                                    </Col>
+                                </Row>
+                                <Row className='mb-3'>
+                                    <Form.Group as={Col} lg={2} controlId='formWriters'>
+                                        <Form.Label>نویسنده</Form.Label>
+                                    </Form.Group>
+                                    <Col lg={10}>
+                                        <Form.Control name='writer' type='text' placeholder='نویسنده' />
+                                    </Col>
+                                </Row>
+                                <Row className='mb-3'>
+                                    <Form.Group as={Col} lg={2} controlId='formWriters'>
+                                        <Form.Label>ژانر</Form.Label>
+                                    </Form.Group>
+                                    <Col lg={10}>
+                                        <Form.Control name='genres' type='text' placeholder='نویسنده' />
+                                    </Col>
+                                </Row>
+                                <Row className='mb-3'>
+                                    <Form.Group as={Col} lg={2} controlId='formWriters'>
+                                        <Form.Label>امتیاز</Form.Label>
+                                    </Form.Group>
+                                    <Col lg={10}>
+                                        <Form.Control name='rate' type='text' placeholder='نویسنده' />
+                                    </Col>
+                                </Row>
+                                <Row className='mb-3'>
+                                    <Form.Group as={Col} lg={2} controlId='formWriters'>
+                                        <Form.Label>مدت زمان</Form.Label>
+                                    </Form.Group>
+                                    <Col lg={10}>
+                                        <Form.Control name='duration' type='text' placeholder='مدت زمان' value={props.time} />
+                                    </Col>
+                                </Row>
+                                <Row className='mb-3'>
+                                    <Form.Group as={Col} lg={2} controlId='formWriters'>
+                                        <Form.Label>خلاصه داستان</Form.Label>
+                                    </Form.Group>
 
-                                <Col lg={7}>
-                                    <textarea value={TranslateText} style={{ resize: 'none' }} className='form-control mt-3' ></textarea>
-                                </Col>
-                                <Col lg={3}>
-                                    <button onClick={() => TranslatePlot(props.story)} className='btn btn-info mt-4 '>دریافت خلاصه داستان</button>
+                                    <Col lg={7}>
+                                        <textarea name='description' style={{ resize: 'none' }} className='form-control mt-3' ></textarea>
+                                    </Col>
+                                    <Col lg={3}>
+                                        {/* <button onClick={() => TranslatePlot(props.story)} className='btn btn-info mt-4 '>دریافت خلاصه داستان</button> */}
 
-                                </Col>
-                            </Row>
-                            <Row className='mb-3'>
-                                <Form.Group as={Col} lg={2} controlId='formWriters'>
-                                    <Form.Label>بک گراند</Form.Label>
-                                </Form.Group>
-                                <Col lg={10}>
-                                    <Form.Control onChange={BackSetter} type='text' placeholder='مدت زمان' value={BackgroundImage} />
-                                </Col>
-                            </Row>
-                            <Row className='mb-3 Bx_Dl mx-0'>
-                                <Col lg={2}>
-                                    <h5>لیست دانلود </h5>
-                                </Col>
-                                <Col lg={10} className='list_Box'>
+                                    </Col>
+                                </Row>
+                                <Row className='mb-3'>
+                                    <Form.Group as={Col} lg={2} controlId='formWriters'>
+                                        <Form.Label>بک گراند</Form.Label>
+                                    </Form.Group>
+                                    <Col lg={10}>
+                                        <Form.Control onChange={BackSetter} type='text' placeholder='مدت زمان' />
+                                    </Col>
+                                </Row>
+
+                                <Row className='mb-3 Bx_Dl mx-0'>
+                                    <Col lg={2}>
+                                        <input type='file' name='poster' />
+
+                                    </Col>
+                                    {/* <Col lg={10} className='list_Box'>
                                     <Table striped>
                                         <thead>
                                             <tr>
@@ -367,51 +346,34 @@ const BoxInfo = memo(function BoxInfo(props) {
                                             </tr>
                                         </tbody>
                                     </Table>
-                                </Col>
+                                </Col> */}
 
-                            </Row>
-                            <Row className='mb-3'>
-                                <Form.Group as={Col} lg={2} controlId='formWriters'>
-                                    <Form.Label></Form.Label>
-                                </Form.Group>
-                                <Col lg={10}>
+                                </Row>
+                                <Row className='mb-3'>
+                                    <Form.Group as={Col} lg={2} controlId='formWriters'>
+                                        <Form.Label></Form.Label>
+                                    </Form.Group>
+                                    {/* <Col lg={10}>
                                     <button onClick={ImageGetter} type="button" className="col-12 mt-3 btn-danger btn btn-primary">دریافت عکس </button>
-                                </Col>
-                            </Row>
-                        </Col>
+                                </Col> */}
+                                </Row>
+                            </Col>
+                            <button type='submit' onClick={SubmitHandler} className='btn btn-success mt-3 '>ذخیره و انتشار</button>
+                        </form>
 
-                        <Col lg={3} className='mt-1'>
+                        {/* <Col lg={3} className='mt-1'>
                             <img 
                                 alt={`پوستر فیلم ${props.name || 'نامشخص'}`} 
                                 style={{ borderRadius: '15px', height: '420px' }} 
                                 src={props.poster} 
                                 className='img-fluid' 
                             />
-                        </Col>
+                        </Col> */}
 
 
                     </Row>
-                    <Row className='mt-3' >
-                        {!Images_Movie ? null : (Images_Movie.map((img, index) => 
-                            <img 
-                                key={index}
-                                onClick={ImgHandlerClick} 
-                                className='img-fluid col-lg-3 mt-3' 
-                                src={"https://image.tmdb.org/t/p/w500/" + img['file_path']} 
-                                alt={`تصویر ${index + 1} از فیلم ${props.name || 'نامشخص'}`}
-                                data-sd={index}
-                                style={{ cursor: 'pointer' }}
-                                role="button"
-                                tabIndex={0}
-                                onKeyDown={(e) => {
-                                    if (e.key === 'Enter' || e.key === ' ') {
-                                        ImgHandlerClick(e);
-                                    }
-                                }}
-                            />
-                        ))}
-                    </Row>
-                    <button onClick={SubmitHandler} className='btn btn-success mt-3 '>ذخیره و انتشار</button>
+
+
 
                 </Container>
 
