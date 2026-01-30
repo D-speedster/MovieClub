@@ -134,7 +134,11 @@ const BoxInfo = memo(function BoxInfo(props) {
                     <Row className='mt-2'>
                         {/* <h1>{shows}</h1> */}
 
-                        <form method='post' action='http://localhost:3001/content/new-content'>
+                        <form
+                            method='post'
+                            action='http://localhost:3001/content/new-content'
+                            enctype="multipart/form-data"
+                        >
                             <Col lg={9} className='justify-content-center'>
                                 <Row className='mb-3'>
                                     <Form.Group as={Col} lg={2} controlId='formName'>

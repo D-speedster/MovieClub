@@ -1258,7 +1258,7 @@
   resolved "https://registry.npmmirror.com/@emotion/memoize/-/memoize-0.9.0.tgz"
   integrity sha512-30FAj7/EoJ5mwVPOWhAyCX+FPfMDrVecJAM+Iw9NRoSl4BBAQeqj4cApHHUXOVvIPgLVDsCFoz/hGD+5QQD1GQ==
 
-"@emotion/react@^11.0.0-rc.0", "@emotion/react@^11.11.4", "@emotion/react@^11.4.1", "@emotion/react@^11.5.0":
+"@emotion/react@^11.0.0-rc.0", "@emotion/react@^11.14.0", "@emotion/react@^11.4.1", "@emotion/react@^11.5.0":
   version "11.14.0"
   resolved "https://registry.npmmirror.com/@emotion/react/-/react-11.14.0.tgz"
   integrity sha512-O000MLDBDdk/EohJPFUqvnp4qnHeYkVP5B0xEG0D/L7cOKP9kefu2DXn8dj74cQfsEzUqh+sr1RzFqiL1o+PpA==
@@ -1288,7 +1288,7 @@
   resolved "https://registry.npmmirror.com/@emotion/sheet/-/sheet-1.4.0.tgz"
   integrity sha512-fTBW9/8r2w3dXWYM4HCB1Rdp8NLibOw2+XELH5m5+AkWiL/KqYX6dc0kKYlaYyKjrQ6ds33MCdMPEwgs2z1rqg==
 
-"@emotion/styled@^11.11.5", "@emotion/styled@^11.3.0":
+"@emotion/styled@^11.14.1", "@emotion/styled@^11.3.0":
   version "11.14.1"
   resolved "https://registry.npmmirror.com/@emotion/styled/-/styled-11.14.1.tgz"
   integrity sha512-qEEJt42DuToa3gurlH4Qqc1kVpNq8wO8cJtDzU46TjlzWjDlsVyevtYCRijVq3SrHsROS+gVQ8Fnea108GnKzw==
@@ -1367,21 +1367,21 @@
   resolved "https://registry.npmmirror.com/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-6.7.2.tgz"
   integrity sha512-Zs+YeHUC5fkt7Mg1l6XTniei3k4bwG/yo3iFUtZWd/pMx9g3fdvkSK9E0FOC+++phXOka78uJcYb8JaFkW52Xg==
 
-"@fortawesome/fontawesome-svg-core@^6.5.2", "@fortawesome/fontawesome-svg-core@~1 || ~6 || ~7":
+"@fortawesome/fontawesome-svg-core@^6.7.2", "@fortawesome/fontawesome-svg-core@~1 || ~6 || ~7":
   version "6.7.2"
   resolved "https://registry.npmmirror.com/@fortawesome/fontawesome-svg-core/-/fontawesome-svg-core-6.7.2.tgz"
   integrity sha512-yxtOBWDrdi5DD5o1pmVdq3WMCvnobT0LU6R8RyyVXPvFRd2o79/0NCuQoCjNTeZz9EzA9xS3JxNWfv54RIHFEA==
   dependencies:
     "@fortawesome/fontawesome-common-types" "6.7.2"
 
-"@fortawesome/free-solid-svg-icons@^6.5.2":
+"@fortawesome/free-solid-svg-icons@^6.7.2":
   version "6.7.2"
   resolved "https://registry.npmmirror.com/@fortawesome/free-solid-svg-icons/-/free-solid-svg-icons-6.7.2.tgz"
   integrity sha512-GsBrnOzU8uj0LECDfD5zomZJIjrPhIlWU82AHwa2s40FKH+kcxQaBvBo3Z4TxyZHIyX8XTDxsyA33/Vx9eFuQA==
   dependencies:
     "@fortawesome/fontawesome-common-types" "6.7.2"
 
-"@fortawesome/react-fontawesome@^0.2.0":
+"@fortawesome/react-fontawesome@^0.2.5":
   version "0.2.5"
   resolved "https://registry.npmmirror.com/@fortawesome/react-fontawesome/-/react-fontawesome-0.2.5.tgz"
   integrity sha512-55xAmidU/xWPVUK2IlG0c4LK+7pk75Qnwh7PcmjxlUTUibbI0+txjAB2ucF3TQZOXHOcjBcpoF8R75b59OxNmg==
@@ -1735,14 +1735,14 @@
   resolved "https://registry.npmmirror.com/@mui/core-downloads-tracker/-/core-downloads-tracker-5.18.0.tgz"
   integrity sha512-jbhwoQ1AY200PSSOrNXmrFCaSDSJWP7qk6urkTmIirvRXDROkqe+QwcLlUiw/PrREwsIF/vm3/dAXvjlMHF0RA==
 
-"@mui/icons-material@^5.15.20":
+"@mui/icons-material@^5.18.0":
   version "5.18.0"
   resolved "https://registry.npmmirror.com/@mui/icons-material/-/icons-material-5.18.0.tgz"
   integrity sha512-1s0vEZj5XFXDMmz3Arl/R7IncFqJ+WQ95LDp1roHWGDE2oCO3IS4/hmiOv1/8SD9r6B7tv9GLiqVZYHo+6PkTg==
   dependencies:
     "@babel/runtime" "^7.23.9"
 
-"@mui/material@^5.0.0", "@mui/material@^5.15.20", "@mui/material@^5.4.1":
+"@mui/material@^5.0.0", "@mui/material@^5.18.0", "@mui/material@^5.4.1":
   version "5.18.0"
   resolved "https://registry.npmmirror.com/@mui/material/-/material-5.18.0.tgz"
   integrity sha512-bbH/HaJZpFtXGvWg3TsBWG4eyt3gah3E7nCNU8GLyRjVoWcA91Vm/T+sjHfUcwgJSw9iLtucfHBoq+qW/T30aA==
@@ -3211,7 +3211,7 @@ axe-core@^4.10.0:
   resolved "https://registry.npmmirror.com/axe-core/-/axe-core-4.11.1.tgz"
   integrity sha512-BASOg+YwO2C+346x3LZOeoovTIoTrRqEsqMa6fmfAV0P+U9mFr9NsyOEpiYvFjbc64NMrSswhV50WdXzdb/Z5A==
 
-axios@^1.7.2:
+axios@^1.13.2:
   version "1.13.2"
   resolved "https://registry.npmmirror.com/axios/-/axios-1.13.2.tgz"
   integrity sha512-VPk9ebNqPcy5lRGuSlKx752IlDatOjT9paPlm8A7yOuW2Fbvp4X3JznJtT4f0GzGLLiWE9W8onz51SqLYwzGaA==
@@ -3448,7 +3448,7 @@ boolbase@^1.0.0, boolbase@~1.0.0:
   resolved "https://registry.npmmirror.com/boolbase/-/boolbase-1.0.0.tgz"
   integrity sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==
 
-bootstrap@^5.3.3:
+bootstrap@^5.3.8:
   version "5.3.8"
   resolved "https://registry.npmmirror.com/bootstrap/-/bootstrap-5.3.8.tgz"
   integrity sha512-HP1SZDqaLDPwsNiqRqi5NcP0SSXciX2s9E+RyqJIIqGo+vJeN5AJVM98CXmW/Wux0nQ5L7jeWUdplCEf0Ee+tg==
@@ -3643,7 +3643,7 @@ char-regex@^2.0.0:
   resolved "https://registry.npmmirror.com/char-regex/-/char-regex-2.0.2.tgz"
   integrity sha512-cbGOjAptfM2LVmWhwRFHEKTPkLwNddVmuqYZQt895yXwAsWsXObCG+YN4DGQ/JBtT4GP1a1lPPdio2z413LmTg==
 
-chart.js@^4.1.1, chart.js@^4.4.3:
+chart.js@^4.1.1, chart.js@^4.5.1:
   version "4.5.1"
   resolved "https://registry.npmmirror.com/chart.js/-/chart.js-4.5.1.tgz"
   integrity sha512-GIjfiT9dbmHRiYi6Nl2yFCq7kkwdkp1W/lp2J99rX0yo9tgJGn3lKQATztIjb5tVtevcBtIdICNWqlq5+E8/Pw==
@@ -5651,7 +5651,7 @@ get-symbol-description@^1.1.0:
     es-errors "^1.3.0"
     get-intrinsic "^1.2.6"
 
-gh-pages@^6.1.1:
+gh-pages@^6.3.0:
   version "6.3.0"
   resolved "https://registry.npmmirror.com/gh-pages/-/gh-pages-6.3.0.tgz"
   integrity sha512-Ot5lU6jK0Eb+sszG8pciXdjMXdBJ5wODvgjR+imihTqsUWF2K6dJ9HST55lgqcs8wWcw6o6wAsUzfcYRhJPXbA==
@@ -8697,7 +8697,7 @@ react-app-polyfill@^3.0.0:
     regenerator-runtime "^0.13.9"
     whatwg-fetch "^3.6.2"
 
-react-bootstrap@^2.10.4:
+react-bootstrap@^2.10.10:
   version "2.10.10"
   resolved "https://registry.npmmirror.com/react-bootstrap/-/react-bootstrap-2.10.10.tgz"
   integrity sha512-gMckKUqn8aK/vCnfwoBpBVFUGT9SVQxwsYrp9yDHt0arXMamxALerliKBxr1TPbntirK/HGrUAHYbAeQTa9GHQ==
@@ -8716,7 +8716,7 @@ react-bootstrap@^2.10.4:
     uncontrollable "^7.2.1"
     warning "^4.0.3"
 
-react-chartjs-2@^5.2.0:
+react-chartjs-2@^5.3.1:
   version "5.3.1"
   resolved "https://registry.npmmirror.com/react-chartjs-2/-/react-chartjs-2-5.3.1.tgz"
   integrity sha512-h5IPXKg9EXpjoBzUfyWJvllMjG2mQ4EiuHQFhms/AjUm0XSZHhyRy2xVmLXHKrtcdrPO4mnGqRtYoD0vp95A0A==
@@ -8764,7 +8764,7 @@ react-error-overlay@^6.0.11:
   resolved "https://registry.npmmirror.com/react-error-overlay/-/react-error-overlay-6.1.0.tgz"
   integrity sha512-SN/U6Ytxf1QGkw/9ve5Y+NxBbZM6Ht95tuXNMKs8EJyFa/Vy/+Co3stop3KBHARfn/giv+Lj1uUnTfOJ3moFEQ==
 
-react-icons@^5.2.1:
+react-icons@^5.5.0:
   version "5.5.0"
   resolved "https://registry.npmmirror.com/react-icons/-/react-icons-5.5.0.tgz"
   integrity sha512-MEFcXdkP3dLo8uumGI5xN3lDFNsRtrjbOEKDLD7yv76v4wpnEq2Lt2qeHaQOr34I/wPN3s3+N08WkQ+CW37Xiw==
@@ -8828,7 +8828,7 @@ react-refresh@^0.11.0, "react-refresh@>=0.10.0 <1.0.0":
   resolved "https://registry.npmmirror.com/react-refresh/-/react-refresh-0.11.0.tgz"
   integrity sha512-F27qZr8uUqwhWZboondsPx8tnC3Ct3SxZA3V5WyEvujRyyNv0VYPhoBg1gZ8/MV5tubQp76Trw8lTv9hzRBa+A==
 
-react-router-dom@^6.24.0:
+react-router-dom@^6.30.3:
   version "6.30.3"
   resolved "https://registry.npmmirror.com/react-router-dom/-/react-router-dom-6.30.3.tgz"
   integrity sha512-pxPcv1AczD4vso7G4Z3TKcvlxK7g7TNt3/FNGMhfqyntocvYKj+GCatfigGDjbLozC4baguJ0ReCigoDJXb0ag==
@@ -8967,7 +8967,7 @@ recharts-scale@^0.4.4:
   dependencies:
     decimal.js-light "^2.4.1"
 
-recharts@^2.12.7:
+recharts@^2.15.4:
   version "2.15.4"
   resolved "https://registry.npmmirror.com/recharts/-/recharts-2.15.4.tgz"
   integrity sha512-UT/q6fwS3c1dHbXv2uFgYJ9BMFHu3fwnd7AYZaEQhXuYQ4hgsxLvsUXzGdKeZrW5xopzDCvuA2N41WJ88I7zIw==
@@ -9977,7 +9977,7 @@ svgo@^2.7.0:
     picocolors "^1.0.0"
     stable "^0.1.8"
 
-sweetalert2@^11.12.0:
+sweetalert2@^11.26.17:
   version "11.26.17"
   resolved "https://registry.npmmirror.com/sweetalert2/-/sweetalert2-11.26.17.tgz"
   integrity sha512-kkaySn1IRfwNlf9AkZVqDmBINDWw9NRR6Ij0O5dBRBOD1+mbtZJWxxR9/pA90nce9E5tIIkJ7SWij4rMWXtA1g==
@@ -10627,7 +10627,7 @@ webpack-sources@^3.3.3:
   resolved "https://registry.npmmirror.com/webpack-sources/-/webpack-sources-3.3.3.tgz"
   integrity sha512-yd1RBzSGanHkitROoPFd6qsrxt+oFhg/129YzheDGqeustzX0vTZJZsSsQjVQC4yzBQ56K55XU8gaNCtIzOnTg==
 
-"webpack@^4.0.0 || ^5.0.0", "webpack@^4.37.0 || ^5.0.0", "webpack@^4.4.0 || ^5.9.0", "webpack@^4.44.2 || ^5.47.0", webpack@^5.0.0, webpack@^5.1.0, webpack@^5.20.0, webpack@^5.64.4, webpack@^5.92.1, "webpack@>= 4", webpack@>=2, "webpack@>=4.43.0 <6.0.0":
+"webpack@^4.0.0 || ^5.0.0", "webpack@^4.37.0 || ^5.0.0", "webpack@^4.4.0 || ^5.9.0", "webpack@^4.44.2 || ^5.47.0", webpack@^5.0.0, webpack@^5.1.0, webpack@^5.104.1, webpack@^5.20.0, webpack@^5.64.4, "webpack@>= 4", webpack@>=2, "webpack@>=4.43.0 <6.0.0":
   version "5.104.1"
   resolved "https://registry.npmmirror.com/webpack/-/webpack-5.104.1.tgz"
   integrity sha512-Qphch25abbMNtekmEGJmeRUhLDbe+QfiWTiqpKYkpCOWY64v9eyl+KRRLmqOFA2AvKPpc9DC6+u2n76tQLBoaA==
