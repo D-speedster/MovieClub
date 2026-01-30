@@ -1,0 +1,24 @@
+[33m9babed1[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m update
+ .gitignore                               |   22 [32m+[m
+ Backend/Server.js                        |    4 [32m+[m[31m-[m
+ Backend/controller/content.js            |    1 [32m+[m
+ Backend/package-lock.json                | 6099 [32m+++++++++++++++++++++++++++[m[31m---[m
+ Backend/package.json                     |    3 [32m+[m[31m-[m
+ Backend/uploads/1769759282765-input.jpg  |  Bin [31m0[m -> [32m1896773[m bytes
+ Backend/uploads/1769759919807-input.jpg  |  Bin [31m0[m -> [32m1896773[m bytes
+ Frontend/package-lock.json               |   36 [32m+[m[31m-[m
+ Frontend/src/components/Admin/BoxInfo.js |    6 [32m+[m[31m-[m
+ Frontend/yarn.lock                       |   36 [32m+[m[31m-[m
+ 10 files changed, 5688 insertions(+), 519 deletions(-)
+[33m795736e[m update node background
+ Backend/.env                                       |   2 [32m+[m[31m-[m
+ Backend/Server.js                                  |  21 [32m+[m[31m-[m
+ Backend/controller/Auth.js                         |  12 [32m+[m
+ Backend/controller/content.js                      |   9 [32m+[m
+ Backend/models/content.js                          |  61 [32m++++[m
+ Backend/router/Auth.js                             |   8 [32m+[m
+ Backend/router/Content.js                          |   5 [32m+[m
+ Backend/utils/db.js                                |  17 [32m+[m
+ Frontend/src/components/Admin/BoxInfo.js           | 368 [32m+++++++++[m[31m------------[m
+ Frontend/src/components/Admin/addMovie/AddMovie.js |  55 [32m++[m[31m-[m
+ 10 files changed, 323 insertions(+), 235 deletions(-)
