@@ -30,7 +30,7 @@ export default function Series() {
       try {
         setLoading(true);
         setError(null);
-        const response = await ApiRequest.get('/Series');
+        const response = await ApiRequest.get('/content/seriesList');
         const seriesData = Array.isArray(response.data) 
           ? response.data 
           : Object.values(response.data);

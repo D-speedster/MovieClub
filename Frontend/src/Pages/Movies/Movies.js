@@ -30,7 +30,8 @@ export default function Movies() {
       try {
         setLoading(true);
         setError(null);
-        const response = await ApiRequest.get('/Moviez');
+        const response = await ApiRequest.get('/content/movieList');
+        
         const moviesData = Array.isArray(response.data) 
           ? response.data 
           : Object.values(response.data);
@@ -124,7 +125,7 @@ export default function Movies() {
   // Get unique genres from movies
   const getUniqueGenres = () => {
     const genres = allMovies
-      .flatMap(movie => movie.genre || [])
+      .flatMap(movie => movie.genres || movie.genre || [])
       .filter(genre => genre);
     return [...new Set(genres)];
   };
@@ -262,14 +263,14 @@ export default function Movies() {
           <div className="movies-grid">
             {currentMovies.map((movie, index) => (
               <MovieCard
-                key={movie.id || index}
-                id={movie.id}
+                key={movie._id || movie.id || index}
+                id={movie._id || movie.id}
                 poster={movie.poster}
-                name={movie.name}
+                name={movie.title || movie.name}
                 year={movie.year}
                 rate={movie.rate}
-                genre={movie.genre}
-                description={movie.TranslateText}
+                genre={movie.genres || movie.genre}
+                description={movie.description || movie.TranslateText}
               />
             ))}
           </div>

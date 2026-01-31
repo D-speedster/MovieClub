@@ -41,7 +41,7 @@ export default function Collection() {
 
     function SearchCollection(event) {
         let resultS = document.querySelector('.MovieInputSearch').value
-        ApiRequest.get('/Moviez').then(data => {
+        ApiRequest.get('/content/movieList').then(data => {
             let findMovie = Object.entries(data.data).filter(ios => {
                 return ios['1'].id === resultS
             })

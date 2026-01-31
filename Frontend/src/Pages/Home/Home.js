@@ -29,7 +29,7 @@ export default function Home() {
     const fetchBoxOffice = async () => {
       try {
         setBoxOfficeLoading(true);
-        const response = await ApiRequest.get('/BoxOffice');
+        const response = await ApiRequest.get('/content/boxoffice');
         SetBoxOffice(response.data['0']);
         Logger.log('BoxOffice data loaded successfully');
       } catch (err) {
@@ -50,7 +50,7 @@ export default function Home() {
       try {
         setLoading(true);
         setError(null);
-        const response = await ApiRequest.get('/Moviez');
+        const response = await ApiRequest.get('/content/movieList');
         const MovieZa = response.data;
         SetMoviez(MovieZa.reverse());
         Logger.log('Movies data loaded successfully:', MovieZa.length, 'movies');

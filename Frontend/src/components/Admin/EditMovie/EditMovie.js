@@ -10,19 +10,19 @@ export default function EditMovie() {
     const { userId } = useParams();
     let [MovieEditInput, SetEditMovie] = useState();
     const EditerHandler = (event) => {
-        // ApiRequest.get('/Moviez').then(data => {
+        // ApiRequest.get('/content/movieList').then(data => {
         //     let MovieGetter = Object.values(data.data).filter(movie => {
         //         return movie.id == MovieEditInput.id
         //     })
         //     console.log(MovieGetter ['0'])
         // })
-        ApiRequest.put(`/Moviez/${MovieEditInput.id}`, MovieEditInput).then(data => {
+        ApiRequest.put(`/content/movieList/${MovieEditInput.id}`, MovieEditInput).then(data => {
             Logger.log(data)
         })
 
     }
     useEffect(() => {
-        ApiRequest.get('/Moviez').then(data => {
+        ApiRequest.get('/content/movieList').then(data => {
             let movieEdit = Object.entries(data.data).find((movie) => {
                 return movie['1'].id === userId
             })

@@ -21,7 +21,7 @@ const MoviePage = () => {
   const fetchMovieData = async () => {
     try {
       setLoading(true);
-      const response = await ApiRequest.get('/Moviez');
+      const response = await ApiRequest.get('/content/movieList');
       const movies = Object.entries(response).map(entry => entry[1]);
       const movie = movies[0]?.find(movie => movie.id === userId);
       

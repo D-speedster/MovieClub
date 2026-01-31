@@ -25,7 +25,7 @@ export default function Movie_Series() {
     }
 
     useEffect(() => {
-        ApiRequest.get('/Series').then(data => SetResult(data['data']))
+        ApiRequest.get('/content/seriesList').then(data => SetResult(data['data']))
 
     }, [SeriesToRemove]);
 
@@ -36,7 +36,7 @@ export default function Movie_Series() {
     }
     useEffect(() => {
         if (TextSearch.length >= 3) {
-            ApiRequest.get('/Series').then(data => {
+            ApiRequest.get('/content/seriesList').then(data => {
                 let result = Object.entries(data['data']).filter(res => {
                     return res[1].name.toLowerCase().includes(TextSearch.toLowerCase());
                 });
@@ -45,7 +45,7 @@ export default function Movie_Series() {
             })
         
         } else {
-            ApiRequest.get('/Series').then(data=>SetResult(data['data']))
+            ApiRequest.get('/content/seriesList').then(data=>SetResult(data['data']))
                 
         }
     }, [TextSearch]);

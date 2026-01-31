@@ -19,7 +19,7 @@ export default function Movie_mange() {
 
     const Remover = () => {
         setShow(false);
-        ApiRequest.delete(`/Moviez/${movieToRemove}`).then(data => setMovieToRemove(''))
+        ApiRequest.delete(`/content/movieList/${movieToRemove}`).then(data => setMovieToRemove(''))
     }
     const DeleteMovie = (id) => {
         setShow(true)
@@ -31,7 +31,7 @@ export default function Movie_mange() {
     }
 
     useEffect(() => {
-        ApiRequest.get('/Moviez').then(data => {
+        ApiRequest.get('/content/movieList').then(data => {
             SetResult(data.data);
         })
 
@@ -45,7 +45,7 @@ export default function Movie_mange() {
     }
     useEffect(() => {
         if (TextSearch.length >= 3) {
-            ApiRequest.get('/Moviez').then(data => {
+            ApiRequest.get('/content/movieList').then(data => {
                 let result = Object.entries(data['data']).filter(res => {
                     return res[1].name.toLowerCase().includes(TextSearch.toLowerCase());
                 });
@@ -54,7 +54,7 @@ export default function Movie_mange() {
             })
 
         } else {
-            ApiRequest.get('/Moviez').then(data => {
+            ApiRequest.get('/content/movieList').then(data => {
                 SetResult(data.data);
             })
 

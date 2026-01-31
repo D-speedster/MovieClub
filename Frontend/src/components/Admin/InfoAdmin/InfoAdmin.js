@@ -26,8 +26,8 @@ export default function InfoAdmin() {
         const fetchAllData = async () => {
             try {
                 const [movies, series, users, comments, collections] = await Promise.all([
-                    ApiRequest.get('./Moviez'),
-                    ApiRequest.get('./Series'),
+                    ApiRequest.get('/content/movieList'),
+                    ApiRequest.get('/content/seriesList'),
                     ApiRequest.get('./Users'),
                     ApiRequest.get('./Comments'),
                     ApiRequest.get('./Collections')

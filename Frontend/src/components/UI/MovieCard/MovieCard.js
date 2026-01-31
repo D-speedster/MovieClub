@@ -15,6 +15,13 @@ const MovieCard = ({
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
 
+  // Helper function to get full poster URL
+  const getPosterUrl = (posterPath) => {
+    if (!posterPath) return '';
+    if (posterPath.startsWith('http')) return posterPath;
+    return `http://localhost:3001/uploads/${posterPath}`;
+  };
+
   const handleImageLoad = () => {
     setImageLoaded(true);
   };
@@ -50,7 +57,7 @@ const MovieCard = ({
             </div>
           ) : (
             <img
-              src={poster}
+              src={getPosterUrl(poster)}
               alt={name}
               className={`netflix-movie-card__poster ${imageLoaded ? 'loaded' : ''}`}
               onLoad={handleImageLoad}

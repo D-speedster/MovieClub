@@ -29,7 +29,7 @@ export function Download(props) {
 
     useEffect(() => {
       
-        ApiRequest.get('/Moviez').then(data => {
+        ApiRequest.get('/content/movieList').then(data => {
             const movies = Object.entries(data).map(ois => ois['1'])
             const userMovies = movies['0'].filter(movie => movie.id === userId)
             setgetDataMo(userMovies['0'])

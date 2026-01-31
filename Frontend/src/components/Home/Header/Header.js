@@ -94,7 +94,7 @@ export default function Header() {
         if (Search_Word.length >= 2) {
             setIsSearching(true);
             
-            ApiRequest.get('/Moviez')
+            ApiRequest.get('/content/movieList')
                 .then(data => {
                     SetSearch_Res(data['data']);
                     setIsSearching(false);

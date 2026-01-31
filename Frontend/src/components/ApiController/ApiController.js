@@ -1,37 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { 
-  switchToMockApi, 
-  switchToRealApi, 
-  getCurrentApiType, 
   testApiConnection,
   getApiConfig 
 } from '../../Services/apiConfig';
 import './ApiController.css';
 
 const ApiController = () => {
-  const [currentApi, setCurrentApi] = useState(getCurrentApiType());
   const [connectionStatus, setConnectionStatus] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [config, setConfig] = useState(getApiConfig());
+  const [config] = useState(getApiConfig());
 
   useEffect(() => {
     // تست اتصال اولیه
     handleTestConnection();
   }, []);
-
-  const handleSwitchToMock = () => {
-    switchToMockApi();
-    setCurrentApi(getCurrentApiType());
-    setConfig(getApiConfig());
-    handleTestConnection();
-  };
-
-  const handleSwitchToReal = () => {
-    switchToRealApi();
-    setCurrentApi(getCurrentApiType());
-    setConfig(getApiConfig());
-    handleTestConnection();
-  };
 
   const handleTestConnection = async () => {
     setIsLoading(true);
@@ -41,7 +23,6 @@ const ApiController = () => {
     } catch (error) {
       setConnectionStatus({
         success: false,
-        apiType: getCurrentApiType(),
         error: error.message
       });
     } finally {
@@ -58,36 +39,14 @@ const ApiController = () => {
       <div className="api-controller-header">
         <h3>🔧 کنترل API</h3>
         <div className="api-status">
-          <span className={`status-indicator ${currentApi.toLowerCase()}`}>
-            {currentApi === 'Mock' ? '🎭' : '🌐'}
-          </span>
+          <span className="status-indicator real">🌐</span>
           <span className="status-text">
-            در حال استفاده از {currentApi === 'Mock' ? 'Mock API' : 'Real API'}
+            متصل به API سرور محلی
           </span>
         </div>
       </div>
 
       <div className="api-controller-content">
-        <div className="api-switches">
-          <button 
-            className={`api-switch ${currentApi === 'Mock' ? 'active' : ''}`}
-            onClick={handleSwitchToMock}
-            disabled={isLoading}
-          >
-            🎭 Mock API
-            <small>داده‌های محلی</small>
-          </button>
-          
-          <button 
-            className={`api-switch ${currentApi === 'Real' ? 'active' : ''}`}
-            onClick={handleSwitchToReal}
-            disabled={isLoading}
-          >
-            🌐 Real API
-            <small>دیتابیس خارجی</small>
-          </button>
-        </div>
-
         <div className="api-actions">
           <button 
             className="test-button"
@@ -113,9 +72,9 @@ const ApiController = () => {
             </div>
             
             <div className="status-details">
-              <div>نوع API: {connectionStatus.apiType}</div>
+              <div>آدرس API: {config.REAL_API_BASE_URL}</div>
               {connectionStatus.success && connectionStatus.dataCount !== undefined && (
-                <div>تعداد داده‌ها: {connectionStatus.dataCount}</div>
+                <div>تعداد فیلم‌ها: {connectionStatus.dataCount}</div>
               )}
               {!connectionStatus.success && connectionStatus.error && (
                 <div className="error-message">خطا: {connectionStatus.error}</div>
@@ -125,16 +84,14 @@ const ApiController = () => {
         )}
 
         <div className="api-config">
-          <h4>تنظیمات فعلی:</h4>
+          <h4>تنظیمات API:</h4>
           <div className="config-item">
-            <span>Mock API:</span>
-            <span className={config.USE_MOCK_API ? 'enabled' : 'disabled'}>
-              {config.USE_MOCK_API ? 'فعال' : 'غیرفعال'}
-            </span>
+            <span>آدرس سرور:</span>
+            <span>{config.REAL_API_BASE_URL}</span>
           </div>
           <div className="config-item">
-            <span>تاخیر Mock:</span>
-            <span>{config.MOCK_DELAY}ms</span>
+            <span>Timeout:</span>
+            <span>{config.TIMEOUT}ms</span>
           </div>
           <div className="config-item">
             <span>لاگ:</span>

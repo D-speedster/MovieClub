@@ -26,11 +26,12 @@ const Home = () => {
         setError(null);
 
         // Fetch movies
-        const moviesResponse = await ApiRequest.get('/Moviez');
+        const moviesResponse = await ApiRequest.get('/content/movieList');
         const moviesData = moviesResponse.data;
+        
         setMovies(Array.isArray(moviesData) ? moviesData.reverse() : Object.values(moviesData).reverse());
 
-        Logger.log('Movies data loaded successfully:', moviesData.length, 'movies');
+        Logger.log('Movies data loaded successfully:', moviesData?.length || 'unknown length', 'movies');
       } catch (err) {
         const handledError = handleApiError(err, 'Movies API');
         setError(handledError.message);
@@ -45,38 +46,31 @@ const Home = () => {
       try {
         setHeroLoading(true);
 
-        // Fetch box office data
-        const boxOfficeResponse = await ApiRequest.get('/BoxOffice');
-        const boxOfficeArray = Array.isArray(boxOfficeResponse.data)
-          ? boxOfficeResponse.data
-          : Object.values(boxOfficeResponse.data);
-        setBoxOfficeData(boxOfficeArray);
+        // Fetch box office data - اگر endpoint موجود نباشه، از فیلم‌های پرطرفدار استفاده کن
+        try {
+          const boxOfficeResponse = await ApiRequest.get('/content/boxoffice');
+          const boxOfficeArray = Array.isArray(boxOfficeResponse.data)
+            ? boxOfficeResponse.data
+            : Object.values(boxOfficeResponse.data);
+          setBoxOfficeData(boxOfficeArray);
+        } catch (error) {
+          // اگر BoxOffice endpoint موجود نباشه، از فیلم‌های پرطرفدار استفاده کن
+          Logger.warn('BoxOffice endpoint not available, using popular movies');
+          setBoxOfficeData([]);
+        }
 
-        // Mock trailers data - replace with actual API
-        const mockTrailers = [
-          {
-            id: 1,
-            title: 'تریلر جدید فیلم اکشن',
-            description: 'هیجان‌انگیزترین فیلم سال با بازی ستاره‌های مطرح سینما',
-            image: '/img/Last_Trailer/Trailer_Background.jpg',
-            thumbnail: '/img/Last_Trailer/t_poster1.jpg'
-          },
-          {
-            id: 2,
-            title: 'فیلم درام برتر',
-            description: 'داستانی تأثیرگذار از زندگی و امید',
-            image: '/img/Last_Trailer/t_poster2.jpg',
-            thumbnail: '/img/Last_Trailer/t_poster2.jpg'
-          },
-          {
-            id: 3,
-            title: 'کمدی سال',
-            description: 'خنده‌های بی‌پایان در انتظار شماست',
-            image: '/img/Last_Trailer/t_poster3.jpg',
-            thumbnail: '/img/Last_Trailer/t_poster3.jpg'
-          }
-        ];
-        setTrailers(mockTrailers);
+        // Fetch trailers data
+        try {
+          const trailersResponse = await ApiRequest.get('/content/trailers');
+          const trailersArray = Array.isArray(trailersResponse.data)
+            ? trailersResponse.data
+            : Object.values(trailersResponse.data);
+          setTrailers(trailersArray);
+        } catch (error) {
+          // اگر trailers endpoint موجود نباشه، خالی بذار
+          Logger.warn('Trailers endpoint not available');
+          setTrailers([]);
+        }
 
         Logger.log('Hero data loaded successfully');
       } catch (err) {
@@ -95,11 +89,12 @@ const Home = () => {
     if (!movies || movies.length === 0) return [];
 
     return movies
-      .filter(movie =>
-        movie.genre &&
-        Array.isArray(movie.genre) &&
-        movie.genre.includes(genre)
-      )
+      .filter(movie => {
+        const movieGenres = movie.genres || movie.genre || [];
+        return Array.isArray(movieGenres) 
+          ? movieGenres.includes(genre)
+          : movieGenres.toString().includes(genre);
+      })
       .slice(0, limit);
   };
 

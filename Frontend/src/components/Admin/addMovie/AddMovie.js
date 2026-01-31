@@ -163,7 +163,7 @@ export default function AddMovie() {
             setError(null);
             Logger.log("Starting movie fetch process");
 
-            const response = await ApiRequest.get('/Moviez');
+            const response = await ApiRequest.get('/content/movieList');
             let isAre = Object.entries(response.data).filter((i) => {
                 return i['1'].id === sanitizedBox;
             });

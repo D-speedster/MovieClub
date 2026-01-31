@@ -78,8 +78,8 @@ const AdminDashboard = () => {
   const fetchDashboardData = async () => {
     try {
       const [movies, series, users, comments] = await Promise.all([
-        ApiRequest.get('./Moviez'),
-        ApiRequest.get('./Series'),
+        ApiRequest.get('/content/movieList'),
+        ApiRequest.get('/content/seriesList'),
         ApiRequest.get('./Users'),
         ApiRequest.get('./Comments')
       ]);

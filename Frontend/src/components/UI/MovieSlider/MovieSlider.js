@@ -133,13 +133,13 @@ const MovieSlider = ({
                 className="movie-slider__slide"
               >
                 <MovieCard
-                  id={movie.id}
+                  id={movie._id || movie.id}
                   poster={movie.poster}
-                  name={movie.name}
+                  name={movie.title || movie.name}
                   year={movie.year}
                   rate={movie.rate}
-                  genre={movie.genre}
-                  description={movie.TranslateText}
+                  genre={movie.genres || movie.genre}
+                  description={movie.description || movie.TranslateText}
                 />
               </SwiperSlide>
             ))}
