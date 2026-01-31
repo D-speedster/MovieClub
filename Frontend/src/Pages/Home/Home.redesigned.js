@@ -114,10 +114,12 @@ const Home = () => {
   };
 
   // Get trending movies (most recent)
-  const getTrendingMovies = async (limit = 12) => {
-    let getmovie = await fetch('http://localhost:3001/content/movieList')
-    let movies = await getmovie.json();
+  const getTrendingMovies = (limit = 12) => {
+    if (!movies || movies.length === 0) return [];
+
     return movies
+      .sort((a, b) => new Date(b.createdAt || b.date) - new Date(a.createdAt || a.date))
+      .slice(0, limit);
   };
 
 
