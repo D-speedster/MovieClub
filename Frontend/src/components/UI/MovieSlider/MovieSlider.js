@@ -9,9 +9,9 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/free-mode';
 
-const MovieSlider = ({ 
-  title, 
-  movies = [], 
+const MovieSlider = ({
+  title,
+  movies = [],
   showViewAll = true,
   onViewAll,
   loading = false,
@@ -67,28 +67,28 @@ const MovieSlider = ({
         <div className="movie-slider__header">
           <h2 className="movie-slider__title">{title}</h2>
           {showViewAll && (
-            <button 
+            <button
               className="movie-slider__view-all"
               onClick={onViewAll}
               type="button"
             >
               مشاهده همه
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+                <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" />
               </svg>
             </button>
           )}
         </div>
 
         <div className="movie-slider__content">
-          <button 
+          <button
             className="movie-slider__nav movie-slider__nav--prev"
             onClick={handlePrevClick}
             type="button"
             aria-label="فیلم قبلی"
           >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+              <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
             </svg>
           </button>
 
@@ -127,8 +127,11 @@ const MovieSlider = ({
               },
             }}
           >
-            {movies.map((movie, index) => (
-              <SwiperSlide key={movie.id || `movie-${index}`} className="movie-slider__slide">
+            {Array.isArray(movies) && movies.map((movie, index) => (
+              <SwiperSlide
+                key={movie.id || `movie-${index}`}
+                className="movie-slider__slide"
+              >
                 <MovieCard
                   id={movie.id}
                   poster={movie.poster}
@@ -142,14 +145,14 @@ const MovieSlider = ({
             ))}
           </Swiper>
 
-          <button 
+          <button
             className="movie-slider__nav movie-slider__nav--next"
             onClick={handleNextClick}
             type="button"
             aria-label="فیلم بعدی"
           >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+              <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" />
             </svg>
           </button>
         </div>

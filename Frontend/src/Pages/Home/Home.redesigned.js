@@ -29,7 +29,7 @@ const Home = () => {
         const moviesResponse = await ApiRequest.get('/Moviez');
         const moviesData = moviesResponse.data;
         setMovies(Array.isArray(moviesData) ? moviesData.reverse() : Object.values(moviesData).reverse());
-        
+
         Logger.log('Movies data loaded successfully:', moviesData.length, 'movies');
       } catch (err) {
         const handledError = handleApiError(err, 'Movies API');
@@ -44,11 +44,11 @@ const Home = () => {
     const fetchHeroData = async () => {
       try {
         setHeroLoading(true);
-        
+
         // Fetch box office data
         const boxOfficeResponse = await ApiRequest.get('/BoxOffice');
-        const boxOfficeArray = Array.isArray(boxOfficeResponse.data) 
-          ? boxOfficeResponse.data 
+        const boxOfficeArray = Array.isArray(boxOfficeResponse.data)
+          ? boxOfficeResponse.data
           : Object.values(boxOfficeResponse.data);
         setBoxOfficeData(boxOfficeArray);
 
@@ -93,11 +93,11 @@ const Home = () => {
   // Filter movies by genre
   const getMoviesByGenre = (genre, limit = 12) => {
     if (!movies || movies.length === 0) return [];
-    
+
     return movies
-      .filter(movie => 
-        movie.genre && 
-        Array.isArray(movie.genre) && 
+      .filter(movie =>
+        movie.genre &&
+        Array.isArray(movie.genre) &&
         movie.genre.includes(genre)
       )
       .slice(0, limit);
@@ -106,7 +106,7 @@ const Home = () => {
   // Get featured movies (highest rated)
   const getFeaturedMovies = (limit = 6) => {
     if (!movies || movies.length === 0) return [];
-    
+
     return movies
       .filter(movie => movie.rate && parseFloat(movie.rate) >= 8.0)
       .sort((a, b) => parseFloat(b.rate) - parseFloat(a.rate))
@@ -114,13 +114,12 @@ const Home = () => {
   };
 
   // Get trending movies (most recent)
-  const getTrendingMovies = (limit = 12) => {
-    if (!movies || movies.length === 0) return [];
-    
+  const getTrendingMovies = async (limit = 12) => {
+    let getmovie = await fetch('http://localhost:3001/content/movieList')
+    let movies = await getmovie.json();
     return movies
-      .filter(movie => movie.year && parseInt(movie.year) >= 2022)
-      .slice(0, limit);
   };
+
 
   // Error state
   if (error) {
@@ -130,11 +129,11 @@ const Home = () => {
           <div className="container">
             <div className="error-state__content">
               <svg width="64" height="64" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
               </svg>
               <h2>خطا در بارگذاری</h2>
               <p>{error}</p>
-              <button 
+              <button
                 className="btn btn-primary"
                 onClick={() => window.location.reload()}
               >
@@ -152,7 +151,7 @@ const Home = () => {
   return (
     <div className="home-page">
       {/* Hero Section with integrated header */}
-      <HeroSection 
+      <HeroSection
         trailers={trailers}
         boxOfficeData={boxOfficeData}
         loading={heroLoading}
@@ -164,7 +163,7 @@ const Home = () => {
         <main className="home-content">
           <MovieSlider
             title="در حال اکران"
-            movies={getTrendingMovies()}
+            movies={movies}
             loading={loading}
             showViewAll={true}
             onViewAll={() => console.log('View all trending')}
@@ -214,7 +213,7 @@ const Home = () => {
         <BackToTop />
         <Footer />
       </div>
-      
+
       <MobileNav />
     </div>
   );
