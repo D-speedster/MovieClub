@@ -17,4 +17,11 @@ exports.GetContent = async (req, res, next) => {
 
     res.json(Movies)
 }
+exports.DeleteContent = async (req, res, next) => {
+    const { id } = req.params;
+}
+exports.EditContent = async (req, res, next) => {
+    const { id } = req.params;
+    const { title, type, actors, director, countries, writer, genres, rate, duration, description } = req.body;
+};
 
