@@ -10,6 +10,21 @@ import LoadingSpinner from '../../components/Loading/LoadingSpinner';
 import './Login.css';
 
 export default function Login() {
+  const handleLogin2 = async (event) => {
+    event.preventDefault();
+    let data = await fetch('http://localhost:3001/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username: formData.username,
+        password: formData.password
+      })
+    });
+    let res = await data.json();
+    console.log(res);
+  }
   const [formData, setFormData] = useState({
     username: '',
     password: ''
@@ -28,19 +43,19 @@ export default function Login() {
   const handleInputChange = (field, value) => {
     const sanitizedValue = field === 'password' ? value : sanitizeInput(value);
     setFormData(prev => ({ ...prev, [field]: sanitizedValue }));
-    
+
     // Clear validation error for this field
     if (validationErrors[field]) {
       setValidationErrors(prev => ({ ...prev, [field]: null }));
     }
-    
+
     // Clear general error
     if (error) setError(null);
   };
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    
+
     // Validation
     const rules = {
       username: { required: true, minLength: 3 },
@@ -69,10 +84,10 @@ export default function Login() {
       }
 
       const userData = users[0][1];
-      
+
       if (userData.password === formData.password) {
         setUserPermission(userData.type);
-        
+
         const Toast = Swal.mixin({
           toast: true,
           position: 'top-end',
@@ -111,12 +126,12 @@ export default function Login() {
   };
 
   return (
-    <div 
+    <div
       className="auth-container"
       style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/img/backi.jpg)` }}
     >
       <div className="auth-background"></div>
-      
+
       <div className="auth-content">
         <div className="auth-card">
           <div className="auth-visual">
@@ -126,7 +141,7 @@ export default function Login() {
               <div className="auth-visual-decoration"></div>
             </div>
           </div>
-          
+
           <div className="auth-form-section">
             <div className="auth-form-container">
               <div className="auth-header">
@@ -140,7 +155,7 @@ export default function Login() {
                 </div>
               )}
 
-              <form onSubmit={handleLogin} className="auth-form">
+              <form method='post' action='http://localhost:3001/auth/login' onSubmit={handleLogin2} className="auth-form">
                 <div className="form-group">
                   <label htmlFor="username">نام کاربری</label>
                   <div className="input-wrapper">

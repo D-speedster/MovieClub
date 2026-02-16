@@ -9,6 +9,28 @@ import LoadingSpinner from '../../components/Loading/LoadingSpinner';
 import './Register.css';
 
 export default function Register() {
+  const handleRegister2 = async (event) => {
+    event.preventDefault();
+    if (formData.password == formData.confirmPassword) {
+      let data = await fetch('http://localhost:3001/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: {
+          username: formData.username,
+          email: formData.email,
+          password: formData.password
+        }
+
+      });
+      let res = await data.json();
+      console.log(res);
+    } else {
+      console.log("Passwords do not match");
+    }
+
+  }
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -23,7 +45,7 @@ export default function Register() {
   const handleInputChange = (field, value) => {
     const sanitizedValue = field.includes('password') ? value : sanitizeInput(value);
     setFormData(prev => ({ ...prev, [field]: sanitizedValue }));
-    
+
     // Clear validation error for this field
     if (validationErrors[field]) {
       setValidationErrors(prev => ({ ...prev, [field]: null }));
@@ -32,7 +54,7 @@ export default function Register() {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    
+
     // Validation
     const rules = {
       username: { required: true, minLength: 3 },
@@ -67,7 +89,7 @@ export default function Register() {
 
       await ApiRequest.post('/Users', userData);
       Logger.log('Registration successful');
-      
+
       Swal.fire({
         icon: 'success',
         title: 'ثبت نام موفق',
@@ -101,12 +123,12 @@ export default function Register() {
   };
 
   return (
-    <div 
+    <div
       className="auth-container"
       style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/img/backi.jpg)` }}
     >
       <div className="auth-background"></div>
-      
+
       <div className="auth-content">
         <div className="auth-card">
           <div className="auth-visual">
@@ -116,7 +138,7 @@ export default function Register() {
               <div className="auth-visual-decoration"></div>
             </div>
           </div>
-          
+
           <div className="auth-form-section">
             <div className="auth-form-container">
               <div className="auth-header">
@@ -124,12 +146,13 @@ export default function Register() {
                 <p>برای شروع، اطلاعات خود را وارد کنید</p>
               </div>
 
-              <form onSubmit={handleRegister} className="auth-form">
+              <form action='http://localhost:3001/auth/register' method='post' onSubmit={handleRegister2} className="auth-form">
                 <div className="form-group">
                   <label htmlFor="username">نام کاربری</label>
                   <div className="input-wrapper">
                     <FiUser className="input-icon" />
                     <input
+                      name='username'
                       id="username"
                       type="text"
                       value={formData.username}
@@ -150,6 +173,7 @@ export default function Register() {
                   <div className="input-wrapper">
                     <FiMail className="input-icon" />
                     <input
+                      name='email'
                       id="email"
                       type="email"
                       value={formData.email}
@@ -170,6 +194,7 @@ export default function Register() {
                   <div className="input-wrapper">
                     <FiLock className="input-icon" />
                     <input
+                      name='password'
                       id="password"
                       type={showPassword ? 'text' : 'password'}
                       value={formData.password}
@@ -198,6 +223,7 @@ export default function Register() {
                   <div className="input-wrapper">
                     <FiLock className="input-icon" />
                     <input
+                      name="confirmPassword"
                       id="confirmPassword"
                       type={showConfirmPassword ? 'text' : 'password'}
                       value={formData.confirmPassword}
