@@ -58,6 +58,19 @@ exports.GetTrailers = async (req, res, next) => {
     }
 }
 
+exports.GetContentById = async (req, res, next) => {
+    try {
+        const { id } = req.params;
+        const content = await ContentSchema.findById(id);
+        if (!content) {
+            return res.status(404).json({ message: 'محتوا یافت نشد' });
+        }
+        res.json(content);
+    } catch (err) {
+        next(err);
+    }
+}
+
 exports.DeleteContent = async (req, res, next) => {
     try {
         const { id } = req.params;

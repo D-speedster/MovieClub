@@ -48,6 +48,7 @@ const LoadingSpinner = () => (
 const routes = [
   { path: '/', element: <Home /> },
   { path: '/theme-demo', element: <ThemeExample /> },
+  { path: '/movie/:userId', element: <Download /> },
   { path: '/Movie/:userId', element: <Download /> },
   { path: '/Movies', element: <Movies /> },
   { path: '/Series', element: <Series /> },

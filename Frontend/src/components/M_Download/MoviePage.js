@@ -16,18 +16,11 @@ const MoviePage = () => {
   const fetchMovieData = useCallback(async () => {
     try {
       setLoading(true);
-      const response = await ApiRequest.get('/content/movieList');
-      const movies = Object.entries(response).map(entry => entry[1]);
-      const movie = movies[0]?.find(movie => movie.id === userId);
-      
-      if (movie) {
-        setMovieData(movie);
-      } else {
-        setError('فیلم مورد نظر یافت نشد');
-      }
+      const response = await ApiRequest.get(`/content/${userId}`);
+      setMovieData(response.data);
     } catch (err) {
       Logger.error('Error fetching movie data:', err);
-      setError('خطا در بارگذاری اطلاعات فیلم');
+      setError('فیلم مورد نظر یافت نشد');
     } finally {
       setLoading(false);
     }
@@ -91,30 +84,26 @@ const MoviePage = () => {
             </div>
             
             <div className="movie-hero__info">
-              <h1 className="movie-hero__title">{movieData.name || 'نام فیلم نامشخص'}</h1>
+              <h1 className="movie-hero__title">{movieData.title || movieData.name || 'نام فیلم نامشخص'}</h1>
               
               <div className="movie-hero__meta">
                 <span className="movie-hero__rating">
-                  ⭐ {movieData.rate || 'N/A'}
+                  ⭐ {movieData.imdb?.rating || movieData.rate || 'N/A'}
                 </span>
                 <span className="movie-hero__year">{movieData.year || 'نامشخص'}</span>
-                <span className="movie-hero__duration">{movieData.time || 'نامشخص'}</span>
+                <span className="movie-hero__duration">{movieData.movie?.duration || movieData.time || 'نامشخص'}</span>
               </div>
               
               <div className="movie-hero__genres">
-                {movieData.genre && typeof movieData.genre === 'string' ? 
-                  movieData.genre.split(',').map((genre, index) => (
-                    <span key={index} className="movie-hero__genre">
-                      {genre.trim()}
-                    </span>
-                  )) : 
-                  movieData.genre && Array.isArray(movieData.genre) ?
-                    movieData.genre.map((genre, index) => (
-                      <span key={index} className="movie-hero__genre">
-                        {genre}
-                      </span>
-                    )) :
-                    <span className="movie-hero__genre">نامشخص</span>
+                {(movieData.genres || movieData.genre) ? 
+                  (Array.isArray(movieData.genres || movieData.genre)
+                    ? (movieData.genres || movieData.genre).map((genre, index) => (
+                        <span key={index} className="movie-hero__genre">{genre}</span>
+                      ))
+                    : (movieData.genres || movieData.genre).split(',').map((genre, index) => (
+                        <span key={index} className="movie-hero__genre">{genre.trim()}</span>
+                      ))
+                  ) : <span className="movie-hero__genre">نامشخص</span>
                 }
               </div>
               
@@ -152,11 +141,15 @@ const MoviePage = () => {
                   </div>
                   <div className="movie-details__info-item">
                     <span className="movie-details__info-label">بازیگران:</span>
-                    <span className="movie-details__info-value">{movieData.stars || 'نامشخص'}</span>
+                    <span className="movie-details__info-value">
+                      {Array.isArray(movieData.actors) ? movieData.actors.join('، ') : (movieData.stars || 'نامشخص')}
+                    </span>
                   </div>
                   <div className="movie-details__info-item">
                     <span className="movie-details__info-label">کشور سازنده:</span>
-                    <span className="movie-details__info-value">{movieData.countries || 'نامشخص'}</span>
+                    <span className="movie-details__info-value">
+                      {Array.isArray(movieData.countries) ? movieData.countries.join('، ') : (movieData.countries || 'نامشخص')}
+                    </span>
                   </div>
                   <div className="movie-details__info-item">
                     <span className="movie-details__info-label">زبان:</span>
@@ -177,7 +170,7 @@ const MoviePage = () => {
               <div className="movie-details__section">
                 <h2 className="movie-details__section-title">خلاصه داستان</h2>
                 <p className="movie-details__story">
-                  {movieData.story || movieData.TranslateText || 'خلاصه داستان موجود نیست.'}
+                  {movieData.description || movieData.story || movieData.TranslateText || 'خلاصه داستان موجود نیست.'}
                 </p>
               </div>
             </div>
@@ -212,7 +205,7 @@ const MoviePage = () => {
       <section className="movie-download">
         <div className="container">
           <div className="movie-download__content">
-            <h2 className="movie-download__title">دانلود فیلم {movieData.name || 'نامشخص'}</h2>
+            <h2 className="movie-download__title">دانلود فیلم {movieData.title || movieData.name || 'نامشخص'}</h2>
             <div className="movie-download__options">
               <div className="download-option">
                 <div className="download-option__info">
