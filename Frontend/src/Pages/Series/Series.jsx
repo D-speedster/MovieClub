@@ -57,35 +57,36 @@ export default function Series() {
 
     // Genre filter
     if (filters.genre && filters.genre !== 'all') {
-      filtered = filtered.filter(series => 
-        series.genre && series.genre.includes(filters.genre)
-      );
+      filtered = filtered.filter(series => {
+        const genres = series.genres || series.genre || [];
+        return Array.isArray(genres) ? genres.includes(filters.genre) : genres.includes(filters.genre);
+      });
     }
 
     // Year filter
     if (filters.year && filters.year !== 'all') {
-      filtered = filtered.filter(series => series.year === filters.year);
+      filtered = filtered.filter(series => String(series.year) === String(filters.year));
     }
 
     // Rating filter
     if (filters.rating && filters.rating !== 'all') {
       const minRating = parseFloat(filters.rating);
-      filtered = filtered.filter(series => parseFloat(series.rate || 0) >= minRating);
+      filtered = filtered.filter(series => parseFloat(series.imdb?.rating || series.rate || 0) >= minRating);
     }
 
     // Sort
     switch (filters.sort) {
       case 'newest':
-        filtered.sort((a, b) => new Date(b.CreatedAt || 0) - new Date(a.CreatedAt || 0));
+        filtered.sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0));
         break;
       case 'oldest':
-        filtered.sort((a, b) => new Date(a.CreatedAt || 0) - new Date(b.CreatedAt || 0));
+        filtered.sort((a, b) => new Date(a.createdAt || 0) - new Date(b.createdAt || 0));
         break;
       case 'rating':
-        filtered.sort((a, b) => parseFloat(b.rate || 0) - parseFloat(a.rate || 0));
+        filtered.sort((a, b) => parseFloat(b.imdb?.rating || b.rate || 0) - parseFloat(a.imdb?.rating || a.rate || 0));
         break;
       case 'name':
-        filtered.sort((a, b) => (a.name || '').localeCompare(b.name || ''));
+        filtered.sort((a, b) => (a.title || a.name || '').localeCompare(b.title || b.name || ''));
         break;
       default:
         break;
@@ -112,20 +113,13 @@ export default function Series() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Get unique years from series
   const getUniqueYears = () => {
-    const years = allSeries
-      .map(series => series.year)
-      .filter(year => year)
-      .sort((a, b) => b - a);
+    const years = allSeries.map(s => s.year).filter(y => y).sort((a, b) => b - a);
     return [...new Set(years)];
   };
 
-  // Get unique genres from series
   const getUniqueGenres = () => {
-    const genres = allSeries
-      .flatMap(series => series.genre || [])
-      .filter(genre => genre);
+    const genres = allSeries.flatMap(s => s.genres || s.genre || []).filter(g => g);
     return [...new Set(genres)];
   };
 
@@ -260,16 +254,20 @@ export default function Series() {
 
           {/* Series Grid */}
           <div className="series-grid">
-            {currentSeries.map((series, index) => (
+            {currentSeries.length === 0 ? (
+              <div className="no-results">
+                <p>سریالی یافت نشد</p>
+              </div>
+            ) : currentSeries.map((series, index) => (
               <MovieCard
-                key={series.id || index}
-                id={series.id}
-                poster={series.poster}
-                name={series.name}
+                key={series._id || series.id || index}
+                id={series._id || series.id}
+                poster={series.poster ? `http://localhost:3001/uploads/${series.poster}` : ''}
+                name={series.title || series.name}
                 year={series.year}
-                rate={series.rate}
-                genre={series.genre}
-                description={series.TranslateText}
+                rate={series.imdb?.rating || series.rate}
+                genre={series.genres || series.genre}
+                description={series.description}
               />
             ))}
           </div>

@@ -24,6 +24,15 @@ exports.GetContent = async (req, res, next) => {
     }
 }
 
+exports.GetSeriesList = async (req, res, next) => {
+    try {
+        const series = await ContentSchema.find({ type: { $in: ['series', 'anime', 'animation'] } });
+        res.json(series);
+    } catch (err) {
+        next(err);
+    }
+}
+
 exports.GetBoxOffice = async (req, res, next) => {
     try {
         const boxOffice = await ContentSchema.find({ 'imdb.rating': { $exists: true } })
