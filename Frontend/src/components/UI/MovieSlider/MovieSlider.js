@@ -134,6 +134,7 @@ const MovieSlider = ({
               >
                 <MovieCard
                   id={movie._id || movie.id}
+                  slug={movie.slug}
                   poster={movie.poster}
                   name={movie.title || movie.name}
                   year={movie.year}

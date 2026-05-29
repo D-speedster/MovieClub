@@ -16,7 +16,7 @@ const MoviePage = () => {
   const fetchMovieData = useCallback(async () => {
     try {
       setLoading(true);
-      const response = await ApiRequest.get(`/content/${userId}`);
+      const response = await ApiRequest.get(`/content/slug/${userId}`);
       setMovieData(response.data);
     } catch (err) {
       Logger.error('Error fetching movie data:', err);

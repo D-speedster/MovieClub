@@ -4,6 +4,7 @@ import './MovieCard.css';
 
 const MovieCard = ({
   id,
+  slug,
   poster,
   name,
   year,
@@ -39,7 +40,7 @@ const MovieCard = ({
 
   return (
     <div className={`netflix-movie-card ${className}`}>
-      <Link to={`/movie/${id}`} className="netflix-movie-card__link">
+      <Link to={`/movie/${slug || id}`} className="netflix-movie-card__link">
         {/* Movie Poster */}
         <div className="netflix-movie-card__poster-container">
           {!imageLoaded && !imageError && (

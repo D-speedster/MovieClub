@@ -58,6 +58,23 @@ exports.GetTrailers = async (req, res, next) => {
     }
 }
 
+exports.GetContentBySlug = async (req, res, next) => {
+    try {
+        const { slug } = req.params;
+        // اول با slug پیدا کن، اگه نبود با _id امتحان کن
+        let content = await ContentSchema.findOne({ slug });
+        if (!content && slug.match(/^[a-f\d]{24}$/i)) {
+            content = await ContentSchema.findById(slug);
+        }
+        if (!content) {
+            return res.status(404).json({ message: 'محتوا یافت نشد' });
+        }
+        res.json(content);
+    } catch (err) {
+        next(err);
+    }
+}
+
 exports.GetContentById = async (req, res, next) => {
     try {
         const { id } = req.params;

@@ -262,6 +262,7 @@ export default function Series() {
               <MovieCard
                 key={series._id || series.id || index}
                 id={series._id || series.id}
+                slug={series.slug}
                 poster={series.poster ? `http://localhost:3001/uploads/${series.poster}` : ''}
                 name={series.title || series.name}
                 year={series.year}

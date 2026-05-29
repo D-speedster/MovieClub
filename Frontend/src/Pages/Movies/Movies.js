@@ -265,10 +265,11 @@ export default function Movies() {
               <MovieCard
                 key={movie._id || movie.id || index}
                 id={movie._id || movie.id}
+                slug={movie.slug}
                 poster={movie.poster}
                 name={movie.title || movie.name}
                 year={movie.year}
-                rate={movie.rate}
+                rate={movie.imdb?.rating || movie.rate}
                 genre={movie.genres || movie.genre}
                 description={movie.description || movie.TranslateText}
               />
