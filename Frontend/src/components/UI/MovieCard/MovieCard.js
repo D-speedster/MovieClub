@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { getPosterUrl } from '../../utils/posterUrl';
 import './MovieCard.css';
 
 const MovieCard = ({
@@ -16,12 +17,7 @@ const MovieCard = ({
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
 
-  // Helper function to get full poster URL
-  const getPosterUrl = (posterPath) => {
-    if (!posterPath) return '';
-    if (posterPath.startsWith('http')) return posterPath;
-    return `http://localhost:3001/uploads/${posterPath}`;
-  };
+  // Helper function to get full poster URL - imported from utils
 
   const handleImageLoad = () => {
     setImageLoaded(true);

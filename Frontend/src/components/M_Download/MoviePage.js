@@ -5,6 +5,7 @@ import Footer from '../Layout/Footer/Footer';
 import MobileNav from '../Layout/MobileNav/MobileNav';
 import ApiRequest from '../../Services/Axios/config';
 import Logger from '../../utils/logger';
+import { getPosterUrl } from '../../utils/posterUrl';
 import './MoviePage.css';
 
 const MoviePage = () => {
@@ -77,8 +78,8 @@ const MoviePage = () => {
           <div className="movie-hero__content">
             <div className="movie-hero__poster">
               <img 
-                src={movieData.poster} 
-                alt={`پوستر ${movieData.name}`}
+                src={getPosterUrl(movieData.poster)} 
+                alt={`پوستر ${movieData.title || movieData.name}`}
                 className="movie-hero__poster-image"
               />
             </div>

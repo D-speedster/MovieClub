@@ -6,6 +6,7 @@ import { BsTrash3 } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import './Movie_mange.css';
 import ApiRequest from '../../../Services/Axios/config';
+import { getPosterUrl } from '../../../utils/posterUrl';
 
 
 export default function Movie_mange() {
@@ -85,9 +86,7 @@ export default function Movie_mange() {
                     </Modal>
                     {result && result.length > 0 ? (
                         [...result].reverse().map((movie) => {
-                            const posterUrl = movie.poster
-                                ? `http://localhost:3001/uploads/${movie.poster}`
-                                : '';
+                            const posterUrl = getPosterUrl(movie.poster);
                             const title = movie.title || movie.name || 'بدون عنوان';
                             const id = movie._id || movie.id;
                             return (

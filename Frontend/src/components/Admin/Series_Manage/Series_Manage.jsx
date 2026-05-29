@@ -5,6 +5,7 @@ import { BsTrash3 } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import TitleAdmin from '../TitleAdmin/TitleAdmin';
 import ApiRequest from '../../../Services/Axios/config';
+import { getPosterUrl } from '../../../utils/posterUrl';
 
 export default function Movie_Series() {
     const [result, SetResult] = useState([]);
@@ -74,9 +75,7 @@ export default function Movie_Series() {
                     <div className='row pe-3 ps-3 justify-content-between'>
                         {result && result.length > 0 ? (
                             [...result].reverse().map((series) => {
-                                const posterUrl = series.poster
-                                    ? `http://localhost:3001/uploads/${series.poster}`
-                                    : '';
+                                const posterUrl = getPosterUrl(series.poster);
                                 const title = series.title || series.name || 'بدون عنوان';
                                 const id = series._id || series.id;
                                 return (
