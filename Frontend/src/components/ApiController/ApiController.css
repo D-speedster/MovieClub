@@ -1,0 +1,246 @@
+.api-controller {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: 12px;
+  padding: 24px;
+  margin: 20px 0;
+  font-family: var(--font-primary);
+}
+
+.api-controller-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-default);
+}
+
+.api-controller-header h3 {
+  color: var(--text-primary);
+  margin: 0;
+  font-size: 1.2em;
+}
+
+.api-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-indicator {
+  font-size: 1.2em;
+}
+
+.status-indicator.mock {
+  color: var(--gold-primary);
+}
+
+.status-indicator.real {
+  color: var(--cta-primary);
+}
+
+.status-text {
+  color: var(--text-secondary);
+  font-size: 0.9em;
+}
+
+.api-controller-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.api-switches {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.api-switch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px;
+  background-color: var(--bg-hover);
+  border: 2px solid var(--border-default);
+  border-radius: 8px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1em;
+  font-weight: 500;
+}
+
+.api-switch:hover {
+  background-color: var(--bg-surface);
+  border-color: var(--border-focus);
+  color: var(--text-primary);
+  transform: translateY(-2px);
+}
+
+.api-switch.active {
+  background-color: var(--gold-primary);
+  border-color: var(--gold-primary);
+  color: var(--bg-main);
+}
+
+.api-switch:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.api-switch small {
+  font-size: 0.8em;
+  margin-top: 4px;
+  opacity: 0.8;
+}
+
+.api-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.test-button,
+.reload-button {
+  flex: 1;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9em;
+}
+
+.test-button {
+  background-color: var(--cta-primary);
+  color: var(--cta-text);
+}
+
+.test-button:hover {
+  background-color: var(--cta-hover);
+  transform: translateY(-1px);
+}
+
+.test-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.reload-button {
+  background-color: var(--bg-hover);
+  color: var(--text-primary);
+  border: 1px solid var(--border-default);
+}
+
+.reload-button:hover {
+  background-color: var(--bg-surface);
+  border-color: var(--border-focus);
+}
+
+.connection-status {
+  padding: 16px;
+  border-radius: 8px;
+  border-left: 4px solid;
+}
+
+.connection-status.success {
+  background-color: rgba(40, 167, 69, 0.1);
+  border-left-color: #28a745;
+  color: #28a745;
+}
+
+.connection-status.error {
+  background-color: rgba(184, 74, 43, 0.1);
+  border-left-color: var(--cta-primary);
+  color: var(--cta-primary);
+}
+
+.status-header {
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-size: 1em;
+}
+
+.status-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.9em;
+}
+
+.error-message {
+  font-weight: 500;
+  margin-top: 4px;
+}
+
+.api-config {
+  background-color: var(--bg-main);
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border-default);
+}
+
+.api-config h4 {
+  color: var(--text-primary);
+  margin: 0 0 12px 0;
+  font-size: 1em;
+}
+
+.config-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border-default);
+  font-size: 0.9em;
+}
+
+.config-item:last-child {
+  border-bottom: none;
+}
+
+.config-item span:first-child {
+  color: var(--text-secondary);
+}
+
+.config-item span:last-child {
+  font-weight: 500;
+}
+
+.config-item .enabled {
+  color: #28a745;
+}
+
+.config-item .disabled {
+  color: var(--text-muted);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .api-controller {
+    padding: 16px;
+    margin: 16px 0;
+  }
+  
+  .api-controller-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  
+  .api-switches {
+    grid-template-columns: 1fr;
+  }
+  
+  .api-actions {
+    flex-direction: column;
+  }
+  
+  .status-details {
+    font-size: 0.8em;
+  }
+}

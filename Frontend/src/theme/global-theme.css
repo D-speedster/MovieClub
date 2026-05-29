@@ -1,0 +1,376 @@
+/* Global Theme Enforcement - این فایل اطمینان می‌دهد تم در همه جا اعمال شود */
+
+/* Force dark theme on body and html */
+html,
+body {
+    background-color: var(--bg-main) !important;
+    color: var(--text-primary) !important;
+    font-family: 'IRANSans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+    direction: rtl !important;
+    text-align: right !important;
+}
+
+/* Force theme on all major containers */
+#root,
+.App,
+.body,
+main,
+.main-content,
+.container,
+.container-fluid {
+    background-color: var(--bg-main) !important;
+    color: var(--text-primary) !important;
+}
+
+/* Override any white backgrounds */
+div[style*="background-color: #fff"],
+div[style*="background-color: white"],
+div[style*="background: #fff"],
+div[style*="background: white"] {
+    background-color: var(--bg-surface) !important;
+    color: var(--text-primary) !important;
+}
+
+/* Override any black backgrounds that aren't using theme */
+div[style*="background-color: #000"],
+div[style*="background-color: black"],
+div[style*="background: #000"],
+div[style*="background: black"] {
+    background-color: var(--bg-main) !important;
+}
+
+/* Force theme colors on common elements */
+.row,
+.col,
+.col-1, .col-2, .col-3, .col-4, .col-5, .col-6,
+.col-7, .col-8, .col-9, .col-10, .col-11, .col-12,
+.col-sm, .col-md, .col-lg, .col-xl {
+    color: var(--text-primary) !important;
+}
+
+/* Movie specific elements */
+.movie-item,
+.movie-card,
+.film-item,
+.series-item {
+    background-color: var(--bg-surface) !important;
+    border: 1px solid var(--border-default) !important;
+    color: var(--text-primary) !important;
+}
+
+.movie-title,
+.film-title,
+.series-title {
+    color: var(--gold-primary) !important;
+}
+
+.movie-rating,
+.film-rating,
+.series-rating {
+    color: var(--gold-soft) !important;
+}
+
+.movie-genre,
+.film-genre,
+.series-genre {
+    color: var(--gold-primary) !important;
+}
+
+.movie-description,
+.film-description,
+.series-description {
+    color: var(--text-secondary) !important;
+}
+
+/* Navigation elements */
+.navigation,
+.nav-menu,
+.menu,
+.header-menu {
+    background-color: var(--bg-surface) !important;
+    border-bottom: 1px solid var(--border-default) !important;
+}
+
+.nav-item,
+.menu-item {
+    color: var(--text-secondary) !important;
+}
+
+.nav-item:hover,
+.menu-item:hover,
+.nav-item.active,
+.menu-item.active {
+    color: var(--gold-primary) !important;
+}
+
+/* Button elements */
+.button,
+.btn,
+button {
+    transition: all 0.3s ease !important;
+}
+
+.btn-download,
+.download-btn,
+.btn-watch,
+.watch-btn {
+    background-color: var(--cta-primary) !important;
+    color: var(--cta-text) !important;
+    border: none !important;
+}
+
+.btn-download:hover,
+.download-btn:hover,
+.btn-watch:hover,
+.watch-btn:hover {
+    background-color: var(--cta-hover) !important;
+    color: var(--cta-text) !important;
+}
+
+/* Search elements */
+.search-box,
+.search-input,
+.search-form {
+    background-color: var(--bg-surface) !important;
+    border: 1px solid var(--border-default) !important;
+    color: var(--text-primary) !important;
+}
+
+.search-results,
+.search-dropdown {
+    background-color: var(--bg-surface) !important;
+    border: 1px solid var(--border-default) !important;
+    box-shadow: 0 8px 24px var(--shadow-medium) !important;
+}
+
+.search-result-item {
+    color: var(--text-primary) !important;
+    border-bottom: 1px solid var(--border-default) !important;
+}
+
+.search-result-item:hover {
+    background-color: var(--bg-hover) !important;
+}
+
+/* Footer elements */
+.footer,
+.site-footer {
+    background-color: var(--bg-surface) !important;
+    border-top: 1px solid var(--border-default) !important;
+    color: var(--text-secondary) !important;
+}
+
+.footer a,
+.site-footer a {
+    color: var(--gold-primary) !important;
+}
+
+.footer a:hover,
+.site-footer a:hover {
+    color: var(--gold-soft) !important;
+}
+
+/* Sidebar elements */
+.sidebar,
+.side-menu {
+    background-color: var(--bg-surface) !important;
+    border-right: 1px solid var(--border-default) !important;
+}
+
+/* Content areas */
+.content,
+.main-content,
+.page-content {
+    background-color: var(--bg-main) !important;
+    color: var(--text-primary) !important;
+}
+
+/* Loading elements */
+.loading,
+.spinner,
+.loader {
+    color: var(--gold-primary) !important;
+}
+
+/* Error elements */
+.error,
+.error-message {
+    color: var(--cta-primary) !important;
+}
+
+/* Success elements */
+.success,
+.success-message {
+    color: var(--gold-primary) !important;
+}
+
+/* Pagination elements */
+.pagination {
+    background-color: var(--bg-surface) !important;
+}
+
+.pagination a {
+    background-color: var(--bg-surface) !important;
+    border: 1px solid var(--border-default) !important;
+    color: var(--text-secondary) !important;
+}
+
+.pagination a:hover,
+.pagination a.active {
+    background-color: var(--gold-primary) !important;
+    color: var(--bg-main) !important;
+}
+
+/* Tab elements */
+.tabs,
+.tab-menu {
+    background-color: var(--bg-surface) !important;
+    border-bottom: 1px solid var(--border-default) !important;
+}
+
+.tab-item {
+    color: var(--text-secondary) !important;
+    border-bottom: 2px solid transparent !important;
+}
+
+.tab-item:hover,
+.tab-item.active {
+    color: var(--gold-primary) !important;
+    border-bottom-color: var(--gold-primary) !important;
+}
+
+/* Modal elements */
+.modal,
+.popup,
+.dialog {
+    background-color: var(--bg-surface) !important;
+    border: 1px solid var(--border-default) !important;
+    color: var(--text-primary) !important;
+}
+
+.modal-overlay,
+.popup-overlay {
+    background-color: var(--overlay-heavy) !important;
+}
+
+/* Tooltip elements */
+.tooltip,
+.tooltip-content {
+    background-color: var(--bg-hover) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--border-default) !important;
+}
+
+/* Dropdown elements */
+.dropdown,
+.dropdown-menu {
+    background-color: var(--bg-surface) !important;
+    border: 1px solid var(--border-default) !important;
+    box-shadow: 0 8px 24px var(--shadow-medium) !important;
+}
+
+.dropdown-item {
+    color: var(--text-secondary) !important;
+}
+
+.dropdown-item:hover {
+    background-color: var(--bg-hover) !important;
+    color: var(--text-primary) !important;
+}
+
+/* Table elements */
+.table,
+table {
+    background-color: var(--bg-surface) !important;
+    color: var(--text-primary) !important;
+}
+
+.table th,
+table th {
+    background-color: var(--bg-hover) !important;
+    color: var(--text-primary) !important;
+    border-bottom: 1px solid var(--border-default) !important;
+}
+
+.table td,
+table td {
+    border-bottom: 1px solid var(--border-default) !important;
+    color: var(--text-secondary) !important;
+}
+
+.table tr:hover,
+table tr:hover {
+    background-color: var(--bg-hover) !important;
+}
+
+/* Form elements */
+.form,
+.form-group {
+    color: var(--text-primary) !important;
+}
+
+.form-label,
+label {
+    color: var(--text-primary) !important;
+}
+
+.form-control,
+input,
+textarea,
+select {
+    background-color: var(--bg-surface) !important;
+    border: 1px solid var(--border-default) !important;
+    color: var(--text-primary) !important;
+}
+
+.form-control:focus,
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--border-focus) !important;
+    box-shadow: 0 0 0 2px rgba(201, 162, 77, 0.2) !important;
+}
+
+.form-control::placeholder,
+input::placeholder,
+textarea::placeholder {
+    color: var(--text-muted) !important;
+}
+
+/* Ensure all text is readable */
+span,
+div,
+p,
+h1, h2, h3, h4, h5, h6,
+li,
+td,
+th {
+    color: inherit !important;
+}
+
+/* Override any hardcoded white text */
+[style*="color: #fff"],
+[style*="color: white"],
+[style*="color: #ffffff"] {
+    color: var(--text-primary) !important;
+}
+
+/* Override any hardcoded black text on light backgrounds */
+[style*="color: #000"],
+[style*="color: black"],
+[style*="color: #000000"] {
+    color: var(--text-primary) !important;
+}
+
+/* Ensure proper contrast for all interactive elements */
+button:not(.btn-cta),
+.btn:not(.btn-cta),
+a:not(.nav-link):not(.search-result-item) {
+    color: var(--gold-primary) !important;
+}
+
+button:not(.btn-cta):hover,
+.btn:not(.btn-cta):hover,
+a:not(.nav-link):not(.search-result-item):hover {
+    color: var(--gold-soft) !important;
+}

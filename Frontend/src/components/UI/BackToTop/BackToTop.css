@@ -1,0 +1,102 @@
+/* Back to Top Button */
+.back-to-top {
+  position: fixed;
+  bottom: var(--space-8);
+  right: var(--space-8);
+  z-index: var(--z-fixed);
+  width: 56px;
+  height: 56px;
+  background-color: var(--accent-primary);
+  color: var(--text-primary);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-lg);
+  transition: all var(--transition-normal);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+}
+
+.back-to-top--visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  background-color: #B20710;
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-2xl);
+}
+
+.back-to-top:active {
+  transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .back-to-top {
+    bottom: calc(var(--space-8) + 70px); /* Account for mobile nav */
+    right: var(--space-6);
+    width: 48px;
+    height: 48px;
+  }
+}
+
+@media (max-width: 480px) {
+  .back-to-top {
+    bottom: calc(var(--space-6) + 70px);
+    right: var(--space-4);
+    width: 44px;
+    height: 44px;
+  }
+}
+
+/* Focus States */
+.back-to-top:focus {
+  outline: 2px solid var(--accent-secondary);
+  outline-offset: 2px;
+}
+
+.back-to-top:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* RTL Support */
+[dir="rtl"] .back-to-top {
+  right: auto;
+  left: var(--space-8);
+}
+
+[dir="rtl"] @media (max-width: 768px) {
+  .back-to-top {
+    left: var(--space-6);
+  }
+}
+
+[dir="rtl"] @media (max-width: 480px) {
+  .back-to-top {
+    left: var(--space-4);
+  }
+}
+
+/* Animation */
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-4px);
+  }
+  60% {
+    transform: translateY(-2px);
+  }
+}
+
+.back-to-top--visible:hover {
+  animation: bounce 1s ease-in-out;
+}

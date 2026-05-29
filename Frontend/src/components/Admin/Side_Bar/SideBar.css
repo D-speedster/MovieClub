@@ -1,0 +1,50 @@
+.menu-right {
+  scroll-behavior: auto;
+
+}
+
+.menu-right-ul {
+  list-style: none;
+  margin: 0;
+  padding-right: 15px;
+
+
+}
+
+.menu-right img {
+  margin-right: 15px;
+}
+
+.menu-right a {
+  text-decoration: none;
+
+}
+
+.menu-right-ul h6 {
+  font-size: 17.5px;
+  font-weight: 600;
+  padding: 5px 15px;
+  margin: 0;
+  color: #70737e;
+
+}
+
+.menu-right-ul li {
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  margin: 10px 0;
+  padding: 5px 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+
+}
+
+.menu-right-ul li:hover {
+  background-color: #2d2d2d;
+}
+
+
+
+/* Additional styles */

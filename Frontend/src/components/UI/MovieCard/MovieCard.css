@@ -1,0 +1,355 @@
+/* 🎬 NETFLIX-STYLE MOVIE CARD - EXACT MATCH */
+
+.netflix-movie-card {
+  position: relative;
+  width: 246px;
+  height: 418px;
+  margin: 0 auto;
+  transition: all var(--transition-normal);
+  cursor: pointer;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: var(--bg-surface);
+}
+
+.netflix-movie-card__link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+  height: 100%;
+}
+
+.netflix-movie-card__link:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ================================
+   POSTER CONTAINER - FULL SIZE
+   ================================ */
+.netflix-movie-card__poster-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 50%,
+    rgba(0, 0, 0, 0.3) 70%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+}
+
+.netflix-movie-card__poster {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all var(--transition-slow);
+  opacity: 0;
+}
+
+.netflix-movie-card__poster.loaded {
+  opacity: 1;
+}
+
+.netflix-movie-card__poster-skeleton {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--bg-surface) 25%,
+    var(--bg-hover) 50%,
+    var(--bg-surface) 75%
+  );
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+.skeleton-animation {
+  width: 100%;
+  height: 100%;
+  background: inherit;
+}
+
+@keyframes loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.netflix-movie-card__poster-error {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-hover);
+  color: var(--text-muted);
+  text-align: center;
+  padding: var(--space-4);
+}
+
+.netflix-movie-card__poster-error span {
+  font-size: var(--text-sm);
+  margin-top: var(--space-2);
+}
+
+/* ================================
+   YEAR BADGE - TOP LEFT
+   ================================ */
+.netflix-movie-card__year-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: var(--text-primary);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-family: var(--font-primary);
+  font-size: 12px;
+  font-weight: var(--font-medium);
+  backdrop-filter: blur(4px);
+  z-index: 2;
+}
+
+/* ================================
+   BOTTOM OVERLAY WITH INFO
+   ================================ */
+.netflix-movie-card__bottom-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.9) 0%,
+    rgba(0, 0, 0, 0.7) 50%,
+    transparent 100%
+  );
+  padding: 16px 12px 12px 12px;
+  color: var(--text-primary);
+  z-index: 2;
+}
+
+/* Movie Title */
+.netflix-movie-card__title {
+  font-family: var(--font-primary);
+  font-size: 16px;
+  font-weight: var(--font-bold);
+  color: var(--text-primary);
+  margin: 0 0 8px 0;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Description */
+.netflix-movie-card__description {
+  font-family: var(--font-primary);
+  font-size: 12px;
+  font-weight: var(--font-light);
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.4;
+  margin: 0 0 12px 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ================================
+   BOTTOM INFO ROW
+   ================================ */
+.netflix-movie-card__bottom-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+/* Rating */
+.netflix-movie-card__rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background-color: rgba(255, 193, 7, 0.2);
+  border: 1px solid #FFC107;
+  color: #FFC107;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-family: var(--font-primary);
+  font-size: 12px;
+  font-weight: var(--font-medium);
+}
+
+.netflix-movie-card__rating svg {
+  color: #FFC107;
+}
+
+/* Quality Badge */
+.netflix-movie-card__quality {
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: var(--text-primary);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-family: var(--font-primary);
+  font-size: 10px;
+  font-weight: var(--font-bold);
+  letter-spacing: 0.5px;
+}
+
+/* Play Button */
+.netflix-movie-card__play-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background-color: rgba(229, 9, 20, 0.9);
+  color: var(--text-primary);
+  border-radius: 50%;
+  transition: all var(--transition-normal);
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+}
+
+.netflix-movie-card__play-btn:hover {
+  background-color: var(--accent-primary);
+  transform: scale(1.1);
+}
+
+/* ================================
+   HOVER EFFECTS
+   ================================ */
+.netflix-movie-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.netflix-movie-card:hover .netflix-movie-card__poster {
+  transform: scale(1.05);
+}
+
+.netflix-movie-card:hover .netflix-movie-card__bottom-overlay {
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.95) 0%,
+    rgba(0, 0, 0, 0.8) 50%,
+    transparent 100%
+  );
+}
+
+/* ================================
+   RESPONSIVE DESIGN
+   ================================ */
+@media (max-width: 1200px) {
+  .netflix-movie-card {
+    width: 220px;
+    height: 374px;
+  }
+}
+
+@media (max-width: 768px) {
+  .netflix-movie-card {
+    width: 190px;
+    height: 323px;
+  }
+  
+  .netflix-movie-card__title {
+    font-size: 14px;
+  }
+  
+  .netflix-movie-card__description {
+    font-size: 11px;
+  }
+  
+  .netflix-movie-card__year-badge {
+    top: 8px;
+    left: 8px;
+    font-size: 10px;
+    padding: 3px 6px;
+  }
+  
+  .netflix-movie-card__bottom-overlay {
+    padding: 12px 8px 8px 8px;
+  }
+  
+  .netflix-movie-card__play-btn {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .netflix-movie-card__play-btn svg {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .netflix-movie-card {
+    width: 160px;
+    height: 272px;
+  }
+  
+  .netflix-movie-card__title {
+    font-size: 13px;
+  }
+  
+  .netflix-movie-card__description {
+    font-size: 10px;
+    -webkit-line-clamp: 2;
+  }
+  
+  .netflix-movie-card__bottom-info {
+    gap: 6px;
+  }
+  
+  .netflix-movie-card__rating,
+  .netflix-movie-card__quality {
+    font-size: 10px;
+    padding: 3px 6px;
+  }
+}
+
+/* ================================
+   ACCESSIBILITY
+   ================================ */
+.netflix-movie-card__link:focus {
+  outline: 2px solid var(--gold-primary);
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+.netflix-movie-card__link:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ================================
+   RTL SUPPORT
+   ================================ */
+[dir="rtl"] .netflix-movie-card__year-badge {
+  left: auto;
+  right: 12px;
+}
+
+[dir="rtl"] .netflix-movie-card__bottom-info {
+  direction: rtl;
+}
+
+/* ================================
+   LOADING STATES
+   ================================ */
+.netflix-movie-card--loading {
+  pointer-events: none;
+}
+
+.netflix-movie-card--loading .netflix-movie-card__bottom-overlay {
+  opacity: 0.5;
+}

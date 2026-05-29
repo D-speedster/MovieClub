@@ -1,0 +1,84 @@
+/* Redesigned Home Page - 30nama Style */
+.home-page {
+  min-height: 100vh;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+/* Content wrapper for dark theme sections */
+.home-content-wrapper {
+  background-color: var(--bg-main);
+}
+
+.home-content {
+  padding: var(--space-8) 0;
+  background-color: var(--bg-main);
+}
+
+/* Error State */
+.error-state {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-16) 0;
+  background-color: var(--bg-main);
+}
+
+.error-state__content {
+  text-align: center;
+  max-width: 500px;
+}
+
+.error-state__content svg {
+  color: var(--gold-primary);
+  margin-bottom: var(--space-6);
+}
+
+.error-state__content h2 {
+  font-size: var(--text-3xl);
+  font-weight: var(--font-bold);
+  color: var(--text-primary);
+  margin: 0 0 var(--space-4) 0;
+}
+
+.error-state__content p {
+  font-size: var(--text-lg);
+  color: var(--text-secondary);
+  margin: 0 0 var(--space-8) 0;
+  line-height: var(--leading-relaxed);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .home-content {
+    padding: var(--space-6) 0;
+  }
+  
+  .error-state {
+    min-height: 50vh;
+    padding: var(--space-12) 0;
+  }
+  
+  .error-state__content h2 {
+    font-size: var(--text-2xl);
+  }
+  
+  .error-state__content p {
+    font-size: var(--text-base);
+  }
+}
+
+@media (max-width: 480px) {
+  .home-content {
+    padding: var(--space-4) 0;
+  }
+  
+  .error-state {
+    padding: var(--space-8) 0;
+  }
+  
+  .error-state__content {
+    padding: 0 var(--space-4);
+  }
+}

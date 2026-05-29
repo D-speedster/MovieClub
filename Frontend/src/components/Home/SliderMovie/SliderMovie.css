@@ -1,0 +1,99 @@
+.swiper-slide :hover .item_Slider_story p {
+    
+    opacity: 1;
+  
+}
+
+.swiper-slide :hover .item_Slider_img img{
+    opacity: 0.5;
+}
+
+.swiper-slide {
+    background-color: inherit !important;
+}
+
+.item_Slider {
+    position: relative;
+}
+
+.item_Slider_img img {
+    position: relative;
+    height: 330px !important;
+    padding: 0px !important;
+    border-radius: 15px;
+    transition: all 1s;
+}
+
+.item_Slider_story {
+    position: absolute;
+    top: 0;
+    /* background-color: #3e1616; */
+    min-height: 100%;
+    padding-right: 10px;
+    padding-left: 10px;
+    word-break: keep-all;
+    border-radius: 15px;
+    transition: all 1s;
+
+}
+
+.item_Slider_story p {
+    color: var(--text-primary);
+    font-size: 17px;
+    font-weight: 400;
+    opacity: 0;
+    transition: all 1s;
+    padding-top: 15px;
+}
+.item_Slider_name{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-radius: 11px;
+    width: auto !important;
+    padding: 10px 10px 10px 10px;
+    word-break: keep-all;
+    margin: 0 auto;
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-default);
+    color: var(--text-primary) !important;
+    overflow: hidden;
+    font-size: 14px;
+    inline-size: 100% !important;
+    box-shadow: 0 0 10px var(--shadow-medium);
+}
+
+.item_Slider_name h5 {
+    font-size: 1rem;
+    font-weight: 700;
+    font-variation-settings: "wght" 600;
+    color: var(--gold-primary);
+}
+.item_Slider_Rate{
+    position: absolute;
+    height: 35px !important;
+    width: 35px !important;
+    border-radius: 50%;
+    background-color: var(--gold-primary);
+    border: 0.5px solid var(--gold-primary);
+    color: var(--bg-main);
+    top: 5px;
+    left: 5px;
+    padding-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.item_Slider_Rate:hover {
+    background-color: var(--gold-soft);
+    border-color: var(--gold-soft);
+}
+
+.item_Slider_Rate h6{
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bg-main);
+}

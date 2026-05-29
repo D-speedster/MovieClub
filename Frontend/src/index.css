@@ -1,0 +1,142 @@
+/* IRANSans Font Family - Persian/Farsi Optimized */
+
+@font-face {
+  font-family: 'IRANSans';
+  src: url('/fonts/IRANSans/WebFonts/fonts/woff2/IRANSansWeb_UltraLight.woff2') format('woff2'),
+       url('/fonts/IRANSans/WebFonts/fonts/woff/IRANSansWeb_UltraLight.woff') format('woff'),
+       url('/fonts/IRANSans/WebFonts/fonts/eot/IRANSansWeb_UltraLight.eot') format('eot'),
+       url('/fonts/IRANSans/WebFonts/fonts/ttf/IRANSansWeb_UltraLight.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'IRANSans';
+  src: url('/fonts/IRANSans/WebFonts/fonts/woff2/IRANSansWeb_Light.woff2') format('woff2'),
+       url('/fonts/IRANSans/WebFonts/fonts/woff/IRANSansWeb_Light.woff') format('woff'),
+       url('/fonts/IRANSans/WebFonts/fonts/eot/IRANSansWeb_Light.eot') format('eot'),
+       url('/fonts/IRANSans/WebFonts/fonts/ttf/IRANSansWeb_Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'IRANSans';
+  src: url('/fonts/IRANSans/WebFonts/fonts/woff2/IRANSansWeb.woff2') format('woff2'),
+       url('/fonts/IRANSans/WebFonts/fonts/woff/IRANSansWeb.woff') format('woff'),
+       url('/fonts/IRANSans/WebFonts/fonts/eot/IRANSansWeb.eot') format('eot'),
+       url('/fonts/IRANSans/WebFonts/fonts/ttf/IRANSansWeb.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'IRANSans';
+  src: url('/fonts/IRANSans/WebFonts/fonts/woff2/IRANSansWeb_Medium.woff2') format('woff2'),
+       url('/fonts/IRANSans/WebFonts/fonts/woff/IRANSansWeb_Medium.woff') format('woff'),
+       url('/fonts/IRANSans/WebFonts/fonts/eot/IRANSansWeb_Medium.eot') format('eot'),
+       url('/fonts/IRANSans/WebFonts/fonts/ttf/IRANSansWeb_Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'IRANSans';
+  src: url('/fonts/IRANSans/WebFonts/fonts/woff2/IRANSansWeb_Bold.woff2') format('woff2'),
+       url('/fonts/IRANSans/WebFonts/fonts/woff/IRANSansWeb_Bold.woff') format('woff'),
+       url('/fonts/IRANSans/WebFonts/fonts/eot/IRANSansWeb_Bold.eot') format('eot'),
+       url('/fonts/IRANSans/WebFonts/fonts/ttf/IRANSansWeb_Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'IRANSans';
+  src: url('/fonts/IRANSans/WebFonts/fonts/woff2/IRANSansWeb_Black.woff2') format('woff2'),
+       url('/fonts/IRANSans/WebFonts/fonts/woff/IRANSansWeb_Black.woff') format('woff'),
+       url('/fonts/IRANSans/WebFonts/fonts/eot/IRANSansWeb_Black.eot') format('eot'),
+       url('/fonts/IRANSans/WebFonts/fonts/ttf/IRANSansWeb_Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Import design system */
+@import './styles/design-system.css';
+
+body {
+  margin: 0;
+  font-family: 'IRANSans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  line-height: 1.6;
+  direction: rtl;
+  text-align: right;
+}
+
+/* Global font enforcement for Persian content */
+* {
+  font-family: 'IRANSans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+}
+
+/* Ensure all navigation elements use IRANSans */
+nav, .nav, .navigation, .menu,
+.header__nav-link, .hero-header__nav-link,
+.nav-link, .menu-item {
+  font-family: 'IRANSans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+}
+
+/* Ensure all text elements use IRANSans */
+h1, h2, h3, h4, h5, h6,
+p, span, div, a, button,
+.text, .title, .subtitle {
+  font-family: 'IRANSans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+}
+
+/* Global dark theme styles */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: var(--bg-main);
+}
+
+/* Scrollbar styling for dark theme */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-default);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-primary);
+}
+
+/* Selection styling */
+::selection {
+  background-color: var(--gold-primary);
+  color: var(--bg-main);
+}
+
+/* Import accessibility styles */
+@import './utils/accessibility.css';

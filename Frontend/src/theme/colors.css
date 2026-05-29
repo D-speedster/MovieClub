@@ -1,0 +1,119 @@
+/* 🎬 Dark Theme Color Variables */
+:root {
+  /* 1️⃣ Background Colors */
+  --bg-main: #121212;
+  --bg-surface: #1A1A1A;
+  --bg-hover: #222222;
+  
+  /* 2️⃣ Gold Colors (Highlight - فقط اطلاعاتی) */
+  --gold-primary: #C9A24D;
+  --gold-soft: #D6B66A;
+  
+  /* 3️⃣ Text Colors (یکدست) */
+  --text-primary: #E0E0E0;
+  --text-secondary: #B5B5B5;
+  --text-muted: #8A8A8A;
+  
+  /* 4️⃣ CTA Colors (مهم) */
+  --cta-primary: #B84A2B;
+  --cta-hover: #D05A3A;
+  --cta-text: #FFFFFF;
+  
+  /* 5️⃣ Border & Divider Colors */
+  --border-default: #2A2A2A;
+  --border-focus: #C9A24D;
+  
+  /* Additional utility colors */
+  --shadow-light: rgba(0, 0, 0, 0.2);
+  --shadow-medium: rgba(0, 0, 0, 0.4);
+  --shadow-heavy: rgba(0, 0, 0, 0.6);
+  
+  /* Overlay colors */
+  --overlay-light: rgba(18, 18, 18, 0.8);
+  --overlay-heavy: rgba(18, 18, 18, 0.95);
+}
+
+/* Theme utility classes */
+.bg-main { background-color: var(--bg-main); }
+.bg-surface { background-color: var(--bg-surface); }
+.bg-hover { background-color: var(--bg-hover); }
+
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-muted { color: var(--text-muted); }
+.text-gold { color: var(--gold-primary); }
+.text-gold-soft { color: var(--gold-soft); }
+
+.border-default { border-color: var(--border-default); }
+.border-focus { border-color: var(--border-focus); }
+
+/* CTA Button Styles */
+.btn-cta {
+  background-color: var(--cta-primary);
+  color: var(--cta-text);
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-cta:hover {
+  background-color: var(--cta-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px var(--shadow-medium);
+}
+
+.btn-cta:active {
+  transform: translateY(0);
+}
+
+/* Gold highlight elements (عنوان فیلم، امتیاز، ژانر) */
+.movie-title {
+  color: var(--gold-primary);
+  font-weight: 600;
+}
+
+.movie-rating {
+  color: var(--gold-soft);
+}
+
+.movie-genre {
+  color: var(--gold-primary);
+  font-size: 0.9em;
+}
+
+/* Card styles */
+.card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  background-color: var(--bg-hover);
+  border-color: var(--border-focus);
+  box-shadow: 0 8px 24px var(--shadow-medium);
+}
+
+/* Input styles */
+.input {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  color: var(--text-primary);
+  padding: 10px 12px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 2px rgba(201, 162, 77, 0.2);
+}
+
+.input::placeholder {
+  color: var(--text-muted);
+}
