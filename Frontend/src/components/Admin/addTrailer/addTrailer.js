@@ -1,249 +1,259 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import {
+    Box, Typography, Button, Stack, Grid, Card, CardMedia,
+    CardContent, CardActions, IconButton, Dialog, DialogTitle,
+    DialogContent, DialogActions, TextField, Chip, Tooltip,
+    CircularProgress, Alert, InputAdornment
+} from '@mui/material';
+import {
+    Add as AddIcon, Delete as DeleteIcon, PlayCircle as PlayIcon,
+    Search as SearchIcon, Movie as MovieIcon, Close as CloseIcon,
+    Link as LinkIcon, Title as TitleIcon
+} from '@mui/icons-material';
+import ApiRequest from '../../../Services/Axios/config';
+import Swal from 'sweetalert2';
+import Logger from '../../../utils/logger';
+import { getPosterUrl } from '../../../utils/posterUrl';
 import './addTrailer.css';
-import { Card, Col, Container, Row, Button, Form, Modal } from 'react-bootstrap';
-import { BsPlusCircle } from 'react-icons/bs';
-import Title_Admin from '../TitleAdmin/TitleAdmin';
 
+const sx = {
+    field: {
+        '& .MuiOutlinedInput-root': {
+            color: 'var(--adm-text)',
+            backgroundColor: 'var(--adm-surface-2)',
+            borderRadius: '8px',
+            '& fieldset': { borderColor: 'var(--adm-border)' },
+            '&:hover fieldset': { borderColor: 'rgba(124,58,237,0.4)' },
+            '&.Mui-focused fieldset': { borderColor: 'var(--adm-accent)' },
+        },
+        '& .MuiInputLabel-root': { color: 'var(--adm-text-3)' },
+        '& .MuiInputLabel-root.Mui-focused': { color: 'var(--adm-accent)' },
+    }
+};
+
+const emptyForm = { title: '', youtubeUrl: '', contentId: '' };
 
 export default function AddTrailer() {
-    const [show, setShow] = useState(false);
+    const [trailers, setTrailers] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [open, setOpen] = useState(false);
+    const [form, setForm] = useState(emptyForm);
+    const [saving, setSaving] = useState(false);
+    const [search, setSearch] = useState('');
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    useEffect(() => { fetchTrailers(); }, []);
+
+    const fetchTrailers = async () => {
+        try {
+            setLoading(true);
+            const res = await ApiRequest.get('/content/trailers');
+            setTrailers(Array.isArray(res.data) ? res.data : []);
+        } catch (err) {
+            Logger.error('Error fetching trailers:', err);
+            setTrailers([]);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleDelete = async (id, title) => {
+        const result = await Swal.fire({
+            title: `حذف "${title}"؟`,
+            text: 'این عملیات قابل بازگشت نیست',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'بله، حذف شود',
+            cancelButtonText: 'انصراف',
+            confirmButtonColor: '#ef4444',
+            background: 'var(--adm-surface)',
+            color: 'var(--adm-text)',
+        });
+        if (!result.isConfirmed) return;
+        try {
+            await ApiRequest.delete(`/content/${id}`);
+            setTrailers(prev => prev.filter(t => t._id !== id));
+            Swal.fire({ icon: 'success', title: 'حذف شد', timer: 1500, showConfirmButton: false, background: 'var(--adm-surface)', color: 'var(--adm-text)' });
+        } catch (err) {
+            Swal.fire({ icon: 'error', title: 'خطا در حذف', background: 'var(--adm-surface)', color: 'var(--adm-text)' });
+        }
+    };
+
+    const handleSave = async () => {
+        if (!form.title.trim()) return;
+        try {
+            setSaving(true);
+            const formData = new FormData();
+            formData.append('title', form.title);
+            formData.append('type', 'movie');
+            formData.append('description', form.youtubeUrl);
+            await ApiRequest.post('/content/new-content', formData, {
+                headers: { 'Content-Type': 'multipart/form-data' }
+            });
+            Swal.fire({ icon: 'success', title: 'تریلر اضافه شد', timer: 1500, showConfirmButton: false, background: 'var(--adm-surface)', color: 'var(--adm-text)' });
+            setOpen(false);
+            setForm(emptyForm);
+            fetchTrailers();
+        } catch (err) {
+            Swal.fire({ icon: 'error', title: 'خطا در ذخیره', background: 'var(--adm-surface)', color: 'var(--adm-text)' });
+        } finally {
+            setSaving(false);
+        }
+    };
+
+    const getYoutubeThumb = (url) => {
+        if (!url) return null;
+        const match = url.match(/(?:v=|youtu\.be\/)([^&\s]+)/);
+        return match ? `https://img.youtube.com/vi/${match[1]}/mqdefault.jpg` : null;
+    };
+
+    const filtered = trailers.filter(t =>
+        (t.title || '').toLowerCase().includes(search.toLowerCase())
+    );
+
     return (
-        <div>
-            <>
-               
+        <Box dir="rtl" sx={{ p: 0 }}>
+            {/* Header */}
+            <Stack direction="row" alignItems="center" justifyContent="space-between" mb={3} flexWrap="wrap" gap={2}>
+                <Stack direction="row" alignItems="center" spacing={1.5}>
+                    <Box className="trailer-icon-wrap">
+                        <PlayIcon sx={{ fontSize: 18, color: 'var(--adm-accent)' }} />
+                    </Box>
+                    <Box>
+                        <Typography variant="h6" fontWeight={700} sx={{ color: 'var(--adm-text)', fontSize: 16 }}>
+                            مدیریت تریلرها
+                        </Typography>
+                        <Typography variant="caption" sx={{ color: 'var(--adm-text-3)' }}>
+                            {trailers.length} تریلر موجود
+                        </Typography>
+                    </Box>
+                </Stack>
 
-                <Modal style={{direction : 'ltr'}} show={show} onHide={handleClose}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Trailer</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <Form>
-                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                <Form.Label>Email address</Form.Label>
-                                <Form.Control
-                                    type="email"
-                                    placeholder="name@example.com"
-                                    autoFocus
-                                />
-                            </Form.Group>
-                            <Form.Group
-                                className="mb-3"
-                                controlId="exampleForm.ControlTextarea1"
-                            >
-                                <Form.Label>Example textarea</Form.Label>
-                                <Form.Control as="textarea" rows={3} />
-                            </Form.Group>
-                        </Form>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={handleClose}>
-                            Close
-                        </Button>
-                        <Button variant="primary" onClick={handleClose}>
-                            Save Changes
-                        </Button>
-                    </Modal.Footer>
-                </Modal>
-            </>
-            <Title_Admin Title={'افزودن تریلر جدید : '}></Title_Admin>
-            <div className='Add_New_Trailer'>
-                <Button onClick={handleShow}>
-                    <BsPlusCircle />
-                    تریلر جدید
-                </Button>
-            </div>
-            <Title_Admin Title={'تریلر های اخیر : '}></Title_Admin>
-            <div className='Last_trailer_added'>
-                <Container>
-                    <Row className='justify-content-between mb-5'>
-                        <Col lg={3} md={3} sm={6} xs={6}>
-                            <Card className='text-center bg-secondary ' style={{ border: 'none' }}>
-                                <Card.Header>
-                                    <Card.Img style={{ height: '150px' }} src='https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/en_US/games/switch/f/five-nights-at-freddys-switch/hero'></Card.Img>
-                                    <img src='' className='img-fluid'></img>
-                                </Card.Header>
-                                <Card.Body>Five Nights at Freddy's
-                                </Card.Body>
-                                <Card.Footer>
-                                    <span>October 27, 2023</span>
-                                    <br />                                    <br />
+                <Stack direction="row" spacing={1.5} alignItems="center">
+                    <TextField
+                        size="small" placeholder="جستجو..."
+                        value={search} onChange={e => setSearch(e.target.value)}
+                        InputProps={{
+                            startAdornment: <InputAdornment position="start"><SearchIcon sx={{ fontSize: 16, color: 'var(--adm-text-3)' }} /></InputAdornment>
+                        }}
+                        sx={{ ...sx.field, width: 200 }}
+                    />
+                    <Button
+                        variant="contained" startIcon={<AddIcon />}
+                        onClick={() => setOpen(true)}
+                        sx={{ bgcolor: 'var(--adm-accent)', '&:hover': { bgcolor: 'var(--adm-accent-hover)' }, borderRadius: '8px', textTransform: 'none', fontWeight: 600, fontSize: 13 }}
+                    >
+                        تریلر جدید
+                    </Button>
+                </Stack>
+            </Stack>
 
-                                    <div className='d-flex justify-content-between'>
-                                        <span style={{ color: 'red', cursor: 'pointer' }}>DELETE</span>
-                                        <span style={{ color: 'green', cursor: 'pointer' }}>Edit</span>
+            {/* Content */}
+            {loading ? (
+                <Box display="flex" justifyContent="center" py={8}>
+                    <CircularProgress sx={{ color: 'var(--adm-accent)' }} />
+                </Box>
+            ) : filtered.length === 0 ? (
+                <Box className="trailer-empty">
+                    <PlayIcon sx={{ fontSize: 48, color: 'var(--adm-text-3)', mb: 1 }} />
+                    <Typography sx={{ color: 'var(--adm-text-3)', fontSize: 14 }}>
+                        {search ? 'نتیجه‌ای یافت نشد' : 'هنوز تریلری اضافه نشده'}
+                    </Typography>
+                </Box>
+            ) : (
+                <Grid container spacing={2}>
+                    {filtered.map((trailer) => {
+                        const thumb = getYoutubeThumb(trailer.description) || getPosterUrl(trailer.poster);
+                        const title = trailer.title || 'بدون عنوان';
+                        const date = trailer.createdAt ? new Date(trailer.createdAt).toLocaleDateString('fa-IR') : '—';
 
-                                    </div>
+                        return (
+                            <Grid item xs={12} sm={6} md={4} lg={3} key={trailer._id}>
+                                <Card className="trailer-card">
+                                    <Box className="trailer-thumb-wrap">
+                                        {thumb ? (
+                                            <CardMedia component="img" image={thumb} alt={title} className="trailer-thumb" />
+                                        ) : (
+                                            <Box className="trailer-thumb-placeholder">
+                                                <MovieIcon sx={{ fontSize: 36, color: 'var(--adm-text-3)' }} />
+                                            </Box>
+                                        )}
+                                        <Box className="trailer-play-overlay">
+                                            <PlayIcon sx={{ fontSize: 40, color: 'white' }} />
+                                        </Box>
+                                    </Box>
 
-                                </Card.Footer>
-                            </Card>
+                                    <CardContent sx={{ p: '12px 14px 8px', bgcolor: 'var(--adm-surface)' }}>
+                                        <Typography fontWeight={600} sx={{ color: 'var(--adm-text)', fontSize: 13, mb: 0.5 }} noWrap>
+                                            {title}
+                                        </Typography>
+                                        <Typography sx={{ color: 'var(--adm-text-3)', fontSize: 11 }}>
+                                            {date}
+                                        </Typography>
+                                    </CardContent>
 
-                        </Col>
-                        <Col lg={3} md={3} sm={6} xs={6}>
-                            <Card className='text-center bg-secondary ' style={{ border: 'none' }}>
-                                <Card.Header>
-                                    <Card.Img style={{ height: '150px' }} src='https://www.oppenheimermovie.com/meta/meta-v3-en_US.jpg'></Card.Img>
-                                    <img src='' className='img-fluid'></img>
-                                </Card.Header>
-                                <Card.Body>Oppenheimer
+                                    <CardActions sx={{ p: '0 14px 12px', bgcolor: 'var(--adm-surface)', justifyContent: 'space-between' }}>
+                                        <Chip label="تریلر" size="small"
+                                            sx={{ bgcolor: 'var(--adm-accent-subtle)', color: 'var(--adm-accent)', fontSize: 11, height: 22, border: '1px solid rgba(124,58,237,0.2)' }}
+                                        />
+                                        <Tooltip title="حذف">
+                                            <IconButton size="small" onClick={() => handleDelete(trailer._id, title)}
+                                                sx={{ color: 'var(--adm-text-3)', '&:hover': { color: 'var(--adm-red)', bgcolor: 'rgba(239,68,68,0.08)' } }}>
+                                                <DeleteIcon fontSize="small" />
+                                            </IconButton>
+                                        </Tooltip>
+                                    </CardActions>
+                                </Card>
+                            </Grid>
+                        );
+                    })}
+                </Grid>
+            )}
 
-                                </Card.Body>
-                                <Card.Footer>
-                                    <span>October 27, 2023</span>
-                                    <br />
-                                    <br />
+            {/* Add Dialog */}
+            <Dialog open={open} onClose={() => setOpen(false)} maxWidth="sm" fullWidth
+                PaperProps={{ sx: { bgcolor: 'var(--adm-surface)', border: '1px solid var(--adm-border)', borderRadius: '12px', color: 'var(--adm-text)' } }}
+            >
+                <DialogTitle sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', pb: 1, borderBottom: '1px solid var(--adm-border)' }}>
+                    <Typography fontWeight={700} fontSize={15}>افزودن تریلر جدید</Typography>
+                    <IconButton size="small" onClick={() => setOpen(false)} sx={{ color: 'var(--adm-text-3)' }}>
+                        <CloseIcon fontSize="small" />
+                    </IconButton>
+                </DialogTitle>
 
-                                    <div className='d-flex justify-content-between'>
-                                        <span style={{ color: 'red', cursor: 'pointer' }}>DELETE</span>
-                                        <span style={{ color: 'green', cursor: 'pointer' }}>Edit</span>
+                <DialogContent sx={{ pt: 2.5, pb: 1 }}>
+                    <Stack spacing={2.5} mt={0.5}>
+                        <TextField fullWidth label="عنوان تریلر *" value={form.title}
+                            onChange={e => setForm(p => ({ ...p, title: e.target.value }))}
+                            InputProps={{ startAdornment: <InputAdornment position="start"><TitleIcon sx={{ fontSize: 16, color: 'var(--adm-text-3)' }} /></InputAdornment> }}
+                            sx={sx.field}
+                        />
+                        <TextField fullWidth label="لینک یوتیوب" value={form.youtubeUrl}
+                            onChange={e => setForm(p => ({ ...p, youtubeUrl: e.target.value }))}
+                            placeholder="https://youtube.com/watch?v=..."
+                            InputProps={{ startAdornment: <InputAdornment position="start"><LinkIcon sx={{ fontSize: 16, color: 'var(--adm-text-3)' }} /></InputAdornment> }}
+                            sx={sx.field}
+                        />
+                        {form.youtubeUrl && getYoutubeThumb(form.youtubeUrl) && (
+                            <Box sx={{ borderRadius: '8px', overflow: 'hidden', border: '1px solid var(--adm-border)' }}>
+                                <img src={getYoutubeThumb(form.youtubeUrl)} alt="preview" style={{ width: '100%', display: 'block' }} />
+                            </Box>
+                        )}
+                    </Stack>
+                </DialogContent>
 
-                                    </div>
-
-                                </Card.Footer>
-                            </Card>
-
-                        </Col>
-                        <Col lg={3} md={3} sm={6} xs={6}>
-                            <Card className='text-center bg-secondary ' style={{ border: 'none' }}>
-                                <Card.Header>
-                                    <Card.Img style={{ height: '150px' }} src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5FKnVx5_a4rzANybVI2efQrowGfoJj15waQ&usqp=CAU'></Card.Img>
-                                    <img src='' className='img-fluid'></img>
-                                </Card.Header>
-                                <Card.Body>The Flash
-                                </Card.Body>
-                                <Card.Footer>
-                                    <span>October 27, 2023</span>
-                                    <br />                                    <br />
-
-                                    <div className='d-flex justify-content-between'>
-                                        <span style={{ color: 'red', cursor: 'pointer' }}>DELETE</span>
-                                        <span style={{ color: 'green', cursor: 'pointer' }}>Edit</span>
-
-                                    </div>
-
-                                </Card.Footer>
-                            </Card>
-
-                        </Col>
-                        <Col lg={3} md={3} sm={6} xs={6}>
-                            <Card className='text-center bg-secondary ' style={{ border: 'none' }}>
-                                <Card.Header>
-                                    <Card.Img style={{ height: '150px' }} src='https://cdn.zoomg.ir/2021/11/trolls-world-tour-4k-2020.jpg'></Card.Img>
-                                    <img src='' className='img-fluid'></img>
-                                </Card.Header>
-                                <Card.Body>Trols 3
-                                </Card.Body>
-                                <Card.Footer>
-                                    <span>October 27, 2023</span>
-                                    <br />
-                                    <br />
-
-                                    <div className='d-flex justify-content-between'>
-                                        <span style={{ color: 'red', cursor: 'pointer' }}>DELETE</span>
-                                        <span style={{ color: 'green', cursor: 'pointer' }}>Edit</span>
-
-                                    </div>
-
-                                </Card.Footer>
-                            </Card>
-
-                        </Col>
-                        <Col lg={3} md={3} sm={6} xs={6}>
-                            <Card className='text-center bg-secondary ' style={{ border: 'none' }}>
-                                <Card.Header>
-                                    <Card.Img style={{ height: '150px' }} src='https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/en_US/games/switch/f/five-nights-at-freddys-switch/hero'></Card.Img>
-                                    <img src='' className='img-fluid'></img>
-                                </Card.Header>
-                                <Card.Body>Five Nights at Freddy's
-                                </Card.Body>
-                                <Card.Footer>
-                                    <span>October 27, 2023</span>
-                                    <br />                                    <br />
-
-                                    <div className='d-flex justify-content-between'>
-                                        <span style={{ color: 'red', cursor: 'pointer' }}>DELETE</span>
-                                        <span style={{ color: 'green', cursor: 'pointer' }}>Edit</span>
-
-                                    </div>
-
-                                </Card.Footer>
-                            </Card>
-
-                        </Col>
-                        <Col lg={3} md={3} sm={6} xs={6}>
-                            <Card className='text-center bg-secondary ' style={{ border: 'none' }}>
-                                <Card.Header>
-                                    <Card.Img style={{ height: '150px' }} src='https://www.oppenheimermovie.com/meta/meta-v3-en_US.jpg'></Card.Img>
-                                    <img src='' className='img-fluid'></img>
-                                </Card.Header>
-                                <Card.Body>Oppenheimer
-
-                                </Card.Body>
-                                <Card.Footer>
-                                    <span>October 27, 2023</span>
-                                    <br />
-                                    <br />
-
-                                    <div className='d-flex justify-content-between'>
-                                        <span style={{ color: 'red', cursor: 'pointer' }}>DELETE</span>
-                                        <span style={{ color: 'green', cursor: 'pointer' }}>Edit</span>
-
-                                    </div>
-
-                                </Card.Footer>
-                            </Card>
-
-                        </Col>
-                        <Col lg={3} md={3} sm={6} xs={6}>
-                            <Card className='text-center bg-secondary ' style={{ border: 'none' }}>
-                                <Card.Header>
-                                    <Card.Img style={{ height: '150px' }} src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5FKnVx5_a4rzANybVI2efQrowGfoJj15waQ&usqp=CAU'></Card.Img>
-                                    <img src='' className='img-fluid'></img>
-                                </Card.Header>
-                                <Card.Body>The Flash
-                                </Card.Body>
-                                <Card.Footer>
-                                    <span>October 27, 2023</span>
-                                    <br />                                    <br />
-
-                                    <div className='d-flex justify-content-between'>
-                                        <span style={{ color: 'red', cursor: 'pointer' }}>DELETE</span>
-                                        <span style={{ color: 'green', cursor: 'pointer' }}>Edit</span>
-
-                                    </div>
-
-                                </Card.Footer>
-                            </Card>
-
-                        </Col>
-                        <Col lg={3} md={3} sm={6} xs={6}>
-                            <Card className='text-center bg-secondary ' style={{ border: 'none' }}>
-                                <Card.Header>
-                                    <Card.Img style={{ height: '150px' }} src='https://cdn.zoomg.ir/2021/11/trolls-world-tour-4k-2020.jpg'></Card.Img>
-                                    <img src='' className='img-fluid'></img>
-                                </Card.Header>
-                                <Card.Body>Trols 3
-                                </Card.Body>
-                                <Card.Footer>
-                                    <span>October 27, 2023</span>
-                                    <br />
-                                    <br />
-
-                                    <div className='d-flex justify-content-between'>
-                                        <span style={{ color: 'red', cursor: 'pointer' }}>DELETE</span>
-                                        <span style={{ color: 'green', cursor: 'pointer' }}>Edit</span>
-
-                                    </div>
-
-                                </Card.Footer>
-                            </Card>
-
-                        </Col>
-                    </Row>
-                </Container>
-            </div>
-        </div>
-    )
+                <DialogActions sx={{ p: '12px 20px', borderTop: '1px solid var(--adm-border)', gap: 1 }}>
+                    <Button onClick={() => setOpen(false)}
+                        sx={{ color: 'var(--adm-text-2)', borderColor: 'var(--adm-border)', textTransform: 'none', fontSize: 13 }}
+                        variant="outlined">
+                        انصراف
+                    </Button>
+                    <Button onClick={handleSave} disabled={saving || !form.title.trim()} variant="contained"
+                        startIcon={saving ? <CircularProgress size={14} color="inherit" /> : <AddIcon />}
+                        sx={{ bgcolor: 'var(--adm-accent)', '&:hover': { bgcolor: 'var(--adm-accent-hover)' }, textTransform: 'none', fontSize: 13, fontWeight: 600 }}>
+                        {saving ? 'در حال ذخیره...' : 'افزودن'}
+                    </Button>
+                </DialogActions>
+            </Dialog>
+        </Box>
+    );
 }
