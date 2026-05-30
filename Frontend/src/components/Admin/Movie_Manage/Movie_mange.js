@@ -98,7 +98,7 @@ export default function Movie_mange() {
                                         <br />
                                         <Row>
                                             <Col style={{ marginTop: '-12px' }}>
-                                                <Link to={id}>
+                                                <Link to={`/admin/movies/${id}`}>
                                                     <AiOutlineEdit style={{ color: 'green', fontSize: '22px' }} />
                                                 </Link>
                                                 <BsTrash3 onClick={() => DeleteMovie(id)} style={{ color: 'red', fontSize: '22px' }} />

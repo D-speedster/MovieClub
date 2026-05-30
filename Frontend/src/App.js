@@ -60,6 +60,7 @@ const routes = [
       { path: '', element: <InfoAdmin /> },
       { path: 'add-movie', element: <AddMovie /> },
       { path: 'movies', element: <Movie_mange /> },
+      { path: 'movies/:userId', element: <EditMovie /> },
       { path: 'series', element: <Movie_Series /> },
       { path: 'users', element: <Users /> },
       { path: 'comments', element: <Comments /> },

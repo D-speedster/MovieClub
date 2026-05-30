@@ -2,6 +2,7 @@ const express = require('express');
 const connectDB = require('./utils/db');
 const AuthPage = require('./router/Auth')
 const contentPage = require('./router/Content');
+const trailerPage = require('./router/Trailer');
 var session = require('express-session')
 const multer = require('multer');
 const cookieParser = require('cookie-parser');
@@ -52,6 +53,7 @@ app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 app.use('/auth', AuthPage)
 app.use('/content', upload.single('poster'), contentPage)
+app.use('/trailers', trailerPage)
 app.get('/', (req, res, next) => {
     res.send('hello from express')
 })
