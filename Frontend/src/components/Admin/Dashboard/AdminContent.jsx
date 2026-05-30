@@ -4,7 +4,6 @@ import AdminChart from './AdminChart';
 
 // Import existing admin components
 import AddMovie from '../addMovie/AddMovie';
-import AddSeries from '../addSeries/addSeries';
 import AddTrailer from '../addTrailer/addTrailer';
 import Users from '../Users/Users';
 import MovieManage from '../Movie_Manage/Movie_mange';
@@ -40,9 +39,6 @@ const AdminContent = ({ activeSection, stats }) => {
       
       case 'add-movie':
         return <AddMovie />;
-        
-      case 'add-series':
-        return <AddSeries />;
         
       case 'trailers':
         return <AddTrailer />;

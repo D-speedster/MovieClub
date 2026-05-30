@@ -17,7 +17,6 @@ const ThemeExample = lazy(() => import('./components/ThemeExample/ThemeExample')
 
 // Admin components
 const AddMovie = lazy(() => import('./components/Admin/addMovie/AddMovie'));
-const AddSeries = lazy(() => import('./components/Admin/addSeries/addSeries'));
 const AddTrailer = lazy(() => import('./components/Admin/addTrailer/addTrailer'));
 const Users = lazy(() => import('./components/Admin/Users/Users'));
 const Movie_mange = lazy(() => import('./components/Admin/Movie_Manage/Movie_mange'));
@@ -60,7 +59,6 @@ const routes = [
     children: [
       { path: '', element: <InfoAdmin /> },
       { path: 'add-movie', element: <AddMovie /> },
-      { path: 'add-series', element: <AddSeries /> },
       { path: 'movies', element: <Movie_mange /> },
       { path: 'series', element: <Movie_Series /> },
       { path: 'users', element: <Users /> },
@@ -74,7 +72,6 @@ const routes = [
       { path: 'reports', element: <div className="text-center text-primary">گزارش‌ها</div> },
       // Legacy routes for backward compatibility
       { path: 'addMovie', element: <AddMovie /> },
-      { path: 'addSerie', element: <AddSeries /> },
       { path: 'addTrailer', element: <AddTrailer /> },
       { path: 'addNews', element: <News /> },
       { path: 'User-Management', element: <Users /> },

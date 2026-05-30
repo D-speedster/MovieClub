@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { 
   FiHome, 
   FiFilm, 
-  FiTv, 
   FiPlay, 
   FiFolder,
   FiUsers, 
@@ -42,9 +41,8 @@ const AdminSidebar = ({ activeSection, onSectionChange }) => {
       icon: FiFolder,
       items: [
         { id: 'movies', label: 'مدیریت فیلم‌ها', icon: FiFilm },
-        { id: 'series', label: 'مدیریت سریال‌ها', icon: FiTv },
-        { id: 'add-movie', label: 'افزودن فیلم', icon: FiFilm },
-        { id: 'add-series', label: 'افزودن سریال', icon: FiTv },
+        { id: 'series', label: 'مدیریت سریال‌ها', icon: FiFilm },
+        { id: 'add-movie', label: 'افزودن محتوا', icon: FiFilm },
         { id: 'trailers', label: 'تریلرها', icon: FiPlay },
         { id: 'collections', label: 'کالکشن‌ها', icon: FiFolder }
       ]

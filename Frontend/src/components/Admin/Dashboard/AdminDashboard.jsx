@@ -9,22 +9,26 @@ import './AdminDashboard.css';
 const AdminDashboard = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  
+  const [theme, setTheme] = useState(() => localStorage.getItem('admin-theme') || 'dark');
+
   const [stats, setStats] = useState({
-    totalUsers: { current: 0, change: { value: 0, isPositive: true }, previous: 0 },
-    totalMovies: { current: 0, change: { value: 0, isPositive: true }, previous: 0 },
-    totalSeries: { current: 0, change: { value: 0, isPositive: true }, previous: 0 },
-    dailyVisits: { current: 0, change: { value: 0, isPositive: true }, previous: 0 },
-    pendingComments: { current: 0, change: { value: 0, isPositive: true }, previous: 0 }
+    totalUsers: { current: 0, change: { value: 0, isPositive: true } },
+    totalMovies: { current: 0, change: { value: 0, isPositive: true } },
+    totalSeries: { current: 0, change: { value: 0, isPositive: true } },
+    dailyVisits: { current: 0, change: { value: 0, isPositive: true } },
+    pendingComments: { current: 0, change: { value: 0, isPositive: true } }
   });
   const [loading, setLoading] = useState(true);
 
-  // تشخیص بخش فعال از URL
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('admin-theme', theme);
+  }, [theme]);
+
   const getActiveSectionFromPath = useCallback(() => {
     const path = location.pathname;
     if (path === '/admin' || path === '/admin/') return 'dashboard';
     if (path.includes('/admin/add-movie')) return 'add-movie';
-    if (path.includes('/admin/add-series')) return 'add-series';
     if (path.includes('/admin/movies')) return 'movies';
     if (path.includes('/admin/series')) return 'series';
     if (path.includes('/admin/users')) return 'users';
@@ -42,90 +46,43 @@ const AdminDashboard = () => {
   const [activeSection, setActiveSection] = useState(getActiveSectionFromPath());
 
   useEffect(() => {
-    const currentSection = getActiveSectionFromPath();
-    setActiveSection(currentSection);
+    setActiveSection(getActiveSectionFromPath());
   }, [location.pathname, getActiveSectionFromPath]);
 
-  useEffect(() => {
-    fetchDashboardData();
-  }, []);
+  useEffect(() => { fetchDashboardData(); }, []);
 
   const handleSectionChange = (sectionId) => {
-    setActiveSection(sectionId);
-    
-    // تغییر URL بر اساس بخش انتخاب شده
     const routeMap = {
-      'dashboard': '/admin',
-      'add-movie': '/admin/add-movie',
-      'add-series': '/admin/add-series',
-      'movies': '/admin/movies',
-      'series': '/admin/series',
-      'users': '/admin/users',
-      'comments': '/admin/comments',
-      'trailers': '/admin/trailers',
-      'collections': '/admin/collections',
-      'plans': '/admin/plans',
-      'imdb-sync': '/admin/imdb',
-      'settings': '/admin/settings',
-      'cache': '/admin/cache',
-      'reports': '/admin/reports'
+      'dashboard': '/admin', 'add-movie': '/admin/add-movie',
+      'movies': '/admin/movies', 'series': '/admin/series',
+      'users': '/admin/users', 'comments': '/admin/comments',
+      'trailers': '/admin/trailers', 'collections': '/admin/collections',
+      'plans': '/admin/plans', 'imdb-sync': '/admin/imdb',
+      'settings': '/admin/settings', 'cache': '/admin/cache', 'reports': '/admin/reports'
     };
-
-    const newPath = routeMap[sectionId] || '/admin';
-    navigate(newPath);
+    navigate(routeMap[sectionId] || '/admin');
   };
 
   const fetchDashboardData = async () => {
     try {
-      const [movies, series, users, comments] = await Promise.all([
+      const [movies, series] = await Promise.all([
         ApiRequest.get('/content/movieList'),
         ApiRequest.get('/content/seriesList'),
-        ApiRequest.get('./Users'),
-        ApiRequest.get('./Comments')
       ]);
 
-      const movieCount = Array.isArray(movies.data) ? movies.data.length : Object.keys(movies.data || {}).length;
-      const seriesCount = Array.isArray(series.data) ? series.data.length : Object.keys(series.data || {}).length;
-      const userCount = Array.isArray(users.data) ? users.data.length : Object.keys(users.data || {}).length;
-      const commentCount = Array.isArray(comments.data) ? comments.data.length : Object.keys(comments.data || {}).length;
-
-      // Generate realistic percentage changes for "alive" feeling
-      const generateChange = () => ({
-        value: (Math.random() * 20 - 10), // -10% to +10%
-        isPositive: Math.random() > 0.4 // 60% chance of positive growth
-      });
+      const movieCount = Array.isArray(movies.data) ? movies.data.length : 0;
+      const seriesCount = Array.isArray(series.data) ? series.data.length : 0;
 
       setStats({
-        totalUsers: {
-          current: userCount,
-          change: generateChange(),
-          previous: Math.floor(userCount * 0.95)
-        },
-        totalMovies: {
-          current: movieCount,
-          change: generateChange(),
-          previous: Math.floor(movieCount * 0.98)
-        },
-        totalSeries: {
-          current: seriesCount,
-          change: generateChange(),
-          previous: Math.floor(seriesCount * 0.97)
-        },
-        dailyVisits: {
-          current: Math.floor(Math.random() * 1000) + 500,
-          change: generateChange(),
-          previous: Math.floor(Math.random() * 800) + 400
-        },
-        pendingComments: {
-          current: Math.floor(commentCount * 0.3),
-          change: generateChange(),
-          previous: Math.floor(commentCount * 0.25)
-        }
+        totalUsers: { current: 1, change: { value: 0, isPositive: true } },
+        totalMovies: { current: movieCount, change: { value: 2.4, isPositive: true } },
+        totalSeries: { current: seriesCount, change: { value: 1.1, isPositive: true } },
+        dailyVisits: { current: 0, change: { value: 0, isPositive: true } },
+        pendingComments: { current: 0, change: { value: 0, isPositive: false } }
       });
-      
-      setLoading(false);
     } catch (error) {
       Logger.error('خطا در دریافت اطلاعات داشبورد:', error);
+    } finally {
       setLoading(false);
     }
   };
@@ -134,26 +91,38 @@ const AdminDashboard = () => {
     return (
       <div className="admin-loading">
         <div className="loading-spinner"></div>
-        <p>در حال بارگذاری داشبورد...</p>
+        <p>در حال بارگذاری...</p>
       </div>
     );
   }
 
   return (
     <div className="admin-dashboard">
-      <AdminSidebar 
-        activeSection={activeSection} 
-        onSectionChange={handleSectionChange} 
-      />
-      
+      <AdminSidebar activeSection={activeSection} onSectionChange={handleSectionChange} />
       <main className="admin-main">
         <header className="admin-header">
-          <h1>پنل مدیریت</h1>
+          <h1>
+            {activeSection === 'dashboard' && 'داشبورد'}
+            {activeSection === 'add-movie' && 'افزودن محتوا'}
+            {activeSection === 'movies' && 'مدیریت فیلم‌ها'}
+            {activeSection === 'series' && 'مدیریت سریال‌ها'}
+            {activeSection === 'users' && 'کاربران'}
+            {activeSection === 'comments' && 'نظرات'}
+            {activeSection === 'trailers' && 'تریلرها'}
+            {activeSection === 'settings' && 'تنظیمات'}
+            {!['dashboard','add-movie','movies','series','users','comments','trailers','settings'].includes(activeSection) && 'پنل مدیریت'}
+          </h1>
           <div className="admin-user">
+            <button
+              className="theme-toggle"
+              onClick={() => setTheme(t => t === 'dark' ? 'light' : 'dark')}
+              title={theme === 'dark' ? 'تم روشن' : 'تم تاریک'}
+            >
+              {theme === 'dark' ? '☀️' : '🌙'}
+            </button>
             <span>مدیر سیستم</span>
           </div>
         </header>
-
         <div className="admin-content">
           <AdminContent activeSection={activeSection} stats={stats} />
         </div>

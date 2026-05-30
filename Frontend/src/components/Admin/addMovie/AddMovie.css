@@ -2,7 +2,7 @@
     min-height: 100vh;
     background: #0a0a14;
     padding: 0;
-    font-family: 'IRANSans', sans-serif;
+    font-family: 'IRANSans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 /* Top Bar */
@@ -33,6 +33,7 @@
 /* Layout */
 .add-movie-layout {
     display: flex;
+    flex-direction: row-reverse;
     gap: 0;
     min-height: calc(100vh - 80px);
 }
@@ -41,7 +42,8 @@
 .add-movie-sidebar {
     width: 280px;
     min-width: 280px;
-    border-left: 1px solid rgba(255, 255, 255, 0.06);
+    border-right: 1px solid rgba(255, 255, 255, 0.06);
+    border-left: none;
     padding: 24px 20px;
     display: flex;
     flex-direction: column;
@@ -247,7 +249,7 @@
     .add-movie-sidebar {
         width: 100%;
         min-width: unset;
-        border-left: none;
+        border-right: none;
         border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     }
 
@@ -263,4 +265,17 @@
     .add-movie-topbar {
         padding: 14px 16px;
     }
+}
+
+/* Override MUI font to IRANSans */
+.add-movie-root *,
+.add-movie-root .MuiTypography-root,
+.add-movie-root .MuiInputBase-root,
+.add-movie-root .MuiInputLabel-root,
+.add-movie-root .MuiButton-root,
+.add-movie-root .MuiMenuItem-root,
+.add-movie-root .MuiChip-label,
+.add-movie-root .MuiAutocomplete-option,
+.add-movie-root .MuiSelect-select {
+    font-family: 'IRANSans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
 }

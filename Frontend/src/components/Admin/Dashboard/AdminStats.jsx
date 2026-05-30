@@ -1,28 +1,23 @@
 import React from 'react';
-import { FiUsers, FiFilm, FiTv, FiEye, FiMessageSquare, FiTrendingUp, FiTrendingDown } from 'react-icons/fi';
+import { FiUsers, FiFilm, FiEye, FiMessageSquare, FiTrendingUp, FiTrendingDown } from 'react-icons/fi';
 
 const AdminStats = ({ stats }) => {
   const statCards = [
     {
       id: 'users',
-      title: 'کل کاربران',
+      title: 'کاربران',
       value: stats.totalUsers.current,
       change: stats.totalUsers.change,
       icon: FiUsers,
       description: 'کاربران ثبت‌نام شده',
-      actionHint: 'مشاهده فعالیت کاربران'
     },
     {
       id: 'content',
       title: 'فیلم + سریال',
       value: stats.totalMovies.current + stats.totalSeries.current,
-      change: {
-        value: ((stats.totalMovies.change.value + stats.totalSeries.change.value) / 2),
-        isPositive: stats.totalMovies.change.isPositive && stats.totalSeries.change.isPositive
-      },
+      change: stats.totalMovies.change,
       icon: FiFilm,
-      description: `${stats.totalMovies.current} فیلم، ${stats.totalSeries.current} سریال`,
-      actionHint: 'افزودن محتوای جدید'
+      description: `${stats.totalMovies.current} فیلم · ${stats.totalSeries.current} سریال`,
     },
     {
       id: 'visits',
@@ -31,7 +26,6 @@ const AdminStats = ({ stats }) => {
       change: stats.dailyVisits.change,
       icon: FiEye,
       description: 'ترافیک امروز',
-      actionHint: 'مشاهده آمار تفصیلی'
     },
     {
       id: 'comments',
@@ -40,19 +34,12 @@ const AdminStats = ({ stats }) => {
       change: stats.pendingComments.change,
       icon: FiMessageSquare,
       description: 'نیاز به بررسی',
-      actionHint: 'بررسی و تایید نظرات',
       isAlert: stats.pendingComments.current > 10
     }
   ];
 
-  const formatNumber = (num) => {
-    return new Intl.NumberFormat('fa-IR').format(num);
-  };
-
-  const formatPercentage = (change) => {
-    const absValue = Math.abs(change.value).toFixed(1);
-    return `${change.isPositive ? '+' : '-'}${absValue}%`;
-  };
+  const fmt = (n) => new Intl.NumberFormat('fa-IR').format(n);
+  const fmtPct = (c) => `${c.isPositive ? '+' : '-'}${Math.abs(c.value).toFixed(1)}%`;
 
   return (
     <div className="admin-stats">
@@ -62,20 +49,14 @@ const AdminStats = ({ stats }) => {
             <h3>{card.title}</h3>
             <card.icon className="stat-icon" />
           </div>
-          
           <div className="stat-main">
-            <div className="stat-value">{formatNumber(card.value)}</div>
+            <div className="stat-value">{fmt(card.value)}</div>
             <div className={`stat-change ${card.change.isPositive ? 'stat-change--positive' : 'stat-change--negative'}`}>
               {card.change.isPositive ? <FiTrendingUp /> : <FiTrendingDown />}
-              <span>{formatPercentage(card.change)}</span>
+              <span>{fmtPct(card.change)}</span>
             </div>
           </div>
-          
           <div className="stat-description">{card.description}</div>
-          
-          {card.actionHint && (
-            <div className="stat-action-hint">{card.actionHint}</div>
-          )}
         </div>
       ))}
     </div>

@@ -1,7 +1,6 @@
 import React from 'react'
 import { Col, Container, Row } from 'react-bootstrap';
 import { AiFillSetting, AiOutlineComment, AiTwotoneHome } from 'react-icons/ai';
-import { BiCameraMovie } from 'react-icons/bi';
 import { BsFillCollectionPlayFill } from 'react-icons/bs';
 import { FaImdb, FaRegNewspaper } from 'react-icons/fa';
 import { HiUsers } from 'react-icons/hi';
@@ -23,8 +22,7 @@ export default function SideBar() {
 
                 <h6>پست جدید
                 </h6>
-                <Link to='addMovie'><li> <MdMovie></MdMovie>افزودن فیلم</li></Link>
-                <Link to='addSerie'><li> <BiCameraMovie></BiCameraMovie>افزودن سریال</li></Link>
+                <Link to='addMovie'><li> <MdMovie></MdMovie>افزودن محتوا</li></Link>
                 <Link to='addTrailer'><li> <MdSlowMotionVideo></MdSlowMotionVideo>افزودن تریلر</li></Link>
                 <Link to='addNews'><li> <FaRegNewspaper></FaRegNewspaper>افزودن اخبار</li></Link>
                 <Link to='newCollection'><li> <BsFillCollectionPlayFill></BsFillCollectionPlayFill>کالکشن ها</li></Link>
