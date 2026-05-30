@@ -27,7 +27,7 @@ exports.PostContent = async (req, res, next) => {
 
 exports.GetContent = async (req, res, next) => {
     try {
-        const Movies = await ContentSchema.find({})
+        const Movies = await ContentSchema.find({ type: 'movie' })
         res.json(Movies)
     } catch (err) {
         next(err);
@@ -36,8 +36,22 @@ exports.GetContent = async (req, res, next) => {
 
 exports.GetSeriesList = async (req, res, next) => {
     try {
-        const series = await ContentSchema.find({ type: { $in: ['series', 'anime', 'animation'] } });
+        const series = await ContentSchema.find({ type: 'series' });
         res.json(series);
+    } catch (err) {
+        next(err);
+    }
+}
+
+exports.GetStats = async (req, res, next) => {
+    try {
+        const [movieCount, seriesCount, totalCount, topRated] = await Promise.all([
+            ContentSchema.countDocuments({ type: 'movie' }),
+            ContentSchema.countDocuments({ type: 'series' }),
+            ContentSchema.countDocuments({}),
+            ContentSchema.find({}).sort({ 'imdb.rating': -1 }).limit(5).select('title type imdb.rating poster')
+        ]);
+        res.json({ movieCount, seriesCount, totalCount, topRated });
     } catch (err) {
         next(err);
     }

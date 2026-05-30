@@ -1,8 +1,9 @@
 const express = require('express');
-const { PostContent, GetContent, GetContentById, GetContentBySlug, GetSeriesList, GetBoxOffice, GetTrailers, DeleteContent, EditContent } = require('../controller/content');
+const { PostContent, GetContent, GetContentById, GetContentBySlug, GetSeriesList, GetBoxOffice, GetTrailers, DeleteContent, EditContent, GetStats } = require('../controller/content');
 const router = express.Router();
 router.get('/movieList', GetContent)
 router.get('/seriesList', GetSeriesList)
+router.get('/stats', GetStats)
 router.get('/boxoffice', GetBoxOffice)
 router.get('/trailers', GetTrailers)
 router.get('/slug/:slug', GetContentBySlug)
