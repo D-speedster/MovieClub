@@ -2,12 +2,22 @@ const ContentSchema = require('../models/content')
 
 exports.PostContent = async (req, res, next) => {
     try {
-        let { title, type, actors, director, countries, writer, genres, rate, duration, description } = req.body
+        let { title, type, actors, director, countries, writer, genres, rate, duration, description, language, year } = req.body;
         const poster = req.file ? req.file.filename : null;
         const genreList = genres ? genres.split(',').map((e) => e.trim()) : [];
+        const actorList = actors ? actors.split(',').map((e) => e.trim()) : [];
+        const countryList = countries ? countries.split(',').map((e) => e.trim()) : [];
+
         const content = await ContentSchema.create({
-            title, type, actors, director, countries, writer,
-            genres: genreList, rate, duration, description, poster
+            title, type, language,
+            year: year ? parseInt(year) : undefined,
+            director, writer,
+            actors: actorList,
+            countries: countryList,
+            genres: genreList,
+            description, poster,
+            imdb: rate ? { rating: parseFloat(rate) } : undefined,
+            movie: duration ? { duration: parseInt(duration) } : undefined
         });
         res.status(201).json({ message: 'محتوا با موفقیت اضافه شد', data: content });
     } catch (err) {

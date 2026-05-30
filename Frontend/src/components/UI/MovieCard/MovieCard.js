@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getPosterUrl } from '../../utils/posterUrl';
+import { getPosterUrl } from '../../../utils/posterUrl';
 import './MovieCard.css';
 
 const MovieCard = ({
