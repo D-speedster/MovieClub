@@ -1,23 +1,15 @@
 import React, { useState } from 'react';
 import {
-    Box, Card, CardContent, Typography, TextField, Button, Grid,
-    Chip, InputAdornment, Divider, Alert, CircularProgress,
-    Autocomplete, MenuItem, Select, FormControl, InputLabel,
-    Paper, Stack, IconButton, Tooltip
+    Box, Typography, TextField, Button, Grid, Chip,
+    InputAdornment, Alert, CircularProgress, Autocomplete,
+    MenuItem, Select, FormControl, InputLabel, Stack, Stepper,
+    Step, StepLabel, StepContent, Fade, Zoom
 } from '@mui/material';
 import {
-    Search as SearchIcon,
-    Movie as MovieIcon,
-    Save as SaveIcon,
-    Clear as ClearIcon,
-    CloudDownload as FetchIcon,
-    Person as PersonIcon,
-    CalendarMonth as CalendarIcon,
-    Star as StarIcon,
-    Timer as TimerIcon,
-    Language as LanguageIcon,
-    Public as CountryIcon,
-    Edit as EditIcon
+    Search as SearchIcon, Movie as MovieIcon, Save as SaveIcon,
+    Clear as ClearIcon, CloudDownload as FetchIcon,
+    CheckCircle as CheckIcon, ArrowForward, ArrowBack,
+    AutoAwesome as MagicIcon
 } from '@mui/icons-material';
 import axios from 'axios';
 import ApiRequest from '../../../Services/Axios/config';
@@ -31,8 +23,23 @@ const OMDB_API_KEY = process.env.REACT_APP_OMDB_API_KEY;
 const emptyForm = {
     title: '', type: 'movie', year: '', director: '', writer: '',
     actors: '', countries: '', language: '', genres: [],
-    description: '', imdb_rating: '', imdb_votes: '', duration: '',
+    description: '', imdb_rating: '', duration: '',
     poster: null, posterPreview: ''
+};
+
+const allGenres = Genre_List.map(g => g.fa);
+
+const fieldSx = {
+    '& .MuiOutlinedInput-root': {
+        color: 'white',
+        backgroundColor: 'rgba(255,255,255,0.04)',
+        borderRadius: '12px',
+        '& fieldset': { borderColor: 'rgba(255,255,255,0.1)' },
+        '&:hover fieldset': { borderColor: 'rgba(255,255,255,0.25)' },
+        '&.Mui-focused fieldset': { borderColor: '#6366f1' },
+    },
+    '& .MuiInputLabel-root': { color: 'rgba(255,255,255,0.4)' },
+    '& .MuiInputLabel-root.Mui-focused': { color: '#6366f1' },
 };
 
 export default function AddMovie() {
@@ -42,8 +49,8 @@ export default function AddMovie() {
     const [saveLoading, setSaveLoading] = useState(false);
     const [fetchError, setFetchError] = useState('');
     const [fetched, setFetched] = useState(false);
+    const [activeStep, setActiveStep] = useState(0);
 
-    // ترجمه ژانر از انگلیسی به فارسی
     const translateGenres = (genreStr) => {
         if (!genreStr) return [];
         return genreStr.split(', ').map(g => {
@@ -52,27 +59,22 @@ export default function AddMovie() {
         }).filter(Boolean);
     };
 
-    // دریافت اطلاعات از OMDB
     const handleFetch = async () => {
         if (!imdbId.trim()) return;
         if (!/^tt\d+$/.test(imdbId.trim())) {
-            setFetchError('فرمت IMDB ID اشتباه است. مثال: tt1234567');
+            setFetchError('فرمت اشتباه — مثال: tt1234567');
             return;
         }
         if (!OMDB_API_KEY) {
-            setFetchError('OMDB API Key تنظیم نشده. REACT_APP_OMDB_API_KEY را در .env تنظیم کنید.');
+            setFetchError('REACT_APP_OMDB_API_KEY در .env تنظیم نشده');
             return;
         }
-
         try {
             setFetchLoading(true);
             setFetchError('');
             const res = await axios.get(`https://www.omdbapi.com/?i=${imdbId.trim()}&plot=full&apikey=${OMDB_API_KEY}`);
             if (res.data.Error) throw new Error(res.data.Error);
-
             const d = res.data;
-            const duration = d.Runtime ? parseInt(d.Runtime) : '';
-
             setForm({
                 title: d.Title || '',
                 type: d.Type === 'series' ? 'series' : 'movie',
@@ -84,43 +86,33 @@ export default function AddMovie() {
                 language: d.Language || '',
                 genres: translateGenres(d.Genre),
                 description: d.Plot || '',
-                imdb_rating: d.imdbRating !== 'N/A' ? parseFloat(d.imdbRating) : '',
-                imdb_votes: d.imdbVotes ? parseInt(d.imdbVotes.replace(/,/g, '')) : '',
-                duration: duration,
+                imdb_rating: d.imdbRating !== 'N/A' ? d.imdbRating : '',
+                duration: d.Runtime ? parseInt(d.Runtime) : '',
                 poster: null,
                 posterPreview: d.Poster !== 'N/A' ? d.Poster : ''
             });
             setFetched(true);
-            Logger.log('OMDB fetch successful:', d.Title);
+            setActiveStep(1);
         } catch (err) {
-            setFetchError(err.message || 'خطا در دریافت اطلاعات از OMDB');
-            Logger.error('OMDB fetch error:', err);
+            setFetchError(err.message || 'خطا در دریافت اطلاعات');
         } finally {
             setFetchLoading(false);
         }
     };
 
-    const handleChange = (field, value) => {
-        setForm(prev => ({ ...prev, [field]: value }));
-    };
+    const handleChange = (field, value) => setForm(prev => ({ ...prev, [field]: value }));
 
     const handlePosterChange = (e) => {
         const file = e.target.files[0];
         if (!file) return;
-        setForm(prev => ({
-            ...prev,
-            poster: file,
-            posterPreview: URL.createObjectURL(file)
-        }));
+        setForm(prev => ({ ...prev, poster: file, posterPreview: URL.createObjectURL(file) }));
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const handleSubmit = async () => {
         if (!form.title.trim()) {
-            Swal.fire({ icon: 'warning', title: 'عنوان فیلم الزامی است', background: '#1e293b', color: '#fff' });
+            Swal.fire({ icon: 'warning', title: 'عنوان فیلم الزامی است', background: '#0f0f1a', color: '#fff', confirmButtonColor: '#6366f1' });
             return;
         }
-
         try {
             setSaveLoading(true);
             const formData = new FormData();
@@ -142,268 +134,247 @@ export default function AddMovie() {
                 headers: { 'Content-Type': 'multipart/form-data' }
             });
 
-            Swal.fire({ icon: 'success', title: 'فیلم با موفقیت اضافه شد', background: '#1e293b', color: '#fff', timer: 2000 });
+            Swal.fire({ icon: 'success', title: '✅ فیلم اضافه شد', background: '#0f0f1a', color: '#fff', confirmButtonColor: '#6366f1', timer: 2000, showConfirmButton: false });
             setForm(emptyForm);
             setImdbId('');
             setFetched(false);
+            setActiveStep(0);
         } catch (err) {
-            Logger.error('Save error:', err);
-            Swal.fire({ icon: 'error', title: 'خطا در ذخیره', text: err.message, background: '#1e293b', color: '#fff' });
+            Swal.fire({ icon: 'error', title: 'خطا در ذخیره', text: err.message, background: '#0f0f1a', color: '#fff', confirmButtonColor: '#6366f1' });
         } finally {
             setSaveLoading(false);
         }
     };
 
-    const allGenres = Genre_List.map(g => g.fa);
-
     return (
-        <Box sx={{ p: 3, direction: 'rtl' }}>
-            {/* Header */}
-            <Stack direction="row" alignItems="center" spacing={1} mb={3}>
-                <MovieIcon sx={{ color: '#e50914', fontSize: 32 }} />
-                <Typography variant="h5" fontWeight={700} color="white">
-                    افزودن فیلم جدید
-                </Typography>
-            </Stack>
+        <Box className="add-movie-root" dir="rtl">
+            {/* Top Bar */}
+            <Box className="add-movie-topbar">
+                <Stack direction="row" alignItems="center" spacing={1.5}>
+                    <Box className="add-movie-icon-wrap">
+                        <MovieIcon sx={{ fontSize: 20, color: '#6366f1' }} />
+                    </Box>
+                    <Box>
+                        <Typography variant="h6" fontWeight={700} color="white" lineHeight={1.2}>
+                            افزودن فیلم جدید
+                        </Typography>
+                        <Typography variant="caption" color="rgba(255,255,255,0.35)">
+                            اطلاعات را وارد کنید یا از OMDB دریافت کنید
+                        </Typography>
+                    </Box>
+                </Stack>
 
-            {/* IMDB Fetch Section */}
-            <Card sx={{ mb: 3, bgcolor: '#1e293b', border: '1px solid #334155' }}>
-                <CardContent>
-                    <Typography variant="subtitle1" color="#94a3b8" mb={2} fontWeight={600}>
-                        دریافت خودکار اطلاعات از OMDB
-                    </Typography>
-                    <Stack direction="row" spacing={2} alignItems="flex-start">
+                <Stack direction="row" spacing={1.5}>
+                    <Button onClick={() => { setForm(emptyForm); setImdbId(''); setFetched(false); setActiveStep(0); }}
+                        startIcon={<ClearIcon />} className="btn-ghost">
+                        پاک کردن
+                    </Button>
+                    <Button onClick={handleSubmit} disabled={saveLoading}
+                        startIcon={saveLoading ? <CircularProgress size={16} color="inherit" /> : <SaveIcon />}
+                        className="btn-primary-action">
+                        {saveLoading ? 'در حال ذخیره...' : 'انتشار فیلم'}
+                    </Button>
+                </Stack>
+            </Box>
+
+            {/* Main Layout */}
+            <Box className="add-movie-layout">
+                {/* Left Panel — Poster + OMDB */}
+                <Box className="add-movie-sidebar">
+                    {/* Poster */}
+                    <Box className="poster-upload-area" component="label">
+                        <input type="file" hidden accept="image/*" onChange={handlePosterChange} />
+                        {form.posterPreview ? (
+                            <img src={form.posterPreview} alt="poster" className="poster-img" />
+                        ) : (
+                            <Box className="poster-placeholder">
+                                <MovieIcon sx={{ fontSize: 48, color: 'rgba(255,255,255,0.1)', mb: 1 }} />
+                                <Typography variant="caption" color="rgba(255,255,255,0.25)">
+                                    کلیک برای آپلود پوستر
+                                </Typography>
+                            </Box>
+                        )}
+                        <Box className="poster-overlay">
+                            <Typography variant="caption" color="white">تغییر پوستر</Typography>
+                        </Box>
+                    </Box>
+
+                    {/* OMDB Fetch */}
+                    <Box className="omdb-card">
+                        <Stack direction="row" alignItems="center" spacing={1} mb={1.5}>
+                            <MagicIcon sx={{ fontSize: 16, color: '#6366f1' }} />
+                            <Typography variant="caption" fontWeight={600} color="rgba(255,255,255,0.6)" textTransform="uppercase" letterSpacing={1}>
+                                دریافت از OMDB
+                            </Typography>
+                        </Stack>
                         <TextField
-                            fullWidth
-                            size="small"
-                            value={imdbId}
+                            fullWidth size="small" value={imdbId}
                             onChange={e => { setImdbId(e.target.value); setFetchError(''); }}
                             placeholder="tt1234567"
-                            label="IMDB ID"
-                            variant="outlined"
                             onKeyDown={e => e.key === 'Enter' && handleFetch()}
                             InputProps={{
-                                startAdornment: <InputAdornment position="start"><SearchIcon sx={{ color: '#64748b' }} /></InputAdornment>,
-                                sx: { color: 'white', bgcolor: '#0f172a' }
+                                startAdornment: <InputAdornment position="start"><SearchIcon sx={{ fontSize: 16, color: 'rgba(255,255,255,0.3)' }} /></InputAdornment>,
                             }}
-                            InputLabelProps={{ sx: { color: '#64748b' } }}
-                            sx={{ '& .MuiOutlinedInput-notchedOutline': { borderColor: '#334155' } }}
+                            sx={{ ...fieldSx, mb: 1.5 }}
                         />
-                        <Button
-                            variant="contained"
-                            onClick={handleFetch}
+                        <Button fullWidth onClick={handleFetch}
                             disabled={fetchLoading || !imdbId.trim()}
-                            startIcon={fetchLoading ? <CircularProgress size={16} color="inherit" /> : <FetchIcon />}
-                            sx={{ bgcolor: '#e50914', '&:hover': { bgcolor: '#b91c1c' }, whiteSpace: 'nowrap', minWidth: 140 }}
-                        >
+                            startIcon={fetchLoading ? <CircularProgress size={14} color="inherit" /> : <FetchIcon />}
+                            className="btn-fetch">
                             {fetchLoading ? 'در حال دریافت...' : 'دریافت اطلاعات'}
                         </Button>
-                    </Stack>
-                    {fetchError && <Alert severity="error" sx={{ mt: 2, bgcolor: '#450a0a', color: '#fca5a5' }}>{fetchError}</Alert>}
-                    {fetched && <Alert severity="success" sx={{ mt: 2, bgcolor: '#052e16', color: '#86efac' }}>اطلاعات با موفقیت دریافت شد — می‌توانید ویرایش کنید</Alert>}
-                </CardContent>
-            </Card>
+                        {fetchError && (
+                            <Alert severity="error" sx={{ mt: 1.5, bgcolor: 'rgba(239,68,68,0.1)', color: '#fca5a5', border: '1px solid rgba(239,68,68,0.2)', borderRadius: '10px', fontSize: 12 }}>
+                                {fetchError}
+                            </Alert>
+                        )}
+                        {fetched && (
+                            <Fade in>
+                                <Alert icon={<CheckIcon fontSize="small" />} severity="success"
+                                    sx={{ mt: 1.5, bgcolor: 'rgba(34,197,94,0.1)', color: '#86efac', border: '1px solid rgba(34,197,94,0.2)', borderRadius: '10px', fontSize: 12 }}>
+                                    اطلاعات دریافت شد
+                                </Alert>
+                            </Fade>
+                        )}
+                    </Box>
 
-            {/* Main Form */}
-            <form onSubmit={handleSubmit}>
-                <Grid container spacing={3}>
-                    {/* Left: Poster */}
-                    <Grid item xs={12} md={3}>
-                        <Card sx={{ bgcolor: '#1e293b', border: '1px solid #334155', height: '100%' }}>
-                            <CardContent>
-                                <Typography variant="subtitle2" color="#94a3b8" mb={2}>پوستر فیلم</Typography>
-                                <Box
-                                    sx={{
-                                        width: '100%', aspectRatio: '2/3', bgcolor: '#0f172a',
-                                        borderRadius: 2, overflow: 'hidden', mb: 2,
-                                        border: '2px dashed #334155', display: 'flex',
-                                        alignItems: 'center', justifyContent: 'center'
-                                    }}
-                                >
-                                    {form.posterPreview ? (
-                                        <img src={form.posterPreview} alt="poster" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                                    ) : (
-                                        <Stack alignItems="center" spacing={1}>
-                                            <MovieIcon sx={{ color: '#334155', fontSize: 48 }} />
-                                            <Typography variant="caption" color="#475569">پوستر انتخاب نشده</Typography>
-                                        </Stack>
+                    {/* Quick Stats */}
+                    {fetched && (
+                        <Zoom in>
+                            <Box className="quick-stats">
+                                {form.imdb_rating && (
+                                    <Box className="stat-item">
+                                        <Typography variant="h6" color="#fbbf24" fontWeight={800}>{form.imdb_rating}</Typography>
+                                        <Typography variant="caption" color="rgba(255,255,255,0.4)">IMDB</Typography>
+                                    </Box>
+                                )}
+                                {form.year && (
+                                    <Box className="stat-item">
+                                        <Typography variant="h6" color="white" fontWeight={800}>{form.year}</Typography>
+                                        <Typography variant="caption" color="rgba(255,255,255,0.4)">سال</Typography>
+                                    </Box>
+                                )}
+                                {form.duration && (
+                                    <Box className="stat-item">
+                                        <Typography variant="h6" color="white" fontWeight={800}>{form.duration}</Typography>
+                                        <Typography variant="caption" color="rgba(255,255,255,0.4)">دقیقه</Typography>
+                                    </Box>
+                                )}
+                            </Box>
+                        </Zoom>
+                    )}
+                </Box>
+
+                {/* Right Panel — Form Fields */}
+                <Box className="add-movie-form">
+                    {/* Section: اطلاعات اصلی */}
+                    <Box className="form-section">
+                        <Typography className="section-label">اطلاعات اصلی</Typography>
+                        <Grid container spacing={2}>
+                            <Grid item xs={12} sm={8}>
+                                <TextField fullWidth label="عنوان فیلم *" value={form.title}
+                                    onChange={e => handleChange('title', e.target.value)}
+                                    sx={fieldSx}
+                                    inputProps={{ style: { fontSize: 18, fontWeight: 600 } }}
+                                />
+                            </Grid>
+                            <Grid item xs={12} sm={4}>
+                                <FormControl fullWidth>
+                                    <InputLabel sx={{ color: 'rgba(255,255,255,0.4)', '&.Mui-focused': { color: '#6366f1' } }}>نوع</InputLabel>
+                                    <Select value={form.type} label="نوع"
+                                        onChange={e => handleChange('type', e.target.value)}
+                                        sx={{
+                                            color: 'white', bgcolor: 'rgba(255,255,255,0.04)', borderRadius: '12px',
+                                            '& .MuiOutlinedInput-notchedOutline': { borderColor: 'rgba(255,255,255,0.1)' },
+                                            '&:hover .MuiOutlinedInput-notchedOutline': { borderColor: 'rgba(255,255,255,0.25)' },
+                                            '&.Mui-focused .MuiOutlinedInput-notchedOutline': { borderColor: '#6366f1' },
+                                            '& .MuiSvgIcon-root': { color: 'rgba(255,255,255,0.4)' }
+                                        }}
+                                    >
+                                        <MenuItem value="movie">🎬 فیلم</MenuItem>
+                                        <MenuItem value="series">📺 سریال</MenuItem>
+                                        <MenuItem value="anime">⛩️ انیمه</MenuItem>
+                                        <MenuItem value="animation">🎨 انیمیشن</MenuItem>
+                                    </Select>
+                                </FormControl>
+                            </Grid>
+                            <Grid item xs={6} sm={3}>
+                                <TextField fullWidth label="سال" type="number" value={form.year}
+                                    onChange={e => handleChange('year', e.target.value)} sx={fieldSx} />
+                            </Grid>
+                            <Grid item xs={6} sm={3}>
+                                <TextField fullWidth label="مدت (دقیقه)" type="number" value={form.duration}
+                                    onChange={e => handleChange('duration', e.target.value)} sx={fieldSx} />
+                            </Grid>
+                            <Grid item xs={6} sm={3}>
+                                <TextField fullWidth label="امتیاز IMDB" type="number" value={form.imdb_rating}
+                                    onChange={e => handleChange('imdb_rating', e.target.value)}
+                                    inputProps={{ step: 0.1, min: 0, max: 10 }} sx={fieldSx} />
+                            </Grid>
+                            <Grid item xs={6} sm={3}>
+                                <TextField fullWidth label="زبان" value={form.language}
+                                    onChange={e => handleChange('language', e.target.value)} sx={fieldSx} />
+                            </Grid>
+                        </Grid>
+                    </Box>
+
+                    {/* Section: عوامل */}
+                    <Box className="form-section">
+                        <Typography className="section-label">عوامل</Typography>
+                        <Grid container spacing={2}>
+                            <Grid item xs={12} sm={6}>
+                                <TextField fullWidth label="کارگردان" value={form.director}
+                                    onChange={e => handleChange('director', e.target.value)} sx={fieldSx} />
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                                <TextField fullWidth label="نویسنده" value={form.writer}
+                                    onChange={e => handleChange('writer', e.target.value)} sx={fieldSx} />
+                            </Grid>
+                            <Grid item xs={12} sm={8}>
+                                <TextField fullWidth label="بازیگران (با کاما جدا کنید)" value={form.actors}
+                                    onChange={e => handleChange('actors', e.target.value)} sx={fieldSx} />
+                            </Grid>
+                            <Grid item xs={12} sm={4}>
+                                <TextField fullWidth label="کشور سازنده" value={form.countries}
+                                    onChange={e => handleChange('countries', e.target.value)} sx={fieldSx} />
+                            </Grid>
+                        </Grid>
+                    </Box>
+
+                    {/* Section: ژانر و داستان */}
+                    <Box className="form-section">
+                        <Typography className="section-label">ژانر و داستان</Typography>
+                        <Grid container spacing={2}>
+                            <Grid item xs={12}>
+                                <Autocomplete multiple freeSolo options={allGenres} value={form.genres}
+                                    onChange={(_, val) => handleChange('genres', val)}
+                                    renderTags={(value, getTagProps) =>
+                                        value.map((option, index) => (
+                                            <Chip label={option} {...getTagProps({ index })} size="small"
+                                                sx={{ bgcolor: 'rgba(99,102,241,0.2)', color: '#a5b4fc', border: '1px solid rgba(99,102,241,0.3)', borderRadius: '8px' }}
+                                            />
+                                        ))
+                                    }
+                                    renderInput={(params) => (
+                                        <TextField {...params} label="ژانرها" sx={fieldSx} />
                                     )}
-                                </Box>
-                                <Button
-                                    component="label"
-                                    variant="outlined"
-                                    fullWidth
-                                    size="small"
-                                    sx={{ borderColor: '#334155', color: '#94a3b8' }}
-                                >
-                                    آپلود پوستر
-                                    <input type="file" hidden accept="image/*" onChange={handlePosterChange} />
-                                </Button>
-                            </CardContent>
-                        </Card>
-                    </Grid>
-
-                    {/* Right: Fields */}
-                    <Grid item xs={12} md={9}>
-                        <Card sx={{ bgcolor: '#1e293b', border: '1px solid #334155' }}>
-                            <CardContent>
-                                <Grid container spacing={2}>
-                                    {/* Title */}
-                                    <Grid item xs={12} sm={8}>
-                                        <TextField fullWidth label="عنوان فیلم *" value={form.title}
-                                            onChange={e => handleChange('title', e.target.value)}
-                                            InputProps={{ sx: { color: 'white', bgcolor: '#0f172a' } }}
-                                            InputLabelProps={{ sx: { color: '#64748b' } }}
-                                            sx={{ '& .MuiOutlinedInput-notchedOutline': { borderColor: '#334155' } }}
-                                        />
-                                    </Grid>
-                                    {/* Type */}
-                                    <Grid item xs={12} sm={4}>
-                                        <FormControl fullWidth>
-                                            <InputLabel sx={{ color: '#64748b' }}>نوع</InputLabel>
-                                            <Select value={form.type} label="نوع"
-                                                onChange={e => handleChange('type', e.target.value)}
-                                                sx={{ color: 'white', bgcolor: '#0f172a', '& .MuiOutlinedInput-notchedOutline': { borderColor: '#334155' } }}
-                                            >
-                                                <MenuItem value="movie">فیلم</MenuItem>
-                                                <MenuItem value="series">سریال</MenuItem>
-                                                <MenuItem value="anime">انیمه</MenuItem>
-                                                <MenuItem value="animation">انیمیشن</MenuItem>
-                                            </Select>
-                                        </FormControl>
-                                    </Grid>
-                                    {/* Year */}
-                                    <Grid item xs={6} sm={3}>
-                                        <TextField fullWidth label="سال انتشار" type="number" value={form.year}
-                                            onChange={e => handleChange('year', e.target.value)}
-                                            InputProps={{ startAdornment: <InputAdornment position="start"><CalendarIcon sx={{ color: '#64748b', fontSize: 18 }} /></InputAdornment>, sx: { color: 'white', bgcolor: '#0f172a' } }}
-                                            InputLabelProps={{ sx: { color: '#64748b' } }}
-                                            sx={{ '& .MuiOutlinedInput-notchedOutline': { borderColor: '#334155' } }}
-                                        />
-                                    </Grid>
-                                    {/* Duration */}
-                                    <Grid item xs={6} sm={3}>
-                                        <TextField fullWidth label="مدت زمان (دقیقه)" type="number" value={form.duration}
-                                            onChange={e => handleChange('duration', e.target.value)}
-                                            InputProps={{ startAdornment: <InputAdornment position="start"><TimerIcon sx={{ color: '#64748b', fontSize: 18 }} /></InputAdornment>, sx: { color: 'white', bgcolor: '#0f172a' } }}
-                                            InputLabelProps={{ sx: { color: '#64748b' } }}
-                                            sx={{ '& .MuiOutlinedInput-notchedOutline': { borderColor: '#334155' } }}
-                                        />
-                                    </Grid>
-                                    {/* IMDB Rating */}
-                                    <Grid item xs={6} sm={3}>
-                                        <TextField fullWidth label="امتیاز IMDB" type="number" value={form.imdb_rating}
-                                            onChange={e => handleChange('imdb_rating', e.target.value)}
-                                            inputProps={{ step: 0.1, min: 0, max: 10 }}
-                                            InputProps={{ startAdornment: <InputAdornment position="start"><StarIcon sx={{ color: '#fbbf24', fontSize: 18 }} /></InputAdornment>, sx: { color: 'white', bgcolor: '#0f172a' } }}
-                                            InputLabelProps={{ sx: { color: '#64748b' } }}
-                                            sx={{ '& .MuiOutlinedInput-notchedOutline': { borderColor: '#334155' } }}
-                                        />
-                                    </Grid>
-                                    {/* Language */}
-                                    <Grid item xs={6} sm={3}>
-                                        <TextField fullWidth label="زبان" value={form.language}
-                                            onChange={e => handleChange('language', e.target.value)}
-                                            InputProps={{ startAdornment: <InputAdornment position="start"><LanguageIcon sx={{ color: '#64748b', fontSize: 18 }} /></InputAdornment>, sx: { color: 'white', bgcolor: '#0f172a' } }}
-                                            InputLabelProps={{ sx: { color: '#64748b' } }}
-                                            sx={{ '& .MuiOutlinedInput-notchedOutline': { borderColor: '#334155' } }}
-                                        />
-                                    </Grid>
-
-                                    <Grid item xs={12}><Divider sx={{ borderColor: '#334155' }} /></Grid>
-
-                                    {/* Director */}
-                                    <Grid item xs={12} sm={6}>
-                                        <TextField fullWidth label="کارگردان" value={form.director}
-                                            onChange={e => handleChange('director', e.target.value)}
-                                            InputProps={{ startAdornment: <InputAdornment position="start"><PersonIcon sx={{ color: '#64748b', fontSize: 18 }} /></InputAdornment>, sx: { color: 'white', bgcolor: '#0f172a' } }}
-                                            InputLabelProps={{ sx: { color: '#64748b' } }}
-                                            sx={{ '& .MuiOutlinedInput-notchedOutline': { borderColor: '#334155' } }}
-                                        />
-                                    </Grid>
-                                    {/* Writer */}
-                                    <Grid item xs={12} sm={6}>
-                                        <TextField fullWidth label="نویسنده" value={form.writer}
-                                            onChange={e => handleChange('writer', e.target.value)}
-                                            InputProps={{ sx: { color: 'white', bgcolor: '#0f172a' } }}
-                                            InputLabelProps={{ sx: { color: '#64748b' } }}
-                                            sx={{ '& .MuiOutlinedInput-notchedOutline': { borderColor: '#334155' } }}
-                                        />
-                                    </Grid>
-                                    {/* Actors */}
-                                    <Grid item xs={12} sm={8}>
-                                        <TextField fullWidth label="بازیگران (با کاما جدا کنید)" value={form.actors}
-                                            onChange={e => handleChange('actors', e.target.value)}
-                                            InputProps={{ sx: { color: 'white', bgcolor: '#0f172a' } }}
-                                            InputLabelProps={{ sx: { color: '#64748b' } }}
-                                            sx={{ '& .MuiOutlinedInput-notchedOutline': { borderColor: '#334155' } }}
-                                        />
-                                    </Grid>
-                                    {/* Countries */}
-                                    <Grid item xs={12} sm={4}>
-                                        <TextField fullWidth label="کشور سازنده" value={form.countries}
-                                            onChange={e => handleChange('countries', e.target.value)}
-                                            InputProps={{ startAdornment: <InputAdornment position="start"><CountryIcon sx={{ color: '#64748b', fontSize: 18 }} /></InputAdornment>, sx: { color: 'white', bgcolor: '#0f172a' } }}
-                                            InputLabelProps={{ sx: { color: '#64748b' } }}
-                                            sx={{ '& .MuiOutlinedInput-notchedOutline': { borderColor: '#334155' } }}
-                                        />
-                                    </Grid>
-                                    {/* Genres */}
-                                    <Grid item xs={12}>
-                                        <Autocomplete
-                                            multiple freeSolo
-                                            options={allGenres}
-                                            value={form.genres}
-                                            onChange={(_, val) => handleChange('genres', val)}
-                                            renderTags={(value, getTagProps) =>
-                                                value.map((option, index) => (
-                                                    <Chip label={option} {...getTagProps({ index })}
-                                                        sx={{ bgcolor: '#e50914', color: 'white', '& .MuiChip-deleteIcon': { color: '#fca5a5' } }}
-                                                    />
-                                                ))
-                                            }
-                                            renderInput={(params) => (
-                                                <TextField {...params} label="ژانرها"
-                                                    InputProps={{ ...params.InputProps, sx: { color: 'white', bgcolor: '#0f172a' } }}
-                                                    InputLabelProps={{ sx: { color: '#64748b' } }}
-                                                    sx={{ '& .MuiOutlinedInput-notchedOutline': { borderColor: '#334155' } }}
-                                                />
-                                            )}
-                                        />
-                                    </Grid>
-                                    {/* Description */}
-                                    <Grid item xs={12}>
-                                        <TextField fullWidth multiline rows={4} label="خلاصه داستان" value={form.description}
-                                            onChange={e => handleChange('description', e.target.value)}
-                                            InputProps={{ sx: { color: 'white', bgcolor: '#0f172a' } }}
-                                            InputLabelProps={{ sx: { color: '#64748b' } }}
-                                            sx={{ '& .MuiOutlinedInput-notchedOutline': { borderColor: '#334155' } }}
-                                        />
-                                    </Grid>
-                                </Grid>
-                            </CardContent>
-                        </Card>
-                    </Grid>
-
-                    {/* Submit */}
-                    <Grid item xs={12}>
-                        <Stack direction="row" spacing={2} justifyContent="flex-end">
-                            <Button variant="outlined" startIcon={<ClearIcon />}
-                                onClick={() => { setForm(emptyForm); setImdbId(''); setFetched(false); }}
-                                sx={{ borderColor: '#334155', color: '#94a3b8' }}
-                            >
-                                پاک کردن
-                            </Button>
-                            <Button type="submit" variant="contained" startIcon={saveLoading ? <CircularProgress size={16} color="inherit" /> : <SaveIcon />}
-                                disabled={saveLoading}
-                                sx={{ bgcolor: '#16a34a', '&:hover': { bgcolor: '#15803d' }, minWidth: 160 }}
-                            >
-                                {saveLoading ? 'در حال ذخیره...' : 'ذخیره و انتشار'}
-                            </Button>
-                        </Stack>
-                    </Grid>
-                </Grid>
-            </form>
+                                    componentsProps={{
+                                        paper: { sx: { bgcolor: '#1a1a2e', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px' } }
+                                    }}
+                                    sx={{ '& .MuiAutocomplete-tag': { m: 0.5 } }}
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField fullWidth multiline rows={5} label="خلاصه داستان"
+                                    value={form.description}
+                                    onChange={e => handleChange('description', e.target.value)}
+                                    sx={fieldSx}
+                                />
+                            </Grid>
+                        </Grid>
+                    </Box>
+                </Box>
+            </Box>
         </Box>
     );
 }
