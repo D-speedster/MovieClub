@@ -44,7 +44,7 @@
 /* ===== BASE ===== */
 .admin-dashboard {
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
   min-height: 100vh;
   background: var(--adm-bg);
   color: var(--adm-text);
@@ -73,6 +73,7 @@
   overflow-y: auto;
   scrollbar-width: none;
   z-index: 20;
+  order: -1;
 }
 
 .admin-sidebar::-webkit-scrollbar { display: none; }
@@ -172,6 +173,7 @@
   flex-direction: column;
   min-width: 0;
   overflow: hidden;
+  order: 1;
 }
 
 /* ===== HEADER ===== */
@@ -609,6 +611,7 @@
     position: relative;
     border-left: none;
     border-bottom: 1px solid var(--adm-border);
+    order: -1;
   }
 
   .admin-content { padding: 16px; }
