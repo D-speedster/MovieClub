@@ -1,0 +1,130 @@
+.search-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: 9999;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 80px;
+    backdrop-filter: blur(4px);
+    animation: overlayIn 0.15s ease;
+}
+
+@keyframes overlayIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.search-overlay__box {
+    background: #1a1a2e;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 14px;
+    width: 100%;
+    max-width: 560px;
+    overflow: hidden;
+    animation: boxIn 0.2s ease;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.6);
+}
+
+@keyframes boxIn {
+    from { transform: translateY(-16px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.search-overlay__input-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.search-overlay__icon {
+    color: #888;
+    flex-shrink: 0;
+}
+
+.search-overlay__input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.search-overlay__input::placeholder {
+    color: #666;
+}
+
+.search-overlay__close {
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 4px 6px;
+    border-radius: 6px;
+    transition: color 0.15s;
+}
+
+.search-overlay__close:hover {
+    color: #fff;
+}
+
+.search-overlay__status {
+    padding: 20px;
+    text-align: center;
+    color: #888;
+    font-size: 0.9rem;
+}
+
+.search-overlay__results {
+    list-style: none;
+    margin: 0;
+    padding: 8px 0;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.search-overlay__item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 16px;
+    cursor: pointer;
+    transition: background 0.15s;
+    direction: rtl;
+}
+
+.search-overlay__item:hover {
+    background: rgba(255,255,255,0.06);
+}
+
+.search-overlay__poster {
+    width: 36px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+    flex-shrink: 0;
+    background: #2a2a4a;
+}
+
+.search-overlay__info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.search-overlay__title {
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.search-overlay__meta {
+    color: #888;
+    font-size: 0.78rem;
+}

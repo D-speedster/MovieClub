@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import {
     Box, Typography, TextField, Button, Grid, Stack,
     CircularProgress, Alert, Autocomplete, Chip,
@@ -33,7 +33,11 @@ const allGenres = Genre_List.map(g => g.fa);
 
 export default function EditMovie() {
     const { userId } = useParams();
+    const location = useLocation();
     const navigate = useNavigate();
+
+    // اگر از داشبورد رندر شده، ID رو از URL بگیر
+    const id = userId || location.pathname.split('/').filter(Boolean).pop();
     const [form, setForm] = useState(null);
     const [loading, setLoading] = useState(true);
     const [saving, setSaving] = useState(false);
@@ -43,7 +47,7 @@ export default function EditMovie() {
         const fetch = async () => {
             try {
                 setLoading(true);
-                const res = await ApiRequest.get(`/content/${userId}`);
+                const res = await ApiRequest.get(`/content/${id}`);
                 const d = res.data;
                 setForm({
                     title: d.title || '',
@@ -68,7 +72,7 @@ export default function EditMovie() {
             }
         };
         fetch();
-    }, [userId]);
+    }, [id]);
 
     const handleChange = (field, value) => setForm(prev => ({ ...prev, [field]: value }));
 
@@ -76,7 +80,7 @@ export default function EditMovie() {
         if (!form.title.trim()) return;
         try {
             setSaving(true);
-            await ApiRequest.put(`/content/${userId}`, {
+            await ApiRequest.put(`/content/${id}`, {
                 title: form.title,
                 type: form.type,
                 year: form.year ? parseInt(form.year) : undefined,

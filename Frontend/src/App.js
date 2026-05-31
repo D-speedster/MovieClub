@@ -31,6 +31,7 @@ const Box_ofiice = lazy(() => import('./components/Admin/Settings/Box_ofiice'));
 const Slider = lazy(() => import('./components/Admin/Settings/Slider'));
 const Home_Setting = lazy(() => import('./components/Admin/Settings/Home'));
 const Comments = lazy(() => import('./components/Admin/Comments/Comments'));
+const Reports = lazy(() => import('./components/Admin/Reports/Reports'));
 const Movie_Series = lazy(() => import('./components/Admin/Series_Manage/Series_Manage'));
 const Top250 = lazy(() => import('./components/Admin/Settings/Top250'));
 const IMDB = lazy(() => import('./components/Admin/IMDB/IMDB'));
@@ -55,49 +56,7 @@ const routes = [
   { path: '/auth/login', element: <Login /> },
   {
     path: '/admin/*', 
-    element: <ProtectedRoute adminOnly><Admin /></ProtectedRoute>, 
-    children: [
-      { path: '', element: <InfoAdmin /> },
-      { path: 'add-movie', element: <AddMovie /> },
-      { path: 'movies', element: <Movie_mange /> },
-      { path: 'movies/:userId', element: <EditMovie /> },
-      { path: 'series', element: <Movie_Series /> },
-      { path: 'users', element: <Users /> },
-      { path: 'comments', element: <Comments /> },
-      { path: 'trailers', element: <AddTrailer /> },
-      { path: 'collections', element: <Collection /> },
-      { path: 'plans', element: <Plans_Admin /> },
-      { path: 'imdb', element: <IMDB /> },
-      { path: 'settings', element: <Settings /> },
-      { path: 'cache', element: <div className="text-center text-primary">مدیریت حافظه موقت</div> },
-      { path: 'reports', element: <div className="text-center text-primary">گزارش‌ها</div> },
-      // Legacy routes for backward compatibility
-      { path: 'addMovie', element: <AddMovie /> },
-      { path: 'addTrailer', element: <AddTrailer /> },
-      { path: 'addNews', element: <News /> },
-      { path: 'User-Management', element: <Users /> },
-      { path: 'Series-Management', element: <Movie_Series /> },
-      { path: 'Movies-Management', element: <Movie_mange /> },
-      { path: 'Movies-Management/:userId', element: <EditMovie /> },
-      { path: 'newCollection', element: <Collection /> },
-      { path: 'Comments-Management', element: <Comments /> },
-      { path: 'Plans', element: <Plans_Admin /> },
-      { path: 'IMDB', element: <IMDB /> },
-      {
-        path: 'setting/*', 
-        element: <Settings />, 
-        children: [
-          { path: '', element: <Home_Setting /> },
-          { path: 'Home', element: <Home_Setting /> },
-          { path: 'Movie', element: <div className="text-center text-primary">تنظیمات فیلم</div> },
-          { path: 'Series', element: <div className="text-center text-primary">تنظیمات سریال</div> },
-          { path: 'Slider', element: <Slider /> },
-          { path: 'Box-Office', element: <Box_ofiice /> },
-          { path: 'other', element: <Other /> },
-          { path: 'Top250', element: <Top250 /> }
-        ]
-      }
-    ]
+    element: <ProtectedRoute adminOnly><Admin /></ProtectedRoute>
   },
   { path: '/User', element: <div className="text-center text-white">پنل کاربری</div> },
   { path: '*', element: <div className="error-404">صفحه مورد نظر یافت نشد - 404</div> }

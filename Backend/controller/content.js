@@ -1,4 +1,5 @@
 const ContentSchema = require('../models/content')
+const SiteSettings = require('../models/siteSettings')
 
 exports.PostContent = async (req, res, next) => {
     try {
@@ -141,6 +142,85 @@ exports.EditContent = async (req, res, next) => {
             return res.status(404).json({ message: 'محتوا یافت نشد' });
         }
         res.json({ message: 'محتوا با موفقیت ویرایش شد', data: updated });
+    } catch (err) {
+        next(err);
+    }
+};
+
+// دریافت محتوای پیشنهادی (ست شده توسط ادمین)
+exports.GetFeatured = async (req, res, next) => {
+    try {
+        const setting = await SiteSettings.findOne({ key: 'featured_content' });
+        if (!setting || !setting.value || setting.value.length === 0) {
+            // اگه ادمین هنوز ست نکرده، برترین‌ها رو برگردون
+            const fallback = await ContentSchema.find({ 'imdb.rating': { $gt: 0 } })
+                .sort({ 'imdb.rating': -1 })
+                .limit(12);
+            return res.json(fallback);
+        }
+        // آیدی‌های ست شده رو fetch کن
+        const ids = setting.value;
+        const contents = await ContentSchema.find({ _id: { $in: ids } });
+        // ترتیب رو حفظ کن
+        const ordered = ids
+            .map(id => contents.find(c => c._id.toString() === id.toString()))
+            .filter(Boolean);
+        res.json(ordered);
+    } catch (err) {
+        next(err);
+    }
+};
+
+// ست کردن محتوای پیشنهادی توسط ادمین
+exports.SetFeatured = async (req, res, next) => {
+    try {
+        const { contentIds } = req.body;
+        if (!Array.isArray(contentIds)) {
+            return res.status(400).json({ message: 'contentIds باید آرایه باشد' });
+        }
+        const setting = await SiteSettings.findOneAndUpdate(
+            { key: 'featured_content' },
+            { key: 'featured_content', value: contentIds, description: 'محتوای پیشنهادی صفحه اصلی' },
+            { upsert: true, new: true }
+        );
+        res.json({ message: 'پیشنهادی‌ها با موفقیت ذخیره شد', data: setting });
+    } catch (err) {
+        next(err);
+    }
+};
+
+// دریافت 10 عنوان برتر
+exports.GetTop10 = async (req, res, next) => {
+    try {
+        const top10 = await ContentSchema.find({ 'imdb.rating': { $gt: 0 } })
+            .sort({ 'imdb.rating': -1 })
+            .limit(10);
+        res.json(top10);
+    } catch (err) {
+        next(err);
+    }
+};
+
+// دریافت سریال‌های بروز شده (جدیدترین سریال‌ها)
+exports.GetUpdatedSeries = async (req, res, next) => {
+    try {
+        const series = await ContentSchema.find({ type: 'series' })
+            .sort({ updatedAt: -1 })
+            .limit(12);
+        res.json(series);
+    } catch (err) {
+        next(err);
+    }
+};
+
+// دریافت محتوای تصادفی (به انتخاب خودت)
+exports.GetRandomContent = async (req, res, next) => {
+    try {
+        const count = await ContentSchema.countDocuments({});
+        const limit = 12;
+        if (count === 0) return res.json([]);
+        const random = await ContentSchema.aggregate([{ $sample: { size: limit } }]);
+        res.json(random);
     } catch (err) {
         next(err);
     }

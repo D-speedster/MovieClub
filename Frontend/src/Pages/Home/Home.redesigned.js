@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import HeroSection from '../../components/UI/HeroSection/HeroSection';
 import MovieSlider from '../../components/UI/MovieSlider/MovieSlider';
 import Footer from '../../components/Layout/Footer/Footer';
@@ -10,124 +10,103 @@ import { handleApiError, showErrorToUser } from '../../utils/errorHandler';
 import './Home.redesigned.css';
 
 const Home = () => {
-  // State management
-  const [movies, setMovies] = useState([]);
-  const [boxOfficeData, setBoxOfficeData] = useState([]);
+  const [featured, setFeatured] = useState([]);
+  const [top10, setTop10] = useState([]);
+  const [updatedSeries, setUpdatedSeries] = useState([]);
+  const [randomContent, setRandomContent] = useState([]);
   const [trailers, setTrailers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [heroLoading, setHeroLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Fetch data on component mount
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        setError(null);
+  const fetchAllData = useCallback(async () => {
+    try {
+      setLoading(true);
+      setError(null);
 
-        // Fetch movies
-        const moviesResponse = await ApiRequest.get('/content/movieList');
-        const moviesData = moviesResponse.data;
-        
-        setMovies(Array.isArray(moviesData) ? moviesData.reverse() : Object.values(moviesData).reverse());
+      // همه درخواست‌ها رو موازی بزن
+      const [
+        featuredRes,
+        top10Res,
+        updatedSeriesRes,
+        randomRes
+      ] = await Promise.allSettled([
+        ApiRequest.get('/content/featured'),
+        ApiRequest.get('/content/top10'),
+        ApiRequest.get('/content/updated-series'),
+        ApiRequest.get('/content/random')
+      ]);
 
-        Logger.log('Movies data loaded successfully:', moviesData?.length || 'unknown length', 'movies');
-      } catch (err) {
-        const handledError = handleApiError(err, 'Movies API');
-        setError(handledError.message);
-        Logger.error('Error fetching movies:', handledError);
-        showErrorToUser(handledError, false);
-      } finally {
-        setLoading(false);
+      // پیشنهادی‌ها
+      if (featuredRes.status === 'fulfilled') {
+        const data = Array.isArray(featuredRes.value.data)
+          ? featuredRes.value.data
+          : Object.values(featuredRes.value.data);
+        setFeatured(data);
       }
-    };
 
-    const fetchHeroData = async () => {
-      try {
-        setHeroLoading(true);
-
-        // Fetch box office data - اگر endpoint موجود نباشه، از فیلم‌های پرطرفدار استفاده کن
-        try {
-          const boxOfficeResponse = await ApiRequest.get('/content/boxoffice');
-          const boxOfficeArray = Array.isArray(boxOfficeResponse.data)
-            ? boxOfficeResponse.data
-            : Object.values(boxOfficeResponse.data);
-          setBoxOfficeData(boxOfficeArray);
-        } catch (error) {
-          // اگر BoxOffice endpoint موجود نباشه، از فیلم‌های پرطرفدار استفاده کن
-          Logger.warn('BoxOffice endpoint not available, using popular movies');
-          setBoxOfficeData([]);
-        }
-
-        // Fetch trailers data
-        try {
-          const trailersResponse = await ApiRequest.get('/content/trailers');
-          const trailersArray = Array.isArray(trailersResponse.data)
-            ? trailersResponse.data
-            : Object.values(trailersResponse.data);
-          setTrailers(trailersArray);
-        } catch (error) {
-          // اگر trailers endpoint موجود نباشه، خالی بذار
-          Logger.warn('Trailers endpoint not available');
-          setTrailers([]);
-        }
-
-        Logger.log('Hero data loaded successfully');
-      } catch (err) {
-        Logger.error('Error fetching hero data:', err);
-      } finally {
-        setHeroLoading(false);
+      // 10 عنوان برتر
+      if (top10Res.status === 'fulfilled') {
+        const data = Array.isArray(top10Res.value.data)
+          ? top10Res.value.data
+          : Object.values(top10Res.value.data);
+        setTop10(data);
       }
-    };
 
-    fetchData();
-    fetchHeroData();
+      // سریال‌های بروز شده
+      if (updatedSeriesRes.status === 'fulfilled') {
+        const data = Array.isArray(updatedSeriesRes.value.data)
+          ? updatedSeriesRes.value.data
+          : Object.values(updatedSeriesRes.value.data);
+        setUpdatedSeries(data);
+      }
+
+      // به انتخاب خودت
+      if (randomRes.status === 'fulfilled') {
+        const data = Array.isArray(randomRes.value.data)
+          ? randomRes.value.data
+          : Object.values(randomRes.value.data);
+        setRandomContent(data);
+      }
+
+    } catch (err) {
+      const handledError = handleApiError(err, 'Home API');
+      setError(handledError.message);
+      Logger.error('Error fetching home data:', handledError);
+      showErrorToUser(handledError, false);
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
-  // Filter movies by genre
-  const getMoviesByGenre = (genre, limit = 12) => {
-    if (!movies || movies.length === 0) return [];
+  const fetchHeroData = useCallback(async () => {
+    try {
+      setHeroLoading(true);
+      const trailersRes = await ApiRequest.get('/content/trailers');
+      const trailersArray = Array.isArray(trailersRes.data)
+        ? trailersRes.data
+        : Object.values(trailersRes.data);
+      setTrailers(trailersArray);
+    } catch (err) {
+      Logger.warn('Trailers endpoint not available');
+      setTrailers([]);
+    } finally {
+      setHeroLoading(false);
+    }
+  }, []);
 
-    return movies
-      .filter(movie => {
-        const movieGenres = movie.genres || movie.genre || [];
-        return Array.isArray(movieGenres) 
-          ? movieGenres.includes(genre)
-          : movieGenres.toString().includes(genre);
-      })
-      .slice(0, limit);
-  };
-
-  // Get featured movies (highest rated)
-  const getFeaturedMovies = (limit = 6) => {
-    if (!movies || movies.length === 0) return [];
-
-    return movies
-      .filter(movie => movie.rate && parseFloat(movie.rate) >= 8.0)
-      .sort((a, b) => parseFloat(b.rate) - parseFloat(a.rate))
-      .slice(0, limit);
-  };
-
-  // Get trending movies (most recent)
-  const getTrendingMovies = (limit = 12) => {
-    if (!movies || movies.length === 0) return [];
-
-    return movies
-      .sort((a, b) => new Date(b.createdAt || b.date) - new Date(a.createdAt || a.date))
-      .slice(0, limit);
-  };
+  useEffect(() => {
+    fetchAllData();
+    fetchHeroData();
+  }, [fetchAllData, fetchHeroData]);
 
 
-  // Error state
   if (error) {
     return (
       <div className="home-page">
         <div className="error-state">
           <div className="container">
             <div className="error-state__content">
-              <svg width="64" height="64" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-              </svg>
               <h2>خطا در بارگذاری</h2>
               <p>{error}</p>
               <button
@@ -147,64 +126,51 @@ const Home = () => {
 
   return (
     <div className="home-page">
-      {/* Hero Section with integrated header */}
+      {/* Hero Section */}
       <HeroSection
         trailers={trailers}
-        boxOfficeData={boxOfficeData}
         loading={heroLoading}
       />
 
-      {/* Rest of the content with dark theme */}
       <div className="home-content-wrapper">
-        {/* Modern Movie Sliders */}
         <main className="home-content">
+
+          {/* 1. پیشنهادی‌ها - ست شده توسط ادمین */}
           <MovieSlider
-            title="در حال اکران"
-            movies={movies}
+            title="پیشنهادی‌ها"
+            movies={featured}
             loading={loading}
-            showViewAll={true}
-            onViewAll={() => console.log('View all trending')}
+            showViewAll={false}
           />
 
+          {/* 2. 10 عنوان برتر */}
           <MovieSlider
-            title="فیلم‌های اکشن"
-            movies={getMoviesByGenre('اکشن')}
+            title="۱۰ عنوان برتر"
+            movies={top10}
             loading={loading}
             showViewAll={true}
-            onViewAll={() => console.log('View all action')}
+            onViewAll={() => window.location.href = '/Movies'}
           />
 
+          {/* 3. سریال‌های بروز شده */}
           <MovieSlider
-            title="فیلم‌های درام"
-            movies={getMoviesByGenre('درام')}
+            title="سریال‌های بروز شده"
+            movies={updatedSeries}
             loading={loading}
             showViewAll={true}
-            onViewAll={() => console.log('View all drama')}
+            onViewAll={() => window.location.href = '/Series'}
           />
 
+          {/* 4. به انتخاب خودت */}
           <MovieSlider
-            title="فیلم‌های کمدی"
-            movies={getMoviesByGenre('کمدی')}
+            title="به انتخاب خودت"
+            movies={randomContent}
             loading={loading}
-            showViewAll={true}
-            onViewAll={() => console.log('View all comedy')}
+            showViewAll={false}
           />
 
-          <MovieSlider
-            title="فیلم‌های ماجراجویی"
-            movies={getMoviesByGenre('ماجراجویی')}
-            loading={loading}
-            showViewAll={true}
-            onViewAll={() => console.log('View all adventure')}
-          />
 
-          <MovieSlider
-            title="فیلم‌های علمی تخیلی"
-            movies={getMoviesByGenre('علمی تخیلی')}
-            loading={loading}
-            showViewAll={true}
-            onViewAll={() => console.log('View all sci-fi')}
-          />
+
         </main>
 
         <BackToTop />

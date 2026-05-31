@@ -29,6 +29,8 @@ const AdminDashboard = () => {
     const path = location.pathname;
     if (path === '/admin' || path === '/admin/') return 'dashboard';
     if (path.includes('/admin/add-movie')) return 'add-movie';
+    if (path.match(/\/admin\/movies\/.+/)) return 'edit-movie';
+    if (path.match(/\/admin\/series\/.+/)) return 'edit-series';
     if (path.includes('/admin/movies')) return 'movies';
     if (path.includes('/admin/series')) return 'series';
     if (path.includes('/admin/users')) return 'users';
@@ -40,6 +42,7 @@ const AdminDashboard = () => {
     if (path.includes('/admin/settings')) return 'settings';
     if (path.includes('/admin/cache')) return 'cache';
     if (path.includes('/admin/reports')) return 'reports';
+    if (path.includes('/admin/featured')) return 'featured';
     return 'dashboard';
   }, [location.pathname]);
 
@@ -58,7 +61,8 @@ const AdminDashboard = () => {
       'users': '/admin/users', 'comments': '/admin/comments',
       'trailers': '/admin/trailers', 'collections': '/admin/collections',
       'plans': '/admin/plans', 'imdb-sync': '/admin/imdb',
-      'settings': '/admin/settings', 'cache': '/admin/cache', 'reports': '/admin/reports'
+      'settings': '/admin/settings', 'cache': '/admin/cache', 'reports': '/admin/reports',
+      'featured': '/admin/featured'
     };
     navigate(routeMap[sectionId] || '/admin');
   };
@@ -110,7 +114,8 @@ const AdminDashboard = () => {
             {activeSection === 'comments' && 'نظرات'}
             {activeSection === 'trailers' && 'تریلرها'}
             {activeSection === 'settings' && 'تنظیمات'}
-            {!['dashboard','add-movie','movies','series','users','comments','trailers','settings'].includes(activeSection) && 'پنل مدیریت'}
+            {activeSection === 'featured' && 'مدیریت پیشنهادی‌ها'}
+            {!['dashboard','add-movie','movies','series','users','comments','trailers','settings','featured'].includes(activeSection) && 'پنل مدیریت'}
           </h1>
           <div className="admin-user">
             <button

@@ -7,6 +7,7 @@ import LoadingSpinner from '../../components/Loading/LoadingSpinner';
 import ApiRequest from '../../Services/Axios/config';
 import Logger from '../../utils/logger';
 import { handleApiError, showErrorToUser } from '../../utils/errorHandler';
+import { getPosterUrl } from '../../utils/posterUrl';
 import './Series.css';
 
 export default function Series() {
@@ -263,7 +264,7 @@ export default function Series() {
                 key={series._id || series.id || index}
                 id={series._id || series.id}
                 slug={series.slug}
-                poster={series.poster ? `http://localhost:3001/uploads/${series.poster}` : ''}
+                poster={getPosterUrl(series.poster)}
                 name={series.title || series.name}
                 year={series.year}
                 rate={series.imdb?.rating || series.rate}

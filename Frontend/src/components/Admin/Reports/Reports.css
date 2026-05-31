@@ -1,0 +1,147 @@
+.reports-container {
+    color: #e0e0e0;
+}
+
+.reports-loading,
+.reports-error {
+    text-align: center;
+    padding: 40px;
+    color: #aaa;
+}
+
+/* stat cards */
+.reports-cards {
+    display: flex;
+}
+
+.reports-card {
+    background: #1a1a2e;
+    border-radius: 12px;
+    padding: 28px 20px;
+    text-align: center;
+    border: 1px solid #2a2a4a;
+    transition: transform 0.2s;
+}
+
+.reports-card:hover {
+    transform: translateY(-3px);
+}
+
+.reports-card--total { border-top: 3px solid #6c63ff; }
+.reports-card--movies { border-top: 3px solid #e50914; }
+.reports-card--series { border-top: 3px solid #00b4d8; }
+
+.reports-card__icon {
+    font-size: 2rem;
+}
+
+.reports-card__num {
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin: 8px 0 4px;
+    color: #fff;
+}
+
+.reports-card__label {
+    font-size: 0.95rem;
+    color: #aaa;
+}
+
+/* progress bar */
+.reports-bar-section {
+    background: #1a1a2e;
+    border-radius: 12px;
+    padding: 20px 24px;
+    border: 1px solid #2a2a4a;
+}
+
+.reports-bar-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: #aaa;
+    margin-bottom: 10px;
+}
+
+.reports-bar {
+    height: 14px;
+    border-radius: 8px;
+    background: #2a2a4a;
+    display: flex;
+    overflow: hidden;
+}
+
+.reports-bar__fill--movies {
+    background: #e50914;
+    transition: width 0.6s ease;
+}
+
+.reports-bar__fill--series {
+    background: #00b4d8;
+    transition: width 0.6s ease;
+}
+
+/* top rated */
+.reports-top {
+    background: #1a1a2e;
+    border-radius: 12px;
+    padding: 20px 24px;
+    border: 1px solid #2a2a4a;
+}
+
+.reports-top__title {
+    color: #fff;
+    margin-bottom: 16px;
+    font-size: 1rem;
+}
+
+.reports-top__list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.reports-top__item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: #12122a;
+    border-radius: 8px;
+    padding: 10px 14px;
+}
+
+.reports-top__rank {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #6c63ff;
+    min-width: 28px;
+}
+
+.reports-top__poster {
+    width: 40px;
+    height: 56px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.reports-top__info {
+    flex: 1;
+}
+
+.reports-top__name {
+    font-size: 0.95rem;
+    color: #fff;
+    font-weight: 600;
+}
+
+.reports-top__type {
+    font-size: 0.78rem;
+    color: #aaa;
+    margin-top: 2px;
+}
+
+.reports-top__rating {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #f5c518;
+}

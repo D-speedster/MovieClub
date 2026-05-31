@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import AdminStats from './AdminStats';
 import AdminChart from './AdminChart';
 
@@ -8,13 +9,18 @@ import AddTrailer from '../addTrailer/addTrailer';
 import Users from '../Users/Users';
 import MovieManage from '../Movie_Manage/Movie_mange';
 import SeriesManage from '../Series_Manage/Series_Manage';
+import EditMovie from '../EditMovie/EditMovie';
 import Comments from '../Comments/Comments';
 import Settings from '../Settings/Settings';
+import Reports from '../Reports/Reports';
 import IMDB from '../IMDB/IMDB';
 import Plans from '../Plans/Plans';
 import Collection from '../Ncollection/Collection';
+import FeaturedManager from '../FeaturedManager/FeaturedManager';
 
 const AdminContent = ({ activeSection, stats }) => {
+  const location = useLocation();
+
   const renderContent = () => {
     switch (activeSection) {
       case 'dashboard':
@@ -25,8 +31,15 @@ const AdminContent = ({ activeSection, stats }) => {
           </>
         );
       
+      case 'featured':
+        return <FeaturedManager />;
+      
       case 'movies':
         return <MovieManage />;
+
+      case 'edit-movie':
+      case 'edit-series':
+        return <EditMovie />;
       
       case 'series':
         return <SeriesManage />;
@@ -70,18 +83,7 @@ const AdminContent = ({ activeSection, stats }) => {
         );
         
       case 'reports':
-        return (
-          <div className="content-section">
-            <div className="section-header">
-              <h2>گزارش‌ها</h2>
-              <p>مشاهده گزارش‌های کاربران و سیستم</p>
-            </div>
-            <div className="placeholder-content">
-              <p>رابط مشاهده گزارش‌ها در اینجا پیاده‌سازی خواهد شد.</p>
-              <p>امکانات: گزارش‌های کاربران، گزارش‌های سیستم، آمار و تحلیل.</p>
-            </div>
-          </div>
-        );
+        return <Reports />;
       
       default:
         return (
