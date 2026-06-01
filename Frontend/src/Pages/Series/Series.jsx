@@ -15,6 +15,7 @@ export default function Series() {
   const [filteredSeries, setFilteredSeries] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [heroImage, setHeroImage] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [filters, setFilters] = useState({
     genre: '',
@@ -24,6 +25,13 @@ export default function Series() {
   });
 
   const seriesPerPage = 20;
+
+  // Fetch hero image
+  useEffect(() => {
+    ApiRequest.get('/settings/hero_series')
+      .then(res => { if (res.data?.value) setHeroImage(res.data.value); })
+      .catch(() => {});
+  }, []);
 
   // Fetch series data
   useEffect(() => {
@@ -124,15 +132,27 @@ export default function Series() {
     return [...new Set(genres)];
   };
 
+  const heroStyle = heroImage
+    ? {
+        backgroundImage: `url(${getPosterUrl(heroImage)})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center top',
+      }
+    : {};
+
+  const HeroBlock = () => (
+    <div className="series-static-hero" style={heroStyle}>
+      {!heroImage && <div className="series-static-hero__background" />}
+      <div className="series-static-hero__overlay" />
+      <div className="series-static-hero__content"><h1>سریال</h1></div>
+    </div>
+  );
+
   if (loading) {
     return (
       <div className="series-page">
         <PageHeader />
-        <div className="series-static-hero">
-          <div className="series-static-hero__content">
-            <h1>سریال</h1>
-          </div>
-        </div>
+        <HeroBlock />
         <div className="series-content">
           <div className="container-fluid">
             <LoadingSpinner size="large" message="در حال بارگذاری سریال‌ها..." />
@@ -148,11 +168,7 @@ export default function Series() {
     return (
       <div className="series-page">
         <PageHeader />
-        <div className="series-static-hero">
-          <div className="series-static-hero__content">
-            <h1>سریال</h1>
-          </div>
-        </div>
+        <HeroBlock />
         <div className="series-content">
           <div className="container-fluid">
             <div className="error-state">
@@ -174,14 +190,8 @@ export default function Series() {
     <div className="series-page">
       <PageHeader />
       
-      {/* Static Hero Section */}
-      <div className="series-static-hero">
-        <div className="series-static-hero__background"></div>
-        <div className="series-static-hero__overlay"></div>
-        <div className="series-static-hero__content">
-          <h1>سریال</h1>
-        </div>
-      </div>
+      {/* Dynamic Hero Section */}
+      <HeroBlock />
       
       {/* Main Content */}
       <div className="series-content">

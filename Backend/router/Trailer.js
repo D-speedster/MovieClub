@@ -1,6 +1,8 @@
 const express = require('express');
 const { GetTrailers, PostTrailer, DeleteTrailer } = require('../controller/trailer');
+const isAdmin = require('../middlewares/isAdmin');
 const multer = require('multer');
+
 const router = express.Router();
 
 const storage = multer.diskStorage({
@@ -9,8 +11,11 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
+// ── Public ────────────────────────────────────────────────────
 router.get('/', GetTrailers);
-router.post('/', upload.single('poster'), PostTrailer);
-router.delete('/:id', DeleteTrailer);
+
+// ── Protected (فقط Admin/Owner) ───────────────────────────────
+router.post('/',    isAdmin, upload.single('poster'), PostTrailer);
+router.delete('/:id', isAdmin, DeleteTrailer);
 
 module.exports = router;

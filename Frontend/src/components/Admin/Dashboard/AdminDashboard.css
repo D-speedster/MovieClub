@@ -631,3 +631,35 @@
   outline: 2px solid var(--adm-accent);
   outline-offset: 2px;
 }
+
+/* ===== LOGOUT BUTTON ===== */
+.admin-logout-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--adm-radius-sm);
+  border: 1px solid var(--adm-border);
+  background: var(--adm-surface-2);
+  color: var(--adm-text-2);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+}
+
+.admin-logout-btn:hover {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: var(--adm-red);
+  color: var(--adm-red);
+}
+
+.admin-logout-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.admin-user__name {
+  font-size: 13px;
+  color: var(--adm-text-2);
+  font-weight: 500;
+}

@@ -1,0 +1,39 @@
+.anime-hero {
+    background: linear-gradient(135deg, rgba(239,68,68,0.15) 0%, rgba(15,15,26,0) 100%);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding: 80px 0 60px;
+    text-align: center;
+}
+
+.anime-hero h1 {
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 800;
+    margin-bottom: 12px;
+    color: #fff;
+}
+
+.anime-hero p {
+    font-size: 18px;
+    color: rgba(255,255,255,0.5);
+}
+
+.anime-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.loading-spinner-sm {
+    width: 36px;
+    height: 36px;
+    border: 3px solid rgba(255,255,255,0.1);
+    border-top-color: #7c3aed;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 0 auto;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}

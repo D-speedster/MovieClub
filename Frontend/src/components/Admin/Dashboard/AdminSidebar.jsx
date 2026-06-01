@@ -12,7 +12,8 @@ import {
   FiSettings,
   FiChevronDown,
   FiChevronRight,
-  FiStar
+  FiStar,
+  FiDownload
 } from 'react-icons/fi';
 
 const AdminSidebar = ({ activeSection, onSectionChange }) => {
@@ -45,8 +46,10 @@ const AdminSidebar = ({ activeSection, onSectionChange }) => {
         { id: 'series', label: 'مدیریت سریال‌ها', icon: FiFilm },
         { id: 'add-movie', label: 'افزودن محتوا', icon: FiFilm },
         { id: 'trailers', label: 'تریلرها', icon: FiPlay },
+        { id: 'downloads', label: 'لینک‌های دانلود', icon: FiDownload },
         { id: 'collections', label: 'کالکشن‌ها', icon: FiFolder },
-        { id: 'featured', label: 'پیشنهادی‌ها', icon: FiStar }
+        { id: 'featured', label: 'پیشنهادی‌ها', icon: FiStar },
+        { id: 'hero-images', label: 'تصویر Hero صفحات', icon: FiFilm }
       ]
     },
     {

@@ -1,0 +1,207 @@
+.him {
+    padding: 24px;
+    direction: rtl;
+    color: #e2e8f0;
+}
+
+.him__header {
+    margin-bottom: 28px;
+}
+
+.him__header h2 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #f1f5f9;
+    margin: 0 0 6px;
+}
+
+.him__header p {
+    font-size: 0.88rem;
+    color: #94a3b8;
+    margin: 0;
+}
+
+.him__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 24px;
+}
+
+/* ─── Card ─────────────────────────────────────────────────── */
+.him__card {
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.him__card-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.him__card-title span {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #f1f5f9;
+}
+
+.him__route {
+    font-size: 0.75rem;
+    background: #0f172a;
+    color: #64748b;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-family: monospace;
+}
+
+/* ─── Preview ───────────────────────────────────────────────── */
+.him__preview {
+    position: relative;
+    width: 100%;
+    height: 180px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #0f172a;
+    border: 1px dashed #334155;
+}
+
+.him__preview-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.him__preview-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(234, 179, 8, 0.9);
+    color: #000;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 4px;
+}
+
+.him__preview-empty {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: #475569;
+}
+
+.him__preview-empty span {
+    font-size: 0.82rem;
+}
+
+/* ─── Message ───────────────────────────────────────────────── */
+.him__msg {
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+}
+
+.him__msg--success {
+    background: rgba(34, 197, 94, 0.12);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    color: #4ade80;
+}
+
+.him__msg--error {
+    background: rgba(239, 68, 68, 0.12);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: #f87171;
+}
+
+/* ─── Controls ──────────────────────────────────────────────── */
+.him__controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.him__file-input {
+    display: none;
+}
+
+.him__file-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background: #334155;
+    color: #cbd5e1;
+    border-radius: 7px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    user-select: none;
+}
+
+.him__file-label:hover {
+    background: #475569;
+    color: #fff;
+}
+
+.him__upload-btn {
+    padding: 8px 20px;
+    background: #e50914;
+    color: #fff;
+    border: none;
+    border-radius: 7px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.him__upload-btn:hover:not(:disabled) {
+    background: #c40812;
+}
+
+.him__upload-btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.him__remove-btn {
+    padding: 8px 16px;
+    background: transparent;
+    color: #f87171;
+    border: 1px solid rgba(239, 68, 68, 0.35);
+    border-radius: 7px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.him__remove-btn:hover {
+    background: rgba(239, 68, 68, 0.1);
+    border-color: #f87171;
+}
+
+/* ─── Hint ──────────────────────────────────────────────────── */
+.him__hint {
+    font-size: 0.75rem;
+    color: #475569;
+    margin: 0;
+}
+
+@media (max-width: 480px) {
+    .him__grid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -17,6 +17,8 @@ import IMDB from '../IMDB/IMDB';
 import Plans from '../Plans/Plans';
 import Collection from '../Ncollection/Collection';
 import FeaturedManager from '../FeaturedManager/FeaturedManager';
+import HeroImageManager from '../HeroImageManager/HeroImageManager';
+import DownloadManager from '../DownloadManager/DownloadManager';
 
 const AdminContent = ({ activeSection, stats }) => {
   const location = useLocation();
@@ -33,7 +35,13 @@ const AdminContent = ({ activeSection, stats }) => {
       
       case 'featured':
         return <FeaturedManager />;
-      
+
+      case 'hero-images':
+        return <HeroImageManager />;
+
+      case 'downloads':
+        return <DownloadManager />;
+
       case 'movies':
         return <MovieManage />;
 

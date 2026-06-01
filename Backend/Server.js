@@ -3,6 +3,10 @@ const connectDB = require('./utils/db');
 const AuthPage = require('./router/Auth')
 const contentPage = require('./router/Content');
 const trailerPage = require('./router/Trailer');
+const settingsPage = require('./router/Settings');
+const downloadPage = require('./router/Download');
+const usersPage = require('./router/Users');
+const commentPage = require('./router/Comment');
 var session = require('express-session')
 const multer = require('multer');
 const cookieParser = require('cookie-parser');
@@ -54,6 +58,10 @@ app.use(express.json())
 app.use('/auth', AuthPage)
 app.use('/content', upload.single('poster'), contentPage)
 app.use('/trailers', trailerPage)
+app.use('/settings', settingsPage)
+app.use('/downloads', downloadPage)
+app.use('/users', usersPage)
+app.use('/comments', commentPage)
 app.get('/', (req, res, next) => {
     res.send('hello from express')
 })
@@ -63,6 +71,31 @@ app.get('/profile', isAuth, (req, res) => {
         user: req.user
     });
 });
+// ── Global Error Handler ─────────────────────────────────────
+app.use((err, req, res, next) => {
+    console.error(`[ERROR] ${req.method} ${req.path}:`, err.message);
+
+    // Mongoose duplicate key error (مثلاً slug تکراری)
+    if (err.code === 11000) {
+        const field = Object.keys(err.keyValue || {})[0] || 'فیلد';
+        return res.status(400).json({
+            message: `این ${field} قبلاً ثبت شده است. لطفاً مقدار دیگری انتخاب کنید.`
+        });
+    }
+
+    // Mongoose validation error
+    if (err.name === 'ValidationError') {
+        const messages = Object.values(err.errors).map(e => e.message).join('، ');
+        return res.status(400).json({ message: messages });
+    }
+
+    const status = err.status || err.statusCode || 500;
+    res.status(status).json({
+        message: err.message || 'خطای داخلی سرور',
+        ...(process.env.NODE_ENV === 'development' && { stack: err.stack })
+    });
+});
+
 connectDB()
 app.listen(process.env.PORT, () => {
     console.log(`We Are Online on localhost:${PORT}`)

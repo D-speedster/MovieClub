@@ -10,6 +10,7 @@ const AdminDashboard = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [theme, setTheme] = useState(() => localStorage.getItem('admin-theme') || 'dark');
+  const [loggingOut, setLoggingOut] = useState(false);
 
   const [stats, setStats] = useState({
     totalUsers: { current: 0, change: { value: 0, isPositive: true } },
@@ -43,6 +44,8 @@ const AdminDashboard = () => {
     if (path.includes('/admin/cache')) return 'cache';
     if (path.includes('/admin/reports')) return 'reports';
     if (path.includes('/admin/featured')) return 'featured';
+    if (path.includes('/admin/hero-images')) return 'hero-images';
+    if (path.includes('/admin/downloads')) return 'downloads';
     return 'dashboard';
   }, [location.pathname]);
 
@@ -62,27 +65,49 @@ const AdminDashboard = () => {
       'trailers': '/admin/trailers', 'collections': '/admin/collections',
       'plans': '/admin/plans', 'imdb-sync': '/admin/imdb',
       'settings': '/admin/settings', 'cache': '/admin/cache', 'reports': '/admin/reports',
-      'featured': '/admin/featured'
+      'featured': '/admin/featured',
+      'hero-images': '/admin/hero-images',
+      'downloads': '/admin/downloads'
     };
     navigate(routeMap[sectionId] || '/admin');
   };
 
+  // ── Logout ────────────────────────────────────────────────────
+  const handleLogout = async () => {
+    try {
+      setLoggingOut(true);
+      // به backend بگو cookie را پاک کند
+      await ApiRequest.post('/auth/logout');
+    } catch (err) {
+      Logger.warn('Logout API call failed, clearing local state anyway');
+    } finally {
+      // در هر صورت localStorage را پاک کن
+      localStorage.removeItem('token');
+      localStorage.removeItem('role');
+      localStorage.removeItem('username');
+      setLoggingOut(false);
+      navigate('/auth/login');
+    }
+  };
+
   const fetchDashboardData = async () => {
     try {
-      const [movies, series] = await Promise.all([
-        ApiRequest.get('/content/movieList'),
-        ApiRequest.get('/content/seriesList'),
+      const [statsRes, pendingRes] = await Promise.all([
+        ApiRequest.get('/content/stats').catch(() => null),
+        ApiRequest.get('/comments/count/pending').catch(() => null),
       ]);
 
-      const movieCount = Array.isArray(movies.data) ? movies.data.length : 0;
-      const seriesCount = Array.isArray(series.data) ? series.data.length : 0;
+      const movieCount   = statsRes?.data?.movieCount  ?? 0;
+      const seriesCount  = statsRes?.data?.seriesCount ?? 0;
+      const userCount    = statsRes?.data?.userCount   ?? 0;
+      const pendingCount = pendingRes?.data?.count     ?? 0;
 
       setStats({
-        totalUsers: { current: 1, change: { value: 0, isPositive: true } },
-        totalMovies: { current: movieCount, change: { value: 2.4, isPositive: true } },
-        totalSeries: { current: seriesCount, change: { value: 1.1, isPositive: true } },
-        dailyVisits: { current: 0, change: { value: 0, isPositive: true } },
-        pendingComments: { current: 0, change: { value: 0, isPositive: false } }
+        totalUsers:      { current: userCount,    change: { value: 0,   isPositive: true  } },
+        totalMovies:     { current: movieCount,   change: { value: 0,   isPositive: true  } },
+        totalSeries:     { current: seriesCount,  change: { value: 0,   isPositive: true  } },
+        dailyVisits:     { current: 0,            change: { value: 0,   isPositive: true  } },
+        pendingComments: { current: pendingCount, change: { value: 0,   isPositive: false } }
       });
     } catch (error) {
       Logger.error('خطا در دریافت اطلاعات داشبورد:', error);
@@ -100,23 +125,31 @@ const AdminDashboard = () => {
     );
   }
 
+  const sectionTitles = {
+    'dashboard': 'داشبورد',
+    'add-movie': 'افزودن محتوا',
+    'movies': 'مدیریت فیلم‌ها',
+    'series': 'مدیریت سریال‌ها',
+    'users': 'کاربران',
+    'comments': 'نظرات',
+    'trailers': 'تریلرها',
+    'settings': 'تنظیمات',
+    'featured': 'مدیریت پیشنهادی‌ها',
+    'hero-images': 'تصویر Hero صفحات',
+    'reports': 'گزارش‌ها',
+    'plans': 'اشتراک‌ها',
+    'collections': 'کالکشن‌ها',
+    'imdb-sync': 'همگام‌سازی IMDb',
+    'cache': 'حافظه موقت',
+    'downloads': 'لینک‌های دانلود',
+  };
+
   return (
     <div className="admin-dashboard">
       <AdminSidebar activeSection={activeSection} onSectionChange={handleSectionChange} />
       <main className="admin-main">
         <header className="admin-header">
-          <h1>
-            {activeSection === 'dashboard' && 'داشبورد'}
-            {activeSection === 'add-movie' && 'افزودن محتوا'}
-            {activeSection === 'movies' && 'مدیریت فیلم‌ها'}
-            {activeSection === 'series' && 'مدیریت سریال‌ها'}
-            {activeSection === 'users' && 'کاربران'}
-            {activeSection === 'comments' && 'نظرات'}
-            {activeSection === 'trailers' && 'تریلرها'}
-            {activeSection === 'settings' && 'تنظیمات'}
-            {activeSection === 'featured' && 'مدیریت پیشنهادی‌ها'}
-            {!['dashboard','add-movie','movies','series','users','comments','trailers','settings','featured'].includes(activeSection) && 'پنل مدیریت'}
-          </h1>
+          <h1>{sectionTitles[activeSection] || 'پنل مدیریت'}</h1>
           <div className="admin-user">
             <button
               className="theme-toggle"
@@ -125,7 +158,21 @@ const AdminDashboard = () => {
             >
               {theme === 'dark' ? '☀️' : '🌙'}
             </button>
-            <span>مدیر سیستم</span>
+            <span className="admin-user__name">
+              {localStorage.getItem('role') || 'Admin'}
+            </span>
+            <button
+              className="admin-logout-btn"
+              onClick={handleLogout}
+              disabled={loggingOut}
+              title="خروج از حساب"
+            >
+              {loggingOut ? '...' : (
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/>
+                </svg>
+              )}
+            </button>
           </div>
         </header>
         <div className="admin-content">

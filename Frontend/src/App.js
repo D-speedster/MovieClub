@@ -1,4 +1,3 @@
-
 import React, { Suspense, lazy } from 'react';
 import { useRoutes } from "react-router-dom";
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
@@ -13,28 +12,11 @@ const Login = lazy(() => import('./Pages/Login/Login'));
 const Register = lazy(() => import('./Pages/Register/Register'));
 const Admin = lazy(() => import('./Pages/Admin/Admin'));
 const Download = lazy(() => import('./components/M_Download/MoviePage'));
-const ThemeExample = lazy(() => import('./components/ThemeExample/ThemeExample'));
-
-// Admin components
-const AddMovie = lazy(() => import('./components/Admin/addMovie/AddMovie'));
-const AddTrailer = lazy(() => import('./components/Admin/addTrailer/addTrailer'));
-const Users = lazy(() => import('./components/Admin/Users/Users'));
-const Movie_mange = lazy(() => import('./components/Admin/Movie_Manage/Movie_mange'));
-const Collection = lazy(() => import('./components/Admin/Ncollection/Collection'));
-const InfoAdmin = lazy(() => import('./components/Admin/InfoAdmin/InfoAdmin'));
-const EditMovie = lazy(() => import('./components/Admin/EditMovie/EditMovie'));
-const Plans_Admin = lazy(() => import('./components/Admin/Plans/Plans'));
-const News = lazy(() => import('./components/Admin/News/News'));
-const Settings = lazy(() => import('./components/Admin/Settings/Settings'));
-const Other = lazy(() => import('./components/Admin/Settings/other'));
-const Box_ofiice = lazy(() => import('./components/Admin/Settings/Box_ofiice'));
-const Slider = lazy(() => import('./components/Admin/Settings/Slider'));
-const Home_Setting = lazy(() => import('./components/Admin/Settings/Home'));
-const Comments = lazy(() => import('./components/Admin/Comments/Comments'));
-const Reports = lazy(() => import('./components/Admin/Reports/Reports'));
-const Movie_Series = lazy(() => import('./components/Admin/Series_Manage/Series_Manage'));
-const Top250 = lazy(() => import('./components/Admin/Settings/Top250'));
-const IMDB = lazy(() => import('./components/Admin/IMDB/IMDB'));
+const UserPage = lazy(() => import('./Pages/User/UserPage'));
+const About = lazy(() => import('./Pages/About/About'));
+const Contact = lazy(() => import('./Pages/Contact/Contact'));
+const Categories = lazy(() => import('./Pages/Categories/Categories'));
+const Anime = lazy(() => import('./Pages/Anime/Anime'));
 
 const LoadingSpinner = () => (
   <div className="loading-spinner">
@@ -47,19 +29,37 @@ const LoadingSpinner = () => (
 
 const routes = [
   { path: '/', element: <Home /> },
-  { path: '/theme-demo', element: <ThemeExample /> },
   { path: '/movie/:userId', element: <Download /> },
   { path: '/Movie/:userId', element: <Download /> },
   { path: '/Movies', element: <Movies /> },
   { path: '/Series', element: <Series /> },
+  { path: '/anime', element: <Anime /> },
+  { path: '/Anime', element: <Anime /> },
+  { path: '/categories', element: <Categories /> },
+  { path: '/Categories', element: <Categories /> },
+  { path: '/about', element: <About /> },
+  { path: '/contact', element: <Contact /> },
+  { path: '/news', element: (
+    <div style={{ minHeight: '100vh', background: '#0f0f1a', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', color: '#fff' }}>
+      <span style={{ fontSize: 64 }}>📰</span>
+      <h2 style={{ marginTop: 20 }}>اخبار</h2>
+      <p style={{ color: 'rgba(255,255,255,0.5)', marginTop: 8 }}>به زودی...</p>
+    </div>
+  )},
   { path: '/auth/register', element: <Register /> },
   { path: '/auth/login', element: <Login /> },
   {
-    path: '/admin/*', 
+    path: '/admin/*',
     element: <ProtectedRoute adminOnly><Admin /></ProtectedRoute>
   },
-  { path: '/User', element: <div className="text-center text-white">پنل کاربری</div> },
-  { path: '*', element: <div className="error-404">صفحه مورد نظر یافت نشد - 404</div> }
+  { path: '/User', element: <UserPage /> },
+  { path: '*', element: (
+    <div style={{ minHeight: '100vh', background: '#0f0f1a', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', color: '#fff' }}>
+      <span style={{ fontSize: 80 }}>404</span>
+      <h2 style={{ marginTop: 16 }}>صفحه مورد نظر یافت نشد</h2>
+      <a href="/" style={{ marginTop: 20, color: '#a78bfa', textDecoration: 'none' }}>بازگشت به خانه</a>
+    </div>
+  )}
 ];
 
 function App() {

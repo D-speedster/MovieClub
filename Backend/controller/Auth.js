@@ -25,7 +25,7 @@ exports.PostLogin = async (req, res) => {
         res.cookie('token', token, {
             httpOnly: true,
             secure: false,
-            sameSite: 'strict',
+            sameSite: 'lax',
             maxAge: 1 * 24 * 60 * 60 * 1000
         })
 
@@ -64,6 +64,13 @@ exports.PostRegister = async (req, res) => {
 };
 
 exports.logout = (req, res, next) => {
+    // cookie token را پاک کن
+    res.clearCookie('token', {
+        httpOnly: true,
+        secure: false,
+        sameSite: 'lax'
+    });
+    // session را هم destroy کن
     req.session.destroy(err => {
         if (err) {
             return res.status(500).json({ message: 'Logout failed' });

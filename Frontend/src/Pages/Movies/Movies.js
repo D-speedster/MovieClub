@@ -7,6 +7,7 @@ import LoadingSpinner from '../../components/Loading/LoadingSpinner';
 import ApiRequest from '../../Services/Axios/config';
 import Logger from '../../utils/logger';
 import { handleApiError, showErrorToUser } from '../../utils/errorHandler';
+import { getPosterUrl } from '../../utils/posterUrl';
 import './Movies.css';
 
 export default function Movies() {
@@ -14,6 +15,7 @@ export default function Movies() {
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [heroImage, setHeroImage] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [filters, setFilters] = useState({
     genre: '',
@@ -23,6 +25,13 @@ export default function Movies() {
   });
 
   const moviesPerPage = 20;
+
+  // Fetch hero image
+  useEffect(() => {
+    ApiRequest.get('/settings/hero_movies')
+      .then(res => { if (res.data?.value) setHeroImage(res.data.value); })
+      .catch(() => {});
+  }, []);
 
   // Fetch movies data
   useEffect(() => {
@@ -56,37 +65,44 @@ export default function Movies() {
   useEffect(() => {
     let filtered = [...allMovies];
 
-    // Genre filter
+    // Genre filter — پشتیبانی از هر دو فرمت آرایه (genres) و رشته (genre)
     if (filters.genre && filters.genre !== 'all') {
-      filtered = filtered.filter(movie => 
-        movie.genre && movie.genre.includes(filters.genre)
+      filtered = filtered.filter(movie => {
+        const genres = movie.genres || movie.genre || [];
+        return Array.isArray(genres)
+          ? genres.includes(filters.genre)
+          : genres.split(',').map(g => g.trim()).includes(filters.genre);
+      });
+    }
+
+    // Year filter — مقایسه عددی صحیح
+    if (filters.year && filters.year !== 'all') {
+      filtered = filtered.filter(movie => String(movie.year) === String(filters.year));
+    }
+
+    // Rating filter — پشتیبانی از هر دو فرمت imdb.rating و rate
+    if (filters.rating && filters.rating !== 'all') {
+      const minRating = parseFloat(filters.rating);
+      filtered = filtered.filter(movie =>
+        parseFloat(movie.imdb?.rating || movie.rate || 0) >= minRating
       );
     }
 
-    // Year filter
-    if (filters.year && filters.year !== 'all') {
-      filtered = filtered.filter(movie => movie.year === filters.year);
-    }
-
-    // Rating filter
-    if (filters.rating && filters.rating !== 'all') {
-      const minRating = parseFloat(filters.rating);
-      filtered = filtered.filter(movie => parseFloat(movie.rate || 0) >= minRating);
-    }
-
-    // Sort
+    // Sort — استفاده از createdAt (حرف کوچک) که در مدل Mongoose است
     switch (filters.sort) {
       case 'newest':
-        filtered.sort((a, b) => new Date(b.CreatedAt || 0) - new Date(a.CreatedAt || 0));
+        filtered.sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0));
         break;
       case 'oldest':
-        filtered.sort((a, b) => new Date(a.CreatedAt || 0) - new Date(b.CreatedAt || 0));
+        filtered.sort((a, b) => new Date(a.createdAt || 0) - new Date(b.createdAt || 0));
         break;
       case 'rating':
-        filtered.sort((a, b) => parseFloat(b.rate || 0) - parseFloat(a.rate || 0));
+        filtered.sort((a, b) =>
+          parseFloat(b.imdb?.rating || b.rate || 0) - parseFloat(a.imdb?.rating || a.rate || 0)
+        );
         break;
       case 'name':
-        filtered.sort((a, b) => (a.name || '').localeCompare(b.name || ''));
+        filtered.sort((a, b) => (a.title || a.name || '').localeCompare(b.title || b.name || ''));
         break;
       default:
         break;
@@ -130,15 +146,23 @@ export default function Movies() {
     return [...new Set(genres)];
   };
 
+  const heroStyle = heroImage
+    ? { backgroundImage: `url(${getPosterUrl(heroImage)})`, backgroundSize: 'cover', backgroundPosition: 'center top' }
+    : {};
+
+  const HeroBlock = () => (
+    <div className="movies-static-hero" style={heroStyle}>
+      {!heroImage && <div className="movies-static-hero__background" />}
+      <div className="movies-static-hero__overlay" />
+      <div className="movies-static-hero__content"><h1>فیلم</h1></div>
+    </div>
+  );
+
   if (loading) {
     return (
       <div className="movies-page">
         <PageHeader />
-        <div className="movies-static-hero">
-          <div className="movies-static-hero__content">
-            <h1>فیلم</h1>
-          </div>
-        </div>
+        <HeroBlock />
         <div className="movies-content">
           <div className="container-fluid">
             <LoadingSpinner size="large" message="در حال بارگذاری فیلم‌ها..." />
@@ -154,11 +178,7 @@ export default function Movies() {
     return (
       <div className="movies-page">
         <PageHeader />
-        <div className="movies-static-hero">
-          <div className="movies-static-hero__content">
-            <h1>فیلم</h1>
-          </div>
-        </div>
+        <HeroBlock />
         <div className="movies-content">
           <div className="container-fluid">
             <div className="error-state">
@@ -180,14 +200,8 @@ export default function Movies() {
     <div className="movies-page">
       <PageHeader />
       
-      {/* Static Hero Section */}
-      <div className="movies-static-hero">
-        <div className="movies-static-hero__background"></div>
-        <div className="movies-static-hero__overlay"></div>
-        <div className="movies-static-hero__content">
-          <h1>فیلم</h1>
-        </div>
-      </div>
+      {/* Dynamic Hero Section */}
+      <HeroBlock />
       
       {/* Main Content */}
       <div className="movies-content">

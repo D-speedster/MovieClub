@@ -53,8 +53,9 @@ export default function Login() {
         return;
       }
 
-      localStorage.setItem('token', 'session');
+      localStorage.setItem('token', 'authenticated');
       localStorage.setItem('role', data.role || 'User');
+      localStorage.setItem('username', formData.username);
 
       const Toast = Swal.mixin({
         toast: true, position: 'top-end', showConfirmButton: false,

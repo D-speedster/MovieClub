@@ -1,257 +1,141 @@
-import * as React from 'react';
-import { useEffect, useState } from 'react';
-import { Container, Row, Col, Button, Form, Modal } from 'react-bootstrap';
-import Table from 'react-bootstrap/Table';
-import './User.css'
-import { BiEditAlt } from 'react-icons/bi';
-import { ImBin2 } from 'react-icons/im';
-import Swal from 'sweetalert2'
+import React, { useEffect, useState } from 'react';
+import {
+    Box, Typography, Stack, CircularProgress, Alert,
+    Chip, Select, MenuItem, FormControl
+} from '@mui/material';
+import { FiUsers, FiTrash2, FiShield } from 'react-icons/fi';
 import ApiRequest from '../../../Services/Axios/config';
-import axios from "axios";
-import { useReducer } from 'react';
+import Swal from 'sweetalert2';
 import Logger from '../../../utils/logger';
 
-export default function DataTable() {
-  let UsersHandler = (state, action) => {
+const ROLES = ['User', 'Admin', 'Owner'];
 
-  }
-  let [UsersMang, SetUsersMang] = useReducer(UsersHandler, { age: 42 })
-  const [users, Setusers] = useState(true);
-  const [pending, setpending] = useState(true);
-  const [show, setShow] = useState(false);
-  const [InfoUser, SetInfoUser] = useState('')
-  const handleClose = () => { setShow(false) }
-  const [UserName, SetUserName] = useState('');
-  const [Email, SetEmail] = useState('');
-  const [Password, SetPassword] = useState('');
-  const [Type, SetType] = useState('');
-  const [NumEdit, SetNumEdit] = useState('')
-  const EditUser = (id) => {
-    ApiRequest.get(`/Users/${id}`).then(data => {
+const roleColor = (role) => {
+    if (role === 'Owner') return { bg: 'rgba(239,68,68,0.12)', color: '#fca5a5', border: 'rgba(239,68,68,0.25)' };
+    if (role === 'Admin') return { bg: 'rgba(124,58,237,0.12)', color: '#a78bfa', border: 'rgba(124,58,237,0.25)' };
+    return { bg: 'rgba(59,130,246,0.1)', color: '#93c5fd', border: 'rgba(59,130,246,0.2)' };
+};
 
-      SetUserName(data.data.user)
-      SetEmail(data.data.email)
-      SetPassword(data.data.password)
-      SetType(data.data.type)
-      SetNumEdit(data.data.id);
+export default function Users() {
+    const [users, setUsers] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState('');
 
-
-    })
-    setShow(true)
-
-
-  };
-  const handleShow = () => setShow(true);
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await ApiRequest.get('Users');
-        Setusers(response.data);
-        setpending(false);
-      } catch (error) {
-        Logger.error('خطا در دریافت اطلاعات از دیتابیس', error);
-        setpending(false);
-      }
-    }
-
-    fetchData();
-  }, []);
-  const SubmitEdit = async () => {
-    try {
-      const obj = {
-        user: UserName,
-        email: Email,
-        password: Password,
-        type: Type
-      };
-      
-      await ApiRequest.put(`/Users/${NumEdit}`, obj);
-      setShow(false);
-      
-      // Refresh user list
-      const response = await ApiRequest.get('Users');
-      Setusers(response.data);
-      
-      Swal.fire('موفق!', 'کاربر با موفقیت ویرایش شد', 'success');
-    } catch (error) {
-      Logger.error('خطا در ویرایش کاربر:', error);
-      Swal.fire('خطا!', 'مشکلی در ویرایش کاربر پیش آمد', 'error');
-    }
-  }
-
-  const DeleteUser = (id) => {
-    Swal.fire({
-      title: 'آیا مطمین هستید ؟ ',
-      text: "این عملیات بدون بازگشت میباشد",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'بله حذف شود!'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        async function DeleteAsyncUser() {
-          try {
-            await ApiRequest.delete(`Users/${id}`);
-            // Refresh user list
-            const response = await ApiRequest.get('Users');
-            Setusers(response.data);
-          } catch (error) {
-            Logger.error('خطا در حذف کاربر:', error);
-            Swal.fire('خطا!', 'مشکلی در حذف کاربر پیش آمد', 'error');
-            return;
-          }
+    const fetchUsers = async () => {
+        setLoading(true);
+        try {
+            const res = await ApiRequest.get('/users');
+            setUsers(Array.isArray(res.data) ? res.data : []);
+        } catch (err) {
+            Logger.error('خطا در دریافت کاربران:', err);
+            setError('خطا در دریافت لیست کاربران');
+        } finally {
+            setLoading(false);
         }
-        DeleteAsyncUser()
-        function FireMessage() {
-          Swal.fire(
-            'موفقیت آمیز!',
-            'کاربر مورد نظر از سایت حذف شد.',
-            'success'
-          )
+    };
+
+    useEffect(() => { fetchUsers(); }, []);
+
+    const handleRoleChange = async (userId, newRole) => {
+        try {
+            await ApiRequest.put(`/users/${userId}`, { role: newRole });
+            setUsers(prev => prev.map(u => u._id === userId ? { ...u, role: newRole } : u));
+            Swal.fire({ icon: 'success', title: 'نقش کاربر تغییر کرد', timer: 1500, showConfirmButton: false, background: 'var(--adm-surface)', color: 'var(--adm-text)' });
+        } catch (err) {
+            Swal.fire({ icon: 'error', title: 'خطا در تغییر نقش', background: 'var(--adm-surface)', color: 'var(--adm-text)' });
         }
-        FireMessage()
+    };
 
-      }
-    })
-  }
-  const UserHandler = (event) => {
-    SetUserName(event.target.value)
+    const handleDelete = async (userId, username) => {
+        const result = await Swal.fire({
+            title: `حذف کاربر "${username}"؟`,
+            text: 'این عملیات قابل بازگشت نیست',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'بله، حذف شود',
+            cancelButtonText: 'انصراف',
+            background: 'var(--adm-surface)',
+            color: 'var(--adm-text)',
+            confirmButtonColor: '#ef4444',
+        });
+        if (!result.isConfirmed) return;
+        try {
+            await ApiRequest.delete(`/users/${userId}`);
+            setUsers(prev => prev.filter(u => u._id !== userId));
+            Swal.fire({ icon: 'success', title: 'کاربر حذف شد', timer: 1500, showConfirmButton: false, background: 'var(--adm-surface)', color: 'var(--adm-text)' });
+        } catch (err) {
+            Swal.fire({ icon: 'error', title: err.response?.data?.message || 'خطا در حذف کاربر', background: 'var(--adm-surface)', color: 'var(--adm-text)' });
+        }
+    };
 
-  }
-  const EmeailHandler = (event) => {
-    SetEmail(event.target.value)
+    return (
+        <Box dir="rtl">
+            {/* Header */}
+            <Stack direction="row" alignItems="center" spacing={1.5} mb={3}>
+                <Box sx={{ width: 36, height: 36, borderRadius: '9px', bgcolor: 'var(--adm-accent-subtle)', border: '1px solid rgba(124,58,237,0.25)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <FiUsers style={{ fontSize: 18, color: 'var(--adm-accent)' }} />
+                </Box>
+                <Box>
+                    <Typography fontWeight={700} sx={{ color: 'var(--adm-text)', fontSize: 16 }}>مدیریت کاربران</Typography>
+                    <Typography variant="caption" sx={{ color: 'var(--adm-text-3)' }}>{users.length} کاربر ثبت‌نام شده</Typography>
+                </Box>
+            </Stack>
 
+            {error && <Alert severity="error" sx={{ mb: 2, bgcolor: 'rgba(239,68,68,0.08)', color: '#fca5a5', border: '1px solid rgba(239,68,68,0.2)' }}>{error}</Alert>}
 
-  }
-  const PasswordHandler = (event) => {
-    SetPassword(event.target.value)
+            {loading ? (
+                <Box display="flex" justifyContent="center" py={6}>
+                    <CircularProgress sx={{ color: 'var(--adm-accent)' }} />
+                </Box>
+            ) : users.length === 0 ? (
+                <Box sx={{ textAlign: 'center', py: 6, color: 'var(--adm-text-3)' }}>
+                    <FiUsers style={{ fontSize: 40, opacity: 0.3, marginBottom: 12 }} />
+                    <Typography>هیچ کاربری یافت نشد</Typography>
+                </Box>
+            ) : (
+                <Box sx={{ bgcolor: 'var(--adm-surface)', border: '1px solid var(--adm-border)', borderRadius: '10px', overflow: 'hidden' }}>
+                    {/* Table Header */}
+                    <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 140px 80px', gap: 2, px: 2.5, py: 1.5, bgcolor: 'var(--adm-surface-2)', borderBottom: '1px solid var(--adm-border)' }}>
+                        {['نام', 'نام کاربری', 'ایمیل', 'نقش', 'عملیات'].map(h => (
+                            <Typography key={h} variant="caption" sx={{ color: 'var(--adm-text-3)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{h}</Typography>
+                        ))}
+                    </Box>
 
-  }
-  const TypeHandler = (event) => {
-    SetType(event.target.value)
+                    {/* Rows */}
+                    {users.map((user, idx) => {
+                        const rc = roleColor(user.role);
+                        return (
+                            <Box key={user._id} sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 140px 80px', gap: 2, px: 2.5, py: 1.5, alignItems: 'center', borderBottom: idx < users.length - 1 ? '1px solid var(--adm-border)' : 'none', '&:hover': { bgcolor: 'rgba(255,255,255,0.02)' } }}>
+                                <Typography sx={{ color: 'var(--adm-text)', fontSize: 14, fontWeight: 500 }}>{user.name || '—'}</Typography>
+                                <Typography sx={{ color: 'var(--adm-text-2)', fontSize: 13 }}>{user.username}</Typography>
+                                <Typography sx={{ color: 'var(--adm-text-3)', fontSize: 12, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{user.email}</Typography>
 
-  }
+                                {/* Role Selector */}
+                                <FormControl size="small">
+                                    <Select
+                                        value={user.role || 'User'}
+                                        onChange={e => handleRoleChange(user._id, e.target.value)}
+                                        sx={{ color: rc.color, bgcolor: rc.bg, border: `1px solid ${rc.border}`, borderRadius: '6px', fontSize: 12, fontWeight: 600, '& .MuiOutlinedInput-notchedOutline': { border: 'none' }, '& .MuiSvgIcon-root': { color: rc.color } }}
+                                    >
+                                        {ROLES.map(r => <MenuItem key={r} value={r} sx={{ fontSize: 13 }}>{r}</MenuItem>)}
+                                    </Select>
+                                </FormControl>
 
-  return (
-    <Container>
-      <>
-
-
-        <Modal show={show} onHide={handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>Modal heading</Modal.Title>
-          </Modal.Header>
-          <Modal.Body >
-            <Form>
-              <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                <Form.Control
-                  type="email"
-                  placeholder='Email'
-                  autoFocus
-                  value={Email}
-                  onChange={EmeailHandler}
-                />
-              </Form.Group>
-              <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                <Form.Control
-                  type="text"
-                  placeholder='text'
-                  autoFocus
-                  value={UserName}
-                  onChange={UserHandler}
-                />
-              </Form.Group>
-              <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                <Form.Control
-                  type="text"
-                  placeholder='type'
-                  autoFocus
-                  value={Type}
-                  onChange={TypeHandler}
-                />
-              </Form.Group>
-              <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                <Form.Control
-                  type="text"
-                  placeholder='Password'
-                  autoFocus
-                  value={Password}
-                  onChange={PasswordHandler}
-                />
-              </Form.Group>
-            </Form>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
-              Close
-            </Button>
-            <Button variant="primary" onClick={SubmitEdit}>
-              Save Changes
-            </Button>
-          </Modal.Footer>
-        </Modal>
-      </>
-      <Row className='d-flex justify-content-between mt-3'>
-        <Col lg={6}> <h3 className='title_admin'>مدیریت کاربران</h3></Col>
-        <Col lg={6}>
-          <input className='form-control ' placeholder='کاربر مورد نظر ...' />
-        </Col>
-      </Row>
-      {pending ? (
-        <div className='text-center mt-5'>
-          <div className="spinner-border text-info" role="status">
-            <span className="visually-hidden">در حال بارگذاری...</span>
-          </div>
-          <p className='mt-3' style={{ color: '#999' }}>در حال بارگذاری کاربران...</p>
-        </div>
-      ) : !users || Object.keys(users).length === 0 ? (
-        <div className='text-center mt-5' style={{ color: '#999' }}>
-          <p>هیچ کاربری یافت نشد</p>
-        </div>
-      ) : (
-        <Table responsive className='mt-3'>
-          <thead>
-            <tr>
-              <th>نام کاربری</th>
-              <th>ایمیل</th>
-              <th>سطح دسترسی</th>
-              <th>عملیات</th>
-            </tr>
-          </thead>
-          <tbody>
-            {Object.entries(users).map((user, index) => (
-              <tr key={user[1]?.id || `user-${index}`}>
-                <td>{user[1]?.user}</td>
-                <td>{user[1]?.email}</td>
-                <td>
-                  <span className={`badge ${user[1]?.type === 'Owner' ? 'bg-danger' : 'bg-info'}`}>
-                    {user[1]?.type}
-                  </span>
-                </td>
-                <td>
-                  <button
-                    onClick={() => EditUser(user[1].id)}
-                    className='btn btn-sm btn-link'
-                    aria-label={`ویرایش کاربر ${user[1]?.user}`}
-                    title="ویرایش"
-                  >
-                    <BiEditAlt style={{ color: 'green', fontSize: '19px' }} />
-                  </button>
-                  <button
-                    onClick={() => DeleteUser(user[1].id)}
-                    className='btn btn-sm btn-link me-2'
-                    aria-label={`حذف کاربر ${user[1]?.user}`}
-                    title="حذف"
-                  >
-                    <ImBin2 style={{ color: 'red', fontSize: '19px' }} />
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
-      )}
-    </Container>
-  );
+                                {/* Delete */}
+                                <button
+                                    onClick={() => handleDelete(user._id, user.username)}
+                                    style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#ef4444', padding: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '6px', transition: 'background 0.2s' }}
+                                    title="حذف کاربر"
+                                    onMouseEnter={e => e.currentTarget.style.background = 'rgba(239,68,68,0.1)'}
+                                    onMouseLeave={e => e.currentTarget.style.background = 'none'}
+                                >
+                                    <FiTrash2 size={16} />
+                                </button>
+                            </Box>
+                        );
+                    })}
+                </Box>
+            )}
+        </Box>
+    );
 }

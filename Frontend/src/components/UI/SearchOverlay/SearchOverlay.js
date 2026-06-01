@@ -24,24 +24,14 @@ const SearchOverlay = ({ isOpen, onClose }) => {
         const timer = setTimeout(async () => {
             setLoading(true);
             try {
-                const [movies, series] = await Promise.all([
-                    ApiRequest.get('/content/movieList'),
-                    ApiRequest.get('/content/seriesList'),
-                ]);
-                const all = [
-                    ...(Array.isArray(movies.data) ? movies.data : []),
-                    ...(Array.isArray(series.data) ? series.data : []),
-                ];
-                const q = query.toLowerCase();
-                setResults(all.filter(item =>
-                    (item.title || '').toLowerCase().includes(q)
-                ).slice(0, 8));
+                const res = await ApiRequest.get(`/content/search?q=${encodeURIComponent(query)}`);
+                setResults(Array.isArray(res.data) ? res.data.slice(0, 8) : []);
             } catch {
                 setResults([]);
             } finally {
                 setLoading(false);
             }
-        }, 300);
+        }, 400);
         return () => clearTimeout(timer);
     }, [query]);
 

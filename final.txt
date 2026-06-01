@@ -1,0 +1,774 @@
+================================================================
+   نقشه راه رسیدن به 90 تا 95 درصد — پروژه MovieClub
+   گزارش کامل فنی برای دفاع پایان‌ترم
+================================================================
+
+وضعیت فعلی: 75 درصد
+هدف: 90 تا 95 درصد
+فاصله: 15 تا 20 درصد
+زمان تخمینی: 4 تا 6 روز کاری
+
+================================================================
+خلاصه اجرایی — چه چیزی این 15 تا 20 درصد را می‌سازد؟
+================================================================
+
+برای رسیدن از 75 به 90-95 درصد، باید 5 حوزه اصلی را تکمیل کنی:
+
+  الف) سیستم نظرات — 6 درصد
+  ب)  رفع باگ‌های فعلی — 4 درصد
+  ج)  پروفایل کاربری واقعی — 3 درصد
+  د)  بهبود کیفیت کد — 3 درصد
+  ه)  داده‌های واقعی و تست نهایی — 4 درصد
+
+================================================================
+فاز A — رفع باگ‌های بحرانی فعلی (اولویت فوری)
+تاثیر: +4 درصد | زمان: 1 روز
+================================================================
+
+--- باگ 1: فیلتر ژانر در صفحه فیلم‌ها کار نمی‌کند ---
+
+فایل: Frontend/src/Pages/Movies/Movies.js
+مشکل: کد فعلی از movie.genre (رشته) می‌خواند اما مدل جدید genres (آرایه) دارد.
+
+کد فعلی (اشتباه):
+  filtered = filtered.filter(movie => movie.genre && movie.genre.includes(filters.genre));
+
+کد صحیح:
+  filtered = filtered.filter(movie => {
+    const genres = movie.genres || movie.genre || [];
+    return Array.isArray(genres)
+      ? genres.includes(filters.genre)
+      : genres.split(',').map(g => g.trim()).includes(filters.genre);
+  });
+
+همچنین در همین فایل، مرتب‌سازی از CreatedAt (با C بزرگ) استفاده می‌کند:
+  کد اشتباه:  new Date(b.CreatedAt || 0)
+  کد صحیح:   new Date(b.createdAt || 0)
+
+--- باگ 2: فیلتر امتیاز در صفحه فیلم‌ها ---
+
+کد فعلی از movie.rate می‌خواند اما مدل جدید imdb.rating دارد.
+
+کد اشتباه:
+  filtered.filter(movie => parseFloat(movie.rate || 0) >= minRating)
+
+کد صحیح:
+  filtered.filter(movie => parseFloat(movie.imdb?.rating || movie.rate || 0) >= minRating)
+
+--- باگ 3: صفحه جزئیات فیلم — فیلد کارگردان ---
+
+فایل: Frontend/src/components/M_Download/MoviePage.js
+مشکل: از movieData.director می‌خواند اما مدل directors (آرایه) دارد.
+
+کد اشتباه:
+  <span>{movieData.director || 'نامشخص'}</span>
+
+کد صحیح:
+  <span>
+    {Array.isArray(movieData.directors) && movieData.directors.length > 0
+      ? movieData.directors.join('، ')
+      : movieData.director || 'نامشخص'}
+  </span>
+
+--- باگ 4: ضعف امنیتی ProtectedRoute ---
+
+فایل: Frontend/src/Pages/Login/Login.jsx
+مشکل: مقدار token در localStorage فقط رشته 'session' است، نه JWT واقعی.
+این یعنی هر کسی می‌تواند با دستی نوشتن localStorage.setItem('token','session')
+وارد پنل ادمین شود (البته API محافظت دارد اما UI بی‌دفاع است).
+
+راه‌حل: بعد از login موفق، یک مقدار واقعی‌تر ذخیره کن:
+  localStorage.setItem('token', 'authenticated');
+  localStorage.setItem('role', data.role || 'User');
+  localStorage.setItem('username', data.username || '');
+
+یا بهتر: یک endpoint GET /auth/me بساز که وضعیت session را برگرداند
+و ProtectedRoute از آن استفاده کند.
+
+--- باگ 5: صفحه انیمه بدون فیلتر واقعی ---
+
+فایل: Frontend/src/Pages/Anime/Anime.jsx
+مشکل: enum مدل Content فقط "movie" و "series" دارد، "anime" وجود ندارد.
+
+راه‌حل A (ساده‌تر): انیمه را به عنوان ژانر در نظر بگیر، نه type.
+  در صفحه Anime، فیلم‌هایی را نمایش بده که genres شامل "انیمه" یا "Animation" باشد:
+  GET /content/movieList سپس filter روی genres
+
+راه‌حل B (کامل‌تر): یک endpoint اختصاصی بساز:
+  GET /content/anime → ContentSchema.find({ genres: { $in: ['انیمه', 'Animation'] } })
+
+
+================================================================
+فاز B — سیستم نظرات (مهم‌ترین فیچر غایب)
+تاثیر: +6 درصد | زمان: 1.5 روز
+================================================================
+
+یک سایت دانلود فیلم بدون نظرات کاربران ناقص است.
+این فیچر بیشترین تاثیر را روی نمره دارد.
+
+--- B1: مدل Comment در Backend ---
+
+فایل جدید: Backend/models/comment.js
+
+const mongoose = require('mongoose');
+const CommentSchema = new mongoose.Schema({
+    contentId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Content',
+        required: true,
+        index: true
+    },
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    },
+    username: { type: String, required: true },
+    text: { type: String, required: true, minlength: 3, maxlength: 1000, trim: true },
+    rating: { type: Number, min: 1, max: 10, default: null },
+    status: {
+        type: String,
+        enum: ['pending', 'approved', 'rejected'],
+        default: 'approved'
+    },
+    likes: { type: Number, default: 0 }
+}, { timestamps: true });
+
+module.exports = mongoose.model('Comment', CommentSchema);
+
+--- B2: Controller نظرات ---
+
+فایل جدید: Backend/controller/comment.js
+
+const Comment = require('../models/comment');
+const ContentSchema = require('../models/content');
+
+// GET /comments/:contentId — دریافت نظرات یک فیلم
+exports.GetComments = async (req, res, next) => {
+    try {
+        const comments = await Comment.find({
+            contentId: req.params.contentId,
+            status: 'approved'
+        }).sort({ createdAt: -1 }).limit(50);
+        res.json(comments);
+    } catch (err) { next(err); }
+};
+
+// POST /comments — ارسال نظر (نیاز به login)
+exports.PostComment = async (req, res, next) => {
+    try {
+        const { contentId, text, rating } = req.body;
+        if (!contentId || !text) {
+            return res.status(400).json({ message: 'contentId و text الزامی هستند' });
+        }
+        const content = await ContentSchema.findById(contentId);
+        if (!content) return res.status(404).json({ message: 'محتوا یافت نشد' });
+
+        const comment = await Comment.create({
+            contentId,
+            userId: req.user.userId,
+            username: req.user.name,
+            text,
+            rating: rating || null
+        });
+        res.status(201).json({ message: 'نظر ثبت شد', data: comment });
+    } catch (err) { next(err); }
+};
+
+// GET /comments/admin/all — همه نظرات برای ادمین
+exports.GetAllComments = async (req, res, next) => {
+    try {
+        const comments = await Comment.find({})
+            .populate('contentId', 'title')
+            .sort({ createdAt: -1 });
+        res.json(comments);
+    } catch (err) { next(err); }
+};
+
+// PUT /comments/:id/status — تغییر وضعیت نظر (ادمین)
+exports.UpdateCommentStatus = async (req, res, next) => {
+    try {
+        const { status } = req.body;
+        const updated = await Comment.findByIdAndUpdate(
+            req.params.id, { status }, { new: true }
+        );
+        if (!updated) return res.status(404).json({ message: 'نظر یافت نشد' });
+        res.json({ message: 'وضعیت نظر تغییر کرد', data: updated });
+    } catch (err) { next(err); }
+};
+
+// DELETE /comments/:id — حذف نظر (ادمین)
+exports.DeleteComment = async (req, res, next) => {
+    try {
+        const deleted = await Comment.findByIdAndDelete(req.params.id);
+        if (!deleted) return res.status(404).json({ message: 'نظر یافت نشد' });
+        res.json({ message: 'نظر حذف شد' });
+    } catch (err) { next(err); }
+};
+
+--- B3: Router نظرات ---
+
+فایل جدید: Backend/router/Comment.js
+
+const express = require('express');
+const {
+    GetComments, PostComment, GetAllComments,
+    UpdateCommentStatus, DeleteComment
+} = require('../controller/comment');
+const isAuth = require('../middlewares/isAuth');
+const isAdmin = require('../middlewares/isAdmin');
+const router = express.Router();
+
+router.get('/:contentId', GetComments);
+router.post('/', isAuth, PostComment);
+router.get('/admin/all', isAdmin, GetAllComments);
+router.put('/:id/status', isAdmin, UpdateCommentStatus);
+router.delete('/:id', isAdmin, DeleteComment);
+
+module.exports = router;
+
+--- B4: اضافه کردن به Server.js ---
+
+در فایل Backend/Server.js این خط را اضافه کن:
+
+const commentPage = require('./router/Comment');
+// ...
+app.use('/comments', commentPage);
+
+--- B5: کامپوننت نظرات در صفحه فیلم ---
+
+در فایل Frontend/src/components/M_Download/MoviePage.js
+بعد از بخش دانلود، یک بخش نظرات اضافه کن:
+
+  <section className="movie-comments">
+    <div className="container">
+      <h2>نظرات کاربران</h2>
+
+      {/* فرم ارسال نظر */}
+      {isLoggedIn ? (
+        <form onSubmit={handleSubmitComment}>
+          <textarea
+            value={commentText}
+            onChange={e => setCommentText(e.target.value)}
+            placeholder="نظر خود را بنویسید..."
+            rows={4}
+          />
+          <button type="submit">ارسال نظر</button>
+        </form>
+      ) : (
+        <p>برای ارسال نظر <a href="/auth/login">وارد شوید</a></p>
+      )}
+
+      {/* لیست نظرات */}
+      {comments.map(comment => (
+        <div key={comment._id} className="comment-item">
+          <strong>{comment.username}</strong>
+          <span>{new Date(comment.createdAt).toLocaleDateString('fa-IR')}</span>
+          <p>{comment.text}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+--- B6: بهبود پنل ادمین — مدیریت نظرات ---
+
+فایل: Frontend/src/components/Admin/Comments/Comments.jsx
+این فایل قبلاً UI داشت اما به API وصل نبود.
+حالا که endpoint وجود دارد، فقط URL را به /comments/admin/all تغییر بده
+و دکمه‌های تایید/رد/حذف اضافه کن.
+
+
+================================================================
+فاز C — پروفایل کاربری واقعی
+تاثیر: +3 درصد | زمان: 1 روز
+================================================================
+
+--- C1: Endpoint اطلاعات کاربر لاگین‌شده ---
+
+فایل: Backend/router/Auth.js
+یک route جدید اضافه کن:
+
+  const isAuth = require('../middlewares/isAuth');
+  router.get('/me', isAuth, async (req, res) => {
+      try {
+          const user = await UserSchema.findById(req.user.userId).select('-password');
+          if (!user) return res.status(404).json({ message: 'کاربر یافت نشد' });
+          res.json(user);
+      } catch (err) {
+          res.status(500).json({ message: 'خطای سرور' });
+      }
+  });
+
+--- C2: بهبود صفحه پروفایل کاربر ---
+
+فایل: Frontend/src/Pages/User/UserPage.jsx
+فعلاً فقط role نمایش می‌دهد. باید اطلاعات واقعی از API بگیرد:
+
+  useEffect(() => {
+      if (isLoggedIn) {
+          ApiRequest.get('/auth/me')
+              .then(res => setUserData(res.data))
+              .catch(() => {});
+      }
+  }, [isLoggedIn]);
+
+  // سپس نمایش:
+  <div className="user-page__info-item">
+      <FiUser />
+      <span>نام: {userData?.name}</span>
+  </div>
+  <div className="user-page__info-item">
+      <FiMail />
+      <span>ایمیل: {userData?.email}</span>
+  </div>
+  <div className="user-page__info-item">
+      <FiPhone />
+      <span>تلفن: {userData?.phone || 'ثبت نشده'}</span>
+  </div>
+  <div className="user-page__info-item">
+      <span>عضویت از: {new Date(userData?.createdAt).toLocaleDateString('fa-IR')}</span>
+  </div>
+
+--- C3: امکان ویرایش پروفایل (اختیاری اما امتیازآور) ---
+
+یک فرم ساده برای تغییر نام و شماره تلفن اضافه کن.
+
+Backend — در router/Users.js:
+  router.put('/profile', isAuth, async (req, res) => {
+      const { name, phone } = req.body;
+      const updated = await UserSchema.findByIdAndUpdate(
+          req.user.userId,
+          { name, phone },
+          { new: true }
+      ).select('-password');
+      res.json({ message: 'پروفایل بروز شد', data: updated });
+  });
+
+--- C4: ProtectedRoute بهبودیافته ---
+
+فایل: Frontend/src/components/ProtectedRoute/ProtectedRoute.js
+برای دفاع، یک بررسی واقعی‌تر اضافه کن:
+
+  const ProtectedRoute = ({ children, adminOnly = false }) => {
+      const token = localStorage.getItem('token');
+      const role = localStorage.getItem('role');
+
+      if (!token) return <Navigate to="/auth/login" replace />;
+      if (adminOnly && role !== 'Admin' && role !== 'Owner') {
+          return <Navigate to="/" replace />;
+      }
+      return children;
+  };
+
+  // همچنین در Login.jsx، بعد از login موفق:
+  localStorage.setItem('token', 'authenticated');
+  localStorage.setItem('role', data.role || 'User');
+  localStorage.setItem('username', data.username || '');
+
+
+================================================================
+فاز D — بهبود کیفیت کد و رفع مشکلات جزئی
+تاثیر: +3 درصد | زمان: 0.5 روز
+================================================================
+
+--- D1: پاک‌سازی import های بلااستفاده در AddMovie.js ---
+
+فایل: Frontend/src/components/Admin/addMovie/AddMovie.js
+این import ها را حذف کن (استفاده نمی‌شوند):
+
+  // حذف کن:
+  import { ..., Stepper, Step, StepLabel, StepContent, ... } from '@mui/material';
+  import { ..., ArrowForward, ArrowBack, ... } from '@mui/icons-material';
+  import Logger from '../../../utils/logger';
+
+  // همچنین state بلااستفاده:
+  const [activeStep, setActiveStep] = useState(0);  // حذف کن
+
+--- D2: پاک‌سازی کامپوننت News ---
+
+فایل: Frontend/src/components/Admin/News/News.jsx
+کد فعلی به یک URL خارجی (bsecurity.ir) درخواست می‌زند که کاملاً نامرتبط است.
+آن را با یک placeholder مناسب جایگزین کن:
+
+  export default function News() {
+      return (
+          <div>
+              <Title_Admin Title={'مدیریت اخبار'} />
+              <div style={{ textAlign: 'center', padding: '40px', color: '#888' }}>
+                  <p>سیستم مدیریت اخبار در نسخه بعدی اضافه خواهد شد.</p>
+              </div>
+          </div>
+      );
+  }
+
+--- D3: پاک‌سازی کامپوننت IMDB ---
+
+فایل: Frontend/src/components/Admin/IMDB/IMDB.js
+یک توضیح مناسب اضافه کن:
+
+  export default function IMDB() {
+      return (
+          <div>
+              <Title_Admin Title={'همگام‌سازی با IMDb'} />
+              <div style={{ padding: '20px' }}>
+                  <p>برای افزودن محتوا از IMDb، از بخش "افزودن محتوا" استفاده کنید.</p>
+                  <p>کافیست IMDb ID فیلم (مثل tt1234567) را وارد کنید تا اطلاعات
+                  به صورت خودکار دریافت شود.</p>
+              </div>
+          </div>
+      );
+  }
+
+--- D4: اضافه کردن index به Trailer.contentId ---
+
+فایل: Backend/models/trailer.js
+مشکل: contentId بدون index است.
+
+  contentId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Content',
+      index: true  // این را اضافه کن
+  }
+
+--- D5: اضافه کردن username به index در User model ---
+
+فایل: Backend/models/user.js
+مشکل: username بدون unique و index است.
+
+  username: {
+      type: String,
+      required: true,
+      unique: true,  // اضافه کن
+      trim: true,    // اضافه کن
+      index: true    // اضافه کن
+  }
+
+--- D6: حذف route تکراری در AdminContent.jsx ---
+
+فایل: Frontend/src/components/Admin/Dashboard/AdminContent.jsx
+این case تکراری است (دو بار 'downloads' آمده):
+
+  case 'downloads':
+      return <DownloadManager />;
+
+  case 'downloads':   // این را حذف کن
+      return <DownloadManager />;
+
+--- D7: اضافه کردن error handling به Server.js ---
+
+فایل: Backend/Server.js
+یک global error handler اضافه کن (قبل از app.listen):
+
+  app.use((err, req, res, next) => {
+      console.error(err.stack);
+      const status = err.status || 500;
+      res.status(status).json({
+          message: err.message || 'خطای داخلی سرور',
+          ...(process.env.NODE_ENV === 'development' && { stack: err.stack })
+      });
+  });
+
+
+================================================================
+فاز E — داده‌های واقعی و آماده‌سازی برای دفاع
+تاثیر: +4 درصد | زمان: 1 روز
+================================================================
+
+این فاز مستقیماً کد نیست اما برای دفاع بحرانی است.
+یک دیتابیس خالی در جلسه دفاع، نمره را به شدت پایین می‌آورد.
+
+--- E1: اجرای createAdmin.js ---
+
+فایل: Backend/createAdmin.js
+این اسکریپت از قبل وجود دارد. آن را اجرا کن:
+
+  cd Backend
+  node createAdmin.js
+
+مطمئن شو که یک کاربر با role: 'Admin' یا 'Owner' ایجاد می‌شود.
+اگر اسکریپت وجود ندارد یا کار نمی‌کند، این کد را اجرا کن:
+
+  node -e "
+  const mongoose = require('mongoose');
+  const bcrypt = require('bcrypt');
+  require('dotenv').config();
+  mongoose.connect(process.env.MONGO_URI).then(async () => {
+    const User = require('./models/user');
+    const hash = await bcrypt.hash('admin123', 10);
+    await User.create({
+      name: 'مدیر سیستم',
+      username: 'admin',
+      password: hash,
+      email: 'admin@movieclub.ir',
+      role: 'Admin'
+    });
+    console.log('ادمین ساخته شد');
+    process.exit(0);
+  });
+  "
+
+--- E2: اضافه کردن محتوای واقعی ---
+
+حداقل 15 فیلم و 8 سریال با اطلاعات کامل اضافه کن.
+از پنل ادمین → افزودن محتوا → IMDb ID استفاده کن.
+
+پیشنهاد فیلم‌ها (با IMDb ID):
+  tt15398776 — Oppenheimer (2023)
+  tt1517268  — Barbie (2023)
+  tt1630029  — Avatar: The Way of Water (2022)
+  tt3480822  — Top Gun: Maverick (2022)
+  tt9362722  — Spider-Man: Across the Spider-Verse (2023)
+  tt1745960  — Top Gun (1986)
+  tt0816692  — Interstellar (2014)
+  tt0468569  — The Dark Knight (2008)
+  tt0111161  — The Shawshank Redemption (1994)
+  tt0137523  — Fight Club (1999)
+  tt0110912  — Pulp Fiction (1994)
+  tt0167260  — The Lord of the Rings: The Return of the King (2003)
+  tt0120737  — The Lord of the Rings: The Fellowship of the Ring (2001)
+  tt0109830  — Forrest Gump (1994)
+  tt0133093  — The Matrix (1999)
+
+پیشنهاد سریال‌ها:
+  tt0903747  — Breaking Bad
+  tt0944947  — Game of Thrones
+  tt2861424  — Rick and Morty
+  tt4574334  — Stranger Things
+  tt0386676  — The Office
+  tt0108778  — Friends
+  tt2442560  — Peaky Blinders
+  tt5491994  — Planet Earth II
+
+--- E3: اضافه کردن لینک دانلود نمونه ---
+
+برای حداقل 5 فیلم، لینک دانلود اضافه کن.
+می‌توانی از لینک‌های فیک (مثل https://example.com/movie.mkv) استفاده کنی.
+مهم این است که UI نمایش دهد که سیستم کار می‌کند.
+
+از پنل ادمین → لینک‌های دانلود → انتخاب فیلم → افزودن لینک
+
+--- E4: تست فلوی کامل قبل از دفاع ---
+
+این فلو را حتماً تست کن و مطمئن شو بدون خطا کار می‌کند:
+
+  1. باز کردن سایت → صفحه اصلی لود می‌شود
+  2. کلیک روی یک فیلم → صفحه جزئیات باز می‌شود
+  3. مشاهده لینک‌های دانلود
+  4. رفتن به صفحه فیلم‌ها → فیلتر کردن
+  5. جستجوی یک فیلم → نتایج نمایش داده می‌شود
+  6. ثبت‌نام کاربر جدید
+  7. ورود با کاربر ادمین
+  8. رفتن به پنل ادمین
+  9. افزودن یک فیلم جدید
+  10. ویرایش فیلم
+  11. افزودن لینک دانلود
+  12. مشاهده آمار داشبورد
+  13. خروج از حساب
+
+
+================================================================
+فاز F — فیچرهای اضافی برای رسیدن به 95 درصد (اختیاری)
+تاثیر: +5 درصد | زمان: 1 تا 2 روز
+================================================================
+
+اگر فازهای A تا E را انجام دادی و هنوز وقت داری،
+این فیچرها پروژه را از 90 به 95 درصد می‌رسانند.
+
+--- F1: Watchlist / علاقه‌مندی‌ها ---
+
+Backend — اضافه کردن به مدل User:
+  watchlist: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Content'
+  }]
+
+Backend — endpoint ها:
+  POST /users/watchlist/:contentId  — افزودن به لیست
+  DELETE /users/watchlist/:contentId — حذف از لیست
+  GET /users/watchlist              — دریافت لیست
+
+Frontend — در صفحه جزئیات فیلم:
+  یک دکمه "افزودن به لیست" اضافه کن.
+  در صفحه پروفایل کاربر، لیست علاقه‌مندی‌ها را نمایش بده.
+
+--- F2: Pagination در API ---
+
+فایل: Backend/controller/content.js
+برای GetContent و GetSeriesList، pagination اضافه کن:
+
+  exports.GetContent = async (req, res, next) => {
+      try {
+          const page = parseInt(req.query.page) || 1;
+          const limit = parseInt(req.query.limit) || 20;
+          const skip = (page - 1) * limit;
+
+          const [movies, total] = await Promise.all([
+              ContentSchema.find({ type: 'movie' }).skip(skip).limit(limit),
+              ContentSchema.countDocuments({ type: 'movie' })
+          ]);
+
+          res.json({
+              data: movies,
+              pagination: {
+                  page,
+                  limit,
+                  total,
+                  totalPages: Math.ceil(total / limit)
+              }
+          });
+      } catch (err) { next(err); }
+  };
+
+--- F3: Rate Limiting برای جلوگیری از Brute Force ---
+
+نصب پکیج:
+  cd Backend
+  npm install express-rate-limit
+
+در Server.js:
+  const rateLimit = require('express-rate-limit');
+
+  const authLimiter = rateLimit({
+      windowMs: 15 * 60 * 1000,  // 15 دقیقه
+      max: 10,                    // حداکثر 10 تلاش
+      message: { error: 'تعداد تلاش‌های ورود بیش از حد مجاز است. لطفاً 15 دقیقه صبر کنید.' }
+  });
+
+  app.use('/auth/login', authLimiter);
+  app.use('/auth/register', authLimiter);
+
+--- F4: حذف فایل قدیمی هنگام ویرایش پوستر ---
+
+فایل: Backend/controller/content.js
+در تابع EditContent، قبل از ذخیره پوستر جدید، فایل قدیمی را حذف کن:
+
+  const fs = require('fs');
+  const path = require('path');
+
+  if (req.file) {
+      // حذف پوستر قدیمی
+      const oldContent = await ContentSchema.findById(id);
+      if (oldContent?.poster) {
+          const oldPath = path.join(__dirname, '../uploads', oldContent.poster);
+          if (fs.existsSync(oldPath)) {
+              fs.unlinkSync(oldPath);
+          }
+      }
+      updateData.poster = req.file.filename;
+  }
+
+--- F5: بهبود صفحه دسته‌بندی‌ها با نمایش تعداد ---
+
+فایل: Frontend/src/Pages/Categories/Categories.jsx
+به جای لیست ثابت، تعداد فیلم هر ژانر را از API بگیر:
+
+  useEffect(() => {
+      ApiRequest.get('/content/movieList').then(res => {
+          const movies = Array.isArray(res.data) ? res.data : [];
+          const counts = {};
+          movies.forEach(m => {
+              (m.genres || []).forEach(g => {
+                  counts[g] = (counts[g] || 0) + 1;
+              });
+          });
+          setGenreCounts(counts);
+      });
+  }, []);
+
+  // در نمایش:
+  <span className="category-count">{genreCounts[cat.name] || 0} فیلم</span>
+
+--- F6: نمودار واقعی در داشبورد ادمین ---
+
+فایل: Frontend/src/components/Admin/Dashboard/AdminChart.jsx
+نمودار فعلی احتمالاً داده‌های فیک دارد.
+آن را به endpoint /content/stats وصل کن و داده‌های واقعی نمایش بده.
+
+
+================================================================
+جدول اولویت‌بندی نهایی
+================================================================
+
+| فاز | توضیح                        | اولویت    | زمان      | تاثیر   |
+|-----|------------------------------|-----------|-----------|---------|
+| A   | رفع باگ‌های فعلی             | بحرانی    | 1 روز     | +4%     |
+| B   | سیستم نظرات                  | خیلی بالا | 1.5 روز   | +6%     |
+| C   | پروفایل کاربری واقعی         | بالا      | 1 روز     | +3%     |
+| D   | بهبود کیفیت کد               | متوسط     | 0.5 روز   | +3%     |
+| E   | داده‌های واقعی + تست         | بحرانی    | 1 روز     | +4%     |
+| F   | فیچرهای اضافی (اختیاری)      | پایین     | 1-2 روز   | +5%     |
+
+انجام A + B + C + D + E = از 75% به ~95%
+انجام A + B + E (حداقل) = از 75% به ~89%
+
+================================================================
+ترتیب پیشنهادی اجرا
+================================================================
+
+روز 1 (صبح): فاز A — رفع باگ‌های فیلتر و فیلدها
+روز 1 (بعدازظهر): فاز D — پاک‌سازی کد و رفع مشکلات جزئی
+روز 2: فاز B — پیاده‌سازی سیستم نظرات (backend + frontend)
+روز 3 (صبح): فاز C — پروفایل کاربری و endpoint /auth/me
+روز 3 (بعدازظهر): فاز E — اضافه کردن داده‌های واقعی
+روز 4: فاز F — فیچرهای اضافی (اگر وقت داشتی)
+روز 5: تست کامل فلو + رفع باگ‌های احتمالی
+
+================================================================
+نکات مهم برای جلسه دفاع
+================================================================
+
+1. قبل از دفاع، پروژه را روی یک سیستم دیگر از صفر تست کن.
+   (npm install + تنظیم .env + node Server.js + npm start)
+
+2. فایل .env را آماده نگه دار — استاد ممکن است بخواهد پروژه را اجرا کند.
+
+3. یک اسلاید یا توضیح آماده کن که معماری پروژه را نشان دهد:
+   - چرا MVC؟
+   - چرا JWT در cookie به جای localStorage؟
+   - چرا MongoDB به جای SQL؟
+   - چطور امنیت پیاده‌سازی شده؟
+
+4. فلوی دمو را از قبل تمرین کن:
+   ثبت‌نام → ورود → جستجو → مشاهده فیلم → دانلود → نظر → ادمین → افزودن فیلم
+
+5. اگر سوال شد "چرا سیستم اشتراک پیاده‌سازی نشده؟"
+   جواب: "UI طراحی شده و آماده است. backend آن در فاز بعدی پیاده‌سازی می‌شود."
+
+6. اگر سوال شد "چرا پرداخت آنلاین ندارد؟"
+   جواب: "این پروژه یک MVP است. درگاه پرداخت نیاز به مجوز رسمی دارد."
+
+================================================================
+چک‌لیست نهایی قبل از دفاع
+================================================================
+
+  [ ] فایل Backend/.env کامل است (PORT, MONGO_URI, JWT_SECRET, SESSION_SECRET, CORS_ORIGIN)
+  [ ] فایل Frontend/.env کامل است (REACT_APP_API_BASE_URL)
+  [ ] npm install در هر دو پوشه اجرا شده
+  [ ] کاربر ادمین در دیتابیس وجود دارد
+  [ ] حداقل 15 فیلم و 8 سریال در دیتابیس وجود دارد
+  [ ] حداقل 5 فیلم لینک دانلود دارند
+  [ ] ورود با کاربر ادمین کار می‌کند
+  [ ] پنل ادمین باز می‌شود
+  [ ] افزودن فیلم جدید کار می‌کند
+  [ ] جستجو نتیجه برمی‌گرداند
+  [ ] صفحه جزئیات فیلم لینک دانلود نمایش می‌دهد
+  [ ] ثبت‌نام کاربر جدید کار می‌کند
+  [ ] خروج از حساب کار می‌کند
+  [ ] صفحه 404 برای آدرس‌های نامعتبر نمایش داده می‌شود
+  [ ] سایت روی موبایل قابل استفاده است
+
+================================================================
+تخمین نهایی درصد پیشرفت
+================================================================
+
+  وضعیت فعلی:                    75%
+  بعد از فاز A (باگ‌ها):         79%
+  بعد از فاز B (نظرات):          85%
+  بعد از فاز C (پروفایل):        88%
+  بعد از فاز D (کیفیت کد):       91%
+  بعد از فاز E (داده + تست):     95%
+  بعد از فاز F (فیچرهای اضافی): 97-98%
+
+================================================================
+نوشته شده برای پروژه MovieClub — نسخه 1.0
+================================================================

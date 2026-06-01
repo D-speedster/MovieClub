@@ -10,12 +10,15 @@
    ================================ */
 .movies-static-hero {
   position: relative;
-  height: 400px;
+  height: 560px;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
 }
 
 .movies-static-hero__background {
@@ -30,8 +33,9 @@
   inset: 0;
   background: linear-gradient(
     to bottom,
-    rgba(0, 0, 0, 0.4) 0%,
-    rgba(0, 0, 0, 0.7) 100%
+    rgba(0, 0, 0, 0.15) 0%,
+    rgba(0, 0, 0, 0.35) 50%,
+    rgba(0, 0, 0, 0.75) 100%
   );
 }
 
@@ -39,16 +43,28 @@
   position: relative;
   z-index: 2;
   text-align: center;
-  color: var(--text-primary);
+  color: #f1f5f9;
 }
 
 .movies-static-hero__content h1 {
-  font-family: var(--font-primary);
   font-size: clamp(3rem, 8vw, 6rem);
-  font-weight: var(--font-black);
+  font-weight: 900;
   margin: 0;
-  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.9);
   letter-spacing: -0.02em;
+}
+
+@media (max-width: 768px) {
+  .movies-static-hero {
+    height: 380px;
+    background-position: center center;
+  }
+}
+
+@media (max-width: 480px) {
+  .movies-static-hero {
+    height: 280px;
+  }
 }
 
 /* ================================

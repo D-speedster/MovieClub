@@ -505,3 +505,238 @@
     font-size: var(--text-2xl);
   }
 }
+
+/* ================================
+   COMMENTS SECTION
+   ================================ */
+
+.movie-comments {
+  padding: 48px 0;
+  background: var(--bg-main, #0f0f1a);
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.movie-comments__title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.movie-comments__count {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.4);
+  font-weight: 400;
+}
+
+/* فرم نظر */
+.comment-form {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 32px;
+}
+
+.comment-form__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.comment-form__label {
+  color: rgba(255,255,255,0.7);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.comment-form__rating {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 8px;
+  color: rgba(255,255,255,0.7);
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  outline: none;
+}
+
+.comment-form__rating option {
+  background: #1a1a2e;
+  color: #fff;
+}
+
+.comment-form__textarea {
+  width: 100%;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  color: #fff;
+  padding: 12px;
+  font-size: 0.95rem;
+  resize: vertical;
+  outline: none;
+  font-family: inherit;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+}
+
+.comment-form__textarea:focus {
+  border-color: rgba(99,102,241,0.5);
+}
+
+.comment-form__footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.comment-form__char-count {
+  color: rgba(255,255,255,0.3);
+  font-size: 0.8rem;
+  margin-right: auto;
+}
+
+.comment-form__error {
+  color: #fca5a5;
+  font-size: 0.85rem;
+}
+
+.comment-form__success {
+  color: #86efac;
+  font-size: 0.85rem;
+}
+
+.comment-form__submit {
+  padding: 8px 24px;
+  font-size: 0.9rem;
+}
+
+.comment-form__submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* پیام ورود */
+.comment-login-prompt {
+  background: rgba(99,102,241,0.08);
+  border: 1px solid rgba(99,102,241,0.2);
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin-bottom: 28px;
+  text-align: center;
+  color: rgba(255,255,255,0.6);
+  font-size: 0.95rem;
+}
+
+.comment-login-prompt__link {
+  color: #a5b4fc;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.comment-login-prompt__link:hover {
+  text-decoration: underline;
+}
+
+/* لیست نظرات */
+.comments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.comments-empty {
+  text-align: center;
+  padding: 40px;
+  color: rgba(255,255,255,0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.95rem;
+}
+
+.comments-empty span {
+  font-size: 2.5rem;
+}
+
+/* آیتم نظر */
+.comment-item {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 10px;
+  padding: 16px 20px;
+  transition: border-color 0.2s;
+}
+
+.comment-item:hover {
+  border-color: rgba(255,255,255,0.12);
+}
+
+.comment-item__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.comment-item__avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.comment-item__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.comment-item__username {
+  color: #e2e8f0;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.comment-item__date {
+  color: rgba(255,255,255,0.35);
+  font-size: 0.78rem;
+}
+
+.comment-item__rating {
+  background: rgba(251,191,36,0.12);
+  border: 1px solid rgba(251,191,36,0.2);
+  border-radius: 6px;
+  padding: 3px 10px;
+  color: #fbbf24;
+  font-size: 0.82rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.comment-item__text {
+  color: rgba(255,255,255,0.75);
+  font-size: 0.92rem;
+  line-height: 1.7;
+  margin: 0;
+  word-break: break-word;
+}

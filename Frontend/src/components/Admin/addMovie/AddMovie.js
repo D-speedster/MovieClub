@@ -2,29 +2,30 @@ import React, { useState } from 'react';
 import {
     Box, Typography, TextField, Button, Grid, Chip,
     InputAdornment, Alert, CircularProgress, Autocomplete,
-    MenuItem, Select, FormControl, InputLabel, Stack, Stepper,
-    Step, StepLabel, StepContent, Fade, Zoom
+    MenuItem, Select, FormControl, InputLabel, Stack, Fade, Zoom
 } from '@mui/material';
 import {
     Search as SearchIcon, Movie as MovieIcon, Save as SaveIcon,
     Clear as ClearIcon, CloudDownload as FetchIcon,
-    CheckCircle as CheckIcon, ArrowForward, ArrowBack,
+    CheckCircle as CheckIcon,
     AutoAwesome as MagicIcon
 } from '@mui/icons-material';
 import axios from 'axios';
 import ApiRequest from '../../../Services/Axios/config';
 import { Genre_List } from '../Utils/Variables';
-import Logger from '../../../utils/logger';
 import Swal from 'sweetalert2';
 import './AddMovie.css';
 
 const OMDB_API_KEY = process.env.REACT_APP_OMDB_API_KEY;
+const TMDB_API_KEY = process.env.REACT_APP_TMDB_API_KEY;
+const TMDB_IMAGE_BASE = 'https://image.tmdb.org/t/p/w1280';
 
 const emptyForm = {
     title: '', type: 'movie', year: '', director: '', writer: '',
     actors: '', countries: '', language: '', genres: [],
     description: '', imdb_rating: '', duration: '',
-    poster: null, posterPreview: ''
+    poster: null, posterPreview: '',
+    galleryUrls: []  // آرایه URL های تصاویر از TMDB
 };
 
 const allGenres = Genre_List.map(g => g.fa);
@@ -49,7 +50,6 @@ export default function AddMovie() {
     const [saveLoading, setSaveLoading] = useState(false);
     const [fetchError, setFetchError] = useState('');
     const [fetched, setFetched] = useState(false);
-    const [activeStep, setActiveStep] = useState(0);
 
     const translateGenres = (genreStr) => {
         if (!genreStr) return [];
@@ -57,6 +57,43 @@ export default function AddMovie() {
             const found = Genre_List.find(gl => gl.en === g.trim());
             return found ? found.fa : g.trim();
         }).filter(Boolean);
+    };
+
+    // تبدیل مقادیر N/A از OMDB به رشته خالی
+    const omdbVal = (val) => (!val || val === 'N/A') ? '' : val;
+
+    // دریافت 4 تصویر backdrop از TMDB با استفاده از IMDB ID
+    const fetchTmdbGallery = async (imdbId) => {
+        if (!TMDB_API_KEY) return [];
+        try {
+            // پیدا کردن TMDB ID از IMDB ID
+            const findRes = await axios.get(
+                `https://api.themoviedb.org/3/find/${imdbId}`,
+                { params: { api_key: TMDB_API_KEY, external_source: 'imdb_id' } }
+            );
+            const results = [
+                ...(findRes.data.movie_results || []),
+                ...(findRes.data.tv_results || [])
+            ];
+            if (results.length === 0) return [];
+
+            const tmdbId = results[0].id;
+            const mediaType = findRes.data.movie_results?.length > 0 ? 'movie' : 'tv';
+
+            // دریافت تصاویر
+            const imgRes = await axios.get(
+                `https://api.themoviedb.org/3/${mediaType}/${tmdbId}/images`,
+                { params: { api_key: TMDB_API_KEY } }
+            );
+            const backdrops = imgRes.data.backdrops || [];
+            // 4 تصویر اول با بالاترین vote_average
+            return backdrops
+                .sort((a, b) => b.vote_average - a.vote_average)
+                .slice(0, 4)
+                .map(img => `${TMDB_IMAGE_BASE}${img.file_path}`);
+        } catch {
+            return [];
+        }
     };
 
     const handleFetch = async () => {
@@ -75,24 +112,32 @@ export default function AddMovie() {
             const res = await axios.get(`https://www.omdbapi.com/?i=${imdbId.trim()}&plot=full&apikey=${OMDB_API_KEY}`);
             if (res.data.Error) throw new Error(res.data.Error);
             const d = res.data;
+            
+            // جلوگیری از تولید مقدار NaN با بررسی صحت خروجی parseInt
+            const parsedYear = d.Year ? parseInt(d.Year) : '';
+            const parsedDuration = d.Runtime ? parseInt(d.Runtime) : '';
+
+            // دریافت تصاویر از TMDB به صورت موازی
+            const galleryUrls = await fetchTmdbGallery(imdbId.trim());
+
             setForm({
-                title: d.Title || '',
+                title: omdbVal(d.Title),
                 type: d.Type === 'series' ? 'series' : 'movie',
-                year: d.Year ? parseInt(d.Year) : '',
-                director: d.Director || '',
-                writer: d.Writer || '',
-                actors: d.Actors || '',
-                countries: d.Country || '',
-                language: d.Language || '',
+                year: Number.isNaN(parsedYear) ? '' : parsedYear,
+                director: omdbVal(d.Director),
+                writer: omdbVal(d.Writer),
+                actors: omdbVal(d.Actors),
+                countries: omdbVal(d.Country),
+                language: omdbVal(d.Language),
                 genres: translateGenres(d.Genre),
-                description: d.Plot || '',
-                imdb_rating: d.imdbRating !== 'N/A' ? d.imdbRating : '',
-                duration: d.Runtime ? parseInt(d.Runtime) : '',
+                description: omdbVal(d.Plot),
+                imdb_rating: omdbVal(d.imdbRating),
+                duration: Number.isNaN(parsedDuration) ? '' : parsedDuration,
                 poster: null,
-                posterPreview: d.Poster !== 'N/A' ? d.Poster : ''
+                posterPreview: omdbVal(d.Poster),
+                galleryUrls
             });
             setFetched(true);
-            setActiveStep(1);
         } catch (err) {
             setFetchError(err.message || 'خطا در دریافت اطلاعات');
         } finally {
@@ -100,7 +145,14 @@ export default function AddMovie() {
         }
     };
 
-    const handleChange = (field, value) => setForm(prev => ({ ...prev, [field]: value }));
+    const handleChange = (field, value) => {
+        // اگر فیلد مربوط به اعداد است و کاربر مقدار را پاک کرده، به جای NaN رشته خالی ست شود
+        if (['year', 'duration', 'imdb_rating'].includes(field)) {
+            setForm(prev => ({ ...prev, [field]: value === '' ? '' : value }));
+        } else {
+            setForm(prev => ({ ...prev, [field]: value }));
+        }
+    };
 
     const handlePosterChange = (e) => {
         const file = e.target.files[0];
@@ -128,17 +180,28 @@ export default function AddMovie() {
             formData.append('description', form.description);
             formData.append('rate', form.imdb_rating);
             formData.append('duration', form.duration);
-            if (form.poster) formData.append('poster', form.poster);
+            if (form.poster) {
+                // فایل آپلود شده توسط کاربر
+                formData.append('poster', form.poster);
+            } else if (form.posterPreview && form.posterPreview.startsWith('http')) {
+                // URL پوستر از OMDB — سرور دانلود میکنه
+                formData.append('posterUrl', form.posterPreview);
+            }
+            // تصاویر gallery از TMDB — سرور دانلود میکنه
+            if (form.galleryUrls && form.galleryUrls.length > 0) {
+                const galleryJson = JSON.stringify(form.galleryUrls);
+                formData.append('galleryUrls', galleryJson);
+                console.log('[AddMovie] galleryUrls appended:', galleryJson.substring(0, 80));
+            } else {
+                console.log('[AddMovie] galleryUrls empty or missing:', form.galleryUrls);
+            }
 
-            await ApiRequest.post('/content/new-content', formData, {
-                headers: { 'Content-Type': 'multipart/form-data' }
-            });
+            await ApiRequest.post('/content/new-content', formData);
 
             Swal.fire({ icon: 'success', title: '✅ فیلم اضافه شد', background: '#0f0f1a', color: '#fff', confirmButtonColor: '#6366f1', timer: 2000, showConfirmButton: false });
             setForm(emptyForm);
             setImdbId('');
             setFetched(false);
-            setActiveStep(0);
         } catch (err) {
             Swal.fire({ icon: 'error', title: 'خطا در ذخیره', text: err.message, background: '#0f0f1a', color: '#fff', confirmButtonColor: '#6366f1' });
         } finally {
@@ -165,7 +228,7 @@ export default function AddMovie() {
                 </Stack>
 
                 <Stack direction="row" spacing={1.5}>
-                    <Button onClick={() => { setForm(emptyForm); setImdbId(''); setFetched(false); setActiveStep(0); }}
+                    <Button onClick={() => { setForm(emptyForm); setImdbId(''); setFetched(false); }}
                         startIcon={<ClearIcon />} className="btn-ghost">
                         پاک کردن
                     </Button>
@@ -263,6 +326,30 @@ export default function AddMovie() {
                             </Box>
                         </Zoom>
                     )}
+
+                    {/* Gallery Preview از TMDB */}
+                    {fetched && form.galleryUrls && form.galleryUrls.length > 0 && (
+                        <Zoom in>
+                            <Box sx={{ mt: 2 }}>
+                                <Typography variant="caption" fontWeight={600} color="rgba(255,255,255,0.5)"
+                                    textTransform="uppercase" letterSpacing={1} display="block" mb={1}>
+                                    🖼 تصاویر TMDB ({form.galleryUrls.length})
+                                </Typography>
+                                <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 1 }}>
+                                    {form.galleryUrls.map((url, i) => (
+                                        <Box key={i} sx={{
+                                            borderRadius: '8px', overflow: 'hidden',
+                                            border: '1px solid rgba(255,255,255,0.08)',
+                                            aspectRatio: '16/9'
+                                        }}>
+                                            <img src={url} alt={`gallery ${i + 1}`}
+                                                style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                        </Box>
+                                    ))}
+                                </Box>
+                            </Box>
+                        </Zoom>
+                    )}
                 </Box>
 
                 {/* Right Panel — Form Fields */}
@@ -349,11 +436,18 @@ export default function AddMovie() {
                                 <Autocomplete multiple freeSolo options={allGenres} value={form.genres}
                                     onChange={(_, val) => handleChange('genres', val)}
                                     renderTags={(value, getTagProps) =>
-                                        value.map((option, index) => (
-                                            <Chip label={option} {...getTagProps({ index })} size="small"
-                                                sx={{ bgcolor: 'rgba(99,102,241,0.2)', color: '#a5b4fc', border: '1px solid rgba(99,102,241,0.3)', borderRadius: '8px' }}
-                                            />
-                                        ))
+                                        value.map((option, index) => {
+                                            const { key, ...otherProps } = getTagProps({ index });
+                                            return (
+                                                <Chip 
+                                                    key={key} 
+                                                    label={option} 
+                                                    {...otherProps} 
+                                                    size="small"
+                                                    sx={{ bgcolor: 'rgba(99,102,241,0.2)', color: '#a5b4fc', border: '1px solid rgba(99,102,241,0.3)', borderRadius: '8px' }}
+                                                />
+                                            );
+                                        })
                                     }
                                     renderInput={(params) => (
                                         <TextField {...params} label="ژانرها" sx={fieldSx} />

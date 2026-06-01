@@ -19,6 +19,7 @@ const API_CONFIG = {
 const apiInstance = axios.create({
   baseURL: API_CONFIG.REAL_API_BASE_URL,
   timeout: API_CONFIG.TIMEOUT,
+  withCredentials: true, // ارسال cookie در همه درخواست‌ها (برای isAdmin middleware)
   headers: {
     'Content-Type': 'application/json'
   }
