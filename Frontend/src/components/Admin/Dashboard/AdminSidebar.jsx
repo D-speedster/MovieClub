@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { 
-  FiHome, 
-  FiFilm, 
-  FiPlay, 
+import {
+  FiHome,
+  FiFilm,
+  FiPlay,
   FiFolder,
-  FiUsers, 
-  FiMessageSquare, 
+  FiUsers,
+  FiMessageSquare,
   FiFlag,
   FiDatabase,
   FiHardDrive,
@@ -13,8 +13,9 @@ import {
   FiChevronDown,
   FiChevronRight,
   FiStar,
-  FiDownload
+  FiDownload,
 } from 'react-icons/fi';
+import './AdminSidebar.css';
 
 const AdminSidebar = ({ activeSection, onSectionChange }) => {
   const [expandedGroups, setExpandedGroups] = useState({
@@ -30,16 +31,19 @@ const AdminSidebar = ({ activeSection, onSectionChange }) => {
     }));
   };
 
+  // Configuration array for dynamic rendering
   const menuGroups = [
+    // 1. Dashboard (standalone)
     {
       id: 'dashboard',
       label: 'داشبورد',
       icon: FiHome,
-      single: true
+      single: true,
     },
+    // 2. مدیریت محتوا
     {
       id: 'content',
-      label: 'محتوا',
+      label: 'مدیریت محتوا',
       icon: FiFolder,
       items: [
         { id: 'movies', label: 'مدیریت فیلم‌ها', icon: FiFilm },
@@ -49,30 +53,32 @@ const AdminSidebar = ({ activeSection, onSectionChange }) => {
         { id: 'downloads', label: 'لینک‌های دانلود', icon: FiDownload },
         { id: 'collections', label: 'کالکشن‌ها', icon: FiFolder },
         { id: 'featured', label: 'پیشنهادی‌ها', icon: FiStar },
-        { id: 'hero-images', label: 'تصویر Hero صفحات', icon: FiFilm }
-      ]
+        { id: 'hero-images', label: 'تصویر Hero صفحات', icon: FiFilm },
+      ],
     },
+    // 3. تعاملات و کاربران
     {
-      id: 'moderation',
-      label: 'کاربران و نظارت',
+      id: 'interactions',
+      label: 'تعاملات و کاربران',
       icon: FiUsers,
       items: [
         { id: 'users', label: 'کاربران', icon: FiUsers },
         { id: 'comments', label: 'نظرات', icon: FiMessageSquare },
         { id: 'reports', label: 'گزارش‌ها', icon: FiFlag },
-        { id: 'plans', label: 'اشتراک‌ها', icon: FiUsers }
-      ]
+        { id: 'plans', label: 'اشتراک‌ها', icon: FiUsers },
+      ],
     },
+    // 4. تنظیمات سیستم
     {
       id: 'system',
-      label: 'سیستم',
+      label: 'تنظیمات سیستم',
       icon: FiSettings,
       items: [
         { id: 'imdb-sync', label: 'همگام‌سازی IMDb', icon: FiDatabase },
         { id: 'cache', label: 'حافظه موقت', icon: FiHardDrive },
-        { id: 'settings', label: 'تنظیمات', icon: FiSettings }
-      ]
-    }
+        { id: 'settings', label: 'تنظیمات عمومی', icon: FiSettings },
+      ],
+    },
   ];
 
   const handleItemClick = (itemId) => {

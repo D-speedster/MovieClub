@@ -1,0 +1,83 @@
+/* Premium dark VOD theme for subscription plans */
+
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+  background: #121214;
+}
+
+.plan-card {
+  position: relative;
+  background: rgba(27, 27, 31, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.plan-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.plan-badge {
+  position: absolute;
+  top: -0.75rem;
+  right: 1rem;
+  background: linear-gradient(45deg, #ffd700, #ffb700);
+  color: #121214;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.plan-title {
+  margin-top: 0.5rem;
+  font-size: 1.25rem;
+  color: #fff;
+}
+
+.plan-price {
+  margin: 0.75rem 0;
+  font-size: 1rem;
+  color: #e0e0e0;
+}
+
+.plan-features {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+  color: #cfcfcf;
+}
+
+.plan-features li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.check-icon {
+  margin-right: 0.5rem;
+  color: #4caf50;
+}
+
+.plan-action {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.plan-action:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+

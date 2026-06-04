@@ -158,7 +158,7 @@
 
 .him__upload-btn {
     padding: 8px 20px;
-    background: #e50914;
+     background: var(--gold-primary);
     color: #fff;
     border: none;
     border-radius: 7px;

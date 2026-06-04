@@ -28,7 +28,7 @@
 }
 
 .reports-card--total { border-top: 3px solid #6c63ff; }
-.reports-card--movies { border-top: 3px solid #e50914; }
+ .reports-card--movies { border-top: 3px solid var(--gold-primary); }
 .reports-card--series { border-top: 3px solid #00b4d8; }
 
 .reports-card__icon {
@@ -72,7 +72,7 @@
 }
 
 .reports-bar__fill--movies {
-    background: #e50914;
+     background: var(--gold-primary);
     transition: width 0.6s ease;
 }
 

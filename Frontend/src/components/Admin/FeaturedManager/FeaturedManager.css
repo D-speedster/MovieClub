@@ -159,7 +159,7 @@
 .featured-manager__save-btn {
   width: 100%;
   padding: 12px;
-  background: #e50914;
+ background: var(--gold-primary);
   color: white;
   border: none;
   border-radius: 8px;
@@ -194,7 +194,7 @@
 
 .featured-manager__search:focus {
   outline: none;
-  border-color: #e50914;
+ border-color: var(--gold-primary);
 }
 
 .featured-manager__content-list {
@@ -218,7 +218,7 @@
 }
 
 .featured-manager__content-item:hover {
-  border-color: #e50914;
+ border-color: var(--gold-primary);
   background: rgba(229, 9, 20, 0.05);
 }
 

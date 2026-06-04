@@ -164,6 +164,7 @@
   max-width: 1750px;
   margin-left: auto;
   margin-right: auto;
+  justify-content: center; /* center grid on narrow viewports */
 }
 
 /* ================================

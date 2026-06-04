@@ -128,3 +128,21 @@
     color: #888;
     font-size: 0.78rem;
 }
+/* Responsive adjustments for mobile */
+@media (max-width: 480px) {
+  .search-overlay__box {
+    max-width: 90%;
+    margin: 0 5%;
+  }
+  .search-overlay__input-wrap {
+    padding: 10px 12px;
+    gap: 8px;
+  }
+  .search-overlay__icon {
+    font-size: 1.1rem;
+  }
+  .search-overlay__close {
+    font-size: 0.9rem;
+    padding: 3px 5px;
+  }
+}
