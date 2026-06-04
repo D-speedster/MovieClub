@@ -2,7 +2,6 @@ import React, { useState, useEffect, useCallback } from 'react';
 import HeroSection from '../../components/UI/HeroSection/HeroSection';
 import MovieSlider from '../../components/UI/MovieSlider/MovieSlider';
 import Footer from '../../components/Layout/Footer/Footer';
-import MobileNav from '../../components/Layout/MobileNav/MobileNav';
 import BackToTop from '../../components/UI/BackToTop/BackToTop';
 import ApiRequest from '../../Services/Axios/config';
 import Logger from '../../utils/logger';
@@ -119,7 +118,6 @@ const Home = () => {
           </div>
         </div>
         <Footer />
-        <MobileNav />
       </div>
     );
   }
@@ -177,7 +175,6 @@ const Home = () => {
         <Footer />
       </div>
 
-      <MobileNav />
     </div>
   );
 };

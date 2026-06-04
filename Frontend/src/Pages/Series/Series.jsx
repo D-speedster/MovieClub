@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import PageHeader from '../../components/Layout/PageHeader/PageHeader';
 import MovieCard from '../../components/UI/MovieCard/MovieCard';
 import Footer from '../../components/Layout/Footer/Footer';
-import MobileNav from '../../components/Layout/MobileNav/MobileNav';
+import Header from '../../components/Layout/GlobalHeader/GlobalHeader';
 import LoadingSpinner from '../../components/Loading/LoadingSpinner';
 import ApiRequest from '../../Services/Axios/config';
 import Logger from '../../utils/logger';
@@ -151,7 +150,7 @@ export default function Series() {
   if (loading) {
     return (
       <div className="series-page">
-        <PageHeader />
+        <Header />
         <HeroBlock />
         <div className="series-content">
           <div className="container-fluid">
@@ -159,7 +158,6 @@ export default function Series() {
           </div>
         </div>
         <Footer />
-        <MobileNav />
       </div>
     );
   }
@@ -167,7 +165,7 @@ export default function Series() {
   if (error) {
     return (
       <div className="series-page">
-        <PageHeader />
+        <Header />
         <HeroBlock />
         <div className="series-content">
           <div className="container-fluid">
@@ -181,14 +179,13 @@ export default function Series() {
           </div>
         </div>
         <Footer />
-        <MobileNav />
       </div>
     );
   }
 
   return (
     <div className="series-page">
-      <PageHeader />
+      <Header />
       
       {/* Dynamic Hero Section */}
       <HeroBlock />
@@ -335,7 +332,6 @@ export default function Series() {
       </div>
 
       <Footer />
-      <MobileNav />
     </div>
   );
 }

@@ -1,13 +1,10 @@
 import React from 'react';
-import PageHeader from '../../components/Layout/PageHeader/PageHeader';
 import Footer from '../../components/Layout/Footer/Footer';
-import MobileNav from '../../components/Layout/MobileNav/MobileNav';
 import './About.css';
 
 export default function About() {
     return (
         <div className="static-page">
-            <PageHeader />
             <div className="static-page__hero">
                 <div className="container">
                     <h1>درباره مووی کلاب</h1>
@@ -50,7 +47,6 @@ export default function About() {
                 </div>
             </div>
             <Footer />
-            <MobileNav />
         </div>
     );
 }

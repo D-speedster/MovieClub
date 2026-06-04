@@ -1,38 +1,3 @@
-/* 🎬 Dark Theme Color Variables */
-:root {
-  /* 1️⃣ Background Colors */
-  --bg-main: #121212;
-  --bg-surface: #1A1A1A;
-  --bg-hover: #222222;
-  
-  /* 2️⃣ Gold Colors (Highlight - فقط اطلاعاتی) */
-  --gold-primary: #C9A24D;
-  --gold-soft: #D6B66A;
-  
-  /* 3️⃣ Text Colors (یکدست) */
-  --text-primary: #E0E0E0;
-  --text-secondary: #B5B5B5;
-  --text-muted: #8A8A8A;
-  
-  /* 4️⃣ CTA Colors (مهم) */
-  --cta-primary: #B84A2B;
-  --cta-hover: #D05A3A;
-  --cta-text: #FFFFFF;
-  
-  /* 5️⃣ Border & Divider Colors */
-  --border-default: #2A2A2A;
-  --border-focus: #C9A24D;
-  
-  /* Additional utility colors */
-  --shadow-light: rgba(0, 0, 0, 0.2);
-  --shadow-medium: rgba(0, 0, 0, 0.4);
-  --shadow-heavy: rgba(0, 0, 0, 0.6);
-  
-  /* Overlay colors */
-  --overlay-light: rgba(18, 18, 18, 0.8);
-  --overlay-heavy: rgba(18, 18, 18, 0.95);
-}
-
 /* Theme utility classes */
 .bg-main { background-color: var(--bg-main); }
 .bg-surface { background-color: var(--bg-surface); }

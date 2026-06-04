@@ -1,8 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import PageHeader from '../../components/Layout/PageHeader/PageHeader';
 import Footer from '../../components/Layout/Footer/Footer';
-import MobileNav from '../../components/Layout/MobileNav/MobileNav';
 import '../About/About.css';
 
 const CATEGORIES = [
@@ -33,7 +31,6 @@ export default function Categories() {
 
     return (
         <div className="static-page">
-            <PageHeader />
             <div className="static-page__hero">
                 <div className="container">
                     <h1>دسته‌بندی‌ها</h1>
@@ -59,7 +56,6 @@ export default function Categories() {
                 </div>
             </div>
             <Footer />
-            <MobileNav />
         </div>
     );
 }

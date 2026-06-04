@@ -100,6 +100,11 @@
   --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
   --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
   
+  /* CTA Colors */
+  --cta-primary: #C9A24D;
+  --cta-hover: #D6B66A;
+  --cta-text: #0E0E0E;
+
   /* Overlay Colors */
   --overlay-light: rgba(0, 0, 0, 0.4);
   --overlay-medium: rgba(0, 0, 0, 0.6);

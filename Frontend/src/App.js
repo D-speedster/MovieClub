@@ -1,7 +1,9 @@
 import React, { Suspense, lazy } from 'react';
-import { useRoutes } from "react-router-dom";
+import { useRoutes, useLocation } from "react-router-dom";
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
+import MobileNav from './components/Layout/MobileNav/MobileNav';
+import Layout from './components/Layout/Layout/Layout';
 import './App.css';
 
 // Lazy load pages
@@ -28,48 +30,68 @@ const LoadingSpinner = () => (
 );
 
 const routes = [
-  { path: '/', element: <Home /> },
-  { path: '/movie/:userId', element: <Download /> },
-  { path: '/Movie/:userId', element: <Download /> },
-  { path: '/Movies', element: <Movies /> },
-  { path: '/Series', element: <Series /> },
-  { path: '/anime', element: <Anime /> },
-  { path: '/Anime', element: <Anime /> },
-  { path: '/categories', element: <Categories /> },
-  { path: '/Categories', element: <Categories /> },
-  { path: '/about', element: <About /> },
-  { path: '/contact', element: <Contact /> },
+  // صفحه اصلی — هدر شفاف روی HeroSection
+  { path: '/', element: <Layout transparentHeader={true}><Home /></Layout> },
+
+  // صفحه فیلم
+  { path: '/movie/:userId', element: <Layout><Download /></Layout> },
+  { path: '/Movie/:userId', element: <Layout><Download /></Layout> },
+
+  // صفحات اصلی
+  { path: '/Movies', element: <Layout><Movies /></Layout> },
+  { path: '/Series', element: <Layout><Series /></Layout> },
+  { path: '/anime', element: <Layout><Anime /></Layout> },
+  { path: '/Anime', element: <Layout><Anime /></Layout> },
+  { path: '/categories', element: <Layout><Categories /></Layout> },
+  { path: '/Categories', element: <Layout><Categories /></Layout> },
+  { path: '/about', element: <Layout><About /></Layout> },
+  { path: '/contact', element: <Layout><Contact /></Layout> },
   { path: '/news', element: (
-    <div style={{ minHeight: '100vh', background: '#0f0f1a', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', color: '#fff' }}>
-      <span style={{ fontSize: 64 }}>📰</span>
-      <h2 style={{ marginTop: 20 }}>اخبار</h2>
-      <p style={{ color: 'rgba(255,255,255,0.5)', marginTop: 8 }}>به زودی...</p>
-    </div>
+    <Layout>
+      <div style={{ minHeight: '100vh', background: '#0f0f1a', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', color: '#fff' }}>
+        <span style={{ fontSize: 64 }}>📰</span>
+        <h2 style={{ marginTop: 20 }}>اخبار</h2>
+        <p style={{ color: 'rgba(255,255,255,0.5)', marginTop: 8 }}>به زودی...</p>
+      </div>
+    </Layout>
   )},
-  { path: '/auth/register', element: <Register /> },
-  { path: '/auth/login', element: <Login /> },
+
+  // احراز هویت
+  { path: '/auth/register', element: <Layout><Register /></Layout> },
+  { path: '/auth/login', element: <Layout><Login /></Layout> },
+
+  // ادمین — بدون GlobalHeader
   {
     path: '/admin/*',
     element: <ProtectedRoute adminOnly><Admin /></ProtectedRoute>
   },
-  { path: '/User', element: <UserPage /> },
+
+  { path: '/User', element: <Layout><UserPage /></Layout> },
   { path: '*', element: (
-    <div style={{ minHeight: '100vh', background: '#0f0f1a', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', color: '#fff' }}>
-      <span style={{ fontSize: 80 }}>404</span>
-      <h2 style={{ marginTop: 16 }}>صفحه مورد نظر یافت نشد</h2>
-      <a href="/" style={{ marginTop: 20, color: '#a78bfa', textDecoration: 'none' }}>بازگشت به خانه</a>
-    </div>
+    <Layout>
+      <div style={{ minHeight: '100vh', background: '#0f0f1a', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', color: '#fff' }}>
+        <span style={{ fontSize: 80 }}>404</span>
+        <h2 style={{ marginTop: 16 }}>صفحه مورد نظر یافت نشد</h2>
+        <a href="/" style={{ marginTop: 20, color: '#a78bfa', textDecoration: 'none' }}>بازگشت به خانه</a>
+      </div>
+    </Layout>
   )}
 ];
 
 function App() {
   let router = useRoutes(routes);
+  const location = useLocation();
+
+  // MobileNav فقط برای صفحات عمومی — نه admin، نه login، نه register
+  const hideNavPaths = ['/admin', '/auth/login', '/auth/register'];
+  const showMobileNav = !hideNavPaths.some(p => location.pathname.startsWith(p));
 
   return (
     <ErrorBoundary>
       <Suspense fallback={<LoadingSpinner />}>
         <div className="App">
           {router}
+          {showMobileNav && <MobileNav />}
         </div>
       </Suspense>
     </ErrorBoundary>

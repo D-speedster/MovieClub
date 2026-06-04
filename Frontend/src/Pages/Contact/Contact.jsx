@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import PageHeader from '../../components/Layout/PageHeader/PageHeader';
 import Footer from '../../components/Layout/Footer/Footer';
-import MobileNav from '../../components/Layout/MobileNav/MobileNav';
 import '../About/About.css';
 
 export default function Contact() {
@@ -16,7 +14,6 @@ export default function Contact() {
 
     return (
         <div className="static-page">
-            <PageHeader />
             <div className="static-page__hero">
                 <div className="container">
                     <h1>تماس با ما</h1>
@@ -79,7 +76,6 @@ export default function Contact() {
                 )}
             </div>
             <Footer />
-            <MobileNav />
         </div>
     );
 }

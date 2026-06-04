@@ -41,7 +41,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "check:css": "node scripts/check-css-theme.js"
   },
   "eslintConfig": {
     "extends": [
@@ -67,6 +68,7 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "fast-check": "^3.23.2",
     "gh-pages": "^6.3.0",
     "webpack": "^5.104.1"
   },

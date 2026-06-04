@@ -15,7 +15,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-hover) 100%);
   background-size: cover;
   background-position: center top;
   background-repeat: no-repeat;
@@ -24,7 +24,7 @@
 .movies-static-hero__background {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, #2c1810 0%, #8b4513 50%, #d2691e 100%);
+  background: linear-gradient(to bottom, var(--bg-main) 0%, var(--bg-surface) 100%);
   filter: brightness(0.3);
 }
 
@@ -43,7 +43,7 @@
   position: relative;
   z-index: 2;
   text-align: center;
-  color: #f1f5f9;
+  color: var(--text-primary);
 }
 
 .movies-static-hero__content h1 {
@@ -280,7 +280,7 @@
 }
 
 .btn-retry {
-  background-color: var(--accent-primary);
+  background-color: var(--gold-primary);
   color: var(--text-primary);
   border: none;
   padding: var(--space-3) var(--space-6);
@@ -293,9 +293,9 @@
 }
 
 .btn-retry:hover {
-  background-color: #B20710;
+  background-color: var(--cta-hover);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(229, 9, 20, 0.3);
+  box-shadow: 0 4px 12px rgba(201, 162, 77, 0.3);
 }
 
 /* ================================

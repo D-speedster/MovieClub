@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import Header from '../Home/Header/Header';
 import Movie from './Movie/Movie';
 import InfoMovie from './InfoMovie/InfoMovie';
 import BoxDownload from './BoxDownload/BoxDownload';
@@ -40,7 +39,6 @@ export function Download(props) {
     }, []);
     return (
         <div>
-            <Header />
             <Movie info={[getDataMo.poster, getDataMo.Image_Moviez, getDataMo.name, getDataMo.BackgroundImage]}></Movie>
             <InfoMovie info={[getDataMo.story, getDataMo.poster, getDataMo.director, getDataMo.genre, getDataMo.time, getDataMo.name, getDataMo.rate, getDataMo.Image_Moviez, getDataMo.countries, getDataMo.year, getDataMo.stars, getDataMo.TranslateText]}><BoxDownload></BoxDownload><Suggestion></Suggestion><Comment /></InfoMovie>
             <BoxDownload />

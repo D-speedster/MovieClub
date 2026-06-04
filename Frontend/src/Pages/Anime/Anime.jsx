@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import PageHeader from '../../components/Layout/PageHeader/PageHeader';
 import Footer from '../../components/Layout/Footer/Footer';
-import MobileNav from '../../components/Layout/MobileNav/MobileNav';
 import MovieCard from '../../components/UI/MovieCard/MovieCard';
 import ApiRequest from '../../Services/Axios/config';
 import '../About/About.css';
@@ -43,7 +41,6 @@ export default function Anime() {
 
     return (
         <div className="static-page">
-            <PageHeader />
             <div className="anime-hero">
                 <div className="container">
                     <h1>⛩️ انیمه</h1>
@@ -83,7 +80,6 @@ export default function Anime() {
                 )}
             </div>
             <Footer />
-            <MobileNav />
         </div>
     );
 }

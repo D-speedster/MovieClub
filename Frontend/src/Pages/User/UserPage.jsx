@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FiUser, FiMail, FiPhone, FiLogOut, FiShield, FiCalendar, FiEdit2 } from 'react-icons/fi';
-import PageHeader from '../../components/Layout/PageHeader/PageHeader';
 import Footer from '../../components/Layout/Footer/Footer';
-import MobileNav from '../../components/Layout/MobileNav/MobileNav';
+import Header from '../../components/Layout/GlobalHeader/GlobalHeader';
 import ApiRequest from '../../Services/Axios/config';
 import './UserPage.css';
 
@@ -48,7 +47,6 @@ export default function UserPage() {
     if (!isLoggedIn) {
         return (
             <div className="user-page">
-                <PageHeader />
                 <div className="user-page__container">
                     <div className="user-page__card">
                         <FiUser className="user-page__avatar-icon" />
@@ -60,14 +58,13 @@ export default function UserPage() {
                     </div>
                 </div>
                 <Footer />
-                <MobileNav />
             </div>
         );
     }
 
     return (
         <div className="user-page">
-            <PageHeader />
+            <Header />
             <div className="user-page__container">
                 <div className="user-page__card">
 
@@ -149,7 +146,6 @@ export default function UserPage() {
                 </div>
             </div>
             <Footer />
-            <MobileNav />
         </div>
     );
 }
