@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Footer from '../Layout/Footer/Footer';
-import Header from '../Layout/GlobalHeader/GlobalHeader';
 import ApiRequest from '../../Services/Axios/config';
 import Logger from '../../utils/logger';
 import { getPosterUrl } from '../../utils/posterUrl';
@@ -101,7 +100,6 @@ const MoviePage = () => {
   if (loading) {
     return (
       <div className="movie-page">
-        <Header />
         <div className="movie-page__loading">
           <div className="loading-spinner"></div>
           <p>در حال بارگذاری...</p>
@@ -113,7 +111,6 @@ const MoviePage = () => {
   if (error || !movieData) {
     return (
       <div className="movie-page">
-        <Header />
         <div className="movie-page__error">
           <h2>خطا</h2>
           <p>{error || 'فیلم مورد نظر یافت نشد'}</p>
@@ -125,7 +122,6 @@ const MoviePage = () => {
 
   return (
     <div className="movie-page">
-      <Header />
 
       {/* ── Hero Section ─────────────────────────────────────── */}
       <section className="movie-hero">

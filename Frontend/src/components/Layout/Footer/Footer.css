@@ -42,7 +42,7 @@
   font-size: 1.35rem;
   font-weight: 800;
   letter-spacing: 0.08em;
-  color: #e50914;
+ color: var(--gold-primary);
   font-family: 'Segoe UI', Arial, sans-serif;
 }
 
@@ -93,7 +93,7 @@
 }
 
 .site-footer__social-btn:hover {
-  background: #e50914;
+ background: var(--gold-primary);
   color: #ffffff;
   transform: translateY(-2px);
   text-decoration: none;

@@ -183,7 +183,7 @@ export default function AddMovie() {
             if (form.poster) {
                 // فایل آپلود شده توسط کاربر
                 formData.append('poster', form.poster);
-            } else if (form.posterPreview && form.posterPreview.startsWith('http')) {
+            } else if (form.posterPreview && form.posterPreview.startsWith('http') && !form.posterPreview.includes('N/A')) {
                 // URL پوستر از OMDB — سرور دانلود میکنه
                 formData.append('posterUrl', form.posterPreview);
             }

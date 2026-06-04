@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import MovieCard from '../../components/UI/MovieCard/MovieCard';
 import Footer from '../../components/Layout/Footer/Footer';
-import Header from '../../components/Layout/GlobalHeader/GlobalHeader';
 import LoadingSpinner from '../../components/Loading/LoadingSpinner';
 import ApiRequest from '../../Services/Axios/config';
 import Logger from '../../utils/logger';
@@ -150,7 +149,6 @@ export default function Series() {
   if (loading) {
     return (
       <div className="series-page">
-        <Header />
         <HeroBlock />
         <div className="series-content">
           <div className="container-fluid">
@@ -165,7 +163,6 @@ export default function Series() {
   if (error) {
     return (
       <div className="series-page">
-        <Header />
         <HeroBlock />
         <div className="series-content">
           <div className="container-fluid">
@@ -185,7 +182,6 @@ export default function Series() {
 
   return (
     <div className="series-page">
-      <Header />
       
       {/* Dynamic Hero Section */}
       <HeroBlock />

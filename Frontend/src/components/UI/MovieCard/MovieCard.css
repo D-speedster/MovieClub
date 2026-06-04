@@ -246,7 +246,7 @@
    ACCESSIBILITY
    ================================ */
 .netflix-movie-card__link:focus-visible {
-  outline: 2px solid #e50914;
+ outline: 2px solid var(--gold-primary);
   outline-offset: 2px;
   border-radius: 8px;
 }
