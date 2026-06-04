@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import MovieCard from '../../components/UI/MovieCard/MovieCard';
 import Footer from '../../components/Layout/Footer/Footer';
-// Import Header component (GlobalHeader) to satisfy JSX usage
 import Header from '../../components/Layout/GlobalHeader/GlobalHeader';
 import LoadingSpinner from '../../components/Loading/LoadingSpinner';
 import ApiRequest from '../../Services/Axios/config';

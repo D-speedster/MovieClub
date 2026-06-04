@@ -1,13 +1,10 @@
-/* 🎬 MOVIES PAGE - 30NAMA STYLE */
+/* Movies page styles */
 
 .movies-page {
   background-color: var(--bg-main);
   min-height: 100vh;
 }
 
-/* ================================
-   STATIC HERO SECTION
-   ================================ */
 .movies-static-hero {
   position: relative;
   height: 560px;
@@ -31,12 +28,7 @@
 .movies-static-hero__overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.15) 0%,
-    rgba(0, 0, 0, 0.35) 50%,
-    rgba(0, 0, 0, 0.75) 100%
-  );
+  background: linear-gradient(to bottom, rgba(0,0,0,.15) 0%, rgba(0,0,0,.35) 50%, rgba(0,0,0,.75) 100%);
 }
 
 .movies-static-hero__content {
@@ -50,26 +42,18 @@
   font-size: clamp(3rem, 8vw, 6rem);
   font-weight: 900;
   margin: 0;
-  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.9);
+  text-shadow: 0 4px 24px rgba(0,0,0,.9);
   letter-spacing: -0.02em;
 }
 
 @media (max-width: 768px) {
-  .movies-static-hero {
-    height: 380px;
-    background-position: center center;
-  }
+  .movies-static-hero { height: 380px; background-position: center center; }
 }
 
 @media (max-width: 480px) {
-  .movies-static-hero {
-    height: 280px;
-  }
+  .movies-static-hero { height: 280px; }
 }
 
-/* ================================
-   MAIN CONTENT
-   ================================ */
 .movies-content {
   padding: var(--space-16) 0;
   background-color: var(--bg-main);
@@ -81,9 +65,6 @@
   padding: 0 var(--space-6);
 }
 
-/* ================================
-   FILTERS SECTION
-   ================================ */
 .movies-filters {
   background-color: var(--bg-surface);
   border: 1px solid var(--border-primary);
@@ -128,7 +109,7 @@
 .filter-group select:focus {
   outline: none;
   border-color: var(--gold-primary);
-  box-shadow: 0 0 0 3px rgba(201, 162, 77, 0.1);
+  box-shadow: 0 0 0 3px rgba(201,162,77,.1);
 }
 
 .filter-group select:hover {
@@ -153,9 +134,6 @@
   border: 1px solid var(--border-primary);
 }
 
-/* ================================
-   MOVIES GRID
-   ================================ */
 .movies-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(246px, 1fr));
@@ -166,9 +144,6 @@
   margin-right: auto;
 }
 
-/* ================================
-   PAGINATION
-   ================================ */
 .movies-pagination {
   display: flex;
   align-items: center;
@@ -202,7 +177,7 @@
   border-color: var(--gold-primary);
   color: var(--bg-main);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(201, 162, 77, 0.3);
+  box-shadow: 0 4px 12px rgba(201,162,77,.3);
 }
 
 .pagination-btn:disabled {
@@ -255,9 +230,6 @@
   padding: 0 var(--space-2);
 }
 
-/* ================================
-   ERROR & LOADING STATES
-   ================================ */
 .error-state {
   text-align: center;
   padding: var(--space-16) var(--space-4);
@@ -295,118 +267,46 @@
 .btn-retry:hover {
   background-color: var(--cta-hover);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(201, 162, 77, 0.3);
+  box-shadow: 0 4px 12px rgba(201,162,77,.3);
 }
 
-/* ================================
-   RESPONSIVE DESIGN
-   ================================ */
 @media (max-width: 1400px) {
-  .movies-grid {
-    grid-template-columns: repeat(auto-fill, 246px);
-  }
+  .movies-grid { grid-template-columns: repeat(auto-fill, 246px); }
 }
 
 @media (max-width: 1200px) {
-  .movies-grid {
-    grid-template-columns: repeat(auto-fill, 220px);
-  }
-  
-  .movies-content .container-fluid {
-    padding: 0 var(--space-4);
-  }
+  .movies-grid { grid-template-columns: repeat(auto-fill, 220px); }
+  .movies-content .container-fluid { padding: 0 var(--space-4); }
 }
 
 @media (max-width: 1024px) {
-  .movies-grid {
-    grid-template-columns: repeat(auto-fill, 220px);
-  }
-  
-  .movies-filters__row {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  .movies-grid { grid-template-columns: repeat(auto-fill, 220px); }
+  .movies-filters__row { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 768px) {
-  .movies-hero {
-    height: 300px;
-  }
-  
-  .movies-hero__content h1 {
-    font-size: clamp(2rem, 6vw, 4rem);
-  }
-  
-  .movies-hero__content p {
-    font-size: var(--text-base);
-  }
-  
-  .movies-content {
-    padding: var(--space-12) 0;
-  }
-  
-  .movies-filters {
-    padding: var(--space-4);
-  }
-  
-  .movies-filters__row {
-    grid-template-columns: 1fr;
-    gap: var(--space-3);
-  }
-  
-  .movies-grid {
-    grid-template-columns: repeat(2, 190px);
-    gap: 15px;
-  }
-  
-  .pagination-numbers {
-    margin: 0 var(--space-2);
-  }
-  
-  .pagination-number {
-    width: 36px;
-    height: 36px;
-    font-size: var(--text-xs);
-  }
+  .movies-hero { height: 300px; }
+  .movies-hero__content h1 { font-size: clamp(2rem, 6vw, 4rem); }
+  .movies-hero__content p { font-size: var(--text-base); }
+  .movies-content { padding: var(--space-12) 0; }
+  .movies-filters { padding: var(--space-4); }
+  .movies-filters__row { grid-template-columns: 1fr; gap: var(--space-3); }
+  .movies-grid { grid-template-columns: repeat(2, 190px); gap: 15px; }
+  .pagination-numbers { margin: 0 var(--space-2); }
+  .pagination-number { width: 36px; height: 36px; font-size: var(--text-xs); }
 }
 
 @media (max-width: 480px) {
-  .movies-hero {
-    height: 250px;
-  }
-  
-  .movies-content .container-fluid {
-    padding: 0 var(--space-3);
-  }
-  
-  .movies-grid {
-    grid-template-columns: repeat(2, 160px);
-    gap: 12px;
-  }
-  
-  .movies-pagination {
-    flex-direction: column;
-    gap: var(--space-4);
-  }
-  
-  .pagination-numbers {
-    order: -1;
-  }
+  .movies-hero { height: 250px; }
+  .movies-content .container-fluid { padding: 0 var(--space-3); }
+  .movies-grid { grid-template-columns: repeat(2, 160px); gap: 12px; }
+  .movies-pagination { flex-direction: column; gap: var(--space-4); }
+  .pagination-numbers { order: -1; }
 }
 
-/* ================================
-   RTL SUPPORT
-   ================================ */
-[dir="rtl"] .movies-filters__row {
-  direction: rtl;
-}
+[dir="rtl"] .movies-filters__row { direction: rtl; }
+[dir="rtl"] .movies-pagination { direction: rtl; }
 
-[dir="rtl"] .movies-pagination {
-  direction: rtl;
-}
-
-/* ================================
-   ACCESSIBILITY
-   ================================ */
 .filter-group select:focus,
 .pagination-btn:focus,
 .pagination-number:focus {
