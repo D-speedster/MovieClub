@@ -19,8 +19,18 @@ const GlobalHeader = ({ transparent = false }) => {
   const [searchOpen,  setSearchOpen]  = useState(false);
   const [menuOpen,    setMenuOpen]    = useState(false);
 
-  const isLoggedIn = !!localStorage.getItem('token');
-  const userRole   = localStorage.getItem('role');
+  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token'));
+  const [userRole, setUserRole]     = useState(localStorage.getItem('role'));
+
+  useEffect(() => {
+    const check = () => {
+      setIsLoggedIn(!!localStorage.getItem('token'));
+      setUserRole(localStorage.getItem('role'));
+    };
+    window.addEventListener('storage', check);
+    check();
+    return () => window.removeEventListener('storage', check);
+  }, []);
 
   const handleLogout = async () => {
     try {
@@ -29,8 +39,10 @@ const GlobalHeader = ({ transparent = false }) => {
         credentials: 'include',
       });
     } catch (_) {}
-    localStorage.removeItem('token');
-    localStorage.removeItem('role');
+     localStorage.removeItem('token');
+     localStorage.removeItem('role');
+     setIsLoggedIn(false);
+     setUserRole(null);
     navigate('/auth/login');
   };
 
