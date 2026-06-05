@@ -39,6 +39,22 @@ exports.UpdateUserRole = async (req, res, next) => {
         if (!allowedRoles.includes(role)) {
             return res.status(400).json({ message: 'نقش نامعتبر است' });
         }
+        // Prevent self‑role change
+        if (req.user && req.user.userId === req.params.id) {
+            return res.status(403).json({ message: 'نمی‌توانید نقش خود را تغییر دهید' });
+        }
+        // Owner creation restriction
+        if (role === 'Owner') {
+            // Only an existing Owner can create another Owner
+            if (!req.user || req.user.role !== 'Owner') {
+                return res.status(403).json({ message: 'فقط Owner می‌تواند Owner جدید ایجاد کند' });
+            }
+        } else if (role === 'Admin') {
+            // Admins can be created by Owner or Admin, but not by regular User
+            if (!req.user || (req.user.role !== 'Owner' && req.user.role !== 'Admin')) {
+                return res.status(403).json({ message: 'دسترسی برای ایجاد Admin ندارید' });
+            }
+        }
         const updated = await UserSchema.findByIdAndUpdate(
             req.params.id,
             { role },

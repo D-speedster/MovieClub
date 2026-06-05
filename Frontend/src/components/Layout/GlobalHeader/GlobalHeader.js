@@ -97,7 +97,7 @@ const GlobalHeader = ({ transparent = false }) => {
               </>
             ) : (
               <>
-                <button className="global-header__subscribe-btn">خرید اشتراک</button>
+                <button className="global-header__subscribe-btn" onClick={() => navigate('/subscription')}>خرید اشتراک</button>
                 <Link to="/auth/login" className="global-header__login-btn">ورود</Link>
               </>
             )}
@@ -151,7 +151,7 @@ const GlobalHeader = ({ transparent = false }) => {
           ) : (
             <>
               <Link to="/auth/login" className="global-drawer__login-btn" onClick={closeMenu}>ورود به حساب</Link>
-              <button className="global-drawer__subscribe-btn">خرید اشتراک</button>
+                <button className="global-drawer__subscribe-btn" onClick={() => navigate('/subscription')}>خرید اشتراک</button>
             </>
           )}
         </div>

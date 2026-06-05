@@ -5,6 +5,7 @@ import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import MobileNav from './components/Layout/MobileNav/MobileNav';
 import Layout from './components/Layout/Layout/Layout';
 import './App.css';
+import UserDashboard from './pages/UserDashboard';
 
 // Lazy load pages
 const Home = lazy(() => import('./Pages/Home/Home.redesigned'));
@@ -18,7 +19,8 @@ const UserPage = lazy(() => import('./Pages/User/UserPage'));
 const About = lazy(() => import('./Pages/About/About'));
 const Contact = lazy(() => import('./Pages/Contact/Contact'));
 const Categories = lazy(() => import('./Pages/Categories/Categories'));
-const Anime = lazy(() => import('./Pages/Anime/Anime'));
+  const Anime = lazy(() => import('./Pages/Anime/Anime'));
+  const Subscription = lazy(() => import('./Pages/Subscription/Subscription'));
 
 const LoadingSpinner = () => (
   <div className="loading-spinner">
@@ -29,7 +31,7 @@ const LoadingSpinner = () => (
   </div>
 );
 
-const routes = [
+  const routes = [
   // صفحه اصلی — هدر شفاف روی HeroSection
   { path: '/', element: <Layout transparentHeader={true}><Home /></Layout> },
 
@@ -46,6 +48,7 @@ const routes = [
   { path: '/Categories', element: <Layout><Categories /></Layout> },
   { path: '/about', element: <Layout><About /></Layout> },
   { path: '/contact', element: <Layout><Contact /></Layout> },
+  { path: '/subscription', element: <Layout><Subscription /></Layout> },
   { path: '/news', element: (
     <Layout>
       <div style={{ minHeight: '100vh', background: '#0f0f1a', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', color: '#fff' }}>
@@ -59,6 +62,7 @@ const routes = [
   // احراز هویت
   { path: '/auth/register', element: <Layout><Register /></Layout> },
   { path: '/auth/login', element: <Layout><Login /></Layout> },
+  { path: '/subscription', element: <Layout><Subscription /></Layout> },
 
   // ادمین — بدون GlobalHeader
   {
@@ -67,6 +71,8 @@ const routes = [
   },
 
   { path: '/User', element: <Layout><UserPage /></Layout> },
+  // User dashboard placeholder for regular users
+  { path: '/user/dashboard', element: <Layout><UserDashboard /></Layout> },
   { path: '*', element: (
     <Layout>
       <div style={{ minHeight: '100vh', background: '#0f0f1a', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', color: '#fff' }}>
