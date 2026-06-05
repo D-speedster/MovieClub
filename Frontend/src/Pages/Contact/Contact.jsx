@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Footer from '../../components/Layout/Footer/Footer';
 import '../About/About.css';
 
 export default function Contact() {
@@ -75,7 +74,6 @@ export default function Contact() {
                     </div>
                 )}
             </div>
-            <Footer />
         </div>
     );
 }

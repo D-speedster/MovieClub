@@ -6,7 +6,7 @@
   z-index: var(--z-fixed);
   width: 56px;
   height: 56px;
-  background-color: var(--accent-primary);
+  background-color: var(--gold-primary);
   color: var(--text-primary);
   border: none;
   border-radius: 50%;
@@ -28,7 +28,7 @@
 }
 
 .back-to-top:hover {
-  background-color: #B20710;
+  background-color: var(--gold-primary);
   transform: translateY(-4px);
   box-shadow: var(--shadow-2xl);
 }
@@ -72,17 +72,17 @@
   left: var(--space-8);
 }
 
-[dir="rtl"] @media (max-width: 768px) {
-  .back-to-top {
-    left: var(--space-6);
-  }
-}
+ @media (max-width: 768px) {
+   [dir="rtl"] .back-to-top {
+     left: var(--space-6);
+   }
+ }
 
-[dir="rtl"] @media (max-width: 480px) {
-  .back-to-top {
-    left: var(--space-4);
-  }
-}
+ @media (max-width: 480px) {
+   [dir="rtl"] .back-to-top {
+     left: var(--space-4);
+   }
+ }
 
 /* Animation */
 @keyframes bounce {

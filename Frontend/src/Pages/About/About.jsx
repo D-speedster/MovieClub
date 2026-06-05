@@ -1,5 +1,4 @@
 import React from 'react';
-import Footer from '../../components/Layout/Footer/Footer';
 import './About.css';
 
 export default function About() {
@@ -46,7 +45,6 @@ export default function About() {
                     </div>
                 </div>
             </div>
-            <Footer />
         </div>
     );
 }
