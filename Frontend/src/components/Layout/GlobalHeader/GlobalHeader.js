@@ -39,10 +39,10 @@ const GlobalHeader = ({ transparent = false }) => {
         credentials: 'include',
       });
     } catch (_) {}
-     localStorage.removeItem('token');
-     localStorage.removeItem('role');
-     setIsLoggedIn(false);
-     setUserRole(null);
+    localStorage.removeItem('token');
+    localStorage.removeItem('role');
+    setIsLoggedIn(false);
+    setUserRole(null);
     navigate('/auth/login');
   };
 
@@ -68,7 +68,6 @@ const GlobalHeader = ({ transparent = false }) => {
 
   const closeMenu = useCallback(() => setMenuOpen(false), []);
 
-  // Determine header classes
   const headerClass = [
     'global-header',
     transparent && !isScrolled ? 'global-header--transparent' : 'global-header--solid',
@@ -79,21 +78,15 @@ const GlobalHeader = ({ transparent = false }) => {
     <>
       <header className={headerClass}>
         <div className="global-header__content">
-
-          {/* Logo */}
           <Link to="/" className="global-header__logo" onClick={closeMenu}>
             <span className="global-header__logo-text">MOVIE</span>
             <span className="global-header__logo-accent">CLUB</span>
           </Link>
-
-          {/* Desktop nav */}
           <nav className="global-header__nav" aria-label="ناوبری اصلی">
             {NAV_LINKS.map(l => (
               <Link key={l.to} to={l.to} className="global-header__nav-link">{l.label}</Link>
             ))}
           </nav>
-
-          {/* Desktop actions */}
           <div className="global-header__actions">
             {isLoggedIn ? (
               <>
@@ -108,106 +101,65 @@ const GlobalHeader = ({ transparent = false }) => {
                 <Link to="/auth/login" className="global-header__login-btn">ورود</Link>
               </>
             )}
-            <button
-              className="global-header__icon-btn"
-              aria-label="جستجو"
-              onClick={() => setSearchOpen(true)}
-            >
+            <button className="global-header__icon-btn" aria-label="جستجو" onClick={() => setSearchOpen(true)}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
               </svg>
             </button>
           </div>
-
-          {/* Mobile: search + hamburger */}
           <div className="global-header__mobile-actions">
-            <button
-              className="global-header__icon-btn"
-              aria-label="جستجو"
-              onClick={() => setSearchOpen(true)}
-            >
+            <button className="global-header__icon-btn" aria-label="جستجو" onClick={() => setSearchOpen(true)}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
               </svg>
             </button>
-            <button
-              className={`global-header__hamburger${menuOpen ? ' is-open' : ''}`}
-              aria-label={menuOpen ? 'بستن منو' : 'باز کردن منو'}
-              aria-expanded={menuOpen}
-              onClick={() => setMenuOpen(p => !p)}
-            >
+            <button className={`global-header__hamburger${menuOpen ? ' is-open' : ''}`} aria-label={menuOpen ? 'بستن منو' : 'باز کردن منو'} aria-expanded={menuOpen} onClick={() => setMenuOpen(p => !p)}>
               <span /><span /><span />
             </button>
           </div>
-
         </div>
       </header>
-
-      {/* Mobile drawer backdrop */}
       {menuOpen && (
-        <div
-          className="global-drawer__backdrop"
-          onClick={closeMenu}
-          aria-hidden="true"
-        />
+        <div className="global-drawer__backdrop" onClick={closeMenu} aria-hidden="true" />
       )}
-
-      {/* Mobile drawer */}
-      <nav
-        className={`global-drawer${menuOpen ? ' global-drawer--open' : ''}`}
-        aria-label="منوی موبایل"
-      >
+      <nav className={`global-drawer${menuOpen ? ' global-drawer--open' : ''}`} aria-label="منوی موبایل">
         <div className="global-drawer__header">
           <Link to="/" className="global-drawer__logo" onClick={closeMenu}>
             <span>MOVIE</span><span className="global-drawer__logo-accent">CLUB</span>
           </Link>
-          <button
-            className="global-drawer__close"
-            aria-label="بستن منو"
-            onClick={closeMenu}
-          >
+          <button className="global-drawer__close" aria-label="بستن منو" onClick={closeMenu}>
             <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+              <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 19 17.59 13.41 12z"/>
             </svg>
           </button>
         </div>
-
         <ul className="global-drawer__list">
           {NAV_LINKS.map(l => (
             <li key={l.to}>
-              <Link to={l.to} className="global-drawer__link" onClick={closeMenu}>
-                {l.label}
-              </Link>
+              <Link to={l.to} className="global-drawer__link" onClick={closeMenu}>{l.label}</Link>
             </li>
           ))}
         </ul>
-
         <div className="global-drawer__footer">
           {isLoggedIn ? (
             <>
               {(userRole === 'Admin' || userRole === 'Owner') && (
-                <Link to="/admin" className="global-drawer__login-btn" onClick={closeMenu}>
-                  پنل ادمین
-                </Link>
+                <Link to="/admin" className="global-drawer__login-btn" onClick={closeMenu}>پنل ادمین</Link>
               )}
-              <button className="global-drawer__subscribe-btn" onClick={handleLogout}>
-                خروج از حساب
-              </button>
+              <button className="global-drawer__subscribe-btn" onClick={handleLogout}>خروج از حساب</button>
             </>
           ) : (
             <>
-              <Link to="/auth/login" className="global-drawer__login-btn" onClick={closeMenu}>
-                ورود به حساب
-              </Link>
+              <Link to="/auth/login" className="global-drawer__login-btn" onClick={closeMenu}>ورود به حساب</Link>
               <button className="global-drawer__subscribe-btn">خرید اشتراک</button>
             </>
           )}
         </div>
       </nav>
-
       <SearchOverlay isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
     </>
   );
 };
 
 export default GlobalHeader;
+

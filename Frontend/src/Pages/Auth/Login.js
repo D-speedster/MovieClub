@@ -4,6 +4,7 @@ import { FiUser, FiMail, FiLock, FiEye, FiEyeOff } from 'react-icons/fi';
 import Swal from 'sweetalert2';
 import Logger from '../../utils/logger';
 import { validateForm, sanitizeInput } from '../../utils/validation';
+import { setAuth } from '../../utils/auth';
 import LoadingSpinner from '../../components/Loading/LoadingSpinner';
  import '../Auth/Auth.css';
 
@@ -58,9 +59,9 @@ export default function Login() {
         background: '#1E293B',
         color: '#FFFFFF',
       });
-       const userRole = (data.role || 'user').toLowerCase();
-       const target = userRole === 'admin' ? '/admin' : '/';
-       localStorage.setItem('role', userRole);
+        const userRole = (data.role || 'user').toLowerCase();
+        const target = (userRole === 'admin' || userRole === 'owner') ? '/admin' : '/';
+        setAuth(userRole);
        setRedirectTo(target);
     } catch (err) {
       Logger.error('Login failed:', err);
