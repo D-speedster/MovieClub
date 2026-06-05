@@ -6,7 +6,7 @@ import Logger from '../../utils/logger';
 import { validateForm, sanitizeInput } from '../../utils/validation';
 import { setAuth } from '../../utils/auth';
 import LoadingSpinner from '../../components/Loading/LoadingSpinner';
- import '../Auth/Auth.css';
+import '../Auth/Auth.css';
 
 export default function Login() {
   const [formData, setFormData] = useState({ username: '', password: '' });
@@ -25,7 +25,7 @@ export default function Login() {
 
   const handleLogin = async e => {
     e.preventDefault();
-   const rules = { username: { required: true }, password: { required: true } };
+    const rules = { username: { required: true }, password: { required: true } };
     const validation = validateForm(formData, rules);
     if (!validation.isValid) {
       setValidationErrors(validation.errors);
@@ -33,15 +33,15 @@ export default function Login() {
     }
     try {
       setLoading(true);
-        const res = await fetch('http://localhost:3001/auth/login', {
-         method: 'POST',
-         headers: { 'Content-Type': 'application/json' },
-         body: JSON.stringify(formData),
-         credentials: 'include',
-       });
+      const res = await fetch('http://localhost:3001/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+        credentials: 'include',
+      });
       const data = await res.json();
       if (!res.ok) {
-       Swal.fire({
+        Swal.fire({
           icon: 'error',
           title: 'خطا در ورود',
           text: data.message || 'لطفاً دوباره تلاش کنید',
@@ -59,10 +59,11 @@ export default function Login() {
         background: '#1E293B',
         color: '#FFFFFF',
       });
-        const userRole = (data.role || 'user').toLowerCase();
-        const target = (userRole === 'admin' || userRole === 'owner') ? '/admin' : '/';
-        setAuth(userRole);
-       setRedirectTo(target);
+     
+        const userRole = data.role || 'User';
+        const target = (userRole === 'Admin' || userRole === 'Owner') ? '/admin' : '/';
+      setAuth(userRole);
+      setRedirectTo(target);
     } catch (err) {
       Logger.error('Login failed:', err);
       Swal.fire({
@@ -90,21 +91,21 @@ export default function Login() {
             {error && <div className="auth-error">{error}</div>}
             <form className="auth-form" onSubmit={handleLogin}>
               <div className="form-group">
-                 <label htmlFor="username">نام کاربری</label>
+                <label htmlFor="username">نام کاربری</label>
                 <div className="input-wrapper">
-                   <FiUser className="input-icon" />
-                   <input
-                     id="username"
-                     type="text"
-                     value={formData.username}
-                     onChange={e => handleInputChange('username', e.target.value)}
-                     placeholder="نام کاربری خود را وارد کنید"
-                     className={validationErrors.username ? 'error' : ''}
+                  <FiUser className="input-icon" />
+                  <input
+                    id="username"
+                    type="text"
+                    value={formData.username}
+                    onChange={e => handleInputChange('username', e.target.value)}
+                    placeholder="نام کاربری خود را وارد کنید"
+                    className={validationErrors.username ? 'error' : ''}
                     disabled={loading}
                     autoComplete="email"
                   />
                 </div>
-                 {validationErrors.username && <span className="error-message">{validationErrors.username}</span>}
+                {validationErrors.username && <span className="error-message">{validationErrors.username}</span>}
               </div>
               <div className="form-group">
                 <label htmlFor="password">رمز عبور</label>
@@ -126,7 +127,7 @@ export default function Login() {
                 </div>
                 {validationErrors.password && <span className="error-message">{validationErrors.password}</span>}
               </div>
-               <button type="submit" className="auth-submit-btn" disabled={loading || !formData.username || !formData.password}>
+              <button type="submit" className="auth-submit-btn" disabled={loading || !formData.username || !formData.password}>
                 {loading ? <LoadingSpinner size="small" /> : <><FiUser /> ورود</>}
               </button>
             </form>
