@@ -49,13 +49,14 @@ exports.PostRegister = async (req, res) => {
 
         const hashpass = await bcrypt.hash(password, saltpass);
 
-        await UserSchema.create({
-            name,
-            username,
-            password: hashpass,
-            email,
-            phone
-        });
+    await UserSchema.create({
+        name,
+        username,
+        password: hashpass,
+        email,
+        phone,
+        role: 'User'
+    });
 
         res.status(201).json({ message: 'Registered successfully' });
     } catch (err) {

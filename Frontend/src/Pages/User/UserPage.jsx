@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FiUser, FiMail, FiPhone, FiLogOut, FiShield, FiCalendar, FiEdit2 } from 'react-icons/fi';
-// Removed duplicate Header and Footer imports; Layout already provides them
+// Header and Footer are provided by Layout; imports removed
 import ApiRequest from '../../Services/Axios/config';
 import './UserPage.css';
 

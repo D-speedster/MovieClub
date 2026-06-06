@@ -8,7 +8,11 @@ const UserSchema = new Schema({
         maxlength: 100,
         trim: true
     },
-    role: String,
+    role: {
+        type: String,
+        enum: ['User', 'Admin', 'Owner'],
+        default: 'User'
+    },
     username: {
         type: String,
         required: true,

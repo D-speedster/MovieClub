@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 import Logger from '../../utils/logger';
 import { validateForm, sanitizeInput } from '../../utils/validation';
 import LoadingSpinner from '../../components/Loading/LoadingSpinner';
- import '../Auth/Auth.css';
+import '../Auth/Auth.css';
 
 export default function Register() {
   const [formData, setFormData] = useState({
