@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FiUser, FiMail, FiPhone, FiLogOut, FiShield, FiCalendar, FiEdit2 } from 'react-icons/fi';
-import Footer from '../../components/Layout/Footer/Footer';
-import Header from '../../components/Layout/GlobalHeader/GlobalHeader';
+// Removed duplicate Header and Footer imports; Layout already provides them
 import ApiRequest from '../../Services/Axios/config';
 import './UserPage.css';
 
@@ -57,14 +56,14 @@ export default function UserPage() {
                         </button>
                     </div>
                 </div>
-                <Footer />
+                 {/* Footer removed – Layout provides it */}
             </div>
         );
     }
 
     return (
         <div className="user-page">
-            <Header />
+        {/* Header removed to avoid duplication */}
             <div className="user-page__container">
                 <div className="user-page__card">
 
@@ -145,7 +144,7 @@ export default function UserPage() {
 
                 </div>
             </div>
-            <Footer />
+         {/* Footer removed – Layout provides it */}
         </div>
     );
 }

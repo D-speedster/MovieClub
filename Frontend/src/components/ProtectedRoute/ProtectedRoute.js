@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navigate, useLocation } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 /**
  * ProtectedRoute - مسیرهایی که فقط کاربران لاگین‌کرده می‌توانند ببینند
@@ -8,7 +8,6 @@ import { Navigate, useLocation } from 'react-router-dom';
 const ProtectedRoute = ({ children, adminOnly = false }) => {
     const token = localStorage.getItem('token');
     const role = localStorage.getItem('role');
-    const location = useLocation();
 
     if (!token) {
         return <Navigate to="/auth/login" replace />;
@@ -22,10 +21,6 @@ const ProtectedRoute = ({ children, adminOnly = false }) => {
         }
     }
 
-    // Redirect regular users to their dashboard
-    if (role && role.toLowerCase() === 'user' && !location.pathname.startsWith('/user/dashboard')) {
-        return <Navigate to="/user/dashboard" replace />;
-    }
 
     return children;
 };
