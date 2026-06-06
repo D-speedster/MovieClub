@@ -60,8 +60,11 @@ export default function Login() {
         color: '#FFFFFF',
       });
      
-        const userRole = data.role || 'User';
-        const target = (userRole === 'Admin' || userRole === 'Owner') ? '/admin' : '/';
+         const userRole = data.role || 'User';
+         // Redirect based on role: admin/owner to admin panel, regular user to user dashboard
+         const target = (userRole.toLowerCase() === 'admin' || userRole.toLowerCase() === 'owner')
+           ? '/admin'
+           : '/user/dashboard';
       setAuth(userRole);
       setRedirectTo(target);
     } catch (err) {

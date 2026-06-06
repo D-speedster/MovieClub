@@ -5,6 +5,7 @@ import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import MobileNav from './components/Layout/MobileNav/MobileNav';
 import Layout from './components/Layout/Layout/Layout';
 import './App.css';
+// Import UserDashboard with correct case-sensitive path
 import UserDashboard from './pages/UserDashboard';
 
 // Lazy load pages
@@ -72,7 +73,8 @@ const LoadingSpinner = () => (
 
   { path: '/User', element: <Layout><UserPage /></Layout> },
   // User dashboard placeholder for regular users
-  { path: '/user/dashboard', element: <Layout><UserDashboard /></Layout> },
+  // User dashboard – protected for authenticated users only
+  { path: '/user/dashboard', element: <ProtectedRoute><Layout><UserDashboard /></Layout></ProtectedRoute> },
   { path: '*', element: (
     <Layout>
       <div style={{ minHeight: '100vh', background: '#0f0f1a', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', color: '#fff' }}>
