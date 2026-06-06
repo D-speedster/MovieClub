@@ -10,9 +10,9 @@ import './Home.redesigned.css';
 
 const Home = () => {
   const [featured, setFeatured] = useState([]);
-  const [top10, setTop10] = useState([]);
   const [updatedSeries, setUpdatedSeries] = useState([]);
-  const [randomContent, setRandomContent] = useState([]);
+  const [latestMovies, setLatestMovies] = useState([]);
+  const [latestAnime, setLatestAnime] = useState([]);
   const [trailers, setTrailers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [heroLoading, setHeroLoading] = useState(true);
@@ -24,49 +24,48 @@ const Home = () => {
       setError(null);
 
       // همه درخواست‌ها رو موازی بزن
-      const [
-        featuredRes,
-        top10Res,
-        updatedSeriesRes,
-        randomRes
-      ] = await Promise.allSettled([
-        ApiRequest.get('/content/featured'),
-        ApiRequest.get('/content/top10'),
-        ApiRequest.get('/content/updated-series'),
-        ApiRequest.get('/content/random')
-      ]);
+        const [featuredRes, updatedSeriesRes, moviesRes, animeRes] = await Promise.allSettled([
+          ApiRequest.get('/content/featured'),
+          ApiRequest.get('/content/updated-series'),
+          ApiRequest.get('/content/movieList'),
+          ApiRequest.get('/content/seriesList')
+        ]);
 
       // پیشنهادی‌ها
-      if (featuredRes.status === 'fulfilled') {
-        const data = Array.isArray(featuredRes.value.data)
-          ? featuredRes.value.data
-          : Object.values(featuredRes.value.data);
-        setFeatured(data);
-      }
+        if (featuredRes.status === 'fulfilled') {
+          const data = Array.isArray(featuredRes.value.data)
+            ? featuredRes.value.data
+            : Object.values(featuredRes.value.data);
+          setFeatured(data);
+        }
 
       // 10 عنوان برتر
-      if (top10Res.status === 'fulfilled') {
-        const data = Array.isArray(top10Res.value.data)
-          ? top10Res.value.data
-          : Object.values(top10Res.value.data);
-        setTop10(data);
-      }
+        // 10 titles removed as per new spec
 
       // سریال‌های بروز شده
-      if (updatedSeriesRes.status === 'fulfilled') {
-        const data = Array.isArray(updatedSeriesRes.value.data)
-          ? updatedSeriesRes.value.data
-          : Object.values(updatedSeriesRes.value.data);
-        setUpdatedSeries(data);
-      }
+        if (updatedSeriesRes.status === 'fulfilled') {
+          const data = Array.isArray(updatedSeriesRes.value.data)
+            ? updatedSeriesRes.value.data
+            : Object.values(updatedSeriesRes.value.data);
+          setUpdatedSeries(data);
+        }
 
       // به انتخاب خودت
-      if (randomRes.status === 'fulfilled') {
-        const data = Array.isArray(randomRes.value.data)
-          ? randomRes.value.data
-          : Object.values(randomRes.value.data);
-        setRandomContent(data);
-      }
+        if (moviesRes.status === 'fulfilled') {
+          const data = Array.isArray(moviesRes.value.data)
+            ? moviesRes.value.data
+            : Object.values(moviesRes.value.data);
+          setLatestMovies(data.slice(0, 20));
+        }
+        if (animeRes.status === 'fulfilled') {
+          const raw = Array.isArray(animeRes.value.data)
+            ? animeRes.value.data
+            : Object.values(animeRes.value.data);
+          const animeOnly = raw.filter(item =>
+            item.type === 'anime' || item.type === 'انیمه' || item.genre?.includes('anime')
+          );
+          setLatestAnime(animeOnly.slice(0, 20));
+        }
 
     } catch (err) {
       const handledError = handleApiError(err, 'Home API');
@@ -141,16 +140,9 @@ const Home = () => {
             showViewAll={false}
           />
 
-          {/* 2. 10 عنوان برتر */}
-          <MovieSlider
-            title="۱۰ عنوان برتر"
-            movies={top10}
-            loading={loading}
-            showViewAll={true}
-            onViewAll={() => window.location.href = '/Movies'}
-          />
+          {/* 2. 10 عنوان برتر – removed as per new spec */}
 
-          {/* 3. سریال‌های بروز شده */}
+           {/* 3. سریال‌های بروز شده */}
           <MovieSlider
             title="سریال‌های بروز شده"
             movies={updatedSeries}
@@ -159,13 +151,22 @@ const Home = () => {
             onViewAll={() => window.location.href = '/Series'}
           />
 
-          {/* 4. به انتخاب خودت */}
-          <MovieSlider
-            title="به انتخاب خودت"
-            movies={randomContent}
-            loading={loading}
-            showViewAll={false}
-          />
+           {/* 4. جدیدترین فیلم‌ها */}
+           <MovieSlider
+             title="جدیدترین فیلم‌ها"
+             movies={latestMovies}
+             loading={loading}
+             showViewAll={true}
+             onViewAll={() => window.location.href = '/Movies'}
+           />
+           {/* 5. جدیدترین انیمه‌ها */}
+           <MovieSlider
+             title="جدیدترین انیمه‌ها"
+             movies={latestAnime}
+             loading={loading}
+             showViewAll={true}
+             onViewAll={() => window.location.href = '/anime'}
+           />
 
 
 
