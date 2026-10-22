@@ -24,7 +24,7 @@ Baseline: `c91d1873c6eb238ae49fe89ee393db062e2c7f5b` (`main`). The foundation wa
 - [x] Download CRUD and episode organization
 - [x] User list, creation and role/delete screens
 - [x] Comment moderation and contact inbox
-- [ ] Featured content, hero images and effective page settings
+- [x] Ordered featured content, page hero images and effective text/SEO/social settings
 - [ ] Collections schema/CRUD and public collection pages
 - [ ] Public account experience, menus and redirects audit
 - [ ] Decide whether subscriptions, payments/news and analytics belong in this release
@@ -57,3 +57,9 @@ The retained local posters are not newly uploaded user data. Payment gating and 
 Dedicated `/api/admin/trailers` mutations only touch Trailer documents. Download writes require HTTP(S) URLs and valid content references; season and episode must be specified together and are allowed only for series. User lists exclude password hashes. Creating an Owner requires an existing Owner, and existing Owner/self protection remains enforced on the server. Server-rendered admin data is protected independently of client-side navigation.
 
 The dashboard reports actual content/users/pending comments/unread contacts and grouped registration counts. Registration groups are Gregorian months in Asia/Tehran and explicitly labeled; no fake traffic numbers or random user growth chart is displayed.
+
+## Site settings
+
+The Admin/Owner screen at `/admin/settings` controls the public site name, SEO description, homepage heading/subheading, footer text/social links, four page banners, and up to 12 ordered featured content IDs. Settings are read during server rendering, with no persistent public cache. Existing `hero_movies`, `hero_series` (and home/anime variants) filename values and `featured_content` arrays remain readable. New text preferences live under `site_preferences` in the existing SiteSettings collection.
+
+All settings are committed in one MongoDB transaction with an editor revision check. Banners reuse the bounded WebP upload pipeline and reference-aware cleanup; replacing/removing them leaves legacy files intact. Empty social URLs hide their links. An empty home banner restores the original artwork; empty catalog banners hide that section. Rich page content editing and collections remain separate migration tasks.

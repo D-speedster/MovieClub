@@ -1,3 +1,4 @@
+import { testSettings } from "./settings-integration";
 import { mkdtemp, rm } from "node:fs/promises";
 import { testMedia } from "./media-integration";
 import { MongoMemoryReplSet } from "mongodb-memory-server";
@@ -32,6 +33,9 @@ async function main() {
     const userId = new mongoose.Types.ObjectId(),
       ownerId = new mongoose.Types.ObjectId(),
       contentId = new mongoose.Types.ObjectId();
+    await database
+      .collection("sitesettings")
+      .createIndex({ key: 1 }, { unique: true });
     const password = "Test-only-password-2026";
     await database.collection("users").insertMany([
       {
@@ -644,6 +648,12 @@ async function main() {
       "PASS: all admin management screens render inside the protected admin shell",
     );
     const mediaScenarios = await testMedia(origin, cookie, database, mediaDir);
+    const settingsScenarios = await testSettings(
+      origin,
+      cookie,
+      database,
+      String(contentId),
+    );
     if (process.env.RUN_BROWSER === "1") {
       const { chromium } = await import("@playwright/test");
       const browser = await chromium.launch({
@@ -681,20 +691,16 @@ async function main() {
         })
           .png()
           .toBuffer();
-        await page
-          .getByLabel("فایل پوستر", { exact: true })
-          .setInputFiles({
-            name: "poster.png",
-            mimeType: "image/png",
-            buffer: image,
-          });
-        await page
-          .getByLabel("فایل‌های گالری", { exact: true })
-          .setInputFiles({
-            name: "gallery.png",
-            mimeType: "image/png",
-            buffer: image,
-          });
+        await page.getByLabel("فایل پوستر", { exact: true }).setInputFiles({
+          name: "poster.png",
+          mimeType: "image/png",
+          buffer: image,
+        });
+        await page.getByLabel("فایل‌های گالری", { exact: true }).setInputFiles({
+          name: "gallery.png",
+          mimeType: "image/png",
+          buffer: image,
+        });
         await page.getByAltText("پیش‌نمایش پوستر").waitFor();
         await page.getByAltText("تصویر جدید 1").waitFor();
         await page.screenshot({
@@ -756,6 +762,53 @@ async function main() {
             () => document.documentElement.scrollWidth <= window.innerWidth + 1,
           ),
         );
+        await page.goto(origin + "/admin/settings");
+        await page
+          .getByLabel(/^عنوان بنر اصلی/)
+          .fill("عنوان ثبت شده در مرورگر");
+        await page
+          .getByLabel("فایل بنر صفحه اصلی", { exact: true })
+          .setInputFiles({
+            name: "hero.png",
+            mimeType: "image/png",
+            buffer: image,
+          });
+        await page
+          .getByLabel("انتخاب محتوای ویژه", { exact: true })
+          .fill("فیلم ساخته شده با آپلود مرورگر");
+        await page
+          .getByRole("option", {
+            name: "فیلم ساخته شده با آپلود مرورگر",
+            exact: true,
+          })
+          .click();
+        await page
+          .getByRole("button", { name: "ذخیره تنظیمات", exact: true })
+          .click();
+        await page.getByText("تنظیمات ذخیره شد", { exact: true }).waitFor();
+        await page.screenshot({
+          path: join(tmpdir(), "movieclub-settings-mobile.png"),
+          fullPage: true,
+        });
+        assert(
+          await page.evaluate(
+            () => document.documentElement.scrollWidth <= window.innerWidth + 1,
+          ),
+        );
+        await page.goto(origin + "/");
+        await page
+          .getByRole("heading", {
+            name: "عنوان ثبت شده در مرورگر",
+            exact: true,
+          })
+          .waitFor();
+        await page
+          .getByRole("region", { name: "پیشنهادهای ویژه" })
+          .getByText("فیلم ساخته شده با آپلود مرورگر", { exact: true })
+          .waitFor();
+        console.log(
+          "PASS: browser settings form saves banner, text and searched featured selection on mobile",
+        );
         assert.deepEqual(errors, []);
         console.log(
           "PASS: browser creates a trailer and responsive desktop/mobile shell has no page errors",
@@ -775,7 +828,13 @@ async function main() {
       await database.collection("comments").countDocuments({ contentId }),
       0,
     );
-    console.log("PASS: content deletion removes dependencies in transaction");
+    const featuredAfterDelete = await database
+      .collection("sitesettings")
+      .findOne({ key: "featured_content" });
+    assert(!featuredAfterDelete?.value.includes(String(contentId)));
+    console.log(
+      "PASS: content deletion removes dependencies in transaction and removes featured references",
+    );
     const logout = await request("/api/auth/logout", "POST", undefined, cookie);
     assert.equal(logout.status, 200);
     assert.equal(
@@ -784,7 +843,7 @@ async function main() {
     );
     console.log("PASS: logout revokes server-side session");
     console.log(
-      `${(process.env.RUN_BROWSER === "1" ? 25 : 23) + mediaScenarios} integration scenarios passed using a disposable MongoDB replica set.`,
+      `${(process.env.RUN_BROWSER === "1" ? 26 : 23) + mediaScenarios + settingsScenarios} integration scenarios passed using a disposable MongoDB replica set.`,
     );
   } catch (e) {
     console.error(output);

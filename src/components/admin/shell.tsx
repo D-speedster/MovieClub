@@ -16,6 +16,7 @@ import MailIcon from "@mui/icons-material/MailOutline";
 import PlayIcon from "@mui/icons-material/PlayCircleOutline";
 import DarkIcon from "@mui/icons-material/DarkModeOutlined";
 import LightIcon from "@mui/icons-material/LightModeOutlined";
+import SettingsIcon from "@mui/icons-material/SettingsOutlined";
 import rtlPlugin from "@mui/stylis-plugin-rtl";
 import { prefixer } from "stylis";
 const links = [
@@ -28,6 +29,7 @@ const links = [
   { title: "کاربران", href: "/admin/users", icon: PeopleIcon },
   { title: "نظرات", href: "/admin/comments", icon: CommentIcon },
   { title: "پیام‌های تماس", href: "/admin/contacts", icon: MailIcon },
+  { title: "تنظیمات سایت", href: "/admin/settings", icon: SettingsIcon },
 ];
 export function AdminShell({
   children,

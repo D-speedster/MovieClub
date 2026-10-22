@@ -37,7 +37,7 @@ export const contentMediaReferences = (content: MediaContent) =>
   [content.poster, ...(content.gallery || [])].filter(
     (ref): ref is string => typeof ref === "string",
   );
-async function boundedMultipart(request: Request) {
+export async function boundedMultipart(request: Request) {
   const declared = Number(request.headers.get("content-length"));
   if (Number.isFinite(declared) && declared > MAX_UPLOAD_BYTES)
     throw new HttpError(413, "حجم کل آپلود نباید بیشتر از ۲۶ مگابایت باشد");
@@ -177,23 +177,9 @@ export async function prepareContent(
   data.poster = canonicalMediaReference(data.poster);
   data.gallery = data.gallery.map(canonicalMediaReference);
   try {
-    const save = async (file: File, kind: "poster" | "gallery") => {
-      const bytes = await transformImage(file, kind);
-      await mkdir(mediaDirectory(), { recursive: true });
-      const name = `${randomUUID()}.webp`;
-      await writeFile(
-        path.join(/* turbopackIgnore: true */ mediaDirectory(), name),
-        bytes,
-        {
-          flag: "wx",
-          mode: 0o600,
-        },
-      );
-      created.push(name);
-      return `/media/${name}`;
-    };
-    if (poster) data.poster = await save(poster, "poster");
-    for (const file of gallery) data.gallery.push(await save(file, "gallery"));
+    if (poster) data.poster = await saveManagedImage(poster, "poster", created);
+    for (const file of gallery)
+      data.gallery.push(await saveManagedImage(file, "gallery", created));
     return {
       data: contentInput.parse(data),
       created,
@@ -277,4 +263,21 @@ export async function orphanMediaCandidates() {
     if (!(await mediaIsReferenced(name))) result.push(name);
   }
   return result;
+}
+
+export async function saveManagedImage(
+  file: File,
+  kind: "poster" | "gallery",
+  created: string[],
+) {
+  const bytes = await transformImage(file, kind);
+  await mkdir(mediaDirectory(), { recursive: true });
+  const name = `${randomUUID()}.webp`;
+  await writeFile(
+    path.join(/* turbopackIgnore: true */ mediaDirectory(), name),
+    bytes,
+    { flag: "wx", mode: 0o600 },
+  );
+  created.push(name);
+  return `/media/${name}`;
 }

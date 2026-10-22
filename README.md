@@ -38,12 +38,13 @@ Set `OWNER_USERNAME`, `OWNER_NAME`, `OWNER_EMAIL` and `OWNER_PASSWORD` privately
 - Login/register/logout with opaque database-backed sessions, HttpOnly cookies, live user-role checks, same-origin mutations, server input validation and shared MongoDB rate limits.
 - Material UI 7 admin shell with scoped dark/light themes, desktop sidebar and mobile drawer. Dashboard metrics come from the database. Protected content lists/create/edit/delete and server-checked user role operations; Owner accounts cannot be deleted or demoted.
 - Dedicated trailer CRUD, download CRUD with series season/episode validation, paginated user management, moderation and a contact inbox with read/unread state. Lists support server-side search/filtering and pagination; no bulk download of all users is required.
+- Admin/Owner site settings with effective SEO/text/social preferences, four page banners, ordered featured content, revision checks and transactional saves.
 - Secure poster/gallery uploads, previews, WebP conversion, reference-aware cleanup and server-rendered galleries.
 - Moderated comments and persisted contact messages. New comments remain pending until a manager approves them. Approved/rejected status affects public server-rendered content pages.
 
 ## Remaining migration work
 
-See [docs/MIGRATION.md](docs/MIGRATION.md). In particular: verify full visual parity; complete the richer content editor; collections; featured/hero/page settings; OMDB/TMDB import; truthful analytics; subscription/payment decisions; automated browser/accessibility/visual checks. These capabilities are not claimed to be complete. Existing download links and approved comments already render on content pages.
+See [docs/MIGRATION.md](docs/MIGRATION.md). In particular: verify full visual parity; complete the richer content editor; collections; OMDB/TMDB import; truthful analytics; subscription/payment decisions; automated browser/accessibility/visual checks. These capabilities are not claimed to be complete. Existing download links and approved comments already render on content pages.
 
 ## Validation
 
@@ -82,3 +83,7 @@ The Material UI content editor saves JPEG, PNG and static WebP files with the co
 Use a persistent writable `UPLOAD_DIR` (default `./.data/uploads`), shared by all app instances. Back up that directory with MongoDB. Uploads require Admin/Owner authentication and same-origin requests, with 30 multipart requests per account per 15-minute window. Replacing/removing media and transactional content deletion clean up unreferenced generated files; legacy files are never automatically deleted. Editor revision checks prevent stale saves from overwriting a newer edit.
 
 An interrupted process can leave orphan files. `npm run media:cleanup` reports generated files older than 24 hours without database references; `npm run media:cleanup -- --apply` checks references again and removes candidates. Run against the same database and upload directory as the app. Runtime files are excluded from Git and deployment tracing; deployments must mount the persistent directory rather than bundle uploaded files.
+
+## Site settings
+
+Open `/admin/settings` as Admin/Owner. Set the site name/SEO description, homepage text, footer/social links, page banners and up to 12 ordered featured titles (search covers the full catalog). Settings take effect in server-rendered pages after saving; they do not change `SITE_URL` or deployment environment variables. Blank social URLs hide their links. Removing the home banner restores the default artwork; other page banners disappear when empty. Banners share the secure image limits/storage/cleanup described above. MongoDB replica-set transactions and the unique SiteSettings key index created by `npm run db:indexes` are required. Existing legacy hero filenames and featured selections remain supported.
