@@ -1,0 +1,402 @@
+/* ─── GlobalHeader ────────────────────────────────────────── */
+.global-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  width: 100%;
+  height: 72px;
+  transition: background 0.3s, box-shadow 0.3s;
+}
+
+/* Transparent mode — روی Hero صفحه اصلی */
+.global-header--transparent {
+  background: linear-gradient(to bottom, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.3) 80%, transparent 100%);
+  backdrop-filter: blur(10px);
+}
+
+/* Solid mode — بقیه صفحات */
+.global-header--solid {
+  background: rgba(10, 10, 10, 0.97);
+  box-shadow: 0 2px 16px rgba(0,0,0,0.5);
+  backdrop-filter: blur(12px);
+}
+
+/* Scrolled — هر دو حالت پس از اسکرول */
+.global-header--scrolled {
+  background: rgba(10, 10, 10, 0.96);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.6);
+  backdrop-filter: blur(15px);
+}
+
+/* ─── Content wrapper ─────────────────────────────────────── */
+.global-header__content {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 32px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+/* ─── Logo ────────────────────────────────────────────────── */
+.global-header__logo {
+  text-decoration: none;
+  display: flex;
+  align-items: baseline;
+  gap: 1px;
+  flex-shrink: 0;
+}
+
+.global-header__logo-text {
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--text-primary);
+  font-family: var(--font-primary);
+}
+
+.global-header__logo-accent {
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--gold-primary);
+  font-family: var(--font-primary);
+}
+
+/* ─── Desktop Nav ─────────────────────────────────────────── */
+.global-header__nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+  justify-content: center;
+}
+
+.global-header__nav-link {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: color 0.2s, background 0.2s;
+  white-space: nowrap;
+}
+
+.global-header__nav-link:hover {
+  color: var(--text-primary);
+  background: rgba(255,255,255,0.08);
+  text-decoration: none;
+}
+
+/* ─── Desktop Actions ─────────────────────────────────────── */
+.global-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.global-header__subscribe-btn {
+  background: var(--cta-primary);
+  color: var(--cta-text);
+  border: none;
+  padding: 8px 18px;
+  border-radius: 6px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  white-space: nowrap;
+}
+
+.global-header__subscribe-btn:hover {
+  background: var(--cta-hover);
+  transform: translateY(-1px);
+}
+
+.global-header__login-btn {
+  background: transparent;
+  color: var(--text-tertiary);
+  border: 1px solid rgba(255,255,255,0.25);
+  padding: 7px 16px;
+  border-radius: 6px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+  white-space: nowrap;
+}
+
+.global-header__login-btn:hover {
+  color: var(--text-primary);
+  border-color: rgba(255,255,255,0.6);
+  background: rgba(255,255,255,0.06);
+  text-decoration: none;
+}
+
+.global-header__icon-btn {
+  width: 38px;
+  height: 38px;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 8px;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.global-header__icon-btn:hover {
+  color: var(--text-primary);
+  border-color: rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0.08);
+}
+
+/* ─── Mobile actions ──────────────────────────────────────── */
+.global-header__mobile-actions {
+  display: none;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ─── Hamburger ───────────────────────────────────────────── */
+.global-header__hamburger {
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 0;
+  transition: border-color 0.2s;
+}
+
+.global-header__hamburger span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--text-tertiary);
+  border-radius: 2px;
+  transition: transform 0.3s, opacity 0.3s, width 0.3s;
+  transform-origin: center;
+}
+
+.global-header__hamburger:hover {
+  border-color: rgba(255,255,255,0.5);
+}
+
+.global-header__hamburger.is-open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.global-header__hamburger.is-open span:nth-child(2) {
+  opacity: 0;
+  width: 0;
+}
+.global-header__hamburger.is-open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ─── Drawer backdrop ─────────────────────────────────────── */
+.global-drawer__backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 199;
+  backdrop-filter: blur(2px);
+}
+
+/* ─── Mobile Drawer ───────────────────────────────────────── */
+.global-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 280px;
+  height: 100dvh;
+  background: var(--bg-surface);
+  border-left: 1px solid rgba(255,255,255,0.08);
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+  direction: rtl;
+  overflow-y: auto;
+}
+
+.global-drawer--open {
+  transform: translateX(0);
+}
+
+.global-drawer__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  flex-shrink: 0;
+}
+
+.global-drawer__logo {
+  text-decoration: none;
+  display: flex;
+  align-items: baseline;
+  gap: 1px;
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--text-primary);
+  font-family: var(--font-primary);
+}
+
+.global-drawer__logo-accent {
+  color: var(--gold-primary);
+}
+
+.global-drawer__close {
+  width: 36px;
+  height: 36px;
+  background: rgba(255,255,255,0.06);
+  border: none;
+  border-radius: 8px;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s;
+}
+
+.global-drawer__close:hover {
+  background: rgba(255,255,255,0.12);
+  color: var(--text-primary);
+}
+
+.global-drawer__list {
+  list-style: none;
+  margin: 0;
+  padding: 12px 0;
+  flex: 1;
+}
+
+.global-drawer__link {
+  display: block;
+  padding: 14px 24px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  text-decoration: none;
+  transition: color 0.2s, background 0.2s, padding-inline-end 0.2s;
+  border-inline-end: 3px solid transparent;
+}
+
+.global-drawer__link:hover {
+  color: var(--text-primary);
+  background: rgba(255,255,255,0.05);
+  border-inline-end-color: var(--gold-primary);
+  padding-inline-end: 28px;
+  text-decoration: none;
+}
+
+.global-drawer__footer {
+  padding: 20px;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.global-drawer__login-btn {
+  display: block;
+  text-align: center;
+  padding: 11px;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 8px;
+  color: var(--text-tertiary);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.global-drawer__login-btn:hover {
+  color: var(--text-primary);
+  border-color: rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0.06);
+  text-decoration: none;
+}
+
+.global-drawer__subscribe-btn {
+  width: 100%;
+  padding: 11px;
+  background: var(--cta-primary);
+  color: var(--cta-text);
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.global-drawer__subscribe-btn:hover {
+  background: var(--cta-hover);
+}
+
+/* ─── Responsive ──────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .global-header__content {
+    padding: 0 20px;
+  }
+  .global-header__nav-link {
+    font-size: 0.88rem;
+    padding: 6px 8px;
+  }
+  .global-header__subscribe-btn,
+  .global-header__login-btn {
+    padding: 7px 12px;
+    font-size: 0.82rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .global-header__nav,
+  .global-header__actions {
+    display: none;
+  }
+  .global-header__mobile-actions {
+    display: flex;
+  }
+}
+
+@media (max-width: 480px) {
+  .global-header__content {
+    padding: 0 14px;
+  }
+}
+
+/* ─── Focus states ────────────────────────────────────────── */
+.global-header__nav-link:focus-visible,
+.global-header__subscribe-btn:focus-visible,
+.global-header__login-btn:focus-visible,
+.global-header__icon-btn:focus-visible,
+.global-header__hamburger:focus-visible,
+.global-drawer__link:focus-visible {
+  outline: 2px solid var(--gold-primary);
+  outline-offset: 2px;
+}

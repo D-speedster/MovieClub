@@ -1,0 +1,4 @@
+"use client";
+import {useState} from "react";
+import Link from "next/link";
+export function CommentForm({contentId}:{contentId:string}){const[message,setMessage]=useState('');const[busy,setBusy]=useState(false);return <form className="form-stack" onSubmit={async event=>{event.preventDefault();setBusy(true);const form=event.currentTarget;const data=new FormData(form);try{const response=await fetch('/api/comments',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contentId,text:data.get('text')})});const result=await response.json();setMessage(result.message);if(response.ok)form.reset();}catch{setMessage('ارسال انجام نشد؛ دوباره تلاش کنید');}finally{setBusy(false);}}}><h3>ثبت نظر</h3><label>نظر شما<textarea name="text" required minLength={3} maxLength={1000}/></label><p><Link href="/auth/login">برای ثبت نظر وارد حساب شوید</Link></p><button disabled={busy}>ارسال نظر</button><p role="status">{message}</p></form>;}
