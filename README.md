@@ -2,7 +2,7 @@
 
 Single Next.js App Router application, React 19, TypeScript, MongoDB/Mongoose and Zod. No Express service, Create React App, separate frontend/backend packages or browser-held authentication token.
 
-This branch is **migration stage 1**, not feature-parity completion. `main` retains the old application. Existing collection names, content IDs, slugs, bcrypt passwords, posters and public assets are retained. This branch must not replace the deployed application yet.
+Development now continues directly on `main`, as requested. The Next.js foundation was merged in PR #1; the legacy application remains recoverable in Git history. This is an ongoing migration, not a feature-parity release. Existing collection names, content IDs, slugs, bcrypt passwords, posters and public assets are retained. Do not deploy over a live application until the remaining release gates are complete.
 
 ## Run
 
@@ -36,12 +36,13 @@ Set `OWNER_USERNAME`, `OWNER_NAME`, `OWNER_EMAIL` and `OWNER_PASSWORD` privately
 - Server-rendered home, movie/series/anime catalogs, genre/search and content detail pages, server pagination, metadata/canonical, JSON-LD, sitemap and robots.
 - Existing public CSS tokens, typography, hero artwork, posters and header/footer/card design reused. Visual parity is **not yet verified**; home layout and admin UI require comparison and completion.
 - Login/register/logout with opaque database-backed sessions, HttpOnly cookies, live user-role checks, same-origin mutations, server input validation and shared MongoDB rate limits.
-- Protected admin content list/create/edit and APIs for transactional deletion and protected user-role operations. Owners cannot be deleted/demoted through the user API.
-- Moderated comments and persisted contact messages. Comments are pending until approved; the moderation UI is pending migration.
+- Material UI 7 admin shell with scoped dark/light themes, desktop sidebar and mobile drawer. Dashboard metrics come from the database. Protected content lists/create/edit/delete and server-checked user role operations; Owner accounts cannot be deleted or demoted.
+- Dedicated trailer CRUD, download CRUD with series season/episode validation, paginated user management, moderation and a contact inbox with read/unread state. Lists support server-side search/filtering and pagination; no bulk download of all users is required.
+- Moderated comments and persisted contact messages. New comments remain pending until a manager approves them. Approved/rejected status affects public server-rendered content pages.
 
 ## Remaining migration work
 
-See [docs/MIGRATION.md](docs/MIGRATION.md). In particular: restore full MUI admin design; migrate trailer, download, user and comment management screens; collections; featured/hero/page settings; image upload and deletion lifecycle; OMDB/TMDB import; truthful analytics; subscription/payment decisions; automated browser/accessibility/visual checks. These capabilities are not claimed to be complete. Existing download links and approved comments already render on content pages.
+See [docs/MIGRATION.md](docs/MIGRATION.md). In particular: verify full visual parity; complete the richer content editor; collections; featured/hero/page settings; image upload and deletion lifecycle; OMDB/TMDB import; truthful analytics; subscription/payment decisions; automated browser/accessibility/visual checks. These capabilities are not claimed to be complete. Existing download links and approved comments already render on content pages.
 
 ## Validation
 
@@ -50,6 +51,9 @@ npm run typecheck
 npm test
 npm run build
 npm run test:integration
+# Optional real browser checks, after installing Playwright Chromium:
+npx playwright install chromium
+npm run test:browser
 ```
 
 Integration tests launch a production Next server on localhost:3107 and a disposable MongoDB replica set, seed only temporary data and remove it afterwards. `mongodb-memory-server` may download its MongoDB binary on the first run. Integration tests require local process/network permissions. They do not use `MONGO_URI` or modify the user's database.
@@ -67,3 +71,5 @@ scripts/         Explicit database indexes and secure owner bootstrap
 ```
 
 Image optimization is deliberately disabled on migrated poster components until remote image origins and deployment storage are finalized. The app does not fetch arbitrary poster URLs on the server. Existing files in `public/uploads` are retained for compatibility; new uploads and storage are pending.
+
+Optional browser tests use the same disposable database and production server. Set `CHROME_EXECUTABLE_PATH` to use an existing Chromium executable. Browser screenshots are saved to the OS temporary directory for inspection, not uploaded or committed.

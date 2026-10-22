@@ -44,5 +44,5 @@ export const Session = mongoose.models.Session || mongoose.model("Session", sess
 
 const rateSchema = new Schema({key:{type:String,unique:true},count:{type:Number,default:0},expiresAt:{type:Date,expires:0}});
 export const RateBucket=mongoose.models.RateBucket||mongoose.model('RateBucket',rateSchema);
-const contactSchema=new Schema({name:String,email:String,message:String},{timestamps:true});
+const contactSchema=new Schema({name:String,email:String,message:String,read:{type:Boolean,default:false}},{timestamps:true});
 export const ContactMessage=mongoose.models.ContactMessage||mongoose.model('ContactMessage',contactSchema);
