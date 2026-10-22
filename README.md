@@ -1,82 +1,69 @@
-# MovieClub
+# MovieClub — Next.js rewrite
 
-## معرفی
-MovieClub یک پلتفرم دانلود کامل فیلم و سریال فارسی است که به صورت **Full‑Stack** طراحی شده و برای ارائه یک تجربه کاربری حرفه‌ای و مقیاس‌پذیر ساخته شده است. این پروژه به عنوان پروژه نهایی دانشگاهی طراحی و پیاده‌سازی شده و شامل بخش‌های زیر است:
+Single Next.js App Router application, React 19, TypeScript, MongoDB/Mongoose and Zod. No Express service, Create React App, separate frontend/backend packages or browser-held authentication token.
 
-* **Frontend** – رابط کاربری مدرن با React 19، React Router v6، و Material‑UI برای پنل مدیریت.
-* **Backend** – سرور Node.js/Express 5، Mongoose، MongoDB، JWT، و سایر کتابخانه‌های امنیتی.
-* **Admin Panel** – مدیریت محتوا، کاربران، آمار، و بخش‌های ویژه با استفاده از MUI.
+This branch is **migration stage 1**, not feature-parity completion. `main` retains the old application. Existing collection names, content IDs, slugs, bcrypt passwords, posters and public assets are retained. This branch must not replace the deployed application yet.
 
-## ویژگی‌ها
-* مرور و جستجوی فیلم، سریال و انیمه با فیلتر بر اساس ژانر، نوع و کیفیت.
-* لینک‌های دانلود مستقیم برای هر محتوا.
-* ثبت‌نام و ورود کاربر با JWT در کوکی httpOnly و دسترسی مبتنی بر نقش (کاربر / مدیر / مالک).
-* پنل مدیریت برای افزودن/ویرایش/حذف محتوا، مدیریت کاربران، مشاهده آمار، و مدیریت بخش ویژه و تریلرها.
-* طراحی واکنش‌گرا (موبایل + دسکتاپ) و RTL (UI فارسی).
-* تم تاریک و امکان تغییر تم.
+## Run
 
-## تکنولوژی‌ها
-### Frontend
-* React 19, React Router v6, Axios, SweetAlert2, React Icons
-* Lazy Loading + Suspense, ErrorBoundary
-* Material‑UI (MUI) برای پنل مدیریت
-* RTL و تم تاریک
+Use Node 22 or newer. From this repository root:
 
-### Backend
-* Node.js, Express 5, Mongoose, MongoDB
-* JWT (jsonwebtoken), bcrypt, Multer, cookie‑parser, express‑session, dotenv
-* امنیت: JWT در کوکی httpOnly، دسترسی مبتنی بر نقش
-
-## ساختار پروژه
-```
-MovieClub/
-├── Backend/
-│   ├── controller/     — Auth.js, content.js
-│   ├── middlewares/    — isAuth.js, isAdmin.js
-│   ├── models/         — user.js, content.js, siteSettings.js
-│   ├── router/         — Auth.js, Content.js
-│   ├── uploads/        — فایل‌های آپلود شده
-│   └── Server.js
-└── Frontend/
-    ├── src/
-    │   ├── Pages/      — Home, Movies, Series, Anime, Auth, Admin, …
-    │   ├── components/ — Layout, UI, Admin, …
-    │   ├── utils/      — auth.js, validation.js, logger.js
-    │   └── App.js
-    └── public/
-```
-
-## نحوه اجرا
-### Backend
 ```bash
-cd Backend
-npm install
-# کپی .env.example به .env و پر کردن مقادیر
-cp .env.example .env
-node Server.js
+npm ci
+cp .env.example .env.local
+# Set MONGO_URI and SITE_URL in .env.local.
+npm run db:indexes
+npm run dev
 ```
 
-### Frontend
+`SITE_URL` must match the browser origin, including scheme and port, because state-changing requests enforce same-origin access. In production use HTTPS. MongoDB must use a replica set for transactional content deletion. Do not point development/testing at a production database.
+
 ```bash
-cd Frontend
-npm install
+npm run build
 npm start
 ```
 
-## متغیرهای محیطی (Backend/.env)
+Production requires a Node-capable host and MongoDB; PHP-only shared hosting is insufficient. Build does not query a live database. Public catalog pages are server-rendered on request in this first stage. There is no persistent cross-request content cache yet; adding selective caching and invalidation follows functional parity.
+
+## First owner
+
+Set `OWNER_USERNAME`, `OWNER_NAME`, `OWNER_EMAIL` and `OWNER_PASSWORD` privately in `.env.local`, then run `npm run create-owner`. The script requires a password of at least 12 characters, refuses to promote an existing account and never logs the password. Remove these bootstrap variables afterwards. Existing users remain usable with their current bcrypt password. Old JWT cookies are intentionally ignored; users sign in again.
+
+`npm run db:indexes` explicitly creates unique/TTL indexes. Resolve pre-existing duplicate usernames, emails or slugs before running it; the command fails rather than deleting data. Session expiration is checked in every request in addition to TTL cleanup.
+
+## Current coverage
+
+- Server-rendered home, movie/series/anime catalogs, genre/search and content detail pages, server pagination, metadata/canonical, JSON-LD, sitemap and robots.
+- Existing public CSS tokens, typography, hero artwork, posters and header/footer/card design reused. Visual parity is **not yet verified**; home layout and admin UI require comparison and completion.
+- Login/register/logout with opaque database-backed sessions, HttpOnly cookies, live user-role checks, same-origin mutations, server input validation and shared MongoDB rate limits.
+- Protected admin content list/create/edit and APIs for transactional deletion and protected user-role operations. Owners cannot be deleted/demoted through the user API.
+- Moderated comments and persisted contact messages. Comments are pending until approved; the moderation UI is pending migration.
+
+## Remaining migration work
+
+See [docs/MIGRATION.md](docs/MIGRATION.md). In particular: restore full MUI admin design; migrate trailer, download, user and comment management screens; collections; featured/hero/page settings; image upload and deletion lifecycle; OMDB/TMDB import; truthful analytics; subscription/payment decisions; automated browser/accessibility/visual checks. These capabilities are not claimed to be complete. Existing download links and approved comments already render on content pages.
+
+## Validation
+
+```bash
+npm run typecheck
+npm test
+npm run build
+npm run test:integration
 ```
-PORT=3001
-JWT_SECRET=your-jwt-secret
-MONGO_URI=mongodb://localhost:27017/MovieClub
-SESSION_SECRET=your-session-secret
-CORS_ORIGIN=http://localhost:3000
+
+Integration tests launch a production Next server on localhost:3107 and a disposable MongoDB replica set, seed only temporary data and remove it afterwards. `mongodb-memory-server` may download its MongoDB binary on the first run. Integration tests require local process/network permissions. They do not use `MONGO_URI` or modify the user's database.
+
+## Source layout
+
+```text
+src/app/          Pages, metadata routes and API route handlers
+src/components/  Server/client components
+src/server/      Server-only auth, data queries and Mongoose models
+src/lib/         Validation, types and shared pure helpers
+src/styles/      Styles retained from the old UI
+public/          Existing images, fonts and posters
+scripts/         Explicit database indexes and secure owner bootstrap
 ```
 
-## نکات تکمیلی
-* برای تغییر تم یا فعال‌سازی حالت RTL، از تنظیمات در پنل مدیریت استفاده کنید.
-* در صورت نیاز به افزودن محتوا یا کاربران جدید، از پنل مدیریت (Admin Panel) استفاده کنید.
-* برای دسترسی به API، توکن JWT را در کوکی httpOnly دریافت کنید و در هدرهای درخواست استفاده کنید.
-
----
-**توجه:** این مستندات برای ارائه پروژه نهایی دانشگاهی تهیه شده و به صورت حرفه‌ای و مختصر نگارش شده است.
-
+Image optimization is deliberately disabled on migrated poster components until remote image origins and deployment storage are finalized. The app does not fetch arbitrary poster URLs on the server. Existing files in `public/uploads` are retained for compatibility; new uploads and storage are pending.

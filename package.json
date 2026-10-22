@@ -1,0 +1,35 @@
+{
+  "name": "movieclub",
+  "version": "0.2.0",
+  "private": true,
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "db:indexes": "node --env-file-if-exists=.env.local --conditions=react-server --import tsx scripts/db-indexes.ts",
+    "create-owner": "node --env-file-if-exists=.env.local --conditions=react-server --import tsx scripts/create-owner.ts",
+    "test:integration": "node --import tsx tests/integration.ts"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "mongoose": "^8.0.0",
+    "next": "16.4.2",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "server-only": "^0.0.1",
+    "zod": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "mongodb-memory-server": "^11.3.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0"
+  }
+}
