@@ -1,3 +1,5 @@
+import { mkdtemp, rm } from "node:fs/promises";
+import { testMedia } from "./media-integration";
 import { MongoMemoryReplSet } from "mongodb-memory-server";
 import mongoose from "mongoose";
 import { hash } from "bcryptjs";
@@ -13,6 +15,7 @@ async function main() {
   });
   let server: ReturnType<typeof spawn> | undefined;
   let output = "";
+  const mediaDir = await mkdtemp(join(tmpdir(), "movieclub-media-"));
   try {
     const uri = db.getUri("movieclub_integration");
     await mongoose.connect(uri);
@@ -48,27 +51,25 @@ async function main() {
         role: "Owner",
       },
     ]);
-    await database
-      .collection("contents")
-      .insertOne({
-        _id: contentId,
-        title: "فیلم تست رندر سرور",
-        slug: "server-render-test",
-        type: "movie",
-        year: 2026,
-        poster: "1780293224671-poster.jpg",
-        description: "خلاصه قابل مشاهده در HTML اولیه",
-        genres: ["Drama"],
-        actors: [],
-        directors: ["Test Director"],
-        writers: [],
-        languages: ["فارسی"],
-        countries: [],
-        gallery: [],
-        imdb: { rating: 8, votes: 1 },
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      });
+    await database.collection("contents").insertOne({
+      _id: contentId,
+      title: "فیلم تست رندر سرور",
+      slug: "server-render-test",
+      type: "movie",
+      year: 2026,
+      poster: "1780293224671-poster.jpg",
+      description: "خلاصه قابل مشاهده در HTML اولیه",
+      genres: ["Drama"],
+      actors: [],
+      directors: ["Test Director"],
+      writers: [],
+      languages: ["فارسی"],
+      countries: [],
+      gallery: [],
+      imdb: { rating: 8, votes: 1 },
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    });
     server = spawn(
       process.execPath,
       [
@@ -80,7 +81,12 @@ async function main() {
         "3107",
       ],
       {
-        env: { ...process.env, MONGO_URI: uri, SITE_URL: origin },
+        env: {
+          ...process.env,
+          MONGO_URI: uri,
+          SITE_URL: origin,
+          UPLOAD_DIR: mediaDir,
+        },
         stdio: ["ignore", "pipe", "pipe"],
       },
     );
@@ -595,15 +601,13 @@ async function main() {
     console.log(
       "PASS: contact inbox supports read state, filtering and deletion",
     );
-    await database
-      .collection("trailers")
-      .insertMany(
-        Array.from({ length: 22 }, (_, i) => ({
-          title: `Pagination ${i}`,
-          youtubeUrl: "https://youtu.be/test123",
-          createdAt: new Date(),
-        })),
-      );
+    await database.collection("trailers").insertMany(
+      Array.from({ length: 22 }, (_, i) => ({
+        title: `Pagination ${i}`,
+        youtubeUrl: "https://youtu.be/test123",
+        createdAt: new Date(),
+      })),
+    );
     const secondPage = await (
       await request("/api/admin/trailers?page=2", "GET", undefined, cookie)
     ).json();
@@ -639,6 +643,7 @@ async function main() {
     console.log(
       "PASS: all admin management screens render inside the protected admin shell",
     );
+    const mediaScenarios = await testMedia(origin, cookie, database, mediaDir);
     if (process.env.RUN_BROWSER === "1") {
       const { chromium } = await import("@playwright/test");
       const browser = await chromium.launch({
@@ -663,6 +668,50 @@ async function main() {
         const page = await context.newPage();
         const errors: string[] = [];
         page.on("pageerror", (e) => errors.push(e.message));
+        await page.goto(origin + "/admin/new");
+        await page.getByLabel(/^عنوان/).fill("فیلم ساخته شده با آپلود مرورگر");
+        const { default: sharp } = await import("sharp");
+        const image = await sharp({
+          create: {
+            width: 300,
+            height: 450,
+            channels: 3,
+            background: "#8b5cf6",
+          },
+        })
+          .png()
+          .toBuffer();
+        await page
+          .getByLabel("فایل پوستر", { exact: true })
+          .setInputFiles({
+            name: "poster.png",
+            mimeType: "image/png",
+            buffer: image,
+          });
+        await page
+          .getByLabel("فایل‌های گالری", { exact: true })
+          .setInputFiles({
+            name: "gallery.png",
+            mimeType: "image/png",
+            buffer: image,
+          });
+        await page.getByAltText("پیش‌نمایش پوستر").waitFor();
+        await page.getByAltText("تصویر جدید 1").waitFor();
+        await page.screenshot({
+          path: join(tmpdir(), "movieclub-content-upload.png"),
+          fullPage: true,
+        });
+        await page.getByRole("button", { name: "ذخیره", exact: true }).click();
+        await page.waitForURL("**/admin/movies");
+        await page
+          .getByRole("cell", {
+            name: "فیلم ساخته شده با آپلود مرورگر",
+            exact: true,
+          })
+          .waitFor();
+        console.log(
+          "PASS: browser content editor previews and saves poster/gallery multipart files",
+        );
         await page.goto(origin + "/admin/trailers");
         await page.getByRole("button", { name: "افزودن", exact: true }).click();
         await page.screenshot({
@@ -735,7 +784,7 @@ async function main() {
     );
     console.log("PASS: logout revokes server-side session");
     console.log(
-      `${process.env.RUN_BROWSER === "1" ? 24 : 23} integration scenarios passed using a disposable MongoDB replica set.`,
+      `${(process.env.RUN_BROWSER === "1" ? 25 : 23) + mediaScenarios} integration scenarios passed using a disposable MongoDB replica set.`,
     );
   } catch (e) {
     console.error(output);
@@ -744,6 +793,7 @@ async function main() {
     server?.kill("SIGTERM");
     await mongoose.disconnect();
     await db.stop();
+    await rm(mediaDir, { recursive: true, force: true });
   }
 }
 main().catch((error) => {

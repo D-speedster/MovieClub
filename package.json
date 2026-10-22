@@ -14,7 +14,8 @@
     "db:indexes": "node --env-file-if-exists=.env.local --conditions=react-server --import tsx scripts/db-indexes.ts",
     "create-owner": "node --env-file-if-exists=.env.local --conditions=react-server --import tsx scripts/create-owner.ts",
     "test:integration": "node --import tsx tests/integration.ts",
-    "test:browser": "node --import tsx tests/browser.ts"
+    "test:browser": "node --import tsx tests/browser.ts",
+    "media:cleanup": "node --env-file-if-exists=.env.local --conditions=react-server --import tsx scripts/cleanup-media.ts"
   },
   "dependencies": {
     "@emotion/cache": "^11.14.0",
@@ -30,6 +31,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "server-only": "^0.0.1",
+    "sharp": "^0.35.5",
     "stylis": "^4.4.0",
     "zod": "^4.0.0"
   },

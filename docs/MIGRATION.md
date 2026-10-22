@@ -18,7 +18,8 @@ Baseline: `c91d1873c6eb238ae49fe89ee393db062e2c7f5b` (`main`). The foundation wa
 
 - [ ] Pixel/behavior comparison on desktop/mobile; restore full original layout
 - [x] Port core Material UI dashboard, navigation, themes and management controls to React 19 (full visual parity still pending)
-- [ ] Content editor image upload, gallery, series seasons/episodes and OMDB/TMDB
+- [x] Content editor poster/gallery upload, preview, WebP normalization and lifecycle cleanup
+- [ ] Rich series seasons/episodes editor and OMDB/TMDB
 - [x] Dedicated Trailer CRUD; never delete Content from trailer screens
 - [x] Download CRUD and episode organization
 - [x] User list, creation and role/delete screens
@@ -33,7 +34,7 @@ Baseline: `c91d1873c6eb238ae49fe89ee393db062e2c7f5b` (`main`). The foundation wa
 - [ ] Test backup restoration and migration against a **copy** of real data
 - [ ] Audit historic fields, relative gallery URLs and legacy poster formats
 - [ ] Confirm deployment host, canonical domain and image storage
-- [ ] Safe upload/file deletion and orphan cleanup
+- [x] Safe upload/file deletion and orphan cleanup (persistent deployment storage still needs confirmation)
 - [ ] Pagination-aware sitemap splitting beyond 45,000 content documents
 - [ ] Persistent public content caching and write invalidation
 - [ ] Browser, keyboard, accessibility and visual regression checks
@@ -49,7 +50,7 @@ An `_id` URL is redirected to the existing slug. Case-sensitive legacy redirects
 
 New comments default to pending. Existing approved comments remain visible. The moderation screen now supports pending, approved and rejected states. Content deletion requires a MongoDB replica set and removes dependencies transactionally; on unsupported databases it fails rather than intentionally performing a partial delete.
 
-The retained local posters are not newly uploaded user data. Payment gating, new uploads and external metadata imports are not yet implemented. Current public pages do not have a subscription restriction; do not configure this branch as a paid service.
+The retained local posters are not newly uploaded user data. Payment gating and external metadata imports are not yet implemented. New uploads use generated WebP files in persistent UPLOAD_DIR, separate from retained legacy assets. Current public pages do not have a subscription restriction; do not configure this branch as a paid service.
 
 ## Stage 2 management coverage
 

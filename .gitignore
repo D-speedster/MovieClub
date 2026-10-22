@@ -6,3 +6,8 @@ node_modules/
 coverage/
 playwright-report/
 test-results/
+
+# Runtime media and temporary image writes
+.data/
+public/uploads/*.webp
+public/uploads/.*
